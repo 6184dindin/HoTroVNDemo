@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.dindin.hotrovndemo.R;
 
-public class ReliefCampaignActivity extends AppCompatActivity {
+public class CreateReliefCampaignActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_relief_campaign);
+        setContentView(R.layout.activity_create_relief_campaign);
     }
 }

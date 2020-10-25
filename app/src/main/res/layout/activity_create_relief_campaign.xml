@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/color_gray4"
+        android:background="@color/color_gray3"
         android:layout_height="match_parent">
         <RelativeLayout
             android:id="@+id/layoutHeading"
@@ -23,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="Tạo bản tin cứu trợ"
+                android:text="Chiến dịch cứu trợ"
                 android:textSize="@dimen/_20sdp"
                 android:layout_marginLeft="@dimen/_30sdp"
                 android:textColor="@color/color_black"
@@ -44,123 +43,19 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="vertical"
-                android:paddingHorizontal="@dimen/_7sdp"
                 android:layout_height="wrap_content">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:paddingVertical="@dimen/_3sdp"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:background="@drawable/bg_stroke"
-                    android:orientation="vertical">
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_marginVertical="@dimen/_4sdp"
-                        android:layout_marginRight="@dimen/_7sdp"
-                        android:layout_height="@dimen/_30sdp">
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:textSize="@dimen/_15sdp"
-                            android:hint="Chọn tỉnh"
-                            android:enabled="false"
-                            android:textColorHint="@color/color_black"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/_10sdp"
-                            android:background="@drawable/bg_stroke_edit_text"
-                            android:paddingHorizontal="@dimen/_10sdp"
-                            android:paddingVertical="@dimen/_5sdp"/>
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:src="@drawable/ic_down_arrow_in_a_circle"/>
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_marginVertical="@dimen/_4sdp"
-                        android:layout_marginRight="@dimen/_7sdp"
-                        android:layout_height="@dimen/_30sdp">
-                        <EditText
-                            android:enabled="false"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:textSize="@dimen/_15sdp"
-                            android:hint="Chọn thành phố"
-                            android:textColorHint="@color/color_black"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/_10sdp"
-                            android:background="@drawable/bg_stroke_edit_text"
-                            android:paddingHorizontal="@dimen/_10sdp"
-                            android:paddingVertical="@dimen/_5sdp"/>
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:src="@drawable/ic_down_arrow_in_a_circle"/>
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_marginVertical="@dimen/_4sdp"
-                        android:layout_marginRight="@dimen/_7sdp"
-                        android:layout_height="@dimen/_30sdp">
-                        <EditText
-                            android:enabled="false"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:textSize="@dimen/_15sdp"
-                            android:hint="Quận/Huyện/Xã"
-                            android:textColorHint="@color/color_black"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/_10sdp"
-                            android:background="@drawable/bg_stroke_edit_text"
-                            android:paddingHorizontal="@dimen/_10sdp"
-                            android:paddingVertical="@dimen/_5sdp"/>
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:src="@drawable/ic_down_arrow_in_a_circle"/>
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_marginVertical="@dimen/_4sdp"
-                        android:layout_marginRight="@dimen/_10sdp"
-                        android:layout_height="@dimen/_50sdp">
-                        <EditText
-                            android:enabled="false"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:textSize="@dimen/_15sdp"
-                            android:hint="Vị trí của bạn"
-                            android:textColorHint="@color/color_black"
-                            android:layout_centerVertical="true"
-                            android:background="@drawable/bg_stroke_edit_text"
-                            android:padding="@dimen/_15sdp"/>
-                        <ImageView
-                            android:layout_width="@dimen/_30sdp"
-                            android:layout_height="@dimen/_30sdp"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/_10sdp"
-                            android:layout_alignParentRight="true"
-                            android:src="@drawable/ic_location"/>
-                    </RelativeLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:paddingTop="@dimen/_3sdp"
-                    android:paddingBottom="@dimen/_10sdp"
-                    android:paddingLeft="@dimen/_7sdp"
-                    android:paddingRight="@dimen/_10sdp"
+                    android:layout_margin="@dimen/_7sdp"
+                    android:paddingBottom="@dimen/_5sdp"
+                    android:paddingHorizontal="@dimen/_10sdp"
                     android:background="@drawable/bg_stroke"
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Người kêu gọi"
+                        android:text="Người liên hệ"
                         android:textColor="@color/color_black"
                         android:textSize="@dimen/_15sdp"/>
                     <EditText
@@ -197,40 +92,62 @@
                         android:layout_marginRight="@dimen/_5sdp"
                         android:background="@drawable/bg_stroke_edit_text"
                         android:padding="@dimen/_5sdp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tổ chức/Đơn vị"
+                        android:textColor="@color/color_black"
+                        android:textSize="@dimen/_15sdp"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@drawable/bg_stroke_edit_text"
+                        android:padding="@dimen/_5sdp"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:paddingTop="@dimen/_3sdp"
-                    android:paddingBottom="@dimen/_10sdp"
-                    android:paddingLeft="@dimen/_7sdp"
-                    android:paddingRight="@dimen/_10sdp"
+                    android:padding="@dimen/_10sdp"
                     android:orientation="vertical"
-                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_marginHorizontal="@dimen/_7sdp"
                     android:background="@drawable/bg_stroke"
                     android:layout_height="wrap_content">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Mô tả tình hình"
+                        android:text="Thời gian"
                         android:textColor="@color/color_black"
                         android:textSize="@dimen/_15sdp"/>
-                    <EditText
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_70sdp"
-                        android:textSize="@dimen/_15sdp"
-                        android:gravity="top"
+                        android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:background="@drawable/bg_stroke_edit_text"
-                        android:padding="@dimen/_5sdp"/>
+                        android:padding="@dimen/_5sdp">
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_marginRight="@dimen/_30sdp"
+                            android:layout_height="wrap_content"
+                            android:background="@color/transition"
+                            android:textSize="@dimen/_15sdp"/>
+                        <ImageButton
+                            android:layout_centerVertical="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/transition"
+                            android:src="@drawable/ic_calendar"
+                            android:layout_alignParentRight="true"/>
+                    </RelativeLayout>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cần hỗ trợ những gì?"
+                        android:text="Mặt hàng"
                         android:textColor="@color/color_black"
                         android:textSize="@dimen/_15sdp"/>
                     <EditText
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_70sdp"
+                        android:layout_height="@dimen/_150sdp"
                         android:textSize="@dimen/_15sdp"
                         android:gravity="top"
                         android:layout_marginRight="@dimen/_5sdp"
@@ -239,7 +156,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:paddingVertical="@dimen/_3sdp"
-                        android:layout_marginTop="@dimen/_7sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:paddingLeft="@dimen/_5sdp"
                         android:paddingRight="@dimen/_10sdp"
                         android:background="@drawable/bg_button_add_image"
@@ -253,13 +170,12 @@
                             android:layout_marginLeft="@dimen/_5sdp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Thêm ảnh tình hình"
+                            android:text="Thêm ảnh mặt hàng"
                             android:layout_gravity="center_vertical"
                             android:textSize="@dimen/_16sdp"
                             android:textColor="@color/color_black"/>
                     </LinearLayout>
                 </LinearLayout>
-
             </LinearLayout>
         </ScrollView>
         <Button

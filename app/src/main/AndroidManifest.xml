@@ -9,21 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.ReliefCampaignActivity">
-        </activity>
-        <activity android:name=".activity.ReliefInformationActivity" />
-        <activity android:name=".activity.CreateReliefNewsletterActivity" />
-        <activity android:name=".activity.ReliefBulletinActivity">
+        <activity android:name=".activity.CreateReliefCampaignActivity"></activity>
+        <activity android:name=".activity.ReliefInformationActivity"></activity>
+        <activity android:name=".activity.CreateReliefNewsletterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LoginPhoneNumber" >
-        </activity>
-        <activity android:name=".activity.MainActivity">
-        </activity>
+        <activity android:name=".activity.ReliefBulletinActivity"></activity>
+        <activity android:name=".activity.LoginPhoneNumber"></activity>
+        <activity android:name=".activity.MainActivity"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

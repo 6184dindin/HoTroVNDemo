@@ -4,8 +4,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/color_gray3"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/color_gray3">
 
         <RelativeLayout
             android:id="@+id/layoutHeading"
@@ -43,17 +43,139 @@
                 android:layout_alignParentBottom="true"
                 android:background="@color/color_gray1" />
         </RelativeLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_corner_stroke_top"
+            android:backgroundTint="@color/color_white"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_marginRight="@dimen/_7sdp"
+                android:layout_marginBottom="@dimen/_4sdp"
+                android:background="@color/transition"
+                android:src="@drawable/ic_error" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginVertical="@dimen/_4sdp"
+                android:paddingRight="@dimen/_7sdp">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:background="@drawable/bg_corner_stroke_edit_text"
+                    android:enabled="false"
+                    android:hint="Chọn tỉnh"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:textColorHint="@color/color_black"
+                    android:textSize="@dimen/_15sdp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_down_arrow_in_a_circle" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginVertical="@dimen/_4sdp"
+                android:paddingRight="@dimen/_7sdp">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:background="@drawable/bg_corner_stroke_edit_text"
+                    android:enabled="false"
+                    android:hint="Chọn thành phố"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:textColorHint="@color/color_black"
+                    android:textSize="@dimen/_15sdp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_down_arrow_in_a_circle" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginVertical="@dimen/_4sdp"
+                android:paddingRight="@dimen/_7sdp">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:background="@drawable/bg_corner_stroke_edit_text"
+                    android:enabled="false"
+                    android:hint="Quận/Huyện/Xã"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:textColorHint="@color/color_black"
+                    android:textSize="@dimen/_15sdp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_down_arrow_in_a_circle" />
+            </RelativeLayout>
+
+            <Button
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="right"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginRight="@dimen/_25sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:background="@drawable/bg_button_green"
+                android:backgroundTint="@color/color_green"
+                android:text="Lọc tin"
+                android:textAllCaps="false"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/_10sdp" />
+        </LinearLayout>
+
         <ImageView
+            android:visibility="gone"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_65sdp"
+            android:background="@drawable/bg_circle_green"
             android:scaleType="center"
             android:src="@drawable/ic_search_magnifier_interface_symbol"
-            android:background="@drawable/bg_circle_green"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginBottom="@dimen/_65sdp"
-            android:layout_marginRight="@dimen/_15sdp"/>
+            app:layout_constraintRight_toRightOf="parent" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
             android:background="@color/color_white"
@@ -151,9 +273,10 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
             android:visibility="gone"
+            android:layout_width="match_parent"
+            android:background="@color/color_white"
+            android:layout_height="@dimen/_50sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent">

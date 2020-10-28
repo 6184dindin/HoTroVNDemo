@@ -23,7 +23,7 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
         binding.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.setContentView(R.layout.dialog_notify_create_relief_newsletter_successfull);
+                dialog.setContentView(R.layout.dialog_notify_create_relief_campaign_successfull);
                 dialog.findViewById(R.id.btnDone).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

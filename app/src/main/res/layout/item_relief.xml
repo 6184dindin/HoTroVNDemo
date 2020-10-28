@@ -29,9 +29,9 @@
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/tahomabd"
                     android:text="Quảng Bình"
                     android:textColor="@color/color_black"
-                    android:textStyle="bold"
                     android:textSize="@dimen/_15sdp"/>
             </LinearLayout>
             <LinearLayout
@@ -48,9 +48,9 @@
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/tahomabd"
                     android:text="Đông Anh, Đông Hà, Quảng Bình"
                     android:textColor="@color/color_black"
-                    android:textStyle="bold"
                     android:textSize="@dimen/_15sdp"/>
             </LinearLayout>
             <LinearLayout
@@ -67,9 +67,10 @@
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_width="wrap_content"
                     android:textColor="@color/color_black"
+                    android:fontFamily="@font/tahoma"
                     android:layout_height="wrap_content"
                     android:text="Áo phao, nước uống, đèn bin, áo mưa, áo quần"
-                    android:textSize="@dimen/_14sdp"/>
+                    android:textSize="@dimen/_15sdp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -86,16 +87,17 @@
                     android:layout_height="wrap_content"
                     android:text="(3)"
                     android:layout_marginLeft="@dimen/_10sdp"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/tahomabd"
                     android:textSize="@dimen/_15sdp"
                     android:textColor="@color/color_black"/>
                 <TextView
                     android:textColor="@color/color_black"
                     android:layout_width="wrap_content"
                     android:layout_marginLeft="@dimen/_5sdp"
+                    android:fontFamily="@font/tahoma"
                     android:layout_height="wrap_content"
                     android:text="người tạo chiến dịch cứu trợ"
-                    android:textSize="@dimen/_14sdp"/>
+                    android:textSize="@dimen/_15sdp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -117,32 +119,36 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Võ Hoàng Nam | 0123456789"
-                        android:textSize="@dimen/_14sdp"
+                        android:fontFamily="@font/tahoma"
+                        android:textSize="@dimen/_15sdp"
                         android:textColor="@color/color_black"/>
                     <TextView
                         android:textColor="@color/color_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/tahoma"
                         android:text="Trưởng thôn"
-                        android:textSize="@dimen/_14sdp"/>
+                        android:textSize="@dimen/_15sdp"/>
                 </LinearLayout>
             </LinearLayout>
             <RelativeLayout
                 android:padding="@dimen/_5sdp"
+                android:gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/color_black"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_14sdp"
+                    android:fontFamily="@font/tahoma"
                     android:text="25/10/2020 - 8:30PM"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/color_orange"
+                    android:textColor="@color/color_orange_text"
                     android:textSize="@dimen/_12sdp"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/tahomabd"
                     android:layout_alignParentRight="true"
                     android:text="Xem chi tiết"/>
             </RelativeLayout>

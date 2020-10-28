@@ -6,5 +6,9 @@
         <item name="colorPrimaryDark">#48B3B3B3</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
+    <style name="AppTheme.Picker">
+<!--        <item name="android:textColorPrimary">@color/color_green</item>-->
+        <item name="android:textSize">20dp</item>
+        <item name="colorControlNormal">@color/color_green</item>
+    </style>
 </resources>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Test">
+    <com.shawnlin.numberpicker.NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nPicker"
+        app:np_dividerColor="@color/color_green"
+        app:np_dividerThickness="0.5dp"
+        app:np_dividerDistance="@dimen/_25sdp"
+        app:np_selectedTextColor="@color/color_green"
+        app:np_textColor="@color/color_black"
+        app:np_selectedTextSize="@dimen/_20sdp"
+        app:np_textSize="@dimen/_15sdp"
+        app:np_wheelItemCount="5"
+        app:np_wrapSelectorWheel="false"
+        tools:ignore="MissingConstraints" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:ignore="MissingConstraints" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_gray3">
+        android:background="@color/color_gray_background1">
 
         <RelativeLayout
             android:id="@+id/layoutHeading"
@@ -44,6 +44,7 @@
                 android:background="@color/color_gray1" />
         </RelativeLayout>
         <androidx.recyclerview.widget.RecyclerView
+            android:visibility="gone"
             android:id="@+id/rcViewListRelief"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -52,7 +53,14 @@
             android:layout_marginBottom="@dimen/_50sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
-
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/googleMap"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/layoutHeading"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/layoutNavMap"
+            app:layout_constraintRight_toRightOf="parent"/>
         <LinearLayout
             android:visibility="gone"
             android:layout_width="match_parent"
@@ -90,6 +98,7 @@
                     android:background="@drawable/bg_corner_stroke_edit_text"
                     android:enabled="false"
                     android:hint="Chọn tỉnh"
+                    android:fontFamily="@font/tahoma"
                     android:paddingHorizontal="@dimen/_10sdp"
                     android:paddingVertical="@dimen/_5sdp"
                     android:textColorHint="@color/color_black"
@@ -114,6 +123,7 @@
                     android:layout_height="match_parent"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/_10sdp"
+                    android:fontFamily="@font/tahoma"
                     android:background="@drawable/bg_corner_stroke_edit_text"
                     android:enabled="false"
                     android:hint="Chọn thành phố"
@@ -141,6 +151,7 @@
                     android:layout_height="match_parent"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/_10sdp"
+                    android:fontFamily="@font/tahoma"
                     android:background="@drawable/bg_corner_stroke_edit_text"
                     android:enabled="false"
                     android:hint="Quận/Huyện/Xã"
@@ -163,6 +174,7 @@
                 android:layout_marginTop="@dimen/_4sdp"
                 android:layout_marginRight="@dimen/_25sdp"
                 android:layout_marginBottom="@dimen/_15sdp"
+                android:fontFamily="@font/tahoma"
                 android:background="@drawable/bg_button_green"
                 android:backgroundTint="@color/color_green"
                 android:text="Lọc tin"
@@ -184,6 +196,7 @@
             app:layout_constraintRight_toRightOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutNavMap"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
             android:background="@color/color_white"

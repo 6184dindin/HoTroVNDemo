@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dindin.hotrovndemo">
-
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,24 +11,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.CreateReliefCampaignActivity">
-        </activity>
-        <activity android:name=".activity.ReliefInformationActivity">
-        </activity>
-        <activity android:name=".activity.CreateReliefNewsletterActivity">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCbyfT3Jd4IlmD0TQMd0eTvcTNPLksvUk0"/>
+        <activity android:name=".Test">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter></activity>
+        <activity android:name=".activity.CreateReliefCampaignActivity"></activity>
+        <activity android:name=".activity.ReliefInformationActivity">
         </activity>
-        <activity android:name=".activity.ReliefBulletinActivity">
-        </activity>
-        <activity android:name=".activity.LoginPhoneNumber">
-        </activity>
-        <activity android:name=".activity.MainActivity">
-        </activity>
-
+        <activity android:name=".activity.CreateReliefNewsletterActivity"></activity>
+        <activity android:name=".activity.ReliefBulletinActivity"></activity>
+        <activity android:name=".activity.LoginPhoneNumber"></activity>
+        <activity android:name=".activity.MainActivity"></activity>
     </application>
 
 </manifest>

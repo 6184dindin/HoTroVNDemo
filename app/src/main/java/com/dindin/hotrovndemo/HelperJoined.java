@@ -12,7 +12,7 @@ public class HelperJoined implements Serializable {
     BigInteger timeEnd;
     String supportValue;
     BigInteger dateCreated;
-
+    public HelperJoined() {}
     public HelperJoined(String adminHelper, String phoneContact, String rolePersonHelper,
                         String organization, BigInteger timeBegin, BigInteger timeEnd,
                         String supportValue, BigInteger dateCreated) {

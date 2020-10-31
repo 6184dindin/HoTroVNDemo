@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, LoginPhoneNumber.class);
                 intent.putExtra("key", 1);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
             }
         });
         binding.btnHelperJoined.setOnClickListener(new View.OnClickListener() {

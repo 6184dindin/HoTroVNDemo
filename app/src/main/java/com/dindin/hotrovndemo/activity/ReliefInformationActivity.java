@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -25,15 +26,21 @@ public class ReliefInformationActivity extends AppCompatActivity {
     List<HelperJoined> helperJoinedList;
     AdapterHelperJoined adapterHelperJoined;
     Dialog dialog;
+    Intent intent;
+    int key;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_relief_information);
+        intent = getIntent();
+        key = intent.getIntExtra("key", 0);
         dialog = new Dialog(this);
         helperJoinedList = new ArrayList<>();
         helperJoinedList.add(new HelperJoined());
         helperJoinedList.add(new HelperJoined());
         adapterHelperJoined = new AdapterHelperJoined(helperJoinedList, this);
+        startAct();
+
         adapterHelperJoined.setiAdapterHelperJoined(new IAdapterHelperJoined() {
             @Override
             public void openDialogShowInformationReliefCampaign(HelperJoined helperJoined) {
@@ -51,5 +58,27 @@ public class ReliefInformationActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         binding.rcViewListReliefCampaign.setLayoutManager(layoutManager);
         binding.rcViewListReliefCampaign.setAdapter(adapterHelperJoined);
+        binding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        binding.btnCreateReliefCampaign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ReliefInformationActivity.this, CreateReliefCampaignActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+    private void startAct(){
+        if(key == 1) {
+            binding.layoutCCreateReliefCampaign.setVisibility(View.GONE);
+            binding.layoutScrollView.setPadding(0,0,0,0);
+        }
+        if(key == 2) {
+            binding.btnNotification.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_list_circle));
+        }
     }
 }

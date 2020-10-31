@@ -45,7 +45,6 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:visibility="gone"
             android:id="@+id/layoutAddNewsletter"
             android:layout_width="match_parent"
             android:background="@color/color_white"
@@ -91,8 +90,8 @@
                 android:layout_height="match_parent"/>
         </RelativeLayout>
         <LinearLayout
-            android:id="@+id/layoutSelectedProvince"
             android:visibility="gone"
+            android:id="@+id/layoutSelectedProvince"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_corner_stroke_top"
@@ -228,6 +227,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutNavMap"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
             android:background="@color/color_white"

@@ -1,22 +1,30 @@
 package com.dindin.hotrovndemo.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dindin.hotrovndemo.Poco;
 import com.dindin.hotrovndemo.R;
+import com.dindin.hotrovndemo.activity.ReliefInformationActivity;
 
 import java.util.List;
 
 public class AdapterPoco extends RecyclerView.Adapter<AdapterPoco.ViewHolder> {
+    Context context;
     List<Poco> pocos;
+    int key;
 
-    public AdapterPoco(List<Poco> pocos) {
+    public AdapterPoco(Context context, List<Poco> pocos, int key) {
+        this.context = context;
         this.pocos = pocos;
+        this.key = key;
     }
 
     @NonNull
@@ -29,7 +37,14 @@ public class AdapterPoco extends RecyclerView.Adapter<AdapterPoco.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull AdapterPoco.ViewHolder holder, int position) {
-
+        holder.btnSeeDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ReliefInformationActivity.class);
+                intent.putExtra("key", key);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -38,8 +53,10 @@ public class AdapterPoco extends RecyclerView.Adapter<AdapterPoco.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView btnSeeDetails;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            btnSeeDetails = itemView.findViewById(R.id.btnSeeDetails);
         }
     }
 }

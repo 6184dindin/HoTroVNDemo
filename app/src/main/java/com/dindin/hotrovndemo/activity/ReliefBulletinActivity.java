@@ -49,40 +49,43 @@ public class ReliefBulletinActivity extends AppCompatActivity {
     GoogleMap map;
     FusedLocationProviderClient fusedLocationProviderClient;
     Intent intent;
+    int key;
     List<Poco> pocos = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_relief_bulletin);
         intent = getIntent();
+        key = intent.getIntExtra("key", 0);
         createList();
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-        binding.googleMap.onCreate(savedInstanceState);
         setListNewsRelief();
-        createMyMap();
-        startAct();
+        startAct(savedInstanceState);
     }
-    private void startAct() {
-        int key = intent.getIntExtra("key", 0);
+    private void startAct(Bundle savedInstanceState) {
         if(key == 1) {
             startActNeedRelief();
         }
         if(key == 2) {
-            startActHelperJoined();
+            startActHelperJoined(savedInstanceState);
         }
     }
     private void startActNeedRelief() {
         binding.layoutAddNewsletter.setVisibility(View.VISIBLE);
-        binding.rcViewListRelief.setVisibility(View.VISIBLE);
         binding.layoutNavMap.setVisibility(View.GONE);
         binding.layoutSelectedProvince.setVisibility(View.GONE);
         binding.googleMap.setVisibility(View.GONE);
         binding.btnSearch.setVisibility(View.GONE);
         binding.btnNotification.setImageDrawable(getResources().getDrawable(R.drawable.ic_notification_bell));
+        binding.layoutAddNewsletter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ReliefBulletinActivity.this, CreateReliefNewsletterActivity.class);
+                startActivity(intent);
+            }
+        });
     }
-    private void startActHelperJoined() {
+    private void startActHelperJoined(Bundle savedInstanceState) {
         binding.layoutAddNewsletter.setVisibility(View.GONE);
-        binding.rcViewListRelief.setVisibility(View.VISIBLE);
         binding.btnNotification.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_list_circle));
         binding.layoutNavMap.setVisibility(View.VISIBLE);
         binding.googleMap.setVisibility(View.GONE);
@@ -92,6 +95,7 @@ public class ReliefBulletinActivity extends AppCompatActivity {
         binding.btnGetMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                createMyMap(savedInstanceState);
                 binding.rcViewListRelief.setVisibility(View.GONE);
                 binding.googleMap.setVisibility(View.VISIBLE);
                 binding.viewA.setVisibility(View.GONE);
@@ -117,12 +121,14 @@ public class ReliefBulletinActivity extends AppCompatActivity {
         pocos.add(new Poco());
     }
     private void setListNewsRelief() {
-        adapterPoco = new AdapterPoco(pocos);
+        adapterPoco = new AdapterPoco(this, pocos, key);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         binding.rcViewListRelief.setLayoutManager(layoutManager);
         binding.rcViewListRelief.setAdapter(adapterPoco);
     }
-    private void createMyMap() {
+    private void createMyMap(Bundle savedInstanceState) {
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        binding.googleMap.onCreate(savedInstanceState);
         if (ContextCompat.checkSelfPermission(ReliefBulletinActivity.this, Manifest.permission.INTERNET)
                 + ContextCompat.checkSelfPermission(ReliefBulletinActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
                 + ContextCompat.checkSelfPermission(ReliefBulletinActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION)

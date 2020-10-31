@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/timesbi"
             android:text="Lan toả niềm tin"
-            android:textColor="@color/color_orange"
+            android:textColor="@color/color_orange_title"
             android:textSize="@dimen/_20sdp"
             app:layout_constraintTop_toTopOf="@id/tvHeading"
             app:layout_constraintBottom_toTopOf="@+id/tvQuestion"

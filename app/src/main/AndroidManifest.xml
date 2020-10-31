@@ -15,18 +15,24 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCbyfT3Jd4IlmD0TQMd0eTvcTNPLksvUk0"/>
         <activity android:name=".Test">
+        </activity>
+        <activity android:name=".activity.CreateReliefCampaignActivity">
+        </activity>
+        <activity android:name=".activity.ReliefInformationActivity">
+        </activity>
+        <activity android:name=".activity.CreateReliefNewsletterActivity">
+        </activity>
+        <activity android:name=".activity.ReliefBulletinActivity">
+        </activity>
+        <activity android:name=".activity.LoginPhoneNumber">
+        </activity>
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter></activity>
-        <activity android:name=".activity.CreateReliefCampaignActivity"></activity>
-        <activity android:name=".activity.ReliefInformationActivity">
+            </intent-filter>
         </activity>
-        <activity android:name=".activity.CreateReliefNewsletterActivity"></activity>
-        <activity android:name=".activity.ReliefBulletinActivity"></activity>
-        <activity android:name=".activity.LoginPhoneNumber"></activity>
-        <activity android:name=".activity.MainActivity"></activity>
     </application>
 
 </manifest>

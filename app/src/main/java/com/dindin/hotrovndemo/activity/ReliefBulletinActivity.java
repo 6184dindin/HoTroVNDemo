@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -47,30 +48,85 @@ public class ReliefBulletinActivity extends AppCompatActivity {
     AdapterPoco adapterPoco;
     GoogleMap map;
     FusedLocationProviderClient fusedLocationProviderClient;
-
+    Intent intent;
+    List<Poco> pocos = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_relief_bulletin);
-        List<Poco> pocos = new ArrayList<>();
+        intent = getIntent();
+        createList();
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        binding.googleMap.onCreate(savedInstanceState);
+        setListNewsRelief();
+        createMyMap();
+        startAct();
+    }
+    private void startAct() {
+        int key = intent.getIntExtra("key", 0);
+        if(key == 1) {
+            startActNeedRelief();
+        }
+        if(key == 2) {
+            startActHelperJoined();
+        }
+    }
+    private void startActNeedRelief() {
+        binding.layoutAddNewsletter.setVisibility(View.VISIBLE);
+        binding.rcViewListRelief.setVisibility(View.VISIBLE);
+        binding.layoutNavMap.setVisibility(View.GONE);
+        binding.layoutSelectedProvince.setVisibility(View.GONE);
+        binding.googleMap.setVisibility(View.GONE);
+        binding.btnSearch.setVisibility(View.GONE);
+        binding.btnNotification.setImageDrawable(getResources().getDrawable(R.drawable.ic_notification_bell));
+    }
+    private void startActHelperJoined() {
+        binding.layoutAddNewsletter.setVisibility(View.GONE);
+        binding.rcViewListRelief.setVisibility(View.VISIBLE);
+        binding.btnNotification.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_list_circle));
+        binding.layoutNavMap.setVisibility(View.VISIBLE);
+        binding.googleMap.setVisibility(View.GONE);
+        binding.btnSearch.setVisibility(View.VISIBLE);
+        binding.viewA.setVisibility(View.VISIBLE);
+        binding.viewB.setVisibility(View.GONE);
+        binding.btnGetMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.rcViewListRelief.setVisibility(View.GONE);
+                binding.googleMap.setVisibility(View.VISIBLE);
+                binding.viewA.setVisibility(View.GONE);
+                binding.viewB.setVisibility(View.VISIBLE);
+            }
+        });
+        binding.btnGetList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.rcViewListRelief.setVisibility(View.VISIBLE);
+                binding.googleMap.setVisibility(View.GONE);
+                binding.viewA.setVisibility(View.VISIBLE);
+                binding.viewB.setVisibility(View.GONE);
+            }
+        });
+    }
+    private void createList() {
         pocos.add(new Poco());
         pocos.add(new Poco());
         pocos.add(new Poco());
         pocos.add(new Poco());
         pocos.add(new Poco());
         pocos.add(new Poco());
+    }
+    private void setListNewsRelief() {
         adapterPoco = new AdapterPoco(pocos);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         binding.rcViewListRelief.setLayoutManager(layoutManager);
         binding.rcViewListRelief.setAdapter(adapterPoco);
-
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-        binding.googleMap.onCreate(savedInstanceState);
+    }
+    private void createMyMap() {
         if (ContextCompat.checkSelfPermission(ReliefBulletinActivity.this, Manifest.permission.INTERNET)
                 + ContextCompat.checkSelfPermission(ReliefBulletinActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
                 + ContextCompat.checkSelfPermission(ReliefBulletinActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
-
             createMap();
         } else {
             ActivityCompat.requestPermissions(ReliefBulletinActivity.this,
@@ -79,8 +135,7 @@ public class ReliefBulletinActivity extends AppCompatActivity {
                             Manifest.permission.ACCESS_COARSE_LOCATION}, 113);
         }
     }
-
-    void createMap() {
+    private void createMap() {
         binding.googleMap.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {

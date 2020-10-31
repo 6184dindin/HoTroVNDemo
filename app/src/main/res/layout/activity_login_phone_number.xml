@@ -13,11 +13,9 @@
             android:orientation="horizontal"/>
         <ImageButton
             android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_50sdp"
             android:src="@drawable/ic_back"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginLeft="@dimen/_10sdp"
             android:background="@color/transition"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent" />
@@ -36,7 +34,7 @@
             app:layout_constraintBottom_toBottomOf="@id/g0"
             android:hint="Nhập số điện thoại"
             android:textColor="@color/color_black"
-            android:textColorHint="@color/color_gray1"
+            android:textColorHint="@color/color_gray_text"
             android:fontFamily="@font/timesi"/>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -57,9 +55,10 @@
                 android:layout_height="wrap_content"
                 android:text="Việt Nam (+84)"
                 android:textSize="@dimen/_10sdp"
-                android:textColor="@color/color_gray1"/>
+                android:textColor="@color/color_gray_text"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/layoutTermsAndPolicy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -72,14 +71,33 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_9sdp"
-                android:textColor="@color/color_gray1"
+                android:textColor="@color/color_gray_text"
                 android:text="Khi đăng nhập, bạn đồng ý với"/>
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_9sdp"
-                android:textColor="@color/color_green"
-                android:text="Điều khoản dịch vụ và Chính Sách và Sự Riêng Tư"/>
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_9sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
+                    android:textColor="@color/color_green"
+                    android:text="Điều khoản dịch vụ"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_9sdp"
+                    android:textColor="@color/color_green"
+                    android:text="và"/>
+                <TextView
+                    android:layout_marginLeft="@dimen/_3sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_9sdp"
+                    android:textColor="@color/color_green"
+                    android:text="Chính Sách và Sự Riêng Tư"/>
+            </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -92,7 +110,7 @@
             android:layout_height="2dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:background="@color/color_gray2"
+            android:background="@color/color_gray_border4"
             android:layout_marginHorizontal="@dimen/_40sdp"
             app:layout_constraintTop_toBottomOf="@id/edtPhoneNumber"/>
         <Button

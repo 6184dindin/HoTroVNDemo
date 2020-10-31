@@ -10,12 +10,11 @@
     <color name="color_green">#5CAF50</color>
     <color name="color_orange_title">#FF7E2C</color>
     <color name="color_orange_text">#F8810A</color>
-    <color name="color_orange">#F8810A</color>
-    <color name="color_gray1">#C8C5C6</color>
-    <color name="color_gray2">#E0E3E5</color>
-    <color name="color_gray3">#eceaea</color>
-    <color name="color_gray4">#dcdcdc</color>
-    <color name="color_gray_border">#707070</color>
+    <color name="color_gray_text">#9A9496</color>
+    <color name="color_gray_border1">#707070</color>
+    <color name="color_gray_border2">#E2E2E2</color>
+    <color name="color_gray_border3">#848484</color>
+    <color name="color_gray_border4">#C3C9CE</color>
     <color name="color_gray_background_button">#AFAFAF</color>
     <color name="color_gray_background1">#F1F1F1</color>
     <color name="color_gray_background2">#ECEAEA</color>

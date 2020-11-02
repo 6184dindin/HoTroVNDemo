@@ -4,7 +4,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/color_gray_background2"
+        android:background="@color/color_gray_background1"
         android:layout_height="match_parent">
 
         <RelativeLayout
@@ -15,10 +15,9 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="match_parent"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/_5sdp"
                 android:background="@color/transition"
                 android:src="@drawable/ic_back" />
 
@@ -28,7 +27,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/_30sdp"
                 android:fontFamily="@font/tahomabd"
-                android:text="Chiến dịch cứu trợ"
+                android:text="@string/relief_campaign"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/_20sdp"/>
 
@@ -36,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_alignParentBottom="true"
-                android:background="@color/color_gray_border1" />
+                android:background="@color/color_gray_border4" />
         </RelativeLayout>
 
         <ScrollView
@@ -50,31 +49,33 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/_10sdp"
+                android:padding="@dimen/_5sdp"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_7sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:background="@drawable/bg_corner_stroke"
                     android:orientation="vertical"
                     android:paddingHorizontal="@dimen/_10sdp"
-                    android:paddingBottom="@dimen/_5sdp">
+                    android:paddingVertical="@dimen/_5sdp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Người liên hệ"
+                        android:text="@string/contact_name"
                         android:fontFamily="@font/tahoma"
                         android:textColor="@color/color_black"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_14sdp" />
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:fontFamily="@font/tahoma"
+                        android:inputType="textCapSentences"
+                        android:maxLines="1"
                         android:background="@drawable/bg_corner_stroke_edit_text"
                         android:padding="@dimen/_5sdp"
                         android:textSize="@dimen/_15sdp" />
@@ -82,16 +83,18 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Vai trò"
+                        android:text="@string/role"
                         android:fontFamily="@font/tahoma"
                         android:textColor="@color/color_black"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_14sdp" />
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:fontFamily="@font/tahoma"
+                        android:inputType="textCapSentences"
+                        android:maxLines="1"
                         android:background="@drawable/bg_corner_stroke_edit_text"
                         android:padding="@dimen/_5sdp"
                         android:textSize="@dimen/_15sdp" />
@@ -99,10 +102,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Điện thoại"
+                        android:text="@string/phone"
                         android:fontFamily="@font/tahoma"
                         android:textColor="@color/color_black"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_14sdp" />
 
                     <EditText
                         android:layout_width="match_parent"
@@ -111,22 +114,25 @@
                         android:layout_marginRight="@dimen/_5sdp"
                         android:background="@drawable/bg_corner_stroke_edit_text"
                         android:inputType="number"
+                        android:maxLines="1"
                         android:padding="@dimen/_5sdp"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_14sdp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:fontFamily="@font/tahoma"
                         android:layout_height="wrap_content"
-                        android:text="Tổ chức/Đơn vị"
+                        android:text="@string/organization_unit"
                         android:textColor="@color/color_black"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_14sdp" />
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/tahoma"
                         android:layout_marginRight="@dimen/_5sdp"
+                        android:inputType="textCapSentences"
+                        android:maxLines="2"
                         android:background="@drawable/bg_corner_stroke_edit_text"
                         android:padding="@dimen/_5sdp"
                         android:textSize="@dimen/_15sdp" />
@@ -135,18 +141,19 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_7sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:background="@drawable/bg_corner_stroke"
                     android:orientation="vertical"
-                    android:padding="@dimen/_10sdp">
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:paddingHorizontal="@dimen/_10sdp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Thời gian"
+                        android:text="@string/time"
                         android:fontFamily="@font/tahoma"
                         android:textColor="@color/color_black"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_14sdp" />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -159,6 +166,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/tahoma"
+                            android:inputType="text"
+                            android:enabled="false"
                             android:layout_marginRight="@dimen/_30sdp"
                             android:background="@color/transition"
                             android:textSize="@dimen/_15sdp" />
@@ -175,16 +184,17 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Mặt hàng"
+                        android:text="@string/items"
                         android:fontFamily="@font/tahoma"
                         android:textColor="@color/color_black"
-                        android:textSize="@dimen/_15sdp" />
+                        android:textSize="@dimen/_14sdp" />
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_150sdp"
                         android:fontFamily="@font/tahoma"
                         android:layout_marginRight="@dimen/_5sdp"
+                        android:inputType="textCapSentences"
                         android:background="@drawable/bg_corner_stroke_edit_text"
                         android:gravity="top"
                         android:padding="@dimen/_5sdp"
@@ -193,11 +203,10 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/_30sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginVertical="@dimen/_5sdp"
                         android:background="@drawable/bg_button_add_image"
                         android:paddingVertical="@dimen/_3sdp"
-                        android:paddingLeft="@dimen/_5sdp"
-                        android:paddingRight="@dimen/_10sdp">
+                        android:paddingHorizontal="@dimen/_5sdp">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -210,10 +219,10 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="@dimen/_5sdp"
-                            android:text="Thêm ảnh mặt hàng"
+                            android:text="@string/add_picture_of_items"
                             android:fontFamily="@font/tahomabd"
                             android:textColor="@color/color_black"
-                            android:textSize="@dimen/_15sdp" />
+                            android:textSize="@dimen/_14sdp" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -223,13 +232,13 @@
             android:id="@+id/btnSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_7sdp"
-            android:layout_marginBottom="@dimen/_7sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:background="@drawable/bg_button_green"
             android:backgroundTint="@color/color_green"
             android:paddingVertical="@dimen/_7sdp"
             android:fontFamily="@font/tahoma"
-            android:text="Lưu"
+            android:text="@string/save"
             android:textAllCaps="false"
             android:textColor="@color/color_white"
             android:textSize="@dimen/_20sdp"

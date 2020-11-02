@@ -77,7 +77,7 @@ public class ReliefBulletinActivity extends AppCompatActivity {
         binding.googleMap.setVisibility(View.GONE);
         binding.btnSearch.setVisibility(View.GONE);
         binding.btnNotification.setImageDrawable(getResources().getDrawable(R.drawable.ic_notification_bell));
-        binding.layoutAddNewsletter.setOnClickListener(new View.OnClickListener() {
+        binding.btnAddNewsletter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ReliefBulletinActivity.this, CreateReliefNewsletterActivity.class);

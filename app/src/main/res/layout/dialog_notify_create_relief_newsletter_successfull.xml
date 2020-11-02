@@ -25,7 +25,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bạn đã cứu trợ thành công!"
+                android:text="@string/relief_newsletter_successful"
                 android:textColor="@color/color_green"
                 android:textSize="@dimen/_15sdp"
                 android:textStyle="bold" />
@@ -36,7 +36,7 @@
                 android:layout_margin="@dimen/_5sdp"
                 android:gravity="center"
                 android:fontFamily="@font/tahoma"
-                android:text="Các mạnh thường quân sẽ nhận được bản tin cứu trợ của bạn sớm!"
+                android:text="@string/string_on_dialog_create_newsletter"
                 android:textColor="@color/color_gray_text"
                 android:textSize="@dimen/_12sdp" />
 
@@ -47,7 +47,7 @@
                 android:layout_margin="@dimen/_20sdp"
                 android:background="@drawable/bg_button_green"
                 android:backgroundTint="@color/color_green"
-                android:text="XONG"
+                android:text="@string/done"
                 android:textColor="@color/color_white"
                 android:textSize="@dimen/_15sdp" />
         </LinearLayout>

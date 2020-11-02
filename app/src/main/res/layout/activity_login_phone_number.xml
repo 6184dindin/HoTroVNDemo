@@ -32,7 +32,7 @@
             android:background="@color/transition"
             android:inputType="number"
             app:layout_constraintBottom_toBottomOf="@id/g0"
-            android:hint="Nhập số điện thoại"
+            android:hint="@string/hint_enter_phone_number"
             android:textColor="@color/color_black"
             android:textColorHint="@color/color_gray_text"
             android:fontFamily="@font/timesi"/>
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_9sdp"
                 android:textColor="@color/color_gray_text"
-                android:text="Khi đăng nhập, bạn đồng ý với"/>
+                android:text="@string/accept"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -83,27 +83,27 @@
                     android:textSize="@dimen/_9sdp"
                     android:layout_marginRight="@dimen/_3sdp"
                     android:textColor="@color/color_green"
-                    android:text="Điều khoản dịch vụ"/>
+                    android:text="@string/terms_of_service"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_9sdp"
                     android:textColor="@color/color_green"
-                    android:text="và"/>
+                    android:text="@string/and"/>
                 <TextView
                     android:layout_marginLeft="@dimen/_3sdp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_9sdp"
                     android:textColor="@color/color_green"
-                    android:text="Chính Sách và Sự Riêng Tư"/>
+                    android:text="@string/policy_and_privacy"/>
             </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_9sdp"
                 android:textColor="@color/color_green"
-                android:text="của chúng tôi"/>
+                android:text="@string/ours"/>
         </LinearLayout>
         <View
             android:layout_width="match_parent"
@@ -117,11 +117,11 @@
             android:id="@+id/btnNext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tiếp theo"
+            android:text="@string/next"
             android:textAllCaps="false"
             android:background="@drawable/bg_button_green"
             android:backgroundTint="@color/color_green"
-            android:paddingVertical="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_7sdp"
             android:layout_marginHorizontal="@dimen/_30sdp"
             android:textSize="@dimen/_20sdp"
             android:textColor="@color/color_white"

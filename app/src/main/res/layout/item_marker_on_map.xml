@@ -26,13 +26,13 @@
                 android:layout_height="wrap_content"
                 android:text="25/10/2020 - 9:30"
                 android:textColor="@color/color_black"
-                android:fontFamily="@font/timesbi"
+                android:fontFamily="@font/information"
                 android:textSize="@dimen/_8sdp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="(0) chiến dịch hỗ trợ"
-                android:fontFamily="@font/timesbi"
+                android:fontFamily="@font/information"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/_6sdp"/>
             <TextView
@@ -41,7 +41,7 @@
                 android:textColor="@color/color_orange_text"
                 android:text="Xem chi tiết >>"
                 android:layout_gravity="right"
-                android:fontFamily="@font/timesbi"
+                android:fontFamily="@font/information"
                 android:textSize="@dimen/_6sdp"/>
         </LinearLayout>
     </LinearLayout>

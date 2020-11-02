@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.databinding.ActivityLoginPhoneNumberBinding;
+import com.dindin.hotrovndemo.utils.HandleEditTextPhoneNumber;
 
 public class LoginPhoneNumber extends AppCompatActivity {
     ActivityLoginPhoneNumberBinding binding;
@@ -25,18 +26,26 @@ public class LoginPhoneNumber extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+                overridePendingTransition(R.anim.zoom_in,R.anim.fade_in);
             }
         });
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginPhoneNumber.this, ReliefBulletinActivity.class);
-//                intent.putExtra("key", intent.getIntExtra("key", 0));
                 intent.putExtra("key", key);
                 startActivity(intent);
+                overridePendingTransition(R.anim.zoom_in,R.anim.fade_in);
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.zoom_in,R.anim.fade_in);
+    }
+
     private void startAct() {
         if(key == 1) {
             binding.layoutTermsAndPolicy.setVisibility(View.GONE);

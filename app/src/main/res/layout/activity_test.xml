@@ -5,18 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Test">
-
-    <RelativeLayout
+<View
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_black"/>
+    <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <View
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
-            android:layout_margin="@dimen/_20sdp"
-            android:background="@color/color_green"/>
-        <View
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
-            android:background="@color/color_black"/>
-    </RelativeLayout>
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/_20sdp"
+        android:background="@color/color_green"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

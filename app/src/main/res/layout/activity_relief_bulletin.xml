@@ -45,6 +45,7 @@
         </RelativeLayout>
 
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/layoutAddNewsletter"
             android:layout_width="match_parent"
             android:background="@color/color_white"
@@ -71,6 +72,7 @@
                 android:fontFamily="@font/tahomabd"
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
+
         <RelativeLayout
             android:id="@+id/layoutMapAndList"
             android:layout_width="match_parent"
@@ -89,8 +91,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
         </RelativeLayout>
+
         <LinearLayout
-            android:visibility="gone"
             android:id="@+id/layoutSelectedProvince"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -111,89 +113,122 @@
                 android:layout_marginBottom="@dimen/_4sdp"
                 android:background="@color/transition"
                 android:src="@drawable/ic_error" />
-
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:layout_marginVertical="@dimen/_4sdp"
-                android:paddingRight="@dimen/_7sdp">
+                android:gravity="center_vertical"
+                android:layout_height="@dimen/_120sdp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
 
-                <EditText
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginVertical="@dimen/_4sdp"
+                        android:paddingRight="@dimen/_7sdp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:background="@drawable/bg_corner_stroke_edit_text"
+                            android:hint="Chọn tỉnh"
+                            android:fontFamily="@font/tahoma"
+                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:paddingVertical="@dimen/_5sdp"
+                            android:textColorHint="@color/color_black"
+                            android:textSize="@dimen/_15sdp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/ic_down_arrow_in_a_circle" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginVertical="@dimen/_4sdp"
+                        android:paddingRight="@dimen/_7sdp">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:fontFamily="@font/tahoma"
+                            android:background="@drawable/bg_corner_stroke_edit_text"
+                            android:enabled="false"
+                            android:hint="Chọn thành phố"
+                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:paddingVertical="@dimen/_5sdp"
+                            android:textColorHint="@color/color_black"
+                            android:textSize="@dimen/_15sdp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/ic_down_arrow_in_a_circle" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginVertical="@dimen/_4sdp"
+                        android:paddingRight="@dimen/_7sdp">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:fontFamily="@font/tahoma"
+                            android:background="@drawable/bg_corner_stroke_edit_text"
+                            android:enabled="false"
+                            android:hint="Quận/Huyện/Xã"
+                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:paddingVertical="@dimen/_5sdp"
+                            android:textColorHint="@color/color_black"
+                            android:textSize="@dimen/_15sdp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/ic_down_arrow_in_a_circle" />
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:background="@drawable/bg_corner_stroke_edit_text"
-                    android:enabled="false"
-                    android:hint="Chọn tỉnh"
-                    android:fontFamily="@font/tahoma"
-                    android:paddingHorizontal="@dimen/_10sdp"
-                    android:paddingVertical="@dimen/_5sdp"
-                    android:textColorHint="@color/color_black"
-                    android:textSize="@dimen/_15sdp" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/ic_down_arrow_in_a_circle" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:layout_marginVertical="@dimen/_4sdp"
-                android:paddingRight="@dimen/_7sdp">
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:fontFamily="@font/tahoma"
-                    android:background="@drawable/bg_corner_stroke_edit_text"
-                    android:enabled="false"
-                    android:hint="Chọn thành phố"
-                    android:paddingHorizontal="@dimen/_10sdp"
-                    android:paddingVertical="@dimen/_5sdp"
-                    android:textColorHint="@color/color_black"
-                    android:textSize="@dimen/_15sdp" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/ic_down_arrow_in_a_circle" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:layout_marginVertical="@dimen/_4sdp"
-                android:paddingRight="@dimen/_7sdp">
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:fontFamily="@font/tahoma"
-                    android:background="@drawable/bg_corner_stroke_edit_text"
-                    android:enabled="false"
-                    android:hint="Quận/Huyện/Xã"
-                    android:paddingHorizontal="@dimen/_10sdp"
-                    android:paddingVertical="@dimen/_5sdp"
-                    android:textColorHint="@color/color_black"
-                    android:textSize="@dimen/_15sdp" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/ic_down_arrow_in_a_circle" />
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_green"
+                        android:text="Chọn tỉnh"
+                        android:textSize="@dimen/_13sdp"
+                        android:fontFamily="@font/tahomabd"/>
+                    <com.shawnlin.numberpicker.NumberPicker
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:np_dividerColor="@color/color_gray_background1"
+                        app:np_dividerThickness="0.5dp"
+                        app:np_dividerDistance="@dimen/_20sdp"
+                        app:np_selectedTextColor="@color/color_black"
+                        app:np_textColor="@color/color_black"
+                        app:np_selectedTextSize="@dimen/_18sdp"
+                        app:np_textSize="@dimen/_15sdp"
+                        app:np_wheelItemCount="5"/>
+                </LinearLayout>
             </RelativeLayout>
 
             <Button

@@ -15,7 +15,7 @@
     <color name="color_gray_border2">#E2E2E2</color>
     <color name="color_gray_border3">#848484</color>
     <color name="color_gray_border4">#C3C9CE</color>
-    <color name="color_gray_background_button">#AFAFAF</color>
+    <color name="color_gray_background_button">#CCCCCC</color>
     <color name="color_gray_background1">#F1F1F1</color>
     <color name="color_gray_background2">#ECEAEA</color>
 </resources>

@@ -17,13 +17,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
         binding.btnNeedRelief.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, LoginPhoneNumber.class);
                 intent.putExtra("key", 1);
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                overridePendingTransition(R.anim.zoom_in,R.anim.fade_in);
             }
         });
         binding.btnHelperJoined.setOnClickListener(new View.OnClickListener() {
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, LoginPhoneNumber.class);
                 intent.putExtra("key", 2);
                 startActivity(intent);
+                overridePendingTransition(R.anim.zoom_in,R.anim.fade_in);
             }
         });
     }

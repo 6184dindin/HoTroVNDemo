@@ -209,6 +209,7 @@
                     android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:paddingHorizontal="@dimen/_20sdp"
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
@@ -218,15 +219,17 @@
                         android:textSize="@dimen/_13sdp"
                         android:fontFamily="@font/tahomabd"/>
                     <com.shawnlin.numberpicker.NumberPicker
+                        android:id="@+id/numberPicker"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_marginVertical="@dimen/_10sdp"
+                        android:layout_height="wrap_content"
                         app:np_dividerColor="@color/color_gray_background1"
-                        app:np_dividerThickness="0.5dp"
-                        app:np_dividerDistance="@dimen/_20sdp"
+                        app:np_dividerThickness="0.75dp"
+                        app:np_dividerDistance="@dimen/_18sdp"
                         app:np_selectedTextColor="@color/color_black"
-                        app:np_textColor="@color/color_black"
-                        app:np_selectedTextSize="@dimen/_18sdp"
-                        app:np_textSize="@dimen/_15sdp"
+                        app:np_textColor="@color/color_gray_border1"
+                        app:np_selectedTextSize="@dimen/_15sdp"
+                        app:np_textSize="@dimen/_13sdp"
                         app:np_wheelItemCount="5"/>
                 </LinearLayout>
             </RelativeLayout>

@@ -55,4 +55,7 @@
     <string name="relief_campaign_successful">Thông tin sẽ được gởi đến người kêu gọi</string>
     <string name="string_on_dialog_create_newsletter">Các mạnh thường quân sẽ nhận được bản tin cứu trợ của bạn sớm!</string>
     <string name="done">XONG</string>
+
+
+    <string name="xd">Diện ngu</string>
 </resources>

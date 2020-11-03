@@ -28,6 +28,8 @@ import com.dindin.hotrovndemo.adapter.AdapterPoco;
 import com.dindin.hotrovndemo.Poco;
 import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.databinding.ActivityReliefBulletinBinding;
+import com.dindin.hotrovndemo.utils.Helper;
+import com.dindin.hotrovndemo.utils.Province;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -40,6 +42,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.shawnlin.numberpicker.NumberPicker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +55,7 @@ public class ReliefBulletinActivity extends AppCompatActivity {
     Intent intent;
     int key;
     List<Poco> pocos = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,21 +63,25 @@ public class ReliefBulletinActivity extends AppCompatActivity {
         intent = getIntent();
         key = intent.getIntExtra("key", 0);
         createList();
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        binding.googleMap.onCreate(savedInstanceState);
         setListNewsRelief();
         startAct(savedInstanceState);
     }
+
     private void startAct(Bundle savedInstanceState) {
-        if(key == 1) {
+        if (key == 1) {
             startActNeedRelief();
         }
-        if(key == 2) {
+        if (key == 2) {
             startActHelperJoined(savedInstanceState);
         }
     }
+
     private void startActNeedRelief() {
         binding.layoutAddNewsletter.setVisibility(View.VISIBLE);
         binding.layoutNavMap.setVisibility(View.GONE);
-        binding.layoutSelectedProvince.setVisibility(View.GONE);
+        binding.layoutSelectedAddress.setVisibility(View.GONE);
         binding.googleMap.setVisibility(View.GONE);
         binding.btnSearch.setVisibility(View.GONE);
         binding.btnNotification.setImageDrawable(getResources().getDrawable(R.drawable.ic_notification_bell));
@@ -85,6 +93,7 @@ public class ReliefBulletinActivity extends AppCompatActivity {
             }
         });
     }
+
     private void startActHelperJoined(Bundle savedInstanceState) {
         binding.layoutAddNewsletter.setVisibility(View.GONE);
         binding.btnNotification.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_list_circle));
@@ -96,11 +105,11 @@ public class ReliefBulletinActivity extends AppCompatActivity {
         binding.btnGetMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createMyMap(savedInstanceState);
                 binding.rcViewListRelief.setVisibility(View.GONE);
                 binding.googleMap.setVisibility(View.VISIBLE);
                 binding.viewA.setVisibility(View.GONE);
                 binding.viewB.setVisibility(View.VISIBLE);
+                createMyMap(savedInstanceState);
             }
         });
         binding.btnGetList.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +121,81 @@ public class ReliefBulletinActivity extends AppCompatActivity {
                 binding.viewB.setVisibility(View.GONE);
             }
         });
+        binding.btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.layoutSelectedAddress.setVisibility(View.VISIBLE);
+                binding.btnSelectedProvince.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        binding.layoutSelectedPicker.setVisibility(View.VISIBLE);
+                        binding.layoutSelectedProvince.setVisibility(View.GONE);
+                        getList();
+                        position = 0;
+                        binding.numberPicker.setMinValue(1);
+                        binding.numberPicker.setMaxValue(getList().length);
+                        binding.numberPicker.setDisplayedValues(getList());
+                        binding.numberPicker.setWrapSelectorWheel(false);
+                        binding.numberPicker.setValue(1);
+                        binding.numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+                            @Override
+                            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                                position = newVal - 1;
+                            }
+                        });
+                        binding.btnSelected.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                binding.tvProvince.setText(provinces.get(position).getName());
+                                binding.layoutSelectedPicker.setVisibility(View.GONE);
+                                binding.layoutSelectedProvince.setVisibility(View.VISIBLE);
+                            }
+                        });
+                        binding.btnCancel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                binding.layoutSelectedPicker.setVisibility(View.GONE);
+                                binding.layoutSelectedProvince.setVisibility(View.VISIBLE);
+                            }
+                        });
+                    }
+                });
+                binding.btnFilter.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        binding.rcViewListRelief.setVisibility(View.GONE);
+                        binding.googleMap.setVisibility(View.VISIBLE);
+                        binding.viewA.setVisibility(View.GONE);
+                        binding.viewB.setVisibility(View.VISIBLE);
+                        binding.layoutSelectedAddress.setVisibility(View.GONE);
+                        createMyMap(savedInstanceState);
+                    }
+                });
+                binding.btnClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        binding.layoutSelectedAddress.setVisibility(View.GONE);
+                    }
+                });
+            }
+        });
     }
+
+    List<Province> provinces;
+    int position;
+
+    private String[] getList() {
+        provinces = new ArrayList<>();
+        provinces = (ArrayList<Province>) Helper.getProvinces(this);
+        String[] stringsNameProvince = new String[provinces.size()];
+        if (!provinces.isEmpty()) {
+            for (int i = 0; i < provinces.size(); i++) {
+                stringsNameProvince[i] = provinces.get(i).getName();
+            }
+        }
+        return stringsNameProvince;
+    }
+
     private void createList() {
         pocos.add(new Poco());
         pocos.add(new Poco());
@@ -121,12 +204,14 @@ public class ReliefBulletinActivity extends AppCompatActivity {
         pocos.add(new Poco());
         pocos.add(new Poco());
     }
+
     private void setListNewsRelief() {
         adapterPoco = new AdapterPoco(this, pocos, key);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         binding.rcViewListRelief.setLayoutManager(layoutManager);
         binding.rcViewListRelief.setAdapter(adapterPoco);
     }
+
     private void createMyMap(Bundle savedInstanceState) {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         binding.googleMap.onCreate(savedInstanceState);
@@ -142,6 +227,11 @@ public class ReliefBulletinActivity extends AppCompatActivity {
                             Manifest.permission.ACCESS_COARSE_LOCATION}, 113);
         }
     }
+
+    public GoogleMap getMap() {
+        return map;
+    }
+
     private void createMap() {
         binding.googleMap.getMapAsync(new OnMapReadyCallback() {
             @Override
@@ -162,11 +252,11 @@ public class ReliefBulletinActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Location> task) {
                         Location location = task.getResult();
-                        if(location != null) {
+                        if (location != null) {
                             Toast.makeText(getBaseContext(), "Successful", Toast.LENGTH_LONG).show();
                             LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
                             Marker marker = map.addMarker(new MarkerOptions().position(latLng)
-                                                .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView())));
+                                    .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView())));
                             marker.setTag(1);
                             CameraPosition cameraPosition = new CameraPosition.Builder().target(latLng).zoom(13).build();
                             map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
@@ -174,7 +264,7 @@ public class ReliefBulletinActivity extends AppCompatActivity {
                                 @Override
                                 public boolean onMarkerClick(Marker m) {
                                     int position = (int) m.getTag();
-                                    Toast.makeText(getBaseContext(),String.valueOf(position), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getBaseContext(), String.valueOf(position), Toast.LENGTH_LONG).show();
                                     return false;
                                 }
                             });
@@ -185,6 +275,7 @@ public class ReliefBulletinActivity extends AppCompatActivity {
         });
         binding.googleMap.onStart();
     }
+
     private Bitmap getMarkerBitmapFromView() {
         View customMarkerView = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.item_marker_on_map, null);
         customMarkerView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
@@ -200,16 +291,17 @@ public class ReliefBulletinActivity extends AppCompatActivity {
         customMarkerView.draw(canvas);
         return returnedBitmap;
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == 113) {
-            if((grantResults.length > 0)) {
+        if (requestCode == 113) {
+            if ((grantResults.length > 0)) {
                 int grantResultTotal = 0;
-                for(int grantResult : grantResults) {
+                for (int grantResult : grantResults) {
                     grantResultTotal += grantResult;
                 }
-                if(grantResultTotal == PackageManager.PERMISSION_GRANTED){
+                if (grantResultTotal == PackageManager.PERMISSION_GRANTED) {
                     createMap();
                 }
             }

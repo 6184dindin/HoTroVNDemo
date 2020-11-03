@@ -21,17 +21,17 @@
         <activity android:name=".activity.ReliefInformationActivity">
         </activity>
         <activity android:name=".activity.CreateReliefNewsletterActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activity.ReliefBulletinActivity">
         </activity>
         <activity android:name=".activity.LoginPhoneNumber">
         </activity>
         <activity android:name=".activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

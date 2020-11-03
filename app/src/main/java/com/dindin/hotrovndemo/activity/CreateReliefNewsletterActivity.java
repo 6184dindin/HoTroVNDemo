@@ -44,29 +44,33 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
         binding.btnSelectedProvince.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.setContentView(R.layout.dialog_selected_province_district_village);
-                com.shawnlin.numberpicker.NumberPicker numberPicker = dialog.findViewById(R.id.numberPicker);
+                binding.layoutSelectedPicker.setVisibility(View.VISIBLE);
                 getList();
                 position = 0;
-                numberPicker.setMinValue(1);
-                numberPicker.setMaxValue(getList().length);
-                numberPicker.setDisplayedValues(getList());
-                numberPicker.setWrapSelectorWheel(false);
-                numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+                binding.numberPicker.setMinValue(1);
+                binding.numberPicker.setMaxValue(getList().length);
+                binding.numberPicker.setDisplayedValues(getList());
+                binding.numberPicker.setWrapSelectorWheel(false);
+                binding.numberPicker.setValue(1);
+                binding.numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
                     @Override
                     public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                         position = newVal - 1;
                     }
                 });
-                dialog.findViewById(R.id.btnDone).setOnClickListener(new View.OnClickListener() {
+                binding.btnSelected.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        binding.edtProvince.setText(provinces.get(position).getName());
-                        dialog.dismiss();
+                        binding.tvProvince.setText(provinces.get(position).getName());
+                        binding.layoutSelectedPicker.setVisibility(View.GONE);
                     }
                 });
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
+                binding.btnCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        binding.layoutSelectedPicker.setVisibility(View.GONE);
+                    }
+                });
             }
         });
     }

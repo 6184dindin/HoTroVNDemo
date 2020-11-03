@@ -20,6 +20,7 @@
     <!--String in activity relief bulletin-->
     <string name="relief_bulletin">BẢNG TIN CỨU TRỢ</string>
     <string name="add_relief_newsletter">Thêm bản tin</string>
+    <string name="cancel">Hủy bỏ</string>
     <string name="selected_province">Chọn tỉnh</string>
     <string name="selected_city">Chọn thành phố</string>
     <string name="selected_district">Quận/Huyện/Xã</string>

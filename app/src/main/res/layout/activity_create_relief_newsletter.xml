@@ -4,14 +4,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/color_gray_background1"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/color_gray_background1">
 
         <RelativeLayout
             android:id="@+id/layoutHeading"
             android:layout_width="match_parent"
-            android:background="@color/color_white"
             android:layout_height="@dimen/_50sdp"
+            android:background="@color/color_white"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
@@ -26,8 +26,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/_30sdp"
-                android:text="@string/create_news"
                 android:fontFamily="@font/tahomabd"
+                android:text="@string/create_news"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/_20sdp"
                 android:textStyle="bold" />
@@ -51,122 +51,178 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_5sdp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="@dimen/_5sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
                     android:background="@drawable/bg_corner_stroke"
                     android:orientation="vertical"
-                    android:layout_margin="@dimen/_5sdp"
                     android:paddingHorizontal="@dimen/_10sdp"
                     android:paddingVertical="@dimen/_5sdp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_marginVertical="@dimen/_3sdp">
+                        android:layout_height="@dimen/_108sdp">
 
-                        <EditText
-                            android:id="@+id/edtProvince"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/_10sdp"
-                            android:background="@drawable/bg_corner_stroke_edit_text"
-                            android:enabled="false"
-                            android:hint="@string/selected_province"
-                            android:fontFamily="@font/tahoma"
-                            android:paddingHorizontal="@dimen/_10sdp"
-                            android:paddingVertical="@dimen/_5sdp"
-                            android:textColorHint="@color/color_black"
-                            android:textColor="@color/color_black"
-                            android:textSize="@dimen/_14sdp" />
-
-                        <ImageView
-                            android:id="@+id/btnSelectedProvince"
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:src="@drawable/ic_down_arrow_in_a_circle" />
-                    </RelativeLayout>
+                            android:orientation="vertical">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_marginVertical="@dimen/_3sdp">
+                            <RelativeLayout
+                                android:id="@+id/btnSelectedProvince"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginVertical="@dimen/_3sdp">
 
-                        <EditText
-                            android:id="@+id/edtDistrict"
+                                <TextView
+                                    android:id="@+id/tvProvince"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginRight="@dimen/_10sdp"
+                                    android:background="@drawable/bg_corner_stroke_edit_text"
+                                    android:fontFamily="@font/tahoma"
+                                    android:paddingHorizontal="@dimen/_10sdp"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:text="@string/selected_province"
+                                    android:textColor="@color/color_black"
+                                    android:textSize="@dimen/_14sdp" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:src="@drawable/ic_down_arrow_in_a_circle" />
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/btnSelectedCity"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginVertical="@dimen/_3sdp">
+
+                                <TextView
+                                    android:id="@id/tvCity"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginRight="@dimen/_10sdp"
+                                    android:background="@drawable/bg_corner_stroke_edit_text"
+                                    android:fontFamily="@font/tahoma"
+                                    android:paddingHorizontal="@dimen/_10sdp"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:text="@string/selected_city"
+                                    android:textColor="@color/color_black"
+                                    android:textSize="@dimen/_14sdp" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:src="@drawable/ic_down_arrow_in_a_circle" />
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/btnSelectedDistrict"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginVertical="@dimen/_3sdp">
+
+                                <TextView
+                                    android:id="@+id/tvDistrict"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginRight="@dimen/_10sdp"
+                                    android:background="@drawable/bg_corner_stroke_edit_text"
+                                    android:fontFamily="@font/tahoma"
+                                    android:paddingHorizontal="@dimen/_10sdp"
+                                    android:paddingVertical="@dimen/_5sdp"
+                                    android:text="@string/selected_district"
+                                    android:textColor="@color/color_black"
+                                    android:textSize="@dimen/_14sdp" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:src="@drawable/ic_down_arrow_in_a_circle" />
+                            </RelativeLayout>
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/layoutSelectedPicker"
+                            android:background="@color/color_white"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/_10sdp"
-                            android:background="@drawable/bg_corner_stroke_edit_text"
-                            android:enabled="false"
-                            android:fontFamily="@font/tahoma"
-                            android:hint="@string/selected_city"
-                            android:paddingHorizontal="@dimen/_10sdp"
-                            android:paddingVertical="@dimen/_5sdp"
-                            android:textColorHint="@color/color_black"
-                            android:textColor="@color/color_black"
-                            android:textSize="@dimen/_14sdp" />
+                            android:orientation="vertical">
+                            <com.shawnlin.numberpicker.NumberPicker
+                                android:id="@+id/numberPicker"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_80sdp"
+                                android:layout_marginBottom="@dimen/_10sdp"
+                                app:np_dividerColor="@color/color_gray_background1"
+                                app:np_dividerThickness="0.75dp"
+                                app:np_dividerDistance="@dimen/_18sdp"
+                                app:np_selectedTextColor="@color/color_black"
+                                app:np_textColor="@color/color_gray_border1"
+                                app:np_selectedTextSize="@dimen/_15sdp"
+                                app:np_textSize="@dimen/_13sdp"
+                                app:np_wheelItemCount="5"/>
+                            <LinearLayout
+                                android:layout_gravity="right"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_18sdp"
+                                android:orientation="horizontal">
+                                <Button
+                                    android:id="@+id/btnCancel"
+                                    android:background="@color/transition"
+                                    android:textAllCaps="false"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/_18sdp"
+                                    android:textColor="@color/color_green"
+                                    android:text="@string/cancel"
+                                    android:textSize="@dimen/_13sdp"
+                                    android:fontFamily="@font/tahomabd"/>
+                                <Button
+                                    android:id="@+id/btnSelected"
+                                    android:background="@color/transition"
+                                    android:textAllCaps="false"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/_18sdp"
+                                    android:textColor="@color/color_green"
+                                    android:text="@string/selected_province"
+                                    android:textSize="@dimen/_13sdp"
+                                    android:fontFamily="@font/tahomabd"/>
+                            </LinearLayout>
+                        </LinearLayout>
 
-                        <ImageView
-                            android:id="@+id/btnSelectedDistrict"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:src="@drawable/ic_down_arrow_in_a_circle" />
-                    </RelativeLayout>
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_marginVertical="@dimen/_3sdp">
 
-                        <EditText
-                            android:id="@+id/edtVillage"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/_10sdp"
-                            android:background="@drawable/bg_corner_stroke_edit_text"
-                            android:enabled="false"
-                            android:hint="@string/selected_district"
-                            android:fontFamily="@font/tahoma"
-                            android:paddingHorizontal="@dimen/_10sdp"
-                            android:paddingVertical="@dimen/_5sdp"
-                            android:textColorHint="@color/color_black"
-                            android:textColor="@color/color_black"
-                            android:textSize="@dimen/_14sdp" />
-
-                        <ImageView
-                            android:id="@+id/btnSelectedVillage"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:src="@drawable/ic_down_arrow_in_a_circle" />
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_45sdp"
-                        android:background="@drawable/bg_corner_stroke_edit_text"
-                        android:layout_marginVertical="@dimen/_3sdp">
+                        android:layout_marginVertical="@dimen/_3sdp"
+                        android:background="@drawable/bg_corner_stroke_edit_text">
 
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:enabled="false"
                             android:layout_marginHorizontal="@dimen/_15sdp"
                             android:background="@color/transition"
-                            android:hint="@string/my_location"
+                            android:enabled="false"
                             android:fontFamily="@font/tahoma"
-                            android:textColorHint="@color/color_black"
+                            android:hint="@string/my_location"
                             android:textColor="@color/color_black"
+                            android:textColorHint="@color/color_black"
                             android:textSize="@dimen/_14sdp" />
 
                         <ImageView
@@ -182,66 +238,66 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
                     android:background="@drawable/bg_corner_stroke"
                     android:orientation="vertical"
                     android:paddingHorizontal="@dimen/_10sdp"
-                    android:paddingVertical="@dimen/_5sdp"
-                    android:layout_margin="@dimen/_5sdp">
+                    android:paddingVertical="@dimen/_5sdp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/tahoma"
                         android:text="@string/caller_name"
-                        android:fontFamily="@font/tahoma"
                         android:textColor="@color/color_black"
                         android:textSize="@dimen/_14sdp" />
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@drawable/bg_corner_stroke_edit_text"
                         android:fontFamily="@font/tahoma"
                         android:inputType="textCapSentences"
                         android:maxLines="1"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:background="@drawable/bg_corner_stroke_edit_text"
                         android:padding="@dimen/_5sdp"
                         android:textSize="@dimen/_14sdp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/tahoma"
                         android:text="@string/role"
-                        android:fontFamily="@font/tahoma"
                         android:textColor="@color/color_black"
                         android:textSize="@dimen/_14sdp" />
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/tahoma"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:background="@drawable/bg_corner_stroke_edit_text"
-                        android:padding="@dimen/_5sdp"
+                        android:fontFamily="@font/tahoma"
                         android:inputType="textCapSentences"
                         android:maxLines="1"
+                        android:padding="@dimen/_5sdp"
                         android:textSize="@dimen/_14sdp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/phone"
                         android:fontFamily="@font/tahoma"
+                        android:text="@string/phone"
                         android:textColor="@color/color_black"
                         android:textSize="@dimen/_14sdp" />
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_5sdp"
                         android:background="@drawable/bg_corner_stroke_edit_text"
+                        android:fontFamily="@font/tahoma"
                         android:inputType="number"
                         android:maxLines="1"
-                        android:fontFamily="@font/tahoma"
-                        android:layout_marginRight="@dimen/_5sdp"
                         android:padding="@dimen/_5sdp"
                         android:textSize="@dimen/_14sdp" />
                 </LinearLayout>
@@ -249,17 +305,17 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="@dimen/_10sdp"
-                    android:paddingVertical="@dimen/_5sdp"
-                    android:background="@drawable/bg_corner_stroke"
                     android:layout_margin="@dimen/_5sdp"
-                    android:orientation="vertical">
+                    android:background="@drawable/bg_corner_stroke"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:paddingVertical="@dimen/_5sdp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/describe_the_situation"
                         android:fontFamily="@font/tahoma"
+                        android:text="@string/describe_the_situation"
                         android:textColor="@color/color_black"
                         android:textSize="@dimen/_14sdp" />
 
@@ -268,16 +324,16 @@
                         android:layout_height="@dimen/_60sdp"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:background="@drawable/bg_corner_stroke_edit_text"
+                        android:fontFamily="@font/tahoma"
                         android:gravity="top"
                         android:inputType="textCapSentences"
                         android:padding="@dimen/_5sdp"
-                        android:fontFamily="@font/tahoma"
                         android:textSize="@dimen/_14sdp" />
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:fontFamily="@font/tahoma"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/tahoma"
                         android:text="@string/what_need_help"
                         android:textColor="@color/color_black"
                         android:textSize="@dimen/_14sdp" />
@@ -287,9 +343,9 @@
                         android:layout_height="@dimen/_60sdp"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:background="@drawable/bg_corner_stroke_edit_text"
+                        android:fontFamily="@font/tahoma"
                         android:gravity="top"
                         android:inputType="textCapSentences"
-                        android:fontFamily="@font/tahoma"
                         android:padding="@dimen/_5sdp"
                         android:textSize="@dimen/_14sdp" />
 
@@ -297,9 +353,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/_30sdp"
                         android:layout_marginVertical="@dimen/_5sdp"
-                        android:paddingHorizontal="@dimen/_5sdp"
+                        android:background="@drawable/bg_button_add_image"
                         android:gravity="center_vertical"
-                        android:background="@drawable/bg_button_add_image">
+                        android:paddingHorizontal="@dimen/_5sdp">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -328,9 +384,9 @@
             android:layout_marginBottom="@dimen/_10sdp"
             android:background="@drawable/bg_button_green"
             android:backgroundTint="@color/color_green"
+            android:fontFamily="@font/tahoma"
             android:text="@string/save"
             android:textAllCaps="false"
-            android:fontFamily="@font/tahoma"
             android:textColor="@color/color_white"
             android:textSize="@dimen/_20sdp"
             app:layout_constraintBottom_toBottomOf="parent"

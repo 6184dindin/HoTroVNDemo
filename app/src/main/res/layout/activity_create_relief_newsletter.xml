@@ -154,51 +154,56 @@
                             </RelativeLayout>
 
                         </LinearLayout>
+
                         <LinearLayout
-                            android:visibility="gone"
                             android:id="@+id/layoutSelectedPicker"
-                            android:background="@color/color_white"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical">
+                            android:background="@color/color_white"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
                             <com.shawnlin.numberpicker.NumberPicker
                                 android:id="@+id/numberPicker"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_80sdp"
                                 android:layout_marginBottom="@dimen/_10sdp"
                                 app:np_dividerColor="@color/color_gray_background1"
-                                app:np_dividerThickness="0.75dp"
                                 app:np_dividerDistance="@dimen/_18sdp"
+                                app:np_dividerThickness="0.75dp"
                                 app:np_selectedTextColor="@color/color_black"
-                                app:np_textColor="@color/color_gray_border1"
                                 app:np_selectedTextSize="@dimen/_15sdp"
+                                app:np_textColor="@color/color_gray_border1"
                                 app:np_textSize="@dimen/_13sdp"
-                                app:np_wheelItemCount="5"/>
+                                app:np_wheelItemCount="5" />
+
                             <LinearLayout
-                                android:layout_gravity="right"
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_18sdp"
+                                android:layout_gravity="right"
                                 android:orientation="horizontal">
+
                                 <Button
                                     android:id="@+id/btnCancel"
-                                    android:background="@color/transition"
-                                    android:textAllCaps="false"
                                     android:layout_width="wrap_content"
                                     android:layout_height="@dimen/_18sdp"
-                                    android:textColor="@color/color_green"
+                                    android:background="@color/transition"
+                                    android:fontFamily="@font/tahomabd"
                                     android:text="@string/cancel"
-                                    android:textSize="@dimen/_13sdp"
-                                    android:fontFamily="@font/tahomabd"/>
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/color_green"
+                                    android:textSize="@dimen/_13sdp" />
+
                                 <Button
                                     android:id="@+id/btnSelected"
-                                    android:background="@color/transition"
-                                    android:textAllCaps="false"
                                     android:layout_width="wrap_content"
                                     android:layout_height="@dimen/_18sdp"
-                                    android:textColor="@color/color_green"
+                                    android:background="@color/transition"
+                                    android:fontFamily="@font/tahomabd"
                                     android:text="@string/selected_province"
-                                    android:textSize="@dimen/_13sdp"
-                                    android:fontFamily="@font/tahomabd"/>
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/color_green"
+                                    android:textSize="@dimen/_13sdp" />
                             </LinearLayout>
                         </LinearLayout>
                     </RelativeLayout>

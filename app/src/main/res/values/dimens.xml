@@ -19,9 +19,11 @@
     <dimen name="tv_VietNam">@dimen/_10sdp</dimen>
     <dimen name="tv_term_and_policy">@dimen/_9sdp</dimen>
 
-    <!--  Dimen in relief bulletin board -->
+    <!--  Dimen in activity relief bulletin board -->
     <dimen name="title_relief">@dimen/_16sdp</dimen>
     <dimen name="text_add_relief">@dimen/_16sdp</dimen>
+    <dimen name="text_location">@dimen/_15sdp</dimen>
+    <dimen name="text_button_filter_location">@dimen/_10sdp</dimen>
 
     <!--    Dimen in item recyleView relief bulletin board-->
     <dimen name="tv_item_relief">@dimen/_14sdp</dimen>

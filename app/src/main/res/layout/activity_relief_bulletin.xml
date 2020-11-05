@@ -47,32 +47,35 @@
         <LinearLayout
             android:id="@+id/layoutAddNewsletter"
             android:layout_width="match_parent"
-            android:background="@color/color_white"
             android:layout_height="@dimen/_50sdp"
+            android:background="@color/color_white"
             android:padding="@dimen/_5sdp"
-            app:layout_constraintTop_toBottomOf="@id/layoutHeading"
-            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toTopOf="@id/layoutMapAndList"
-            app:layout_constraintRight_toRightOf="parent">
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutHeading">
+
             <LinearLayout
                 android:id="@+id/btnAddNewsletter"
                 android:layout_width="wrap_content"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/transition"
                     android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:background="@color/transition"
                     android:src="@drawable/ic_plus_circle" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/add_relief_newsletter"
-                    android:textSize="@dimen/text_add_relief"
-                    android:textColor="@color/color_black"
+                    android:layout_gravity="center_vertical"
                     android:fontFamily="@font/tahomabd"
-                    android:layout_gravity="center_vertical"/>
+                    android:text="@string/add_relief_newsletter"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/text_add_relief" />
             </LinearLayout>
         </LinearLayout>
 
@@ -80,24 +83,25 @@
             android:id="@+id/layoutMapAndList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@id/layoutAddNewsletter"
-            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toTopOf="@id/layoutNavMap"
-            app:layout_constraintRight_toRightOf="parent">
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutAddNewsletter">
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcViewListRelief"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
+
             <com.google.android.gms.maps.MapView
-                android:visibility="gone"
                 android:id="@+id/googleMap"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:visibility="gone" />
         </RelativeLayout>
 
         <ImageView
             android:id="@+id/btnSearch"
-            android:visibility="gone"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
             android:layout_marginRight="@dimen/_15sdp"
@@ -105,19 +109,20 @@
             android:background="@drawable/bg_circle_green"
             android:scaleType="center"
             android:src="@drawable/ic_search_magnifier_interface_symbol"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutNavMap"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
             android:background="@color/color_white"
-            app:layout_constraintTop_toBottomOf="@id/layoutMapAndList"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent">
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutMapAndList">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btnGetMap"
@@ -157,22 +162,24 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <View
                 android:id="@+id/viewA"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="@color/color_gray_border2"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="@+id/viewX"/>
+                app:layout_constraintRight_toRightOf="@+id/viewX"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <View
                 android:id="@+id/viewB"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="@color/color_gray_border2"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="@+id/viewX"
-                app:layout_constraintRight_toRightOf="parent"/>
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <View
                 android:id="@+id/viewX"
@@ -220,21 +227,23 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--        lọc tin-->
         <RelativeLayout
             android:visibility="gone"
             android:id="@+id/layoutSelectedAddress"
             android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:background="@color/color_white"
-            app:layout_constraintTop_toBottomOf="@id/layoutHeading"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_height="0dp">
+            app:layout_constraintTop_toBottomOf="@id/layoutHeading">
 
             <LinearLayout
-                android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 android:background="@drawable/bg_corner_stroke_top"
                 android:backgroundTint="@color/color_white"
                 android:orientation="vertical">
@@ -250,15 +259,17 @@
                     android:layout_marginBottom="@dimen/_4sdp"
                     android:background="@color/transition"
                     android:src="@drawable/ic_error" />
+
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:gravity="center_vertical"
-                    android:layout_height="@dimen/_150sdp">
+                    android:layout_height="@dimen/_150sdp"
+                    android:gravity="center_vertical">
+
                     <LinearLayout
                         android:id="@+id/layoutSelectedProvince"
                         android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
                         <RelativeLayout
                             android:id="@+id/btnSelectedProvince"
@@ -275,12 +286,12 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginRight="@dimen/_10sdp"
                                 android:background="@drawable/bg_corner_stroke_edit_text"
-                                android:text="@string/selected_province"
                                 android:fontFamily="@font/tahoma"
                                 android:paddingHorizontal="@dimen/_10sdp"
                                 android:paddingVertical="@dimen/_5sdp"
+                                android:text="@string/selected_province"
                                 android:textColor="@color/color_black"
-                                android:textSize="@dimen/_15sdp" />
+                                android:textSize="@dimen/text_location" />
 
                             <ImageView
                                 android:layout_width="wrap_content"
@@ -303,13 +314,13 @@
                                 android:layout_height="match_parent"
                                 android:layout_centerVertical="true"
                                 android:layout_marginRight="@dimen/_10sdp"
-                                android:fontFamily="@font/tahoma"
                                 android:background="@drawable/bg_corner_stroke_edit_text"
-                                android:text="@string/selected_city"
+                                android:fontFamily="@font/tahoma"
                                 android:paddingHorizontal="@dimen/_10sdp"
                                 android:paddingVertical="@dimen/_5sdp"
+                                android:text="@string/selected_city"
                                 android:textColor="@color/color_black"
-                                android:textSize="@dimen/_15sdp" />
+                                android:textSize="@dimen/text_location" />
 
                             <ImageView
                                 android:layout_width="wrap_content"
@@ -332,13 +343,13 @@
                                 android:layout_height="match_parent"
                                 android:layout_centerVertical="true"
                                 android:layout_marginRight="@dimen/_10sdp"
-                                android:fontFamily="@font/tahoma"
                                 android:background="@drawable/bg_corner_stroke_edit_text"
-                                android:text="@string/selected_district"
+                                android:fontFamily="@font/tahoma"
                                 android:paddingHorizontal="@dimen/_10sdp"
                                 android:paddingVertical="@dimen/_5sdp"
+                                android:text="@string/selected_district"
                                 android:textColor="@color/color_black"
-                                android:textSize="@dimen/_15sdp" />
+                                android:textSize="@dimen/text_location" />
 
                             <ImageView
                                 android:layout_width="wrap_content"
@@ -354,60 +365,65 @@
                             android:layout_gravity="right"
                             android:layout_marginVertical="@dimen/_10sdp"
                             android:layout_marginRight="@dimen/_25sdp"
-                            android:fontFamily="@font/tahoma"
                             android:background="@drawable/bg_button_green"
                             android:backgroundTint="@color/color_green"
+                            android:fontFamily="@font/tahoma"
                             android:text="@string/filtering_news"
                             android:textAllCaps="false"
                             android:textColor="@color/color_white"
-                            android:textSize="@dimen/_10sdp" />
+                            android:textSize="@dimen/text_button_filter_location" />
                     </LinearLayout>
+
                     <LinearLayout
-                        android:visibility="gone"
                         android:id="@+id/layoutSelectedPicker"
-                        android:background="@color/color_white"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@color/color_white"
+                        android:orientation="vertical"
                         android:paddingHorizontal="@dimen/_20sdp"
-                        android:orientation="vertical">
+                        android:visibility="gone">
+
                         <com.shawnlin.numberpicker.NumberPicker
                             android:id="@+id/numberPicker"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_100sdp"
                             android:layout_marginBottom="@dimen/_10sdp"
                             app:np_dividerColor="@color/color_gray_background1"
-                            app:np_dividerThickness="0.75dp"
                             app:np_dividerDistance="@dimen/_18sdp"
+                            app:np_dividerThickness="0.75dp"
                             app:np_selectedTextColor="@color/color_black"
-                            app:np_textColor="@color/color_gray_border1"
                             app:np_selectedTextSize="@dimen/_15sdp"
+                            app:np_textColor="@color/color_gray_border1"
                             app:np_textSize="@dimen/_13sdp"
-                            app:np_wheelItemCount="5"/>
+                            app:np_wheelItemCount="5" />
+
                         <LinearLayout
-                            android:layout_gravity="right"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/_18sdp"
+                            android:layout_gravity="right"
                             android:orientation="horizontal">
+
                             <Button
                                 android:id="@+id/btnCancel"
-                                android:background="@color/transition"
-                                android:textAllCaps="false"
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_18sdp"
-                                android:textColor="@color/color_green"
+                                android:background="@color/transition"
+                                android:fontFamily="@font/tahomabd"
                                 android:text="@string/cancel"
-                                android:textSize="@dimen/_13sdp"
-                                android:fontFamily="@font/tahomabd"/>
+                                android:textAllCaps="false"
+                                android:textColor="@color/color_green"
+                                android:textSize="@dimen/_13sdp" />
+
                             <Button
                                 android:id="@+id/btnSelected"
-                                android:background="@color/transition"
-                                android:textAllCaps="false"
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_18sdp"
-                                android:textColor="@color/color_green"
+                                android:background="@color/transition"
+                                android:fontFamily="@font/tahomabd"
                                 android:text="@string/selected_province"
-                                android:textSize="@dimen/_13sdp"
-                                android:fontFamily="@font/tahomabd"/>
+                                android:textAllCaps="false"
+                                android:textColor="@color/color_green"
+                                android:textSize="@dimen/_13sdp" />
                         </LinearLayout>
                     </LinearLayout>
                 </RelativeLayout>

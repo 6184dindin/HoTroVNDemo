@@ -157,12 +157,12 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:visibility="gone"
                             android:id="@+id/layoutSelectedPicker"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@color/color_white"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:visibility="gone">
 
                             <com.shawnlin.numberpicker.NumberPicker
                                 android:id="@+id/numberPicker"

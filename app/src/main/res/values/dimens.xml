@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--    default-->
+    <dimen name="size_app_name">@dimen/_35sdp</dimen>
     <dimen name="size_text">@dimen/_20sdp</dimen>
+    <dimen name="textView_default">@dimen/_14sdp</dimen>
+    <dimen name="et_default">@dimen/_15sdp</dimen>
+    <dimen name="text_button_default">@dimen/_20sdp</dimen>
+    <dimen name="title_default">@dimen/_20sdp</dimen>
 
+    <!--    Dimen in drawable-->
+    <dimen name="radius_bg_button_green">@dimen/_10sdp</dimen>
+    <dimen name="radius_bg_stroke_editText">@dimen/_7sdp</dimen>
+
+
+    <!-- Dimen in activity login phone number-->
+    <dimen name="et_phone_number">@dimen/_18sdp</dimen>
+    <dimen name="tv_VietNam">@dimen/_10sdp</dimen>
+    <dimen name="tv_term_and_policy">@dimen/_9sdp</dimen>
+
+    <!--  Dimen in relief bulletin board -->
+    <dimen name="title_relief">@dimen/_16sdp</dimen>
+    <dimen name="text_add_relief">@dimen/_16sdp</dimen>
+
+    <!--    Dimen in item recyleView relief bulletin board-->
+    <dimen name="tv_item_relief">@dimen/_14sdp</dimen>
+    <dimen name="tv_mini_item_relief">@dimen/_12sdp</dimen>
+
+
+    <!-- Dimen in activity relief information-->
+    <dimen name="title_relief_information">@dimen/_16sdp</dimen>
+    <dimen name="tv_relief_information">@dimen/_14sdp</dimen>
+
+
+    <!-- Dimen in dialog create relief campaign successful-->
+    <dimen name="tv_dialog_relief_campaign">@dimen/_15sdp</dimen>
+    <dimen name="text_button_dialog_relief_campaign">@dimen/_15sdp</dimen>
+
+    <!-- Dimen in dialog show information relief campaign-->
+    <dimen name="tv_dialog_show_information">@dimen/_12sdp</dimen>
+    <dimen name="text_button_dialog_show_information">@dimen/_18sdp</dimen>
+
+    <!--    Dimen in item recyleView relief campaign-->
+    <dimen name="tv_item_relief_campaign">@dimen/_12sdp</dimen>
+    <dimen name="tv_mini_item_relief_campaign">@dimen/_11sdp</dimen>
+
+
+    <!-- Dimen in dialog create relief newsletter successful-->
+    <dimen name="tv_dialog_relief_newsletter">@dimen/_15sdp</dimen>
+    <dimen name="tv_mini_dialog_relief_newsletter">@dimen/_12sdp</dimen>
+    <dimen name="text_button_dialog_relief_newsletter">@dimen/_15sdp</dimen>
+
+
+    <!--    Dimen in marker on map-->
+    <dimen name="tv_marker">@dimen/_8sdp</dimen>
+    <dimen name="tv_mini_marker">@dimen/_6sdp</dimen>
 </resources>

@@ -29,7 +29,7 @@
                 android:gravity="center"
                 android:text="@string/relief_campaign_successful"
                 android:textColor="@color/color_green"
-                android:textSize="@dimen/_15sdp"
+                android:textSize="@dimen/tv_dialog_relief_campaign"
                 android:textStyle="bold" />
 
             <Button
@@ -41,7 +41,7 @@
                 android:backgroundTint="@color/color_green"
                 android:text="XONG"
                 android:textColor="@color/color_white"
-                android:textSize="@dimen/_15sdp" />
+                android:textSize="@dimen/text_button_dialog_relief_campaign" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

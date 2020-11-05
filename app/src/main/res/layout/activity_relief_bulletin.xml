@@ -25,7 +25,7 @@
                 android:paddingLeft="@dimen/_15sdp"
                 android:text="@string/relief_bulletin"
                 android:textColor="@color/color_black"
-                android:textSize="@dimen/_16sdp" />
+                android:textSize="@dimen/title_relief" />
 
             <ImageButton
                 android:id="@+id/btnNotification"
@@ -69,7 +69,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/add_relief_newsletter"
-                    android:textSize="@dimen/_16sdp"
+                    android:textSize="@dimen/text_add_relief"
                     android:textColor="@color/color_black"
                     android:fontFamily="@font/tahomabd"
                     android:layout_gravity="center_vertical"/>

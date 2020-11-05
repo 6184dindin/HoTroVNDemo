@@ -207,8 +207,6 @@
                                     android:textSize="@dimen/button_city_picker" />
                             </LinearLayout>
                         </LinearLayout>
-
-
                     </RelativeLayout>
 
                     <RelativeLayout

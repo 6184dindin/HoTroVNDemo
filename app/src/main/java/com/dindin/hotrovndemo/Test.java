@@ -40,4 +40,8 @@ public class Test extends AppCompatActivity {
         setContentView(R.layout.activity_test);
         mapView = findViewById(R.id.myMap);
     }
+
+    public GoogleMap getmMap() {
+        return mMap;
+    }
 }

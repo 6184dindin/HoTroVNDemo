@@ -1,13 +1,5 @@
 package com.dindin.hotrovndemo.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -19,14 +11,21 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
-import com.dindin.hotrovndemo.adapter.AdapterPoco;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.dindin.hotrovndemo.Poco;
 import com.dindin.hotrovndemo.R;
+import com.dindin.hotrovndemo.adapter.AdapterPoco;
 import com.dindin.hotrovndemo.databinding.ActivityReliefBulletinBinding;
 import com.dindin.hotrovndemo.utils.Helper;
 import com.dindin.hotrovndemo.utils.Province;
@@ -226,10 +225,6 @@ public class ReliefBulletinActivity extends AppCompatActivity {
                             Manifest.permission.ACCESS_FINE_LOCATION,
                             Manifest.permission.ACCESS_COARSE_LOCATION}, 113);
         }
-    }
-
-    public GoogleMap getMap() {
-        return map;
     }
 
     private void createMap() {

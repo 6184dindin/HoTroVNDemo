@@ -16,17 +16,23 @@
             android:value="AIzaSyCbyfT3Jd4IlmD0TQMd0eTvcTNPLksvUk0"/>
         <activity android:name=".Test">
         </activity>
-        <activity android:name=".activity.CreateReliefCampaignActivity">
+        <activity android:name=".activity.CreateReliefCampaignActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".activity.ReliefInformationActivity">
+        <activity android:name=".activity.ReliefInformationActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".activity.CreateReliefNewsletterActivity">
+        <activity android:name=".activity.CreateReliefNewsletterActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".activity.ReliefBulletinActivity">
+        <activity android:name=".activity.ReliefBulletinActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".activity.LoginPhoneNumber">
+        <activity android:name=".activity.LoginPhoneNumber"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

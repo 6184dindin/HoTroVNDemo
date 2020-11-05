@@ -156,12 +156,12 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:visibility="gone"
                             android:id="@+id/layoutSelectedPicker"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@color/color_white"
-                            android:orientation="vertical"
-                            android:visibility="gone">
+                            android:orientation="vertical">
 
                             <com.shawnlin.numberpicker.NumberPicker
                                 android:id="@+id/numberPicker"
@@ -174,7 +174,7 @@
                                 app:np_selectedTextColor="@color/color_black"
                                 app:np_selectedTextSize="@dimen/_15sdp"
                                 app:np_textColor="@color/color_gray_border1"
-                                app:np_textSize="@dimen/_13sdp"
+                                app:np_textSize="@dimen/text_city_picker"
                                 app:np_wheelItemCount="5" />
 
                             <LinearLayout
@@ -192,7 +192,7 @@
                                     android:text="@string/cancel"
                                     android:textAllCaps="false"
                                     android:textColor="@color/color_green"
-                                    android:textSize="@dimen/_13sdp" />
+                                    android:textSize="@dimen/button_city_picker" />
 
                                 <Button
                                     android:id="@+id/btnSelected"
@@ -203,7 +203,7 @@
                                     android:text="@string/selected_province"
                                     android:textAllCaps="false"
                                     android:textColor="@color/color_green"
-                                    android:textSize="@dimen/_13sdp" />
+                                    android:textSize="@dimen/button_city_picker" />
                             </LinearLayout>
                         </LinearLayout>
 

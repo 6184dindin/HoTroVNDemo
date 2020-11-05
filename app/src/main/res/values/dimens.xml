@@ -13,6 +13,10 @@
     <dimen name="radius_bg_button_green">@dimen/_10sdp</dimen>
     <dimen name="radius_bg_stroke_editText">@dimen/_7sdp</dimen>
 
+    <!--    Dimen in City Picker-->
+    <dimen name="text_city_picker">@dimen/_13sdp</dimen>
+    <dimen name="button_city_picker">@dimen/_13sdp</dimen>
+
 
     <!-- Dimen in activity login phone number-->
     <dimen name="et_phone_number">@dimen/_18sdp</dimen>
@@ -22,7 +26,7 @@
     <!--  Dimen in activity relief bulletin board -->
     <dimen name="title_relief">@dimen/_16sdp</dimen>
     <dimen name="text_add_relief">@dimen/_16sdp</dimen>
-    <dimen name="text_location">@dimen/_15sdp</dimen>
+    <dimen name="text_location_picker">@dimen/_15sdp</dimen>
     <dimen name="text_button_filter_location">@dimen/_10sdp</dimen>
 
     <!--    Dimen in item recyleView relief bulletin board-->

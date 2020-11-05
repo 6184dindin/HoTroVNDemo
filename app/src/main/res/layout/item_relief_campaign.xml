@@ -32,7 +32,7 @@
                 android:fontFamily="@font/tahomabd"
                 android:text="Hội thiện nguyện giáo hội phật giáo thành phố quy nhơn"
                 android:textColor="@color/color_black"
-                android:textSize="@dimen/_12sdp" />
+                android:textSize="@dimen/tv_item_relief_campaign" />
         </LinearLayout>
 
         <LinearLayout
@@ -58,7 +58,7 @@
                     android:fontFamily="@font/tahoma"
                     android:text="Chúng tôi hố trợ các nhu yếu phẩm:"
                     android:textColor="@color/color_black"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textSize="@dimen/tv_item_relief_campaign" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -66,7 +66,7 @@
                     android:fontFamily="@font/tahoma"
                     android:text="- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\nMong bà con vững tin vượt qua....."
                     android:textColor="@color/color_black"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textSize="@dimen/tv_item_relief_campaign" />
 
                 <TextView
                     android:id="@+id/tvSeeDetails"
@@ -76,7 +76,7 @@
                     android:fontFamily="@font/tahomabd"
                     android:text="Xem chi tiết"
                     android:textColor="@color/color_orange_text"
-                    android:textSize="@dimen/_11sdp"
+                    android:textSize="@dimen/tv_mini_item_relief_campaign"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
@@ -100,7 +100,7 @@
                 android:fontFamily="@font/tahoma"
                 android:text="20/10/2020 - 18:30 PM"
                 android:textColor="@color/color_black"
-                android:textSize="@dimen/_12sdp" />
+                android:textSize="@dimen/tv_item_relief_campaign" />
         </LinearLayout>
 
         <LinearLayout
@@ -127,7 +127,7 @@
                     android:fontFamily="@font/tahoma"
                     android:text="Lê ngọc mai | 0933980121"
                     android:textColor="@color/color_black"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textSize="@dimen/tv_item_relief_campaign" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -135,7 +135,7 @@
                     android:fontFamily="@font/tahoma"
                     android:text="Trưởng nhóm thiện nguyện"
                     android:textColor="@color/color_black"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textSize="@dimen/tv_item_relief_campaign" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

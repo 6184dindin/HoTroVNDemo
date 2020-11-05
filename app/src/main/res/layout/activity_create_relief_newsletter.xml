@@ -15,6 +15,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
+                android:id="@+id/btnBack"
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
@@ -29,7 +30,7 @@
                 android:fontFamily="@font/tahomabd"
                 android:text="@string/create_news"
                 android:textColor="@color/color_black"
-                android:textSize="@dimen/_20sdp"
+                android:textSize="@dimen/title_default"
                 android:textStyle="bold" />
 
             <View
@@ -90,7 +91,7 @@
                                     android:paddingVertical="@dimen/_5sdp"
                                     android:text="@string/selected_province"
                                     android:textColor="@color/color_black"
-                                    android:textSize="@dimen/_14sdp" />
+                                    android:textSize="@dimen/textView_default" />
 
                                 <ImageView
                                     android:layout_width="wrap_content"
@@ -117,7 +118,7 @@
                                     android:paddingVertical="@dimen/_5sdp"
                                     android:text="@string/selected_city"
                                     android:textColor="@color/color_black"
-                                    android:textSize="@dimen/_14sdp" />
+                                    android:textSize="@dimen/textView_default" />
 
                                 <ImageView
                                     android:layout_width="wrap_content"
@@ -144,7 +145,7 @@
                                     android:paddingVertical="@dimen/_5sdp"
                                     android:text="@string/selected_district"
                                     android:textColor="@color/color_black"
-                                    android:textSize="@dimen/_14sdp" />
+                                    android:textSize="@dimen/textView_default" />
 
                                 <ImageView
                                     android:layout_width="wrap_content"
@@ -249,7 +250,7 @@
                         android:fontFamily="@font/tahoma"
                         android:text="@string/caller_name"
                         android:textColor="@color/color_black"
-                        android:textSize="@dimen/_14sdp" />
+                        android:textSize="@dimen/textView_default" />
 
                     <EditText
                         android:layout_width="match_parent"
@@ -260,7 +261,7 @@
                         android:inputType="textCapSentences"
                         android:maxLines="1"
                         android:padding="@dimen/_5sdp"
-                        android:textSize="@dimen/_14sdp" />
+                        android:textSize="@dimen/et_default" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -268,7 +269,7 @@
                         android:fontFamily="@font/tahoma"
                         android:text="@string/role"
                         android:textColor="@color/color_black"
-                        android:textSize="@dimen/_14sdp" />
+                        android:textSize="@dimen/textView_default" />
 
                     <EditText
                         android:layout_width="match_parent"
@@ -279,7 +280,7 @@
                         android:inputType="textCapSentences"
                         android:maxLines="1"
                         android:padding="@dimen/_5sdp"
-                        android:textSize="@dimen/_14sdp" />
+                        android:textSize="@dimen/et_default" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -287,7 +288,7 @@
                         android:fontFamily="@font/tahoma"
                         android:text="@string/phone"
                         android:textColor="@color/color_black"
-                        android:textSize="@dimen/_14sdp" />
+                        android:textSize="@dimen/textView_default" />
 
                     <EditText
                         android:layout_width="match_parent"
@@ -298,7 +299,7 @@
                         android:inputType="number"
                         android:maxLines="1"
                         android:padding="@dimen/_5sdp"
-                        android:textSize="@dimen/_14sdp" />
+                        android:textSize="@dimen/et_default" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -316,7 +317,7 @@
                         android:fontFamily="@font/tahoma"
                         android:text="@string/describe_the_situation"
                         android:textColor="@color/color_black"
-                        android:textSize="@dimen/_14sdp" />
+                        android:textSize="@dimen/textView_default" />
 
                     <EditText
                         android:layout_width="match_parent"
@@ -327,7 +328,7 @@
                         android:gravity="top"
                         android:inputType="textCapSentences"
                         android:padding="@dimen/_5sdp"
-                        android:textSize="@dimen/_14sdp" />
+                        android:textSize="@dimen/et_default" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -335,7 +336,7 @@
                         android:fontFamily="@font/tahoma"
                         android:text="@string/what_need_help"
                         android:textColor="@color/color_black"
-                        android:textSize="@dimen/_14sdp" />
+                        android:textSize="@dimen/textView_default" />
 
                     <EditText
                         android:layout_width="match_parent"
@@ -346,7 +347,7 @@
                         android:gravity="top"
                         android:inputType="textCapSentences"
                         android:padding="@dimen/_5sdp"
-                        android:textSize="@dimen/_14sdp" />
+                        android:textSize="@dimen/et_default" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -368,7 +369,7 @@
                             android:fontFamily="@font/tahomabd"
                             android:text="@string/add_picture_of_the_situation"
                             android:textColor="@color/color_black"
-                            android:textSize="@dimen/_14sdp" />
+                            android:textSize="@dimen/textView_default" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -387,7 +388,7 @@
             android:text="@string/save"
             android:textAllCaps="false"
             android:textColor="@color/color_white"
-            android:textSize="@dimen/_20sdp"
+            android:textSize="@dimen/text_button_default"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />

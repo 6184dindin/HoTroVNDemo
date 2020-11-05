@@ -32,7 +32,7 @@
                     android:fontFamily="@font/tahomabd"
                     android:text="Quảng Bình"
                     android:textColor="@color/color_black"
-                    android:textSize="@dimen/_14sdp"/>
+                    android:textSize="@dimen/tv_item_relief"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -51,7 +51,7 @@
                     android:fontFamily="@font/tahomabd"
                     android:text="Đông Anh, Đông Hà, Quảng Bình"
                     android:textColor="@color/color_black"
-                    android:textSize="@dimen/_14sdp"/>
+                    android:textSize="@dimen/tv_item_relief"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -70,7 +70,7 @@
                     android:fontFamily="@font/tahoma"
                     android:layout_height="wrap_content"
                     android:text="Áo phao, nước uống, đèn bin, áo mưa, áo quần"
-                    android:textSize="@dimen/_14sdp"/>
+                    android:textSize="@dimen/tv_item_relief"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -88,7 +88,7 @@
                     android:text="(3)"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:fontFamily="@font/tahomabd"
-                    android:textSize="@dimen/_14sdp"
+                    android:textSize="@dimen/tv_item_relief"
                     android:textColor="@color/color_black"/>
                 <TextView
                     android:textColor="@color/color_black"
@@ -97,7 +97,7 @@
                     android:fontFamily="@font/tahoma"
                     android:layout_height="wrap_content"
                     android:text="người tạo chiến dịch cứu trợ"
-                    android:textSize="@dimen/_14sdp"/>
+                    android:textSize="@dimen/tv_item_relief"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -120,7 +120,7 @@
                         android:layout_height="wrap_content"
                         android:text="Võ Hoàng Nam | 0123456789"
                         android:fontFamily="@font/tahoma"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/tv_item_relief"
                         android:textColor="@color/color_black"/>
                     <TextView
                         android:textColor="@color/color_black"
@@ -128,7 +128,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/tahoma"
                         android:text="Trưởng thôn"
-                        android:textSize="@dimen/_14sdp"/>
+                        android:textSize="@dimen/tv_item_relief"/>
                 </LinearLayout>
             </LinearLayout>
             <RelativeLayout
@@ -140,7 +140,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/color_black"
-                    android:textSize="@dimen/_13sdp"
+                    android:textSize="@dimen/tv_mini_item_relief"
                     android:fontFamily="@font/tahoma"
                     android:text="25/10/2020 - 8:30PM"/>
                 <TextView
@@ -148,7 +148,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/color_orange_text"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/tv_mini_item_relief"
                     android:fontFamily="@font/tahomabd"
                     android:layout_alignParentRight="true"
                     android:text="Xem chi tiết"/>

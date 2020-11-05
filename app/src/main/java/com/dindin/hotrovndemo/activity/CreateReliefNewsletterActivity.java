@@ -26,6 +26,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_create_relief_newsletter);
+
         dialog = new Dialog(this);
         binding.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +42,14 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+
+        binding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         binding.btnSelectedProvince.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

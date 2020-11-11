@@ -55,6 +55,9 @@
     <string name="relief_campaign_successful">Thông tin sẽ được gởi đến người kêu gọi</string>
     <string name="string_on_dialog_create_newsletter">Các mạnh thường quân sẽ nhận được bản tin cứu trợ của bạn sớm!</string>
     <string name="done">XONG</string>
+    <string name="relief_location">Vị trí cần hỗ trợ</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

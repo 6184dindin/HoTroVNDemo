@@ -91,7 +91,7 @@
                                     android:paddingVertical="@dimen/_5sdp"
                                     android:text="@string/selected_province"
                                     android:textColor="@color/color_black"
-                                    android:textSize="@dimen/textView_default" />
+                                    android:textSize="@dimen/text_view_default" />
 
                                 <ImageView
                                     android:layout_width="wrap_content"
@@ -118,7 +118,7 @@
                                     android:paddingVertical="@dimen/_5sdp"
                                     android:text="@string/selected_city"
                                     android:textColor="@color/color_black"
-                                    android:textSize="@dimen/textView_default" />
+                                    android:textSize="@dimen/text_view_default" />
 
                                 <ImageView
                                     android:layout_width="wrap_content"
@@ -145,7 +145,7 @@
                                     android:paddingVertical="@dimen/_5sdp"
                                     android:text="@string/selected_district"
                                     android:textColor="@color/color_black"
-                                    android:textSize="@dimen/textView_default" />
+                                    android:textSize="@dimen/text_view_default" />
 
                                 <ImageView
                                     android:layout_width="wrap_content"
@@ -210,12 +210,14 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/btnGetLocation"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_45sdp"
                         android:layout_marginVertical="@dimen/_3sdp"
                         android:background="@drawable/bg_corner_stroke_edit_text">
 
                         <TextView
+                            android:id="@+id/tvLocation"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -223,7 +225,7 @@
                             android:fontFamily="@font/tahoma"
                             android:text="@string/my_location"
                             android:textColor="@color/color_black"
-                            android:textSize="@dimen/textView_default" />
+                            android:textSize="@dimen/text_view_default" />
 
                         <ImageView
                             android:layout_width="@dimen/_30sdp"
@@ -250,7 +252,7 @@
                         android:fontFamily="@font/tahoma"
                         android:text="@string/caller_name"
                         android:textColor="@color/color_black"
-                        android:textSize="@dimen/textView_default" />
+                        android:textSize="@dimen/text_view_default" />
 
                     <EditText
                         android:layout_width="match_parent"
@@ -269,7 +271,7 @@
                         android:fontFamily="@font/tahoma"
                         android:text="@string/role"
                         android:textColor="@color/color_black"
-                        android:textSize="@dimen/textView_default" />
+                        android:textSize="@dimen/text_view_default" />
 
                     <EditText
                         android:layout_width="match_parent"
@@ -288,7 +290,7 @@
                         android:fontFamily="@font/tahoma"
                         android:text="@string/phone"
                         android:textColor="@color/color_black"
-                        android:textSize="@dimen/textView_default" />
+                        android:textSize="@dimen/text_view_default" />
 
                     <EditText
                         android:layout_width="match_parent"
@@ -317,7 +319,7 @@
                         android:fontFamily="@font/tahoma"
                         android:text="@string/describe_the_situation"
                         android:textColor="@color/color_black"
-                        android:textSize="@dimen/textView_default" />
+                        android:textSize="@dimen/text_view_default" />
 
                     <EditText
                         android:layout_width="match_parent"
@@ -336,7 +338,7 @@
                         android:fontFamily="@font/tahoma"
                         android:text="@string/what_need_help"
                         android:textColor="@color/color_black"
-                        android:textSize="@dimen/textView_default" />
+                        android:textSize="@dimen/text_view_default" />
 
                     <EditText
                         android:layout_width="match_parent"
@@ -369,7 +371,7 @@
                             android:fontFamily="@font/tahomabd"
                             android:text="@string/add_picture_of_the_situation"
                             android:textColor="@color/color_black"
-                            android:textSize="@dimen/textView_default" />
+                            android:textSize="@dimen/text_view_default" />
                     </LinearLayout>
                 </LinearLayout>
 

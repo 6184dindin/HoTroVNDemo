@@ -4,14 +4,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/color_white"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/color_white">
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/g0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintGuide_percent="0.5"
-            android:orientation="horizontal"/>
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
 
         <TextView
             android:id="@+id/tvHeading"
@@ -34,52 +35,54 @@
             android:text="@string/title1"
             android:textColor="@color/color_orange_title"
             android:textSize="@dimen/size_text"
-            app:layout_constraintTop_toTopOf="@id/tvHeading"
-            app:layout_constraintBottom_toTopOf="@+id/tvQuestion"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvHeading" />
+
         <TextView
             android:id="@+id/tvQuestion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_20sdp"
-            android:text="@string/title_question"
-            android:textSize="@dimen/size_text"
-            android:textColor="@color/color_black"
             android:fontFamily="@font/times"
+            android:text="@string/title_question"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/size_text"
+            app:layout_constraintBottom_toBottomOf="@+id/g0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="@+id/g0"/>
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
         <Button
             android:id="@+id/btnNeedRelief"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/need_help"
+            android:layout_marginHorizontal="@dimen/_30sdp"
             android:background="@drawable/bg_button_green"
             android:backgroundTint="@color/color_green"
-            android:paddingVertical="@dimen/_7sdp"
-            android:layout_marginHorizontal="@dimen/_30sdp"
-            android:textSize="@dimen/text_button_default"
-            android:textColor="@color/color_white"
             android:fontFamily="@font/times"
+            android:paddingVertical="@dimen/_7sdp"
+            android:text="@string/need_help"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/text_button_default"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/g0"/>
+            app:layout_constraintTop_toTopOf="@id/g0" />
+
         <Button
             android:id="@+id/btnHelperJoined"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/helper"
+            android:layout_marginHorizontal="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/bg_button_green"
             android:backgroundTint="@color/color_green"
-            android:paddingVertical="@dimen/_7sdp"
-            android:layout_marginHorizontal="@dimen/_30sdp"
-            android:textSize="@dimen/text_button_default"
-            android:textColor="@color/color_white"
-            android:layout_marginTop="@dimen/_20sdp"
             android:fontFamily="@font/times"
+            android:paddingVertical="@dimen/_7sdp"
+            android:text="@string/helper"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/text_button_default"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnNeedRelief"/>
+            app:layout_constraintTop_toBottomOf="@id/btnNeedRelief" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

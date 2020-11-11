@@ -18,7 +18,6 @@ import androidx.fragment.app.Fragment;
 import com.dindin.hotrovndemo.Poco;
 import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.databinding.FragmentGoogleMapBinding;
-import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -36,7 +35,6 @@ public class GoogleMapFragment extends Fragment {
     List<Poco> pocos;
 
     GoogleMap map;
-    FusedLocationProviderClient fusedLocationProviderClient;
 
     public GoogleMapFragment(List<Poco> pocoList) {
         this.pocos = pocoList;

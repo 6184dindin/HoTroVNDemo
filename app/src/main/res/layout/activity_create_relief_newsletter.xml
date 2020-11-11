@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_alignParentBottom="true"
-                android:background="@color/color_gray_border4" />
+                android:background="@color/color_gray_border" />
         </RelativeLayout>
 
         <ScrollView
@@ -174,7 +174,7 @@
                                 app:np_dividerThickness="0.75dp"
                                 app:np_selectedTextColor="@color/color_black"
                                 app:np_selectedTextSize="@dimen/_15sdp"
-                                app:np_textColor="@color/color_gray_border1"
+                                app:np_textColor="@color/color_gray_text"
                                 app:np_textSize="@dimen/text_city_picker"
                                 app:np_wheelItemCount="5" />
 

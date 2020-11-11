@@ -123,15 +123,15 @@ public class ReliefBulletinActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         binding.layoutSelectedAddress.setVisibility(View.GONE);
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fragmentMapAndListRelief, new GoogleMapFragment(pocos))
+                                .commit();
                     }
                 });
                 binding.btnClose.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         binding.layoutSelectedAddress.setVisibility(View.GONE);
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragmentMapAndListRelief, new GoogleMapFragment(pocos))
-                                .commit();
                     }
                 });
             }

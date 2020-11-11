@@ -2,14 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:gravity="center"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center">
+
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardElevation="0dp"
         app:cardBackgroundColor="@color/color_white"
-        app:cardCornerRadius="@dimen/_15sdp">
+        app:cardCornerRadius="@dimen/_15sdp"
+        app:cardElevation="0dp">
+
         <LinearLayout
             android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
@@ -34,8 +36,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_5sdp"
-                android:gravity="center"
                 android:fontFamily="@font/tahoma"
+                android:gravity="center"
                 android:text="@string/string_on_dialog_create_newsletter"
                 android:textColor="@color/color_gray_text"
                 android:textSize="@dimen/tv_mini_dialog_relief_newsletter" />
@@ -51,6 +53,5 @@
                 android:textColor="@color/color_white"
                 android:textSize="@dimen/text_button_dialog_relief_newsletter" />
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

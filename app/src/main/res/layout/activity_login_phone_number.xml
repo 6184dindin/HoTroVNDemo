@@ -11,45 +11,45 @@
             android:id="@+id/g0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintGuide_percent="0.5"
-            android:orientation="horizontal" />
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
 
         <ImageButton
             android:id="@+id/btnBack"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_50sdp"
-            android:src="@drawable/ic_back"
             android:background="@color/transition"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            android:src="@drawable/ic_back"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/edtPhoneNumber"
             android:layout_width="match_parent"
-            android:layout_marginHorizontal="@dimen/_50sdp"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:gravity="center"
-            android:textSize="@dimen/et_phone_number"
+            android:layout_marginHorizontal="@dimen/_50sdp"
             android:background="@color/transition"
-            android:inputType="number"
-            app:layout_constraintBottom_toBottomOf="@id/g0"
+            android:fontFamily="@font/timesi"
+            android:gravity="center"
             android:hint="@string/hint_enter_phone_number"
+            android:inputType="number"
             android:textColor="@color/color_black"
             android:textColorHint="@color/color_gray_text"
-            android:fontFamily="@font/timesi" />
+            android:textSize="@dimen/et_phone_number"
+            app:layout_constraintBottom_toBottomOf="@id/g0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
-            app:layout_constraintTop_toBottomOf="@id/edtPhoneNumber"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:layout_height="wrap_content">
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edtPhoneNumber">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -70,18 +70,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/edtPhoneNumber"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/btnNext"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@id/btnNext">
+            app:layout_constraintTop_toBottomOf="@+id/edtPhoneNumber">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/tv_term_and_policy"
+                android:text="@string/accept"
                 android:textColor="@color/color_gray_text"
-                android:text="@string/accept" />
+                android:textSize="@dimen/tv_term_and_policy" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -91,60 +91,59 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/tv_term_and_policy"
                     android:layout_marginRight="@dimen/_3sdp"
+                    android:text="@string/terms_of_service"
                     android:textColor="@color/color_green"
-                    android:text="@string/terms_of_service" />
+                    android:textSize="@dimen/tv_term_and_policy" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/tv_term_and_policy"
+                    android:text="@string/and"
                     android:textColor="@color/color_green"
-                    android:text="@string/and" />
+                    android:textSize="@dimen/tv_term_and_policy" />
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_3sdp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/tv_term_and_policy"
+                    android:text="@string/policy_and_privacy"
                     android:textColor="@color/color_green"
-                    android:text="@string/policy_and_privacy" />
+                    android:textSize="@dimen/tv_term_and_policy" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/tv_term_and_policy"
+                android:text="@string/ours"
                 android:textColor="@color/color_green"
-                android:text="@string/ours" />
+                android:textSize="@dimen/tv_term_and_policy" />
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
+            android:layout_marginHorizontal="@dimen/_40sdp"
+            android:background="@color/color_gray_border4"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:background="@color/color_gray_border4"
-            android:layout_marginHorizontal="@dimen/_40sdp"
             app:layout_constraintTop_toBottomOf="@id/edtPhoneNumber" />
 
         <Button
             android:id="@+id/btnNext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/next"
-            android:textAllCaps="false"
+            android:layout_marginHorizontal="@dimen/_30sdp"
             android:background="@drawable/bg_button_green"
             android:backgroundTint="@color/color_green"
-            android:paddingVertical="@dimen/_7sdp"
-            android:layout_marginHorizontal="@dimen/_30sdp"
-            android:textSize="@dimen/text_button_default"
-            android:textColor="@color/color_white"
             android:fontFamily="@font/times"
+            android:paddingVertical="@dimen/_7sdp"
+            android:text="@string/next"
+            android:textAllCaps="false"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/text_button_default"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/g0" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

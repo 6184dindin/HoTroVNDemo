@@ -1,157 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_5sdp"
-        android:layout_marginRight="@dimen/_7sdp"
-        android:layout_marginVertical="@dimen/_5sdp"
+        android:layout_margin="@dimen/_5sdp"
         app:cardCornerRadius="@dimen/_5sdp"
         app:cardElevation="0dp">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
-                android:paddingHorizontal="@dimen/_10sdp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/_10sdp">
+
                 <ImageView
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
-                    android:src="@drawable/ic_buildings"/>
+                    android:src="@drawable/ic_buildings" />
+
                 <TextView
-                    android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:fontFamily="@font/tahomabd"
                     android:text="Quảng Bình"
                     android:textColor="@color/color_black"
-                    android:textSize="@dimen/tv_item_relief"/>
+                    android:textSize="@dimen/tv_item_relief" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
-                android:paddingHorizontal="@dimen/_10sdp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/_10sdp">
+
                 <ImageView
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
-                    android:src="@drawable/ic_location"/>
+                    android:src="@drawable/ic_location" />
+
                 <TextView
-                    android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:fontFamily="@font/tahomabd"
                     android:text="Đông Anh, Đông Hà, Quảng Bình"
                     android:textColor="@color/color_black"
-                    android:textSize="@dimen/tv_item_relief"/>
+                    android:textSize="@dimen/tv_item_relief" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
-                android:paddingHorizontal="@dimen/_10sdp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/_10sdp">
+
                 <ImageView
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
-                    android:src="@drawable/ic_distributed"/>
+                    android:src="@drawable/ic_distributed" />
+
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_width="wrap_content"
-                    android:textColor="@color/color_black"
                     android:fontFamily="@font/tahoma"
-                    android:layout_height="wrap_content"
                     android:text="Áo phao, nước uống, đèn bin, áo mưa, áo quần"
-                    android:textSize="@dimen/tv_item_relief"/>
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/tv_item_relief" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
-                android:paddingHorizontal="@dimen/_10sdp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/_10sdp">
+
                 <ImageView
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
-                    android:src="@drawable/ic_delivery_cart"/>
+                    android:src="@drawable/ic_delivery_cart" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="(3)"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:fontFamily="@font/tahomabd"
-                    android:textSize="@dimen/tv_item_relief"
-                    android:textColor="@color/color_black"/>
-                <TextView
+                    android:text="(3)"
                     android:textColor="@color/color_black"
+                    android:textSize="@dimen/tv_item_relief" />
+
+                <TextView
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:fontFamily="@font/tahoma"
-                    android:layout_height="wrap_content"
                     android:text="người tạo chiến dịch cứu trợ"
-                    android:textSize="@dimen/tv_item_relief"/>
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/tv_item_relief" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
-                android:paddingHorizontal="@dimen/_10sdp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/_10sdp">
+
                 <ImageView
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
-                    android:src="@drawable/ic_voice_command"/>
+                    android:src="@drawable/ic_voice_command" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_height="wrap_content">
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Võ Hoàng Nam | 0123456789"
                         android:fontFamily="@font/tahoma"
-                        android:textSize="@dimen/tv_item_relief"
-                        android:textColor="@color/color_black"/>
-                    <TextView
+                        android:text="Võ Hoàng Nam | 0123456789"
                         android:textColor="@color/color_black"
+                        android:textSize="@dimen/tv_item_relief" />
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/tahoma"
                         android:text="Trưởng thôn"
-                        android:textSize="@dimen/tv_item_relief"/>
+                        android:textColor="@color/color_black"
+                        android:textSize="@dimen/tv_item_relief" />
                 </LinearLayout>
             </LinearLayout>
+
             <RelativeLayout
-                android:padding="@dimen/_5sdp"
-                android:gravity="center_vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="@dimen/_5sdp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/tv_mini_item_relief"
                     android:fontFamily="@font/tahoma"
-                    android:text="25/10/2020 - 8:30PM"/>
+                    android:text="25/10/2020 - 8:30PM"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/tv_mini_item_relief" />
+
                 <TextView
                     android:id="@+id/btnSeeDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/color_orange_text"
-                    android:textSize="@dimen/tv_mini_item_relief"
-                    android:fontFamily="@font/tahomabd"
                     android:layout_alignParentRight="true"
-                    android:text="Xem chi tiết"/>
+                    android:fontFamily="@font/tahomabd"
+                    android:text="Xem chi tiết"
+                    android:textColor="@color/color_orange_text"
+                    android:textSize="@dimen/tv_mini_item_relief" />
             </RelativeLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

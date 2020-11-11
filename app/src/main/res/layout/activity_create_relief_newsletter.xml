@@ -374,7 +374,6 @@
                             android:textSize="@dimen/text_view_default" />
                     </LinearLayout>
                 </LinearLayout>
-
             </LinearLayout>
         </ScrollView>
 

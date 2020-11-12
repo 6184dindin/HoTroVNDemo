@@ -16,6 +16,9 @@
     <string name="policy_and_privacy">Chính Sách và Sự Riêng Tư</string>
     <string name="ours">của chúng tôi</string>
     <string name="next">Tiếp theo</string>
+    <string name="error_null">Chưa nhập số điện thoại</string>
+    <string name="error_length">Số điện thoại phải đủ 10 số</string>
+
 
     <!--String in activity relief bulletin-->
     <string name="relief_bulletin">BẢNG TIN CỨU TRỢ</string>

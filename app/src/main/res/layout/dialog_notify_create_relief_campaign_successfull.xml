@@ -2,20 +2,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:gravity="center"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center">
+
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardElevation="0dp"
         app:cardBackgroundColor="@color/color_white"
-        app:cardCornerRadius="@dimen/_15sdp">
+        app:cardCornerRadius="@dimen/_15sdp"
+        app:cardElevation="0dp">
+
         <LinearLayout
             android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:paddingHorizontal="@dimen/_10sdp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/_10sdp">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -43,6 +45,5 @@
                 android:textColor="@color/color_white"
                 android:textSize="@dimen/text_button_dialog_relief_campaign" />
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

@@ -4,8 +4,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/color_gray_background1"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/color_gray_background1">
 
         <RelativeLayout
             android:id="@+id/layoutHeading"
@@ -29,13 +29,13 @@
                 android:fontFamily="@font/tahomabd"
                 android:text="@string/relief_campaign"
                 android:textColor="@color/color_black"
-                android:textSize="@dimen/title_default"/>
+                android:textSize="@dimen/title_default" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_alignParentBottom="true"
-                android:background="@color/color_gray_border4" />
+                android:background="@color/color_gray_border" />
         </RelativeLayout>
 
         <ScrollView
@@ -49,8 +49,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_5sdp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="@dimen/_5sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -64,55 +64,55 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/contact_name"
                         android:fontFamily="@font/tahoma"
+                        android:text="@string/contact_name"
                         android:textColor="@color/color_black"
-                        android:textSize="@dimen/textView_default" />
+                        android:textSize="@dimen/text_view_default" />
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@drawable/bg_corner_stroke_edit_text"
                         android:fontFamily="@font/tahoma"
                         android:inputType="textCapSentences"
                         android:maxLines="1"
-                        android:background="@drawable/bg_corner_stroke_edit_text"
                         android:padding="@dimen/_5sdp"
                         android:textSize="@dimen/et_default" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/role"
                         android:fontFamily="@font/tahoma"
+                        android:text="@string/role"
                         android:textColor="@color/color_black"
-                        android:textSize="@dimen/textView_default" />
+                        android:textSize="@dimen/text_view_default" />
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@drawable/bg_corner_stroke_edit_text"
                         android:fontFamily="@font/tahoma"
                         android:inputType="textCapSentences"
                         android:maxLines="1"
-                        android:background="@drawable/bg_corner_stroke_edit_text"
                         android:padding="@dimen/_5sdp"
-                        android:textSize="@dimen/et_default"/>
+                        android:textSize="@dimen/et_default" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/phone"
                         android:fontFamily="@font/tahoma"
+                        android:text="@string/phone"
                         android:textColor="@color/color_black"
-                        android:textSize="@dimen/textView_default" />
+                        android:textSize="@dimen/text_view_default" />
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/tahoma"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:background="@drawable/bg_corner_stroke_edit_text"
+                        android:fontFamily="@font/tahoma"
                         android:inputType="number"
                         android:maxLines="1"
                         android:padding="@dimen/_5sdp"
@@ -120,20 +120,20 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:fontFamily="@font/tahoma"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/tahoma"
                         android:text="@string/organization_unit"
                         android:textColor="@color/color_black"
-                        android:textSize="@dimen/textView_default" />
+                        android:textSize="@dimen/text_view_default" />
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/tahoma"
                         android:layout_marginRight="@dimen/_5sdp"
+                        android:background="@drawable/bg_corner_stroke_edit_text"
+                        android:fontFamily="@font/tahoma"
                         android:inputType="textCapSentences"
                         android:maxLines="2"
-                        android:background="@drawable/bg_corner_stroke_edit_text"
                         android:padding="@dimen/_5sdp"
                         android:textSize="@dimen/et_default" />
                 </LinearLayout>
@@ -144,16 +144,16 @@
                     android:layout_margin="@dimen/_5sdp"
                     android:background="@drawable/bg_corner_stroke"
                     android:orientation="vertical"
-                    android:paddingVertical="@dimen/_5sdp"
-                    android:paddingHorizontal="@dimen/_10sdp">
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:paddingVertical="@dimen/_5sdp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/time"
                         android:fontFamily="@font/tahoma"
+                        android:text="@string/time"
                         android:textColor="@color/color_black"
-                        android:textSize="@dimen/textView_default" />
+                        android:textSize="@dimen/text_view_default" />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -165,11 +165,11 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/tahoma"
-                            android:inputType="text"
-                            android:enabled="false"
                             android:layout_marginRight="@dimen/_30sdp"
                             android:background="@color/transition"
+                            android:enabled="false"
+                            android:fontFamily="@font/tahoma"
+                            android:inputType="text"
                             android:textSize="@dimen/et_default" />
 
                         <ImageButton
@@ -184,19 +184,19 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/items"
                         android:fontFamily="@font/tahoma"
+                        android:text="@string/items"
                         android:textColor="@color/color_black"
-                        android:textSize="@dimen/textView_default" />
+                        android:textSize="@dimen/text_view_default" />
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_150sdp"
-                        android:fontFamily="@font/tahoma"
                         android:layout_marginRight="@dimen/_5sdp"
-                        android:inputType="textCapSentences"
                         android:background="@drawable/bg_corner_stroke_edit_text"
+                        android:fontFamily="@font/tahoma"
                         android:gravity="top"
+                        android:inputType="textCapSentences"
                         android:padding="@dimen/_5sdp"
                         android:textSize="@dimen/et_default" />
 
@@ -205,8 +205,8 @@
                         android:layout_height="@dimen/_30sdp"
                         android:layout_marginVertical="@dimen/_5sdp"
                         android:background="@drawable/bg_button_add_image"
-                        android:paddingVertical="@dimen/_3sdp"
-                        android:paddingHorizontal="@dimen/_5sdp">
+                        android:paddingHorizontal="@dimen/_5sdp"
+                        android:paddingVertical="@dimen/_3sdp">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -215,14 +215,14 @@
                             android:src="@drawable/ic_picture_gallery" />
 
                         <TextView
-                            android:layout_width="141dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="@dimen/_5sdp"
                             android:fontFamily="@font/tahomabd"
                             android:text="@string/add_picture_of_items"
                             android:textColor="@color/color_black"
-                            android:textSize="@dimen/textView_default" />
+                            android:textSize="@dimen/text_view_default" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -236,8 +236,8 @@
             android:layout_marginBottom="@dimen/_10sdp"
             android:background="@drawable/bg_button_green"
             android:backgroundTint="@color/color_green"
-            android:paddingVertical="@dimen/_7sdp"
             android:fontFamily="@font/tahoma"
+            android:paddingVertical="@dimen/_7sdp"
             android:text="@string/save"
             android:textAllCaps="false"
             android:textColor="@color/color_white"

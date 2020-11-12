@@ -1,15 +1,14 @@
 package com.dindin.hotrovndemo.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
 import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.databinding.ActivityLoginPhoneNumberBinding;
-import com.dindin.hotrovndemo.utils.HandleEditTextPhoneNumber;
 
 public class LoginPhoneNumber extends AppCompatActivity {
     ActivityLoginPhoneNumberBinding binding;
@@ -54,6 +53,7 @@ public class LoginPhoneNumber extends AppCompatActivity {
         super.onBackPressed();
         overridePendingTransition(R.anim.zoom_in, R.anim.fade_in);
     }
+
 
     private void startAct() {
         if (key == 1) {

@@ -9,6 +9,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
 import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.databinding.ActivityMainBinding;
 import com.karumi.dexter.Dexter;
@@ -25,14 +28,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-
+        checkPermission();
         binding.btnNeedRelief.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, LoginPhoneNumber.class);
                 intent.putExtra("key", 1);
                 startActivity(intent);
-                overridePendingTransition(R.anim.zoom_in,R.anim.fade_in);
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
             }
         });
         binding.btnHelperJoined.setOnClickListener(new View.OnClickListener() {
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, LoginPhoneNumber.class);
                 intent.putExtra("key", 2);
                 startActivity(intent);
-                overridePendingTransition(R.anim.zoom_in,R.anim.fade_in);
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
             }
         });
     }

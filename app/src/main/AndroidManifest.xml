@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dindin.hotrovndemo">
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,20 +15,41 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCbyfT3Jd4IlmD0TQMd0eTvcTNPLksvUk0"/>
+            android:value="AIzaSyCbyfT3Jd4IlmD0TQMd0eTvcTNPLksvUk0" />
+
         <activity android:name=".Test">
         </activity>
-        <activity android:name=".activity.CreateReliefCampaignActivity">
+        <activity android:name=".activity.GetYourLocationActivity"
+            android:screenOrientation="portrait">
+
         </activity>
-        <activity android:name=".activity.ReliefInformationActivity">
+        <activity
+            android:name=".activity.CreateReliefCampaignActivity"
+            android:screenOrientation="portrait">
+
         </activity>
-        <activity android:name=".activity.CreateReliefNewsletterActivity">
+        <activity
+            android:name=".activity.ReliefInformationActivity"
+            android:screenOrientation="portrait">
+
         </activity>
-        <activity android:name=".activity.ReliefBulletinActivity">
+        <activity
+            android:name=".activity.CreateReliefNewsletterActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".activity.LoginPhoneNumber">
+        <activity
+            android:name=".activity.ReliefBulletinActivity"
+            android:screenOrientation="portrait">
+
         </activity>
-        <activity android:name=".activity.MainActivity">
+        <activity
+            android:name=".activity.LoginPhoneNumber"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

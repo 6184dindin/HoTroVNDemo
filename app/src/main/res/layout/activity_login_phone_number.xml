@@ -34,6 +34,7 @@
             android:gravity="center"
             android:textSize="@dimen/et_phone_number"
             android:background="@color/transition"
+            android:maxLength="10"
             android:inputType="number"
             app:layout_constraintBottom_toBottomOf="@id/g0"
             android:hint="@string/hint_enter_phone_number"

@@ -33,6 +33,7 @@
             android:gravity="center"
             android:hint="@string/hint_enter_phone_number"
             android:inputType="number"
+            android:maxLength="10"
             android:textColor="@color/color_black"
             android:textColorHint="@color/color_gray_text"
             android:textSize="@dimen/et_phone_number"

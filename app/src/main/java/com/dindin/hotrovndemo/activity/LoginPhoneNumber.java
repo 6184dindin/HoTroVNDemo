@@ -14,6 +14,8 @@ public class LoginPhoneNumber extends AppCompatActivity {
     ActivityLoginPhoneNumberBinding binding;
     Intent intent;
     int key;
+    private String phoneNumber;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,14 +33,27 @@ public class LoginPhoneNumber extends AppCompatActivity {
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginPhoneNumber.this, ReliefBulletinActivity.class);
-                intent.putExtra("key", key);
-                startActivity(intent);
-                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-                finish();
+                phoneNumber = binding.edtPhoneNumber.getText().toString();
+                if (phoneNumber.equals("")) {
+                    binding.edtPhoneNumber.setError(getString(R.string.error_null));
+                } else if (phoneNumber.length() < 10) {
+                    binding.edtPhoneNumber.setError(getString(R.string.error_length));
+                } else {
+                    Intent intent = new Intent(LoginPhoneNumber.this, ReliefBulletinActivity.class);
+                    intent.putExtra("key", key);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.zoom_in, R.anim.fade_in);
+                }
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.zoom_in, R.anim.fade_in);
+    }
+
 
     private void startAct() {
         if(key == 1) {

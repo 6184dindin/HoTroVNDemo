@@ -168,9 +168,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:fontFamily="@font/tahomabd"
-                    android:text="Xem chi tiết"
-                    android:textColor="@color/color_orange_text"
+                    android:fontFamily="@font/tahoma"
+                    android:text="@string/details"
+                    android:textColor="@color/color_green"
                     android:textSize="@dimen/tv_mini_item_relief" />
             </RelativeLayout>
         </LinearLayout>

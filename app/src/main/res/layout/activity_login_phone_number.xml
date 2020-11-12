@@ -14,22 +14,13 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.5" />
 
-        <ImageButton
-            android:id="@+id/btnBack"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_50sdp"
-            android:background="@color/transition"
-            android:src="@drawable/ic_back"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <EditText
             android:id="@+id/edtPhoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_50sdp"
             android:background="@color/transition"
-            android:fontFamily="@font/timesi"
+            android:fontFamily="@font/tahoma"
             android:gravity="center"
             android:hint="@string/hint_enter_phone_number"
             android:inputType="number"
@@ -40,12 +31,14 @@
             app:layout_constraintBottom_toBottomOf="@id/g0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" >
+            <requestFocus/>
+        </EditText>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -61,70 +54,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/_5sdp"
-                android:text="Việt Nam (+84)"
-                android:textColor="@color/color_gray_text"
-                android:textSize="@dimen/tv_VietNam" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layoutTermsAndPolicy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@id/btnNext"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtPhoneNumber">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/accept"
-                android:textColor="@color/color_gray_text"
-                android:textSize="@dimen/tv_term_and_policy" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/_3sdp"
-                    android:text="@string/terms_of_service"
-                    android:textColor="@color/color_green"
-                    android:textSize="@dimen/tv_term_and_policy" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/and"
-                    android:textColor="@color/color_green"
-                    android:textSize="@dimen/tv_term_and_policy" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_3sdp"
-                    android:text="@string/policy_and_privacy"
-                    android:textColor="@color/color_green"
-                    android:textSize="@dimen/tv_term_and_policy" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ours"
-                android:textColor="@color/color_green"
-                android:textSize="@dimen/tv_term_and_policy" />
+                android:text="@string/vietnamese"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/tv_country" />
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_marginHorizontal="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:background="@color/color_gray_border"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -137,10 +76,9 @@
             android:layout_marginHorizontal="@dimen/_30sdp"
             android:background="@drawable/bg_button_green"
             android:backgroundTint="@color/color_green"
-            android:fontFamily="@font/times"
+            android:fontFamily="@font/tahoma"
             android:paddingVertical="@dimen/_7sdp"
             android:text="@string/next"
-            android:textAllCaps="false"
             android:textColor="@color/color_white"
             android:textSize="@dimen/text_button_default"
             app:layout_constraintLeft_toLeftOf="parent"

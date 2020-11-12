@@ -13,40 +13,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activity.ReliefCampaignJoinedActivity"></activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCbyfT3Jd4IlmD0TQMd0eTvcTNPLksvUk0" />
 
-        <activity android:name=".Test">
-        </activity>
-        <activity android:name=".activity.GetYourLocationActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
+        <activity android:name=".Test"></activity>
+        <activity
+            android:name=".activity.GetYourLocationActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activity.CreateReliefCampaignActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activity.ReliefInformationActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activity.CreateReliefNewsletterActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activity.ReliefBulletinActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activity.LoginPhoneNumber"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activity.MainActivity"
             android:screenOrientation="portrait">

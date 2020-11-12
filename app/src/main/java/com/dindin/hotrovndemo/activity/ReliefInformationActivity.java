@@ -1,10 +1,5 @@
 package com.dindin.hotrovndemo.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,9 +7,14 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 
-import com.dindin.hotrovndemo.adapter.AdapterHelperJoined;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.dindin.hotrovndemo.HelperJoined;
 import com.dindin.hotrovndemo.R;
+import com.dindin.hotrovndemo.adapter.AdapterHelperJoined;
 import com.dindin.hotrovndemo.adapter.IAdapterHelperJoined;
 import com.dindin.hotrovndemo.databinding.ActivityReliefInformationBinding;
 
@@ -74,11 +74,9 @@ public class ReliefInformationActivity extends AppCompatActivity {
     }
     private void startAct(){
         if(key == 1) {
-            binding.layoutCCreateReliefCampaign.setVisibility(View.GONE);
-            binding.layoutScrollView.setPadding(0,0,0,0);
+            binding.btnCreateReliefCampaign.setVisibility(View.GONE);
         }
         if(key == 2) {
-            binding.btnNotification.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_list_circle));
         }
     }
 }

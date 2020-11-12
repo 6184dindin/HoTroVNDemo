@@ -1,38 +1,40 @@
 <resources>
-    <string name="app_name">HoTroVNDemo</string>
+    <string name="app_name">VNSOS</string>
 
     <!--String in activity main-->
-    <string name="heading">HOTROVN</string>
+    <string name="heading">VVO</string>
     <string name="title1">Lan toả niềm tin</string>
     <string name="title_question">Bạn đang quan tâm ?</string>
-    <string name="need_help">CẦN CỨU TRỢ</string>
-    <string name="helper">MẠNH THƯỜNG QUÂN</string>
+    <string name="need_help">CẦN HỖ TRỢ</string>
+    <string name="helper">THIỆN NGUYỆN</string>
 
     <!--String in activity login phone number-->
     <string name="hint_enter_phone_number">Nhập số điện thoại</string>
+    <string name="vietnamese">Việt Nam</string>
     <string name="accept">Khi đăng nhập, bạn đồng ý với</string>
     <string name="terms_of_service">Điều khoản dịch vụ</string>
     <string name="and">và</string>
     <string name="policy_and_privacy">Chính Sách và Sự Riêng Tư</string>
     <string name="ours">của chúng tôi</string>
-    <string name="next">Tiếp theo</string>
+    <string name="next">TIẾP THEO</string>
     <string name="error_null">Chưa nhập số điện thoại</string>
     <string name="error_length">Số điện thoại phải đủ 10 số</string>
 
 
     <!--String in activity relief bulletin-->
-    <string name="relief_bulletin">BẢNG TIN CỨU TRỢ</string>
-    <string name="add_relief_newsletter">Thêm bản tin</string>
+    <string name="relief_bulletin">Bảng tin hỗ trợ</string>
+    <string name="add_relief_newsletter">Đăng tin cần hỗ trợ</string>
     <string name="cancel">Hủy bỏ</string>
     <string name="selected_province">Chọn tỉnh</string>
     <string name="selected_city">Chọn thành phố</string>
     <string name="selected_district">Quận/Huyện/Xã</string>
     <string name="filtering_news">Lọc tin</string>
     <string name="map">Bản đồ</string>
+    <string name="details">Chi tiết >></string>
 
     <!--String in activity relief information-->
-    <string name="relief_information">THÔNG TIN CỨU TRỢ</string>
-    <string name="create_relief_campaign">Tạo chiến dịch</string>
+    <string name="relief_information">Thông tin chi tiết</string>
+    <string name="create_relief_campaign">TẠO CHIẾN DỊCH</string>
 
     <!--String in activity create relief newsletter-->
     <string name="create_news">Tạo bản tin</string>
@@ -44,6 +46,9 @@
     <string name="what_need_help">Cần hỗ trợ những gì?</string>
     <string name="add_picture_of_the_situation">Thêm ảnh tình hình</string>
     <string name="save">Lưu</string>
+
+    <!--String in activity relief campaign joined-->
+    <string name="relief_campaign_joined">Hoạt động đã tham gia</string>
 
     <!--String in activity create relief campaign-->
     <string name="relief_campaign">Chiến dịch cứu trợ</string>
@@ -58,7 +63,7 @@
     <string name="relief_campaign_successful">Thông tin sẽ được gởi đến người kêu gọi</string>
     <string name="string_on_dialog_create_newsletter">Các mạnh thường quân sẽ nhận được bản tin cứu trợ của bạn sớm!</string>
     <string name="done">XONG</string>
-    <string name="relief_location">Vị trí cần hỗ trợ</string>
+    <string name="relief_location">Vị trí của bạn</string>
 
 
 </resources>

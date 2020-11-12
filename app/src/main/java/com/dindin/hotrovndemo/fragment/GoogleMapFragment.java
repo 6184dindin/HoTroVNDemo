@@ -1,6 +1,7 @@
 package com.dindin.hotrovndemo.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -17,6 +18,7 @@ import androidx.fragment.app.Fragment;
 
 import com.dindin.hotrovndemo.Poco;
 import com.dindin.hotrovndemo.R;
+import com.dindin.hotrovndemo.activity.ReliefInformationActivity;
 import com.dindin.hotrovndemo.databinding.FragmentGoogleMapBinding;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -75,6 +77,8 @@ public class GoogleMapFragment extends Fragment {
                     public boolean onMarkerClick(Marker m) {
                         int position = (int) m.getTag();
                         Toast.makeText(getContext(), String.valueOf(position), Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getContext(), ReliefInformationActivity.class);
+                        startActivity(intent);
                         return false;
                     }
                 });
@@ -82,6 +86,7 @@ public class GoogleMapFragment extends Fragment {
         });
         binding.googleMap.onStart();
     }
+
     private Bitmap getMarkerBitmapFromView() {
         View customMarkerView = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.item_marker_on_map, null);
         customMarkerView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);

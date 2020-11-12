@@ -2,7 +2,7 @@
 <resources>
 
     <!--    default-->
-    <dimen name="size_app_name">@dimen/_35sdp</dimen>
+    <dimen name="size_app_name">@dimen/_80sdp</dimen>
     <dimen name="size_text">@dimen/_20sdp</dimen>
     <dimen name="text_view_default">@dimen/_14sdp</dimen>
     <dimen name="et_default">@dimen/_15sdp</dimen>
@@ -20,12 +20,11 @@
 
     <!-- Dimen in activity login phone number-->
     <dimen name="et_phone_number">@dimen/_18sdp</dimen>
-    <dimen name="tv_VietNam">@dimen/_10sdp</dimen>
-    <dimen name="tv_term_and_policy">@dimen/_9sdp</dimen>
+    <dimen name="tv_country">@dimen/_13sdp</dimen>
 
     <!--  Dimen in activity relief bulletin board -->
-    <dimen name="title_relief">@dimen/_16sdp</dimen>
-    <dimen name="text_add_relief">@dimen/_16sdp</dimen>
+    <dimen name="title_relief">@dimen/_20sdp</dimen>
+    <dimen name="text_add_relief">@dimen/_18sdp</dimen>
     <dimen name="text_location_picker">@dimen/_15sdp</dimen>
     <dimen name="text_button_filter_location">@dimen/_10sdp</dimen>
 
@@ -35,7 +34,7 @@
 
 
     <!-- Dimen in activity relief information-->
-    <dimen name="title_relief_information">@dimen/_16sdp</dimen>
+    <dimen name="title_relief_information">@dimen/_20sdp</dimen>
     <dimen name="tv_relief_information">@dimen/_14sdp</dimen>
 
 
@@ -59,6 +58,6 @@
 
 
     <!--    Dimen in marker on map-->
-    <dimen name="tv_marker">@dimen/_8sdp</dimen>
+    <dimen name="tv_marker">@dimen/_6sdp</dimen>
     <dimen name="tv_mini_marker">@dimen/_6sdp</dimen>
 </resources>

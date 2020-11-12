@@ -23,13 +23,6 @@ public class LoginPhoneNumber extends AppCompatActivity {
         intent = getIntent();
         key = intent.getIntExtra("key", 0);
         startAct();
-        binding.btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                overridePendingTransition(R.anim.zoom_in, R.anim.fade_in);
-            }
-        });
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,11 +49,5 @@ public class LoginPhoneNumber extends AppCompatActivity {
 
 
     private void startAct() {
-        if (key == 1) {
-            binding.layoutTermsAndPolicy.setVisibility(View.GONE);
-        }
-        if (key == 2) {
-            binding.layoutTermsAndPolicy.setVisibility(View.VISIBLE);
-        }
     }
 }

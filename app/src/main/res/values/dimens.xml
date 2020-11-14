@@ -11,7 +11,7 @@
 
     <!--    Dimen in drawable-->
     <dimen name="radius_bg_button_green">@dimen/_10sdp</dimen>
-    <dimen name="radius_bg_stroke_editText">@dimen/_7sdp</dimen>
+    <dimen name="radius_bg_stroke_editText">@dimen/_5sdp</dimen>
 
     <!--    Dimen in City Picker-->
     <dimen name="text_city_picker">@dimen/_13sdp</dimen>

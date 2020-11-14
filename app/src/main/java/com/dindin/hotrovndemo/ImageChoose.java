@@ -1,4 +1,4 @@
-package com.dindin.hotrovndemo.activity;
+package com.dindin.hotrovndemo;
 
 import android.graphics.Bitmap;
 import android.net.Uri;

@@ -59,4 +59,8 @@ dependencies {
 
     //roundImageView
     implementation 'com.makeramen:roundedimageview:2.3.0'
+
+    //upload image with Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 }

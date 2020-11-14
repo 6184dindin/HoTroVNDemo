@@ -18,6 +18,7 @@
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_10sdp"
                 android:background="@color/transition"
                 android:src="@drawable/ic_back" />
 
@@ -25,17 +26,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/_30sdp"
+                android:layout_marginLeft="@dimen/_50sdp"
                 android:fontFamily="@font/tahomabd"
-                android:text="@string/relief_campaign"
+                android:text="Thêm tin cứu trợ"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/title_default" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_alignParentBottom="true"
-                android:background="@color/color_gray_border" />
         </RelativeLayout>
 
         <ScrollView
@@ -49,162 +44,140 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#fff"
                 android:orientation="vertical"
-                android:padding="@dimen/_5sdp">
+                android:padding="@dimen/_15sdp">
 
-                <LinearLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/tahoma"
+                    android:text="Thông tin để liên hệ đợt cứu trợ"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/_16sdp" />
+
+                <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:background="@drawable/bg_corner_stroke"
-                    android:orientation="vertical"
-                    android:paddingHorizontal="@dimen/_10sdp"
-                    android:paddingVertical="@dimen/_5sdp">
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:background="@drawable/bg_corner_stroke_edit_text"
+                    android:fontFamily="@font/tahoma"
+                    android:hint="@string/contact_name"
+                    android:inputType="textCapSentences"
+                    android:maxLines="1"
+                    android:padding="@dimen/_5sdp"
+                    android:textSize="@dimen/text_view_default" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/tahoma"
-                        android:text="@string/contact_name"
-                        android:textColor="@color/color_black"
-                        android:textSize="@dimen/text_view_default" />
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:background="@drawable/bg_corner_stroke_edit_text"
-                        android:fontFamily="@font/tahoma"
-                        android:inputType="textCapSentences"
-                        android:maxLines="1"
-                        android:padding="@dimen/_5sdp"
-                        android:textSize="@dimen/et_default" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/tahoma"
-                        android:text="@string/role"
-                        android:textColor="@color/color_black"
-                        android:textSize="@dimen/text_view_default" />
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:background="@drawable/bg_corner_stroke_edit_text"
-                        android:fontFamily="@font/tahoma"
-                        android:inputType="textCapSentences"
-                        android:maxLines="1"
-                        android:padding="@dimen/_5sdp"
-                        android:textSize="@dimen/et_default" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/tahoma"
-                        android:text="@string/phone"
-                        android:textColor="@color/color_black"
-                        android:textSize="@dimen/text_view_default" />
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:background="@drawable/bg_corner_stroke_edit_text"
-                        android:fontFamily="@font/tahoma"
-                        android:inputType="number"
-                        android:maxLines="1"
-                        android:padding="@dimen/_5sdp"
-                        android:textSize="@dimen/et_default" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/tahoma"
-                        android:text="@string/organization_unit"
-                        android:textColor="@color/color_black"
-                        android:textSize="@dimen/text_view_default" />
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:background="@drawable/bg_corner_stroke_edit_text"
-                        android:fontFamily="@font/tahoma"
-                        android:inputType="textCapSentences"
-                        android:maxLines="2"
-                        android:padding="@dimen/_5sdp"
-                        android:textSize="@dimen/et_default" />
-                </LinearLayout>
-
-                <LinearLayout
+                <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:background="@drawable/bg_corner_stroke"
-                    android:orientation="vertical"
-                    android:paddingHorizontal="@dimen/_10sdp"
-                    android:paddingVertical="@dimen/_5sdp">
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:background="@drawable/bg_corner_stroke_edit_text"
+                    android:fontFamily="@font/tahoma"
+                    android:hint="Số điện thoại"
+                    android:inputType="textCapSentences"
+                    android:maxLines="1"
+                    android:padding="@dimen/_5sdp"
+                    android:textSize="@dimen/text_view_default" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/tahoma"
-                        android:text="@string/time"
-                        android:textColor="@color/color_black"
-                        android:textSize="@dimen/text_view_default" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:background="@drawable/bg_corner_stroke_edit_text"
+                    android:fontFamily="@font/tahoma"
+                    android:hint="Vai trò/Chức vụ"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:padding="@dimen/_5sdp"
+                    android:textSize="@dimen/text_view_default" />
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:background="@drawable/bg_corner_stroke_edit_text"
-                        android:padding="@dimen/_5sdp">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:background="@drawable/bg_corner_stroke_edit_text"
+                    android:fontFamily="@font/tahoma"
+                    android:hint="Tổ chức/Đoàn thể"
+                    android:inputType="textCapSentences"
+                    android:maxLines="2"
+                    android:padding="@dimen/_5sdp"
+                    android:textSize="@dimen/text_view_default" />
 
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/_30sdp"
-                            android:background="@color/transition"
-                            android:enabled="false"
-                            android:fontFamily="@font/tahoma"
-                            android:inputType="text"
-                            android:textSize="@dimen/et_default" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:fontFamily="@font/tahoma"
+                    android:text="Ngày thực hiện"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/_16sdp" />
 
-                        <ImageButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:background="@color/transition"
-                            android:src="@drawable/ic_calendar" />
-                    </RelativeLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/tahoma"
-                        android:text="@string/items"
-                        android:textColor="@color/color_black"
-                        android:textSize="@dimen/text_view_default" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp">
 
                     <EditText
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_150sdp"
-                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_40sdp"
                         android:background="@drawable/bg_corner_stroke_edit_text"
+                        android:enabled="false"
                         android:fontFamily="@font/tahoma"
-                        android:gravity="top"
-                        android:inputType="textCapSentences"
+                        android:hint="Ngày thực hiện"
+                        android:inputType="text"
                         android:padding="@dimen/_5sdp"
-                        android:textSize="@dimen/et_default" />
+                        android:textSize="@dimen/text_view_default" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@color/transition"
+                        android:src="@drawable/ic_calendar" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/tahoma"
+                    android:text="Nhu yếu phẩm bạn đang có"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/_16sdp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_150sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:background="@drawable/bg_corner_stroke_edit_text"
+                    android:fontFamily="@font/tahoma"
+                    android:gravity="top"
+                    android:hint="Thông tin nhu yếu phẩm bạn đang có để hỗ trợ"
+                    android:padding="@dimen/_5sdp"
+                    android:textSize="@dimen/text_view_default" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:id="@+id/btnAddImage"
+                        android:layout_width="@dimen/_150sdp"
                         android:layout_height="@dimen/_30sdp"
                         android:layout_marginVertical="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
                         android:background="@drawable/bg_button_add_image"
+                        android:gravity="center"
                         android:paddingHorizontal="@dimen/_5sdp"
                         android:paddingVertical="@dimen/_3sdp">
 
@@ -220,11 +193,27 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="@dimen/_5sdp"
                             android:fontFamily="@font/tahomabd"
-                            android:text="@string/add_picture_of_items"
+                            android:text="Hình ảnh"
                             android:textColor="@color/color_black"
                             android:textSize="@dimen/text_view_default" />
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvNumberImageSelect"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_16sdp"
+                        android:text="5/5"
+                        android:textSize="@dimen/_20sdp"
+                        android:textStyle="bold" />
                 </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+
             </LinearLayout>
         </ScrollView>
 
@@ -232,13 +221,10 @@
             android:id="@+id/btnSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:background="@drawable/bg_button_green"
-            android:backgroundTint="@color/color_green"
+            android:background="@color/color_green"
             android:fontFamily="@font/tahoma"
             android:paddingVertical="@dimen/_7sdp"
-            android:text="@string/save"
+            android:text="ĐĂNG TIN"
             android:textAllCaps="false"
             android:textColor="@color/color_white"
             android:textSize="@dimen/text_button_default"

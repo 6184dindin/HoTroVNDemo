@@ -1,11 +1,13 @@
 package com.dindin.hotrovndemo.fragment;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,6 +21,7 @@ import androidx.fragment.app.Fragment;
 import com.dindin.hotrovndemo.Poco;
 import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.activity.ReliefInformationActivity;
+import com.dindin.hotrovndemo.databinding.DialogSelectedProvinceCityDistrictBinding;
 import com.dindin.hotrovndemo.databinding.FragmentGoogleMapBinding;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -30,11 +33,15 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
+import java.util.Objects;
+
+import static android.graphics.Color.TRANSPARENT;
 
 public class GoogleMapFragment extends Fragment {
     FragmentGoogleMapBinding binding;
 
     List<Poco> pocos;
+    Dialog dialog;
 
     GoogleMap map;
 
@@ -53,10 +60,26 @@ public class GoogleMapFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_google_map, container, false);
 
-
+        dialog = new Dialog(getContext());
 //        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getContext());
         binding.googleMap.onCreate(savedInstanceState);
         createMap();
+        binding.btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogSelectedProvinceCityDistrictBinding binding1 = DialogSelectedProvinceCityDistrictBinding.inflate(LayoutInflater.from(getContext()));
+                binding1.btnDismiss.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.setContentView(binding1.getRoot());
+                Objects.requireNonNull(dialog.getWindow()).setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(TRANSPARENT));
+                dialog.show();
+            }
+        });
         return binding.getRoot();
     }
 

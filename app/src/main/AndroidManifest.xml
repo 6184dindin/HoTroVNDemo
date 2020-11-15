@@ -16,7 +16,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activity.SelectedTypeCampaignJoinedActivity">
         </activity>
-        <activity android:name=".activity.InformationImageActivity" />
+        <activity android:name=".activity.InformationImageActivity" >
+        </activity>
         <activity android:name=".activity.ReliefCampaignJoinedActivity" />
 
         <meta-data
@@ -31,11 +32,6 @@
         <activity
             android:name=".activity.CreateReliefCampaignActivity"
             android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".activity.ReliefInformationActivity"
@@ -56,6 +52,11 @@
         <activity
             android:name=".activity.MainActivity"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

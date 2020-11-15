@@ -14,7 +14,7 @@
         android:layout_above="@+id/layoutType"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/tahoma"
-        android:text="Bạn cần hỗ trợ về lĩnh vực gì?"
+        android:text="@string/in_what_areas_do_you_need_assistance"
         android:textColor="@color/color_black"
         android:textSize="@dimen/_18sdp" />
 
@@ -38,7 +38,7 @@
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/tahoma"
                 android:gravity="center_vertical"
-                android:text="Thiên tai"
+                android:text="@string/natural_disasters"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/_15sdp" />
 
@@ -53,7 +53,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#9F9494" />
+            android:background="@color/color_gray_border" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -66,7 +66,7 @@
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/tahoma"
                 android:gravity="center_vertical"
-                android:text="Y tế"
+                android:text="@string/medical"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/_15sdp" />
 
@@ -81,7 +81,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#9F9494" />
+            android:background="@color/color_gray_border" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -94,7 +94,7 @@
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/tahoma"
                 android:gravity="center_vertical"
-                android:text="Giáo dục"
+                android:text="@string/education"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/_15sdp" />
 
@@ -109,7 +109,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#9F9494" />
+            android:background="@color/color_gray_border" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -122,7 +122,7 @@
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/tahoma"
                 android:gravity="center_vertical"
-                android:text="Tai nạn"
+                android:text="@string/accident"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/_15sdp" />
 
@@ -137,7 +137,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#9F9494" />
+            android:background="@color/color_gray_border" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -150,7 +150,7 @@
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/tahoma"
                 android:gravity="center_vertical"
-                android:text="Mất tích"
+                android:text="@string/missing"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/_15sdp" />
 
@@ -165,7 +165,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#9F9494" />
+            android:background="@color/color_gray_border" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -178,7 +178,7 @@
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/tahoma"
                 android:gravity="center_vertical"
-                android:text="Người già neo đơn"
+                android:text="@string/lonely_old_people"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/_15sdp" />
 
@@ -193,7 +193,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#9F9494" />
+            android:background="@color/color_gray_border" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -206,7 +206,7 @@
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/tahoma"
                 android:gravity="center_vertical"
-                android:text="Cộng đồng"
+                android:text="@string/community"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/_15sdp" />
 

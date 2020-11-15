@@ -4,8 +4,8 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.ClipData;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -13,11 +13,11 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.LayoutInflater;
+import android.provider.Settings;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,26 +26,36 @@ import androidx.databinding.DataBindingUtil;
 import com.bumptech.glide.Glide;
 import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.databinding.ActivityCreateReliefCampaignBinding;
-import com.dindin.hotrovndemo.databinding.DialogAddImageBinding;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import static android.graphics.Color.TRANSPARENT;
 
 public class CreateReliefCampaignActivity extends AppCompatActivity {
-    private static final int MY_CAMERA_PERMISSION_CODE = 1;
-    private static final int CAMERA_REQUEST = 2;
-    private static final int SELECT_IMAGE_CODE = 3;
+    private static final int PERMISSION_REQUEST_CODE = 101;
+    private static final int CAMERA_REQUEST_CODE = 103;
+    private static final int SELECT_IMAGE_REQUEST_CODE = 104;
 
     ActivityCreateReliefCampaignBinding binding;
     Dialog dialog;
     List<Uri> uriList;
 
+    private boolean flagPermission = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_create_relief_campaign);
+
+
         dialog = new Dialog(this);
         uriList = new ArrayList<>();
         binding.btnSave.setOnClickListener(new View.OnClickListener() {
@@ -66,18 +76,77 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
-                if(uriList.size() >= 5) {
+                if (uriList.size() >= 5) {
                     Toast.makeText(getBaseContext(),
                             "Bạn đã chọn đủ 5 hình ảnh" +
-                                    "\nNếu muốn chọn thêm vui lòng xóa những lựa chọn trước đó",
+                                    "\nNếu muốn thay đổi vui lòng xóa những lựa chọn trước đó",
                             Toast.LENGTH_LONG).show();
-                }
-                else {
-                    openDialogAddImage();
+                } else {
+                    if (!flagPermission) {
+                        checkPermission();
+                    } else {
+                        openDialogAddImage();
+                    }
                 }
             }
         });
         handleRemoveImage();
+    }
+
+
+    private void checkPermission() {
+        Dexter.withContext(this)
+                .withPermissions(Manifest.permission.CAMERA)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+                        if (report.areAllPermissionsGranted()) {
+                            flagPermission = true;
+                        }
+                        if (report.isAnyPermissionPermanentlyDenied()) {
+                            flagPermission = false;
+                            showSettingsDialog();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
+                        permissionToken.cancelPermissionRequest();
+                        showSettingsDialog();
+                    }
+                }).check();
+    }
+
+    private void showSettingsDialog() {
+        androidx.appcompat.app.AlertDialog.Builder alertDialog = new androidx.appcompat.app.AlertDialog.Builder(this);
+        alertDialog.setTitle("Bạn cần cho phép chup ảnh và quay video");
+        alertDialog.setPositiveButton("ĐẾN CÀI ĐẶT", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+                openSetting();
+            }
+        });
+        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        alertDialog.setCancelable(false);
+        alertDialog.show();
+    }
+
+    /**
+     * Phương thức này để chuyển người dùng đến trình quản lý ứng dụng, trong trường hợp ngưới dùng
+     * từ chối quền và tích vào ô không được hỏi lại.
+     */
+    // navigating user to app settings
+    private void openSetting() {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", this.getPackageName(), null);
+        intent.setData(uri);
+        startActivityForResult(intent, PERMISSION_REQUEST_CODE);
     }
 
     private void handleRemoveImage() {
@@ -117,6 +186,7 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
             }
         });
     }
+
     private void setListImage() {
         int length = uriList.size();
         switch (length) {
@@ -191,31 +261,39 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
                 break;
         }
     }
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void openDialogAddImage() {
-        BottomSheetDialog dialog = new BottomSheetDialog(this);
-        DialogAddImageBinding binding = DialogAddImageBinding.inflate(LayoutInflater.from(this));
-        binding.btnCancel.setOnClickListener(view -> dialog.dismiss());
-        binding.btnLibrary.setOnClickListener(view -> {
-            selectImage();
-            dialog.dismiss();
+        dialog.setContentView(R.layout.dialog_add_image);
+        Objects.requireNonNull(dialog.getWindow()).setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        dialog.findViewById(R.id.btnCancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
         });
-        binding.btnCamera.setOnClickListener(view -> {
-            takeAPhoto();
-            dialog.dismiss();
+        dialog.findViewById(R.id.btnLibrary).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectImage();
+                dialog.dismiss();
+            }
         });
-        dialog.setContentView(binding.getRoot());
+        dialog.findViewById(R.id.btnCamera).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                takeAPhoto();
+                dialog.dismiss();
+            }
+        });
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(TRANSPARENT));
         dialog.show();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void takeAPhoto() {
-        if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_CAMERA_PERMISSION_CODE);
-        } else {
-            Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(cameraIntent, CAMERA_REQUEST);
-        }
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE);
     }
 
     private void selectImage() {
@@ -223,37 +301,28 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
         intent.setType("image/*");
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_IMAGE_CODE);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == MY_CAMERA_PERMISSION_CODE) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-
-                startActivityForResult(cameraIntent, CAMERA_REQUEST);
-            } else {
-                Toast.makeText(this, "Bạn cần cho phép truy cập camera", Toast.LENGTH_LONG).show();
-            }
-        }
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_IMAGE_REQUEST_CODE);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-            case SELECT_IMAGE_CODE:
+            case PERMISSION_REQUEST_CODE:
+                if (!flagPermission) {
+                    checkPermission();
+                }
+                break;
+            case SELECT_IMAGE_REQUEST_CODE:
                 getUriImage(resultCode, data);
                 setListImage();
                 break;
-            case CAMERA_REQUEST:
-                if(resultCode == Activity.RESULT_OK) {
+            case CAMERA_REQUEST_CODE:
+                if (resultCode == Activity.RESULT_OK) {
                     Bitmap photo = (Bitmap) data.getExtras().get("data");
-                    if(uriList.size() < 5) {
+                    if (uriList.size() < 5) {
                         uriList.add(getImageUri(photo));
-                        selectImage();
+                        setListImage();
                     }
                 }
                 break;
@@ -269,16 +338,15 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
                 for (int i = 0; i < mClipData.getItemCount(); i++) {
                     ClipData.Item item = mClipData.getItemAt(i);
                     Uri uri = item.getUri();
-                    if(uriList.size() < 5) {
+                    if (uriList.size() < 5) {
                         uriList.add(uri);
-                    }
-                    else {
+                    } else {
                         break;
                     }
                 }
             } else if (data.getData() != null) {
                 Uri uri = data.getData();
-                if(uriList.size() < 5) {
+                if (uriList.size() < 5) {
                     uriList.add(uri);
                 }
             }

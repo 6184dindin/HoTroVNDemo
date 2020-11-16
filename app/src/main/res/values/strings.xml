@@ -1,64 +1,88 @@
 <resources>
-    <string name="app_name">HoTroVNDemo</string>
+    <string name="app_name">VNSOS</string>
 
     <!--String in activity main-->
-    <string name="heading">HOTROVN</string>
-    <string name="title1">Lan toả niềm tin</string>
-    <string name="title_question">Bạn đang quan tâm ?</string>
-    <string name="need_help">CẦN CỨU TRỢ</string>
-    <string name="helper">MẠNH THƯỜNG QUÂN</string>
+    <string name="heading">VVO</string>
+    <string name="need_help">CẦN HỖ TRỢ</string>
+    <string name="helper">THIỆN NGUYỆN</string>
 
     <!--String in activity login phone number-->
     <string name="hint_enter_phone_number">Nhập số điện thoại</string>
+    <string name="vietnamese">Việt Nam</string>
     <string name="accept">Khi đăng nhập, bạn đồng ý với</string>
     <string name="terms_of_service">Điều khoản dịch vụ</string>
     <string name="and">và</string>
     <string name="policy_and_privacy">Chính Sách và Sự Riêng Tư</string>
     <string name="ours">của chúng tôi</string>
-    <string name="next">Tiếp theo</string>
+    <string name="next">TIẾP THEO</string>
     <string name="error_null">Chưa nhập số điện thoại</string>
     <string name="error_length">Số điện thoại phải đủ 10 số</string>
 
+    <!--String in activity selected type campaign joined-->
+    <string name="in_what_areas_do_you_need_assistance">Bạn cần hỗ trợ về lĩnh vực gì?</string>
+    <string name="natural_disasters">Thiên tai</string>
+    <string name="medical">Y tế</string>
+    <string name="education">Giáo dục</string>
+    <string name="accident">Tai nạn</string>
+    <string name="missing">Mất tích</string>
+    <string name="lonely_old_people">Người già neo đơn</string>
+    <string name="community">Cộng đồng</string>
 
     <!--String in activity relief bulletin-->
-    <string name="relief_bulletin">BẢNG TIN CỨU TRỢ</string>
-    <string name="add_relief_newsletter">Thêm bản tin</string>
+    <string name="heading_relief_bulletin">Bảng tin hỗ trợ</string>
+    <string name="add_relief_newsletter">Đăng tin cần hỗ trợ</string>
     <string name="cancel">Hủy bỏ</string>
     <string name="selected_province">Chọn tỉnh</string>
     <string name="selected_city">Chọn thành phố</string>
     <string name="selected_district">Quận/Huyện/Xã</string>
-    <string name="filtering_news">Lọc tin</string>
-    <string name="map">Bản đồ</string>
+    <string name="details">Chi tiết >></string>
 
     <!--String in activity relief information-->
-    <string name="relief_information">THÔNG TIN CỨU TRỢ</string>
-    <string name="create_relief_campaign">Tạo chiến dịch</string>
+    <string name="heading_relief_information">Thông tin chi tiết</string>
+    <string name="create_relief_campaign">TẠO CHIẾN DỊCH</string>
 
     <!--String in activity create relief newsletter-->
-    <string name="create_news">Tạo bản tin</string>
-    <string name="my_location">Vị trí của bạn</string>
-    <string name="caller_name">Người kêu gọi</string>
-    <string name="role">Vai trò</string>
-    <string name="phone">Điện thoại</string>
-    <string name="describe_the_situation">Mô tả tình hình</string>
-    <string name="what_need_help">Cần hỗ trợ những gì?</string>
-    <string name="add_picture_of_the_situation">Thêm ảnh tình hình</string>
-    <string name="save">Lưu</string>
+    <string name="heading_create_news">Thêm tin cứu trợ</string>
+    <string name="province">Tỉnh</string>
+    <string name="city">Thành phố</string>
+    <string name="information_for_support_units_to_contact">Thông tin để đơn vị hỗ trợ liên hệ</string>
+    <string name="essentials_need_support">Nhu yếu phẩm cần hỗ trợ</string>
+    <string name="your_actual_situation">Tình hình thực tế của bạn</string>
+    <string name="enter_my_location">Nhập vị trí hiện tại của bạn</string>
+    <string name="caller_name">Tên người liên hệ</string>
+    <string name="role_position">Vai trò/Chức vụ</string>
+    <string name="phone">Số điện thoại</string>
+    <string name="add_picture_of_the_situation">Hình ảnh thực tế</string>
+    <string name="post">Đăng tin</string>
+
+    <!--String in activity relief campaign joined-->
+    <string name="heading_relief_campaign_joined">Hoạt động đã tham gia</string>
 
     <!--String in activity create relief campaign-->
-    <string name="relief_campaign">Chiến dịch cứu trợ</string>
+    <string name="heading_relief_campaign">Thêm chiến dịch cứu trợ</string>
+    <string name="information_to_contact_the_bailout">Thông tin để liên hệ đợt cứu trợ</string>
     <string name="contact_name">Người liên hệ</string>
     <string name="organization_unit">Tổ chức/Đơn vị</string>
-    <string name="time">Thời gian</string>
-    <string name="items">Mặt hàng</string>
-    <string name="add_picture_of_items">Thêm ảnh mặt hàng</string>
+    <string name="implementation_date">Ngày thực hiện</string>
+    <string name="necessities_you_have">Nhu yếu phẩm bạn đang có</string>
+    <string name="information_on_necessities_you_have">Thông tin nhu yếu phẩm bạn đang có để hỗ trợ</string>
+    <string name="add_picture_of_items">Hình ảnh</string>
 
     <!--String in dialog notify successful-->
     <string name="relief_newsletter_successful">Bạn đã cứu trợ thành công!</string>
     <string name="relief_campaign_successful">Thông tin sẽ được gởi đến người kêu gọi</string>
     <string name="string_on_dialog_create_newsletter">Các mạnh thường quân sẽ nhận được bản tin cứu trợ của bạn sớm!</string>
+
+    <!--String in activity get your location-->
+    <string name="heading_my_location">Vị trí của bạn</string>
     <string name="done">XONG</string>
-    <string name="relief_location">Vị trí cần hỗ trợ</string>
+
+    <!--String in activity information image-->
+    <string name="heading_information_image">Thông tin hình ảnh</string>
+
+    <!--String in dialog show information relief campaign-->
+    <string name="information_image">Thông tin hình ảnh</string>
+    <string name="information_need_relief">Thông tin cần hỗ trợ</string>
 
 
 </resources>

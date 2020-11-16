@@ -18,10 +18,8 @@
 
             <ImageButton
                 android:id="@+id/btnBack"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="match_parent"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_50sdp"
                 android:background="@color/transition"
                 android:src="@drawable/ic_back" />
 
@@ -29,35 +27,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/_35sdp"
-                android:layout_marginRight="@dimen/_65sdp"
-                android:fontFamily="@font/information"
-                android:text="@string/relief_information"
+                android:layout_marginLeft="@dimen/_40sdp"
+                android:fontFamily="@font/tahomabd"
+                android:text="@string/heading_relief_information"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/title_relief_information" />
-
-            <ImageButton
-                android:id="@+id/btnNotification"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/_15sdp"
-                android:background="@color/transition"
-                android:src="@drawable/ic_notification_bell" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_alignParentBottom="true"
-                android:background="@color/color_gray_border" />
         </RelativeLayout>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:fillViewport="true"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btnCreateReliefCampaign"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layoutHeading">
@@ -67,15 +48,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_7sdp"
-                android:layout_marginVertical="@dimen/_10sdp"
-                android:orientation="vertical"
-                android:paddingBottom="@dimen/_50sdp">
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_15sdp"
-                    app:cardCornerRadius="@dimen/_5sdp"
+                    android:layout_marginVertical="@dimen/_5sdp"
+                    app:cardCornerRadius="@dimen/_7sdp"
                     app:cardElevation="0dp">
 
                     <LinearLayout
@@ -150,7 +130,6 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_40sdp"
-                            android:layout_marginBottom="@dimen/_20sdp"
                             android:gravity="center_vertical"
                             android:orientation="horizontal"
                             android:paddingHorizontal="@dimen/_10sdp">
@@ -181,6 +160,16 @@
                                     android:textSize="@dimen/tv_relief_information" />
                             </LinearLayout>
                         </LinearLayout>
+                        <TextView
+                            android:id="@+id/btnSeeDetails"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:fontFamily="@font/tahoma"
+                            android:text="@string/details"
+                            android:textColor="@color/color_green"
+                            android:textSize="@dimen/tv_mini_item_relief" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -188,9 +177,9 @@
                     android:id="@+id/cardViewRcList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_5sdp"
+                    android:layout_marginVertical="@dimen/_5sdp"
                     app:cardBackgroundColor="@color/color_white"
-                    app:cardCornerRadius="@dimen/_5sdp"
+                    app:cardCornerRadius="@dimen/_7sdp"
                     app:cardElevation="0dp">
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -202,33 +191,18 @@
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
-        <RelativeLayout
-            android:id="@+id/layoutCCreateReliefCampaign"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_50sdp"
-            android:layout_marginHorizontal="@dimen/_7sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <Button
+            android:id="@+id/btnCreateReliefCampaign"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:background="@color/color_green"
+            android:fontFamily="@font/tahoma"
+            android:text="@string/create_relief_campaign"
+            android:textAllCaps="false"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/text_button_default"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent">
-
-            <Button
-                android:id="@+id/btnCreateReliefCampaign"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_43sdp"
-                android:layout_marginBottom="@dimen/_7sdp"
-                android:background="@drawable/bg_button_green"
-                android:backgroundTint="@color/color_green"
-                android:fontFamily="@font/tahoma"
-                android:text="@string/create_relief_campaign"
-                android:textAllCaps="false"
-                android:textColor="@color/color_white"
-                android:textSize="@dimen/text_button_default" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_alignParentBottom="true"
-                android:background="@color/color_gray_background1" />
-        </RelativeLayout>
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

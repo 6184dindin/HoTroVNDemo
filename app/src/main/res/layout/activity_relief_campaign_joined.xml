@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -27,33 +28,18 @@
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/tahomabd"
                 android:layout_marginLeft="@dimen/_40sdp"
-                android:text="@string/heading_my_location"
+                android:text="@string/heading_relief_campaign_joined"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/title_relief" />
         </RelativeLayout>
 
-        <com.google.android.gms.maps.MapView
-            android:id="@+id/myMap"
+        <FrameLayout
+            android:id="@+id/fragmentListReliefCampaignJoined"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layoutHeading" />
-
-        <Button
-            android:id="@+id/btnDone"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_43sdp"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:background="@drawable/bg_button_green"
-            android:backgroundTint="@color/color_green"
-            android:fontFamily="@font/tahoma"
-            android:text="@string/done"
-            android:textAllCaps="false"
-            android:textColor="@color/color_white"
-            android:textSize="@dimen/text_button_default"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutHeading" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

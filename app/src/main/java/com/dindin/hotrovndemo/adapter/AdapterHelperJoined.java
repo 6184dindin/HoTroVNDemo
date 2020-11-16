@@ -1,9 +1,6 @@
 package com.dindin.hotrovndemo.adapter;
 
-import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +36,7 @@ public class AdapterHelperJoined extends RecyclerView.Adapter<AdapterHelperJoine
 
     @Override
     public void onBindViewHolder(@NonNull AdapterHelperJoined.ViewHolder holder, final int position) {
-        holder.tvSeeDetails.setOnClickListener(new View.OnClickListener() {
+        holder.btnSeeDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 iAdapterHelperJoined.openDialogShowInformationReliefCampaign(helperJoineds.get(position));
@@ -53,10 +50,10 @@ public class AdapterHelperJoined extends RecyclerView.Adapter<AdapterHelperJoine
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvSeeDetails;
+        TextView btnSeeDetails;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvSeeDetails = itemView.findViewById(R.id.tvSeeDetails);
+            btnSeeDetails = itemView.findViewById(R.id.btnSeeDetails);
         }
     }
 }

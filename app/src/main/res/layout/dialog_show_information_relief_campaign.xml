@@ -1,93 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/color_white"
-        app:cardCornerRadius="@dimen/_15sdp"
-        app:cardElevation="0dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:gravity="center">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:paddingVertical="@dimen/_10sdp">
+            app:cardBackgroundColor="@color/color_white"
+            app:cardCornerRadius="@dimen/_15sdp"
+            app:cardElevation="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingHorizontal="@dimen/_10sdp">
-
-                <ImageView
-                    android:layout_width="@dimen/_27sdp"
-                    android:layout_height="@dimen/_27sdp"
-                    android:src="@drawable/ic_social_care" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:fontFamily="@font/tahomabd"
-                    android:text="Hội thiện nguyện giáo hội phật giáo thành phố quy nhơn"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/tv_dialog_show_information" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_20sdp"
-                android:orientation="horizontal"
-                android:paddingHorizontal="@dimen/_10sdp">
-
-                <ImageView
-                    android:layout_width="@dimen/_27sdp"
-                    android:layout_height="@dimen/_27sdp"
-                    android:src="@drawable/ic_distributed" />
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:paddingVertical="@dimen/_10sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:orientation="vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@drawable/ic_distributed" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/tahoma"
-                        android:text="Chúng tôi hố trợ các nhu yếu phẩm:"
-                        android:textColor="@color/color_black"
-                        android:textSize="@dimen/tv_dialog_show_information" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/tahoma"
-                        android:text="- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\nMong bà con vững tin vượt qua đợt lũ lụt thiên tai lớn này.\n\nChúng tôi còn hỗ trợ 300 xuất ăn hằng ngày cho mọi người.\nNhận xuất ăn tình nghĩa tại  nhà ba Nga, số 112 đường Lê Duẩn, Đông Thanh, Đông Hà, Quảng bình"
-                        android:textColor="@color/color_black"
-                        android:textSize="@dimen/tv_dialog_show_information" />
+                        android:text="@string/information_need_relief"
+                        android:textColor="@color/color_green"
+                        android:textSize="@dimen/title_dialog_show_information" />
                 </LinearLayout>
-            </LinearLayout>
 
-            <Button
-                android:id="@+id/btnClose"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_20sdp"
-                android:background="@drawable/bg_button_green"
-                android:backgroundTint="@color/color_green"
-                android:text="Đóng"
-                android:textAllCaps="false"
-                android:textColor="@color/color_white"
-                android:textSize="@dimen/text_button_dialog_show_information" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-</RelativeLayout>
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:padding="@dimen/_5sdp"
+                    android:background="@drawable/bg_corner_stroke">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/tahoma"
+                            android:text="- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\n- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\n- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\n- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\n- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\n- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\n- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\n- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\n- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\n- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\n- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\nMong bà con vững tin vượt qua đợt lũ lụt thiên tai lớn này."
+                            android:textColor="@color/color_black"
+                            android:textSize="@dimen/text_information" />
+                    </LinearLayout>
+                </ScrollView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:src="@drawable/ic_distributed" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/information_image"
+                        android:textColor="@color/color_green"
+                        android:textSize="@dimen/title_dialog_show_information" />
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp">
+
+                    <ImageView
+                        android:id="@+id/img1"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:paddingRight="@dimen/_3sdp"
+                        android:src="@color/color_gray_text"
+                        app:layout_constrainedWidth="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:0.8"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toLeftOf="@id/layout4Image"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.75" />
+
+                    <LinearLayout
+                        android:id="@+id/layout4Image"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/_3sdp"
+                        android:weightSum="4"
+                        app:layout_constrainedWidth="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@+id/img1"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.25">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:paddingBottom="1dp"
+                            android:src="@color/color_gray_text" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:paddingVertical="1dp"
+                            android:src="@color/color_gray_text" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:paddingVertical="1dp"
+                            android:src="@color/color_gray_text" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:paddingTop="1dp"
+                            android:src="@color/color_gray_text" />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <Button
+                    android:id="@+id/btnClose"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/bg_button_green"
+                    android:backgroundTint="@color/color_green"
+                    android:text="@string/done"
+                    android:textAllCaps="false"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/text_button_dialog_show_information" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+</layout>

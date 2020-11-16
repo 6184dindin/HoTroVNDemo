@@ -1,25 +1,29 @@
 package com.dindin.hotrovndemo.activity;
 
+import android.app.Dialog;
+import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Dialog;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
-import android.view.View;
-
-import com.dindin.hotrovndemo.adapter.AdapterHelperJoined;
 import com.dindin.hotrovndemo.HelperJoined;
 import com.dindin.hotrovndemo.R;
+import com.dindin.hotrovndemo.adapter.AdapterHelperJoined;
 import com.dindin.hotrovndemo.adapter.IAdapterHelperJoined;
 import com.dindin.hotrovndemo.databinding.ActivityReliefInformationBinding;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import static android.graphics.Color.TRANSPARENT;
 
 public class ReliefInformationActivity extends AppCompatActivity {
     ActivityReliefInformationBinding binding;
@@ -28,6 +32,7 @@ public class ReliefInformationActivity extends AppCompatActivity {
     Dialog dialog;
     Intent intent;
     int key;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,13 +50,15 @@ public class ReliefInformationActivity extends AppCompatActivity {
             @Override
             public void openDialogShowInformationReliefCampaign(HelperJoined helperJoined) {
                 dialog.setContentView(R.layout.dialog_show_information_relief_campaign);
+                Objects.requireNonNull(dialog.getWindow()).setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                dialog.getWindow().setGravity(Gravity.CENTER);
                 dialog.findViewById(R.id.btnClose).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
                     }
                 });
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(TRANSPARENT));
                 dialog.show();
             }
         });
@@ -72,13 +79,13 @@ public class ReliefInformationActivity extends AppCompatActivity {
             }
         });
     }
-    private void startAct(){
-        if(key == 1) {
-            binding.layoutCCreateReliefCampaign.setVisibility(View.GONE);
-            binding.layoutScrollView.setPadding(0,0,0,0);
+
+    private void startAct() {
+        if (key == 1) {
+            binding.btnCreateReliefCampaign.setVisibility(View.GONE);
         }
-        if(key == 2) {
-            binding.btnNotification.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_list_circle));
+        if (key == 2) {
         }
     }
+
 }

@@ -22,14 +22,6 @@ public class LoginPhoneNumber extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login_phone_number);
         intent = getIntent();
         key = intent.getIntExtra("key", 0);
-        startAct();
-        binding.btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                overridePendingTransition(R.anim.zoom_in, R.anim.fade_in);
-            }
-        });
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,28 +31,13 @@ public class LoginPhoneNumber extends AppCompatActivity {
                 } else if (phoneNumber.length() < 10) {
                     binding.edtPhoneNumber.setError(getString(R.string.error_length));
                 } else {
-                    Intent intent = new Intent(LoginPhoneNumber.this, ReliefBulletinActivity.class);
+                    Intent intent = new Intent(LoginPhoneNumber.this, SelectedTypeCampaignJoinedActivity.class);
                     intent.putExtra("key", key);
+                    intent.putExtra("phone", phoneNumber);
                     startActivity(intent);
-                    overridePendingTransition(R.anim.zoom_in, R.anim.fade_in);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 }
             }
         });
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(R.anim.zoom_in, R.anim.fade_in);
-    }
-
-
-    private void startAct() {
-        if (key == 1) {
-            binding.layoutTermsAndPolicy.setVisibility(View.GONE);
-        }
-        if (key == 2) {
-            binding.layoutTermsAndPolicy.setVisibility(View.VISIBLE);
-        }
     }
 }

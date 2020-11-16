@@ -68,15 +68,14 @@
                     android:textSize="@dimen/tv_item_relief_campaign" />
 
                 <TextView
-                    android:id="@+id/tvSeeDetails"
+                    android:id="@+id/btnSeeDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:fontFamily="@font/tahomabd"
-                    android:text="Xem chi tiết"
-                    android:textColor="@color/color_orange_text"
-                    android:textSize="@dimen/tv_mini_item_relief_campaign"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/tahoma"
+                    android:text="@string/details"
+                    android:textColor="@color/color_green"
+                    android:textSize="@dimen/tv_mini_item_relief" />
             </LinearLayout>
         </LinearLayout>
 

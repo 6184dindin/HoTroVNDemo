@@ -3,19 +3,19 @@
 
     <!--    default-->
     <dimen name="size_app_name">@dimen/_80sdp</dimen>
-    <dimen name="size_text">@dimen/_20sdp</dimen>
-    <dimen name="text_view_default">@dimen/_14sdp</dimen>
-    <dimen name="et_default">@dimen/_15sdp</dimen>
+    <dimen name="text_view_default">@dimen/_13sdp</dimen>
+    <dimen name="edit_text_default">@dimen/_13sdp</dimen>
     <dimen name="text_button_default">@dimen/_20sdp</dimen>
-    <dimen name="title_default">@dimen/_20sdp</dimen>
+    <dimen name="title_default">@dimen/_16sdp</dimen>
+    <dimen name="heading_default">@dimen/_20sdp</dimen>
 
     <!--    Dimen in drawable-->
     <dimen name="radius_bg_button_green">@dimen/_10sdp</dimen>
-    <dimen name="radius_bg_stroke_editText">@dimen/_7sdp</dimen>
+    <dimen name="radius_bg_stroke_editText">@dimen/_5sdp</dimen>
 
     <!--    Dimen in City Picker-->
     <dimen name="text_city_picker">@dimen/_13sdp</dimen>
-    <dimen name="button_city_picker">@dimen/_13sdp</dimen>
+    <dimen name="button_city_picker">@dimen/_15sdp</dimen>
 
 
     <!-- Dimen in activity login phone number-->
@@ -28,9 +28,16 @@
     <dimen name="text_location_picker">@dimen/_15sdp</dimen>
     <dimen name="text_button_filter_location">@dimen/_10sdp</dimen>
 
-    <!--    Dimen in item recyler View relief bulletin board-->
-    <dimen name="tv_item_relief">@dimen/_14sdp</dimen>
+    <!--  Dimen in activity information image -->
+    <dimen name="padding_image">@dimen/_5sdp</dimen>
+
+    <!--    Dimen in item recycler View relief bulletin board-->
+    <dimen name="tv_item_relief">@dimen/_13sdp</dimen>
     <dimen name="tv_mini_item_relief">@dimen/_12sdp</dimen>
+
+    <!--    Dimen in item recycler view relief campaign-->
+    <dimen name="tv_item_relief_campaign">@dimen/_12sdp</dimen>
+    <dimen name="tv_mini_item_relief_campaign">@dimen/_11sdp</dimen>
 
 
     <!-- Dimen in activity relief information-->
@@ -46,16 +53,11 @@
     <dimen name="tv_dialog_show_information">@dimen/_12sdp</dimen>
     <dimen name="text_button_dialog_show_information">@dimen/_18sdp</dimen>
 
-    <!--    Dimen in item recyleView relief campaign-->
-    <dimen name="tv_item_relief_campaign">@dimen/_12sdp</dimen>
-    <dimen name="tv_mini_item_relief_campaign">@dimen/_11sdp</dimen>
-
 
     <!-- Dimen in dialog create relief newsletter successful-->
     <dimen name="tv_dialog_relief_newsletter">@dimen/_15sdp</dimen>
     <dimen name="tv_mini_dialog_relief_newsletter">@dimen/_12sdp</dimen>
     <dimen name="text_button_dialog_relief_newsletter">@dimen/_15sdp</dimen>
-
 
     <!--    Dimen in marker on map-->
     <dimen name="tv_marker">@dimen/_6sdp</dimen>

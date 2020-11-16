@@ -27,7 +27,7 @@
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/tahomabd"
                 android:layout_marginLeft="@dimen/_40sdp"
-                android:text="@string/relief_location"
+                android:text="@string/heading_my_location"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/title_relief" />
         </RelativeLayout>

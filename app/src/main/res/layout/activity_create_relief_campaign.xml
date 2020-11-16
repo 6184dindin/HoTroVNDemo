@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -12,25 +13,26 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
             android:background="@color/color_white"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="match_parent"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/_10sdp"
+                android:id="@+id/btnBack"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_50sdp"
                 android:background="@color/transition"
                 android:src="@drawable/ic_back" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/_50sdp"
+                android:layout_marginLeft="@dimen/_40sdp"
                 android:fontFamily="@font/tahomabd"
-                android:text="Thêm tin cứu trợ"
+                android:text="@string/heading_relief_campaign"
                 android:textColor="@color/color_black"
-                android:textSize="@dimen/title_default" />
+                android:textSize="@dimen/heading_default" />
         </RelativeLayout>
 
         <ScrollView
@@ -52,15 +54,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/tahoma"
-                    android:text="Thông tin để liên hệ đợt cứu trợ"
+                    android:text="@string/information_to_contact_the_bailout"
                     android:textColor="@color/color_black"
-                    android:textSize="@dimen/_16sdp" />
+                    android:textSize="@dimen/title_default" />
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
                     android:background="@drawable/bg_corner_stroke_edit_text"
                     android:fontFamily="@font/tahoma"
                     android:hint="@string/contact_name"
@@ -73,10 +74,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
                     android:background="@drawable/bg_corner_stroke_edit_text"
                     android:fontFamily="@font/tahoma"
-                    android:hint="Số điện thoại"
+                    android:hint="@string/phone"
                     android:inputType="textCapSentences"
                     android:maxLines="1"
                     android:padding="@dimen/_5sdp"
@@ -86,10 +86,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
                     android:background="@drawable/bg_corner_stroke_edit_text"
                     android:fontFamily="@font/tahoma"
-                    android:hint="Vai trò/Chức vụ"
+                    android:hint="@string/role_position"
                     android:inputType="number"
                     android:maxLines="1"
                     android:padding="@dimen/_5sdp"
@@ -99,10 +98,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
                     android:background="@drawable/bg_corner_stroke_edit_text"
                     android:fontFamily="@font/tahoma"
-                    android:hint="Tổ chức/Đoàn thể"
+                    android:hint="@string/organization_unit"
                     android:inputType="textCapSentences"
                     android:maxLines="2"
                     android:padding="@dimen/_5sdp"
@@ -111,26 +109,26 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
                     android:fontFamily="@font/tahoma"
-                    android:text="Ngày thực hiện"
+                    android:text="@string/implementation_date"
                     android:textColor="@color/color_black"
-                    android:textSize="@dimen/_16sdp" />
+                    android:textSize="@dimen/title_default" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_5sdp">
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/_40sdp"
+                        android:layout_marginRight="@dimen/_30sdp"
                         android:background="@drawable/bg_corner_stroke_edit_text"
                         android:enabled="false"
                         android:fontFamily="@font/tahoma"
-                        android:hint="Ngày thực hiện"
+                        android:hint="@string/implementation_date"
                         android:inputType="text"
                         android:padding="@dimen/_5sdp"
                         android:textSize="@dimen/text_view_default" />
@@ -147,39 +145,35 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
                     android:fontFamily="@font/tahoma"
-                    android:text="Nhu yếu phẩm bạn đang có"
+                    android:text="@string/necessities_you_have"
                     android:textColor="@color/color_black"
-                    android:textSize="@dimen/_16sdp" />
+                    android:textSize="@dimen/title_default" />
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_150sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/bg_corner_stroke_edit_text"
                     android:fontFamily="@font/tahoma"
                     android:gravity="top"
-                    android:hint="Thông tin nhu yếu phẩm bạn đang có để hỗ trợ"
+                    android:hint="@string/information_on_necessities_you_have"
                     android:padding="@dimen/_5sdp"
                     android:textSize="@dimen/text_view_default" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp">
 
                     <LinearLayout
                         android:id="@+id/btnAddImage"
-                        android:layout_width="@dimen/_150sdp"
+                        android:layout_width="wrap_content"
                         android:layout_height="@dimen/_30sdp"
-                        android:layout_marginVertical="@dimen/_5sdp"
-                        android:layout_marginBottom="@dimen/_20sdp"
                         android:background="@drawable/bg_button_add_image"
                         android:gravity="center"
-                        android:paddingHorizontal="@dimen/_5sdp"
-                        android:paddingVertical="@dimen/_3sdp">
+                        android:paddingHorizontal="@dimen/_30sdp">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -191,9 +185,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="@dimen/_5sdp"
-                            android:fontFamily="@font/tahomabd"
-                            android:text="Hình ảnh"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:fontFamily="@font/tahoma"
+                            android:text="@string/add_picture_of_items"
                             android:textColor="@color/color_black"
                             android:textSize="@dimen/text_view_default" />
                     </LinearLayout>
@@ -202,18 +196,157 @@
                         android:id="@+id/tvNumberImageSelect"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="@dimen/_16sdp"
-                        android:text="5/5"
-                        android:textSize="@dimen/_20sdp"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/_15sdp"
+                        android:fontFamily="@font/tahomabd"
+                        android:text="0/5"
+                        android:textColor="@color/color_black"
+                        android:textSize="@dimen/_16sdp" />
+                </RelativeLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rcvImage"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutImage"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:visibility="gone">
 
+                    <RelativeLayout
+                        android:id="@+id/layoutImage1"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constrainedWidth="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1.1"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toLeftOf="@+id/layoutImage2"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.2">
+
+                        <ImageView
+                            android:id="@+id/img1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/_5sdp" />
+
+                        <ImageButton
+                            android:id="@+id/btnDeleteImage1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/transition"
+                            android:src="@drawable/ic_delete_circle_red" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/layoutImage2"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constrainedWidth="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1.1"
+                        app:layout_constraintLeft_toRightOf="@+id/layoutImage1"
+                        app:layout_constraintRight_toLeftOf="@id/layoutImage3"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.2">
+
+                        <ImageView
+                            android:id="@+id/img2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/_5sdp" />
+
+                        <ImageButton
+                            android:id="@+id/btnDeleteImage2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/transition"
+                            android:src="@drawable/ic_delete_circle_red" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+
+                        android:id="@+id/layoutImage3"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constrainedWidth="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1.1"
+                        app:layout_constraintLeft_toRightOf="@+id/layoutImage2"
+                        app:layout_constraintRight_toLeftOf="@id/layoutImage4"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.2">
+
+                        <ImageView
+                            android:id="@+id/img3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/_5sdp" />
+
+                        <ImageButton
+                            android:id="@+id/btnDeleteImage3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/transition"
+                            android:src="@drawable/ic_delete_circle_red" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/layoutImage4"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constrainedWidth="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1.1"
+                        app:layout_constraintLeft_toRightOf="@+id/layoutImage3"
+                        app:layout_constraintRight_toLeftOf="@id/layoutImage5"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.2">
+
+                        <ImageView
+                            android:id="@+id/img4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/_5sdp" />
+
+                        <ImageButton
+                            android:id="@+id/btnDeleteImage4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/transition"
+                            android:src="@drawable/ic_delete_circle_red" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/layoutImage5"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constrainedWidth="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1.1"
+                        app:layout_constraintLeft_toRightOf="@+id/layoutImage4"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.2">
+
+                        <ImageView
+                            android:id="@+id/img5"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/_5sdp" />
+
+                        <ImageButton
+                            android:id="@+id/btnDeleteImage5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/transition"
+                            android:src="@drawable/ic_delete_circle_red" />
+                    </RelativeLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </ScrollView>
 
@@ -224,8 +357,7 @@
             android:background="@color/color_green"
             android:fontFamily="@font/tahoma"
             android:paddingVertical="@dimen/_7sdp"
-            android:text="ĐĂNG TIN"
-            android:textAllCaps="false"
+            android:text="@string/post"
             android:textColor="@color/color_white"
             android:textSize="@dimen/text_button_default"
             app:layout_constraintBottom_toBottomOf="parent"

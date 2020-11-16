@@ -32,11 +32,11 @@ public class LoginPhoneNumber extends AppCompatActivity {
                 } else if (phoneNumber.length() < 10) {
                     binding.edtPhoneNumber.setError(getString(R.string.error_length));
                 } else {
-                    Intent intent = new Intent(LoginPhoneNumber.this, ReliefBulletinActivity.class);
-                    intent.putExtra("key", key);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.zoom_in, R.anim.fade_in);
                 }
+                Intent intent = new Intent(LoginPhoneNumber.this, ReliefBulletinActivity.class);
+                intent.putExtra("key", key);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
     }

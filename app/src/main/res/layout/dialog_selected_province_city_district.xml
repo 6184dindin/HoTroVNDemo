@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_above="@+id/btnDismiss"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:orientation="vertical"
+            android:background="@drawable/bg_corner"
+            android:backgroundTint="@color/color_white"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@drawable/bg_button_green"
+                android:backgroundTint="@color/color_green"
+                android:text="Tìm kiếm"
+                android:layout_gravity="right"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:textAllCaps="false"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/text_view_default"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_margin="@dimen/_15sdp"
+                android:layout_height="@dimen/_120sdp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/btnSelectedProvince"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginVertical="@dimen/_5sdp"
+                        android:background="@drawable/bg_corner_stroke_edit_text"
+                        android:paddingHorizontal="@dimen/_10sdp">
+
+                        <TextView
+                            android:id="@+id/tvProvince"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/tahoma"
+                            android:gravity="center_vertical"
+                            android:hint="@string/province"
+                            android:textColor="@color/color_black"
+                            android:textSize="@dimen/text_view_default" />
+
+                        <ImageView
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_down_arrow" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/btnSelectedCity"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginVertical="@dimen/_5sdp"
+                        android:background="@drawable/bg_corner_stroke_edit_text"
+                        android:paddingHorizontal="@dimen/_10sdp">
+
+                        <TextView
+                            android:id="@+id/tvCity"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/tahoma"
+                            android:gravity="center_vertical"
+                            android:hint="@string/city"
+                            android:textColor="@color/color_black"
+                            android:textSize="@dimen/text_view_default" />
+
+                        <ImageView
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_down_arrow" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/btnSelectedDistrict"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginVertical="@dimen/_5sdp"
+                        android:background="@drawable/bg_corner_stroke_edit_text"
+                        android:paddingHorizontal="@dimen/_10sdp">
+
+                        <TextView
+                            android:id="@+id/tvDistrict"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/tahoma"
+                            android:gravity="center_vertical"
+                            android:hint="@string/selected_district"
+                            android:textColor="@color/color_black"
+                            android:textSize="@dimen/text_view_default" />
+
+                        <ImageView
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_down_arrow" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutSelectedPicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_120sdp"
+                    android:background="@color/color_white"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btnSelected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_30sdp"
+                        android:background="@color/transition"
+                        android:fontFamily="@font/tahomabd"
+                        android:text="@string/selected_province"
+                        android:textAllCaps="false"
+                        android:textColor="@color/color_green"
+                        android:textSize="@dimen/button_city_picker" />
+
+                    <com.shawnlin.numberpicker.NumberPicker
+                        android:id="@+id/numberPicker"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:np_dividerColor="@color/color_gray_background1"
+                        app:np_dividerDistance="@dimen/_18sdp"
+                        app:np_dividerThickness="0.75dp"
+                        app:np_selectedTextColor="@color/color_black"
+                        app:np_selectedTextSize="@dimen/_15sdp"
+                        app:np_textColor="@color/color_gray_text"
+                        app:np_textSize="@dimen/text_city_picker"
+                        app:np_wheelItemCount="5" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+        <ImageButton
+            android:id="@+id/btnDismiss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transition"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_delete_circle_white"/>
+    </RelativeLayout>
+</layout>

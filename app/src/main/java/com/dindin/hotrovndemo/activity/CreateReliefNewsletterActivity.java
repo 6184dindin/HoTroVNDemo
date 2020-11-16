@@ -9,12 +9,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.provider.Settings;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +36,7 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.shawnlin.numberpicker.NumberPicker;
 
-import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -52,7 +52,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
     ActivityCreateReliefNewsletterBinding binding;
     Dialog dialog;
 
-    List<Uri> uriList;
+    List<Bitmap> bitmapList;
 
     private boolean flagPermission = false;
     private boolean flagGPS = false;
@@ -67,7 +67,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
         }
 
         dialog = new Dialog(this);
-        uriList = new ArrayList<>();
+        bitmapList = new ArrayList<>();
         binding.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,7 +132,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
         binding.btnAddImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (uriList.size() >= 5) {
+                if (bitmapList.size() >= 5) {
                     Toast.makeText(getBaseContext(),
                             "Bạn đã chọn đủ 5 hình ảnh" +
                                     "\nNếu muốn thay đổi vui lòng xóa những lựa chọn trước đó",
@@ -149,7 +149,8 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
         Dexter.withContext(this)
                 .withPermissions(Manifest.permission.ACCESS_FINE_LOCATION,
                         Manifest.permission.ACCESS_COARSE_LOCATION,
-                        Manifest.permission.CAMERA)
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.READ_EXTERNAL_STORAGE)
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
@@ -172,7 +173,8 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
 
     private void showSettingsDialog() {
         androidx.appcompat.app.AlertDialog.Builder alertDialog = new androidx.appcompat.app.AlertDialog.Builder(this);
-        alertDialog.setTitle("Bạn cần cho phép truy cập vào vị trí, chup ảnh và quay video");
+        alertDialog.setTitle("Cho phép " + getResources().getString(R.string.app_name));
+        alertDialog.setMessage("Truy cập vào vị trí của thiết bị này\nChup ảnh và quay video\nTruy cập vào ảnh, phương tiện và tệp trên thiết bị của bạn");
         alertDialog.setPositiveButton("ĐẾN CÀI ĐẶT", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -262,8 +264,8 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
             case CAMERA_REQUEST_CODE:
                 if (resultCode == Activity.RESULT_OK) {
                     Bitmap photo = (Bitmap) data.getExtras().get("data");
-                    if (uriList.size() < 5) {
-                        uriList.add(getImageUri(photo));
+                    if (bitmapList.size() < 5) {
+                        bitmapList.add(photo);
                         setListImage();
                     }
                 }
@@ -275,42 +277,42 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
         binding.btnDeleteImage1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uriList.remove(0);
+                bitmapList.remove(0);
                 setListImage();
             }
         });
         binding.btnDeleteImage2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uriList.remove(1);
+                bitmapList.remove(1);
                 setListImage();
             }
         });
         binding.btnDeleteImage3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uriList.remove(2);
+                bitmapList.remove(2);
                 setListImage();
             }
         });
         binding.btnDeleteImage4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uriList.remove(3);
+                bitmapList.remove(3);
                 setListImage();
             }
         });
         binding.btnDeleteImage5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uriList.remove(4);
+                bitmapList.remove(4);
                 setListImage();
             }
         });
     }
 
     private void setListImage() {
-        int length = uriList.size();
+        int length = bitmapList.size();
         switch (length) {
             case 0:
                 binding.tvNumberImageSelect.setText("0/5");
@@ -325,7 +327,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
                 binding.tvNumberImageSelect.setText("1/5");
                 binding.layoutImage.setVisibility(View.VISIBLE);
                 binding.layoutImage1.setVisibility(View.VISIBLE);
-                Glide.with(this).load(uriList.get(0)).into(binding.img1);
+                Glide.with(this).load(bitmapList.get(0)).into(binding.img1);
                 binding.layoutImage2.setVisibility(View.GONE);
                 binding.layoutImage3.setVisibility(View.GONE);
                 binding.layoutImage4.setVisibility(View.GONE);
@@ -335,9 +337,9 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
                 binding.tvNumberImageSelect.setText("2/5");
                 binding.layoutImage.setVisibility(View.VISIBLE);
                 binding.layoutImage1.setVisibility(View.VISIBLE);
-                Glide.with(this).load(uriList.get(0)).into(binding.img1);
+                Glide.with(this).load(bitmapList.get(0)).into(binding.img1);
                 binding.layoutImage2.setVisibility(View.VISIBLE);
-                Glide.with(this).load(uriList.get(1)).into(binding.img2);
+                Glide.with(this).load(bitmapList.get(1)).into(binding.img2);
                 binding.layoutImage3.setVisibility(View.GONE);
                 binding.layoutImage4.setVisibility(View.GONE);
                 binding.layoutImage5.setVisibility(View.GONE);
@@ -346,11 +348,11 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
                 binding.tvNumberImageSelect.setText("3/5");
                 binding.layoutImage.setVisibility(View.VISIBLE);
                 binding.layoutImage1.setVisibility(View.VISIBLE);
-                Glide.with(this).load(uriList.get(0)).into(binding.img1);
+                Glide.with(this).load(bitmapList.get(0)).into(binding.img1);
                 binding.layoutImage2.setVisibility(View.VISIBLE);
-                Glide.with(this).load(uriList.get(1)).into(binding.img2);
+                Glide.with(this).load(bitmapList.get(1)).into(binding.img2);
                 binding.layoutImage3.setVisibility(View.VISIBLE);
-                Glide.with(this).load(uriList.get(2)).into(binding.img3);
+                Glide.with(this).load(bitmapList.get(2)).into(binding.img3);
                 binding.layoutImage4.setVisibility(View.GONE);
                 binding.layoutImage5.setVisibility(View.GONE);
                 break;
@@ -358,28 +360,28 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
                 binding.tvNumberImageSelect.setText("4/5");
                 binding.layoutImage.setVisibility(View.VISIBLE);
                 binding.layoutImage1.setVisibility(View.VISIBLE);
-                Glide.with(this).load(uriList.get(0)).into(binding.img1);
+                Glide.with(this).load(bitmapList.get(0)).into(binding.img1);
                 binding.layoutImage2.setVisibility(View.VISIBLE);
-                Glide.with(this).load(uriList.get(1)).into(binding.img2);
+                Glide.with(this).load(bitmapList.get(1)).into(binding.img2);
                 binding.layoutImage3.setVisibility(View.VISIBLE);
-                Glide.with(this).load(uriList.get(2)).into(binding.img3);
+                Glide.with(this).load(bitmapList.get(2)).into(binding.img3);
                 binding.layoutImage4.setVisibility(View.VISIBLE);
-                Glide.with(this).load(uriList.get(3)).into(binding.img4);
+                Glide.with(this).load(bitmapList.get(3)).into(binding.img4);
                 binding.layoutImage5.setVisibility(View.GONE);
                 break;
             case 5:
                 binding.tvNumberImageSelect.setText("5/5");
                 binding.layoutImage.setVisibility(View.VISIBLE);
                 binding.layoutImage1.setVisibility(View.VISIBLE);
-                Glide.with(this).load(uriList.get(0)).into(binding.img1);
+                Glide.with(this).load(bitmapList.get(0)).into(binding.img1);
                 binding.layoutImage2.setVisibility(View.VISIBLE);
-                Glide.with(this).load(uriList.get(1)).into(binding.img2);
+                Glide.with(this).load(bitmapList.get(1)).into(binding.img2);
                 binding.layoutImage3.setVisibility(View.VISIBLE);
-                Glide.with(this).load(uriList.get(2)).into(binding.img3);
+                Glide.with(this).load(bitmapList.get(2)).into(binding.img3);
                 binding.layoutImage4.setVisibility(View.VISIBLE);
-                Glide.with(this).load(uriList.get(3)).into(binding.img4);
+                Glide.with(this).load(bitmapList.get(3)).into(binding.img4);
                 binding.layoutImage5.setVisibility(View.VISIBLE);
-                Glide.with(this).load(uriList.get(4)).into(binding.img5);
+                Glide.with(this).load(bitmapList.get(4)).into(binding.img5);
                 break;
         }
     }
@@ -428,32 +430,36 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
     private void getUriImage(int resultCode, @Nullable Intent data) {
         if (resultCode == RESULT_OK) {
             assert data != null;
+            Bitmap bitmap = null;
             if (data.getClipData() != null) {
                 ClipData mClipData = data.getClipData();
 
                 for (int i = 0; i < mClipData.getItemCount(); i++) {
                     ClipData.Item item = mClipData.getItemAt(i);
                     Uri uri = item.getUri();
-                    if (uriList.size() < 5) {
-                        uriList.add(uri);
+                    try {
+                        bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri));
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    if (bitmapList.size() < 5) {
+                        bitmapList.add(bitmap);
                     } else {
                         break;
                     }
                 }
             } else if (data.getData() != null) {
                 Uri uri = data.getData();
-                if (uriList.size() < 5) {
-                    uriList.add(uri);
+                try {
+                    bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                if (bitmapList.size() < 5) {
+                    bitmapList.add(bitmap);
                 }
             }
         }
-    }
-
-    private Uri getImageUri(Bitmap inImage) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(this.getContentResolver(), inImage, "Title", null);
-        return Uri.parse(path);
     }
 
     List<Province> provinces;

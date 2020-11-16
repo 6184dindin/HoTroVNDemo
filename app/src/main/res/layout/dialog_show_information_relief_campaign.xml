@@ -41,13 +41,14 @@
                         android:layout_height="wrap_content"
                         android:text="@string/information_need_relief"
                         android:textColor="@color/color_green"
-                        android:textSize="@dimen/tv_dialog_show_information" />
+                        android:textSize="@dimen/title_dialog_show_information" />
                 </LinearLayout>
 
                 <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_100sdp"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:padding="@dimen/_5sdp"
                     android:background="@drawable/bg_corner_stroke">
 
                     <LinearLayout
@@ -58,10 +59,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/tahoma"
-                            android:padding="@dimen/_5sdp"
                             android:text="- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\n- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\n- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\n- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\n- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\n- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\n- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\n- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\n- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\n- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\n- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\nMong bà con vững tin vượt qua đợt lũ lụt thiên tai lớn này."
                             android:textColor="@color/color_black"
-                            android:textSize="@dimen/tv_dialog_show_information" />
+                            android:textSize="@dimen/text_information" />
                     </LinearLayout>
                 </ScrollView>
 
@@ -83,7 +83,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/information_image"
                         android:textColor="@color/color_green"
-                        android:textSize="@dimen/tv_dialog_show_information" />
+                        android:textSize="@dimen/title_dialog_show_information" />
                 </LinearLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout

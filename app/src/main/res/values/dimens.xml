@@ -50,8 +50,9 @@
     <dimen name="text_button_dialog_relief_campaign">@dimen/_15sdp</dimen>
 
     <!-- Dimen in dialog show information relief campaign-->
-    <dimen name="tv_dialog_show_information">@dimen/_12sdp</dimen>
-    <dimen name="text_button_dialog_show_information">@dimen/_18sdp</dimen>
+    <dimen name="title_dialog_show_information">@dimen/_14sdp</dimen>
+    <dimen name="text_information">@dimen/_12sdp</dimen>
+    <dimen name="text_button_dialog_show_information">@dimen/_16sdp</dimen>
 
 
     <!-- Dimen in dialog create relief newsletter successful-->

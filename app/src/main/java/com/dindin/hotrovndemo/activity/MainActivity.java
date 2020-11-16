@@ -20,6 +20,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, LoginPhoneNumber.class);
                 intent.putExtra("key", 1);
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
         binding.btnHelperJoined.setOnClickListener(new View.OnClickListener() {
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, LoginPhoneNumber.class);
                 intent.putExtra("key", 2);
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
     }

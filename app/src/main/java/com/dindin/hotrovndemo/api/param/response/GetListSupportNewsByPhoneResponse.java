@@ -1,15 +1,14 @@
-package com.dindin.hotrovndemo.param.request;
+package com.dindin.hotrovndemo.api.param.response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class CreateNewsRequest {
-    @SerializedName("PhoneCreated")
+public class GetListSupportNewsByPhoneResponse {
+
+
+    @SerializedName("Id")
     @Expose
-    private String phoneCreated;
-    @SerializedName("FieldsId")
-    @Expose
-    private Integer fieldsId;
+    private Integer id;
     @SerializedName("Country")
     @Expose
     private Integer country;
@@ -31,51 +30,25 @@ public class CreateNewsRequest {
     @SerializedName("Lng")
     @Expose
     private Double lng;
-    @SerializedName("Address")
-    @Expose
-    private String address;
     @SerializedName("DateNotif")
     @Expose
     private Integer dateNotif;
-    @SerializedName("AdminPost")
-    @Expose
-    private String adminPost;
-    @SerializedName("PhoneContact")
-    @Expose
-    private String phoneContact;
-    @SerializedName("RolePersonPost")
-    @Expose
-    private String rolePersonPost;
     @SerializedName("RequestSupport")
     @Expose
     private String requestSupport;
-    @SerializedName("Descriptions")
-    @Expose
-    private String descriptions;
-    @SerializedName("NotificationId")
-    @Expose
-    private String notificationId;
     @SerializedName("DateCreated")
     @Expose
     private Integer dateCreated;
-    @SerializedName("SecCode")
+    @SerializedName("CountHelperJoined")
     @Expose
-    private String secCode;
+    private Integer countHelperJoined;
 
-    public String getPhoneCreated() {
-        return phoneCreated;
+    public Integer getId() {
+        return id;
     }
 
-    public void setPhoneCreated(String phoneCreated) {
-        this.phoneCreated = phoneCreated;
-    }
-
-    public Integer getFieldsId() {
-        return fieldsId;
-    }
-
-    public void setFieldsId(Integer fieldsId) {
-        this.fieldsId = fieldsId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getCountry() {
@@ -134,44 +107,12 @@ public class CreateNewsRequest {
         this.lng = lng;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public Integer getDateNotif() {
         return dateNotif;
     }
 
     public void setDateNotif(Integer dateNotif) {
         this.dateNotif = dateNotif;
-    }
-
-    public String getAdminPost() {
-        return adminPost;
-    }
-
-    public void setAdminPost(String adminPost) {
-        this.adminPost = adminPost;
-    }
-
-    public String getPhoneContact() {
-        return phoneContact;
-    }
-
-    public void setPhoneContact(String phoneContact) {
-        this.phoneContact = phoneContact;
-    }
-
-    public String getRolePersonPost() {
-        return rolePersonPost;
-    }
-
-    public void setRolePersonPost(String rolePersonPost) {
-        this.rolePersonPost = rolePersonPost;
     }
 
     public String getRequestSupport() {
@@ -182,22 +123,6 @@ public class CreateNewsRequest {
         this.requestSupport = requestSupport;
     }
 
-    public String getDescriptions() {
-        return descriptions;
-    }
-
-    public void setDescriptions(String descriptions) {
-        this.descriptions = descriptions;
-    }
-
-    public String getNotificationId() {
-        return notificationId;
-    }
-
-    public void setNotificationId(String notificationId) {
-        this.notificationId = notificationId;
-    }
-
     public Integer getDateCreated() {
         return dateCreated;
     }
@@ -206,11 +131,11 @@ public class CreateNewsRequest {
         this.dateCreated = dateCreated;
     }
 
-    public String getSecCode() {
-        return secCode;
+    public Integer getCountHelperJoined() {
+        return countHelperJoined;
     }
 
-    public void setSecCode(String secCode) {
-        this.secCode = secCode;
+    public void setCountHelperJoined(Integer countHelperJoined) {
+        this.countHelperJoined = countHelperJoined;
     }
 }

@@ -1,0 +1,687 @@
+[
+  {
+    "Id": 1,
+    "Cities":
+    [
+      {
+        "Id": 1,
+        "Name": "Thành phố Hà Nội",
+        "Code": "01"
+      }
+    ]
+  },
+  {
+    "Id": 2,
+    "Cities": [
+      {
+        "Id": 2,
+        "Name": "Thành phố Hà Giang",
+        "Code": "024"
+      }
+    ]
+  },
+  {
+    "Id": 3,
+    "Cities": [
+      {
+        "Id": 3,
+        "Name": "Thành phố Cao Bằng",
+        "Code": "040"
+      }
+    ]
+  },
+  {
+    "Id": 4,
+    "Cities": [
+      {
+        "Id": 4,
+        "Name": "Thành Phố Bắc Kạn",
+        "Code": "058"
+      }
+    ]
+  },
+  {
+    "Id": 5,
+    "Cities": [
+      {
+        "Id": 5,
+        "Name": "Thành phố Tuyên Quang",
+        "Code": "070"
+      }
+    ]
+  },
+  {
+    "Id": 6,
+    "Cities": [
+      {
+        "Id": 66,
+        "Name": "Thành phố Lào Cai",
+        "Code": "080"
+      }
+    ]
+  },
+  {
+    "Id": 7,
+    "Cities": [
+      {
+        "Id": 7,
+        "Name": "Thành phố Điện Biên Phủ",
+        "Code": "094"
+      }
+    ]
+  },
+  {
+    "Id": 8,
+    "Cities": [
+      {
+        "Id": 8,
+        "Name": "Thành phố Lai Châu",
+        "Code": "105"
+      }
+    ]
+  },
+  {
+    "Id": 9,
+    "Cities": [
+      {
+        "Id": 9,
+        "Name": "Thành phố Sơn La",
+        "Code": "116"
+      }
+    ]
+  },
+  {
+    "Id": 10,
+    "Cities": [
+      {
+        "Id": 10,
+        "Name": "Thành phố Yên Bái",
+        "Code": "132"
+      }
+    ]
+  },
+  {
+    "Id": 11,
+    "Cities": [
+      {
+        "Id": 11,
+        "Name": "Thành phố Hòa Bình",
+        "Code": "148"
+      }
+    ]
+  },
+  {
+    "Id": 12,
+    "Cities": [
+      {
+        "Id": 12,
+        "Name": "Thành phố Thái Nguyên",
+        "Code": "164"
+      },
+      {
+        "Id": 121,
+        "Name": "Thành phố Sông Công",
+        "Code": "165"
+      }
+    ]
+  },
+  {
+    "Id": 13,
+    "Cities": [
+      {
+        "Id": 14,
+        "Name": "Thành phố Lạng Sơn",
+        "Code": "178"
+      }
+    ]
+  },
+  {
+    "Id": 14,
+    "Cities": [
+      {
+        "Id": 15,
+        "Name": "Thành phố Hạ Long",
+        "Code": "193"
+      },
+      {
+        "Id": 16,
+        "Name": "Thành phố Móng Cái",
+        "Code": "194"
+      },
+      {
+        "Id": 17,
+        "Name": "Thành phố Cẩm Phả",
+        "Code": "195"
+      },
+      {
+        "Id": 18,
+        "Name": "Thành phố Uông Bí",
+        "Code": "196"
+      }
+    ]
+  },
+  {
+    "Id": 15,
+    "Cities": [
+      {
+        "Id": 19,
+        "Name": "Thành phố Bắc Giang",
+        "Code": "213"
+      }
+    ]
+  },
+  {
+    "Id": 16,
+    "Cities": [
+      {
+        "Id": 20,
+        "Name": "Thành phố Việt Trì",
+        "Code": "227"
+      }
+    ]
+  },
+  {
+    "Id": 17,
+    "Cities": [
+      {
+        "Id": 21,
+        "Name": "Thành phố Vĩnh Yên",
+        "Code": "243"
+      }
+    ]
+  },
+  {
+    "Id": 18,
+    "Cities": [
+      {
+        "Id": 22,
+        "Name": "Thành phố Bắc Ninh",
+        "Code": "256"
+      }
+    ]
+  },
+  {
+    "Id": 19,
+    "Cities": [
+      {
+        "Id": 23,
+        "Name": "Thành phố Hải Dương",
+        "Code": "288"
+      }
+    ]
+  },
+  {
+    "Id": 20,
+    "Cities": [
+      {
+        "Id": 24,
+        "Name": "Thành phố Hải Phòng",
+        "Code": "31"
+      }
+    ]
+  },
+  {
+    "Id": 21,
+    "Cities": [
+      {
+        "Id": 25,
+        "Name": "Thành phố Hưng Yên",
+        "Code": "323"
+      }
+    ]
+  },
+  {
+    "Id": 22,
+    "Cities": [
+      {
+        "Id": 26,
+        "Name": "Thành phố Thái Bình",
+        "Code": "336"
+      }
+    ]
+  },
+  {
+    "Id": 23,
+    "Cities": [
+      {
+        "Id": 27,
+        "Name": "Thành phố Phủ Lý",
+        "Code": "347"
+      }
+    ]
+  },
+  {
+    "Id": 24,
+    "Cities": [
+      {
+        "Id": 28,
+        "Name": "Thành phố Nam Định",
+        "Code": "356"
+      }
+    ]
+  },
+  {
+    "Id": 25,
+    "Cities": [
+      {
+        "Id": 29,
+        "Name": "Thành phố Ninh Bình",
+        "Code": "369"
+      },
+      {
+        "Id": 30,
+        "Name": "Thành phố Tam Điệp",
+        "Code": "370"
+      }
+    ]
+  },
+  {
+    "Id": 26,
+    "Cities": [
+      {
+        "Id": 31,
+        "Name": "Thành phố Thanh Hóa",
+        "Code": "380"
+      },
+      {
+        "Id": 32,
+        "Name": "Thành phố Sầm Sơn",
+        "Code": "382"
+      }
+    ]
+  },
+  {
+    "Id": 27,
+    "Cities": [
+      {
+        "Id": 33,
+        "Name": "Thành phố Vinh",
+        "Code": "412"
+      }
+    ]
+  },
+  {
+    "Id": 28,
+    "Cities": [
+      {
+        "Id": 34,
+        "Name": "Thành phố Hà Tĩnh",
+        "Code": "436"
+      }
+    ]
+  },
+  {
+    "Id": 29,
+    "Cities": [
+      {
+        "Id": 35,
+        "Name": "Thành Phố Đồng Hới",
+        "Code": "450"
+      }
+    ]
+  },
+  {
+    "Id": 30,
+    "Cities": [
+      {
+        "Id": 36,
+        "Name": "Thành phố Đông Hà",
+        "Code": "461"
+      }
+    ]
+  },
+  {
+    "Id": 31,
+    "Cities": [
+      {
+        "Id": 37,
+        "Name": "Thành phố Huế",
+        "Code": "474"
+      }
+    ]
+  },
+  {
+    "Id": 32,
+    "Cities": [
+      {
+        "Id": 38,
+        "Name": "Thành phố Đà Nẵng",
+        "Code": "48"
+      }
+    ]
+  },
+  {
+    "Id": 33,
+    "Cities": [
+      {
+        "Id": 39,
+        "Name": "Thành phố Tam Kỳ",
+        "Code": "502"
+      },
+      {
+        "Id": 40,
+        "Name": "Thành phố Hội An",
+        "Code": "503"
+      }
+    ]
+  },
+  {
+    "Id": 34,
+    "Cities": [
+      {
+        "Id": 41,
+        "Name": "Thành phố Quảng Ngãi",
+        "Code": "522"
+      }
+    ]
+  },
+  {
+    "Id": 35,
+    "Cities": [
+      {
+        "Id": 42,
+        "Name": "Thành phố Qui Nhơn",
+        "Code": "540"
+      }
+    ]
+  },
+  {
+    "Id": 36,
+    "Cities": [
+      {
+        "Id": 43,
+        "Name": "Thành phố Tuy Hoà",
+        "Code": "555"
+      }
+    ]
+  },
+  {
+    "Id": 37,
+    "Cities": [
+      {
+        "Id": 44,
+        "Name": "Thành phố Nha Trang",
+        "Code": "568"
+      },
+      {
+        "Id": 45,
+        "Name": "Thành phố Cam Ranh",
+        "Code": "569"
+      }
+    ]
+  },
+  {
+    "Id": 38,
+    "Cities": [
+      {
+        "Id": 46,
+        "Name": "Thành phố Phan Rang-Tháp Chàm",
+        "Code": "582"
+      }
+    ]
+  },
+  {
+    "Id": 39,
+    "Cities": [
+      {
+        "Id": 47,
+        "Name": "Thành phố Phan Thiết",
+        "Code": "593"
+      }
+    ]
+  },
+  {
+    "Id": 40,
+    "Cities": [
+      {
+        "Id": 48,
+        "Name": "Thành phố Kon Tum",
+        "Code": "608"
+      }
+    ]
+  },
+  {
+    "Id": 41,
+    "Cities": [
+      {
+        "Id": 49,
+        "Name": "Thành phố Pleiku",
+        "Code": "622"
+      }
+    ]
+  },
+  {
+    "Id": 42,
+    "Cities": [
+      {
+        "Id": 50,
+        "Name": "Thành phố Buôn Ma Thuột",
+        "Code": "643"
+      }
+    ]
+  },
+  {
+    "Id": 43,
+    "Cities": [{
+        "Id": 51,
+        "Name": "Thành phố Gia Nghĩa",
+        "Code": "672"
+      } ]
+  },
+  {
+    "Id": 44,
+    "Cities": [
+      {
+        "Id": 52,
+        "Name": "Thành phố Đà Lạt",
+        "Code": "672"
+      },
+      {
+        "Id": 53,
+        "Name": "Thành phố Bảo Lộc",
+        "Code": "673"
+      }
+    ]
+  },
+  {
+    "Id": 45,
+    "Cities": [ {"Id": 52,
+        "Name": "Thành phố Đồng Xoài",
+        "Code": "672"}]
+  },
+  {
+    "Id": 46,
+    "Cities": [
+      {
+        "Id": 55,
+        "Name": "Thành phố Tây Ninh",
+        "Code": "703"
+      }
+    ]
+  },
+  {
+    "Id": 47,
+    "Cities": [
+      {
+        "Id": 56,
+        "Name": "Thành phố Thủ Dầu Một",
+        "Code": "718"
+      }
+    ]
+  },
+  {
+    "Id": 48,
+    "Cities": [
+      {
+        "Id": 57,
+        "Name": "Thành phố Biên Hòa",
+        "Code": "731"
+      }
+    ]
+  },
+  {
+    "Id": 49,
+    "Cities": [
+      {
+        "Id": 58,
+        "Name": "Thành phố Vũng Tàu",
+        "Code": "747"
+      },
+      {
+        "Id": 59,
+        "Name": "Thành phố Bà Rịa",
+        "Code": "748"
+      }
+    ]
+  },
+  {
+    "Id": 50,
+    "Cities": [
+      {
+        "Id": 60,
+        "Name": "Thành phố Hồ Chí Minh",
+        "Code": "79"
+      }
+    ]
+  },
+  {
+    "Id": 51,
+    "Cities": [
+      {
+        "Id": 61,
+        "Name": "Thành phố Tân An",
+        "Code": "794"
+      }
+    ]
+  },
+  {
+    "Id": 52,
+    "Cities": [
+      {
+        "Id": 62,
+        "Name": "Thành phố Mỹ Tho",
+        "Code": "815"
+      }
+    ]
+  },
+  {
+    "Id": 53,
+    "Cities": [
+      {
+        "Id": 63,
+        "Name": "Thành phố Bến Tre",
+        "Code": "829"
+      }
+    ]
+  },
+  {
+    "Id": 54,
+    "Cities": [
+      {
+        "Id": 64,
+        "Name": "Thành phố Trà Vinh",
+        "Code": "842"
+      }
+    ]
+  },
+  {
+    "Id": 55,
+    "Cities": [
+      {
+        "Id": 65,
+        "Name": "Thành phố Vĩnh Long",
+        "Code": "855"
+      }
+    ]
+  },
+  {
+    "Id": 56,
+    "Cities": [
+      {
+        "Id": 66,
+        "Name": "Thành phố Cao Lãnh",
+        "Code": "866"
+      },
+      {
+        "Id": 67,
+        "Name": "Thành phố Sa Đéc",
+        "Code": "867"
+      }
+    ]
+  },
+  {
+    "Id": 57,
+    "Cities": [
+      {
+        "Id": 68,
+        "Name": "Thành phố Long Xuyên",
+        "Code": "883"
+      },
+      {
+        "Id": 69,
+        "Name": "Thành phố Châu Đốc",
+        "Code": "884"
+      }
+    ]
+  },
+  {
+    "Id": 58,
+    "Cities": [
+      {
+        "Id": 70,
+        "Name": "Thành phố Rạch Giá",
+        "Code": "899"
+      }
+    ]
+  },
+  {
+    "Id": 59,
+    "Cities": [
+      {
+        "Id": 71,
+        "Name": "Thành phố Cần Thơ",
+        "Code": "92"
+      }
+    ]
+  },
+  {
+    "Id": 60,
+    "Cities": [
+      {
+        "Id": 72,
+        "Name": "Thành phố Vị Thanh",
+        "Code": "930"
+      }
+    ]
+  },
+  {
+    "Id": 61,
+    "Cities": [
+      {
+        "Id": 73,
+        "Name": "Thành phố Sóc Trăng",
+        "Code": "941"
+      }
+    ]
+  },
+  {
+    "Id": 62,
+    "Cities": [
+      {
+        "Id": 74,
+        "Name": "Thành phố Bạc Liêu",
+        "Code": "954"
+      }
+    ]
+  },
+  {
+    "Id": 63,
+    "Cities": [
+      {
+        "Id": 75,
+        "Name": "Thành phố Cà Mau",
+        "Code": "964"
+      }
+    ]
+  }
+]

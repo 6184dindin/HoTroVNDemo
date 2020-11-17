@@ -1,4 +1,4 @@
-package com.dindin.hotrovndemo.param.request;
+package com.dindin.hotrovndemo.api.param.request;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

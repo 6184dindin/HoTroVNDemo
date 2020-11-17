@@ -1,20 +1,13 @@
-package com.dindin.hotrovndemo.param.request;
+package com.dindin.hotrovndemo.api.param.response.getinfonewsresponse;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.math.BigInteger;
+public class LISTHELPER {
 
-public class CreateHelpsNewsRequest {
-    @SerializedName("NewsId")
+    @SerializedName("HelpsId")
     @Expose
-    private Integer newsId;
-    @SerializedName("FieldsId")
-    @Expose
-    private Integer fieldsId;
-    @SerializedName("PhoneCreated")
-    @Expose
-    private String phoneCreated;
+    private Integer helpsId;
     @SerializedName("AdminHelper")
     @Expose
     private String adminHelper;
@@ -38,33 +31,14 @@ public class CreateHelpsNewsRequest {
     private String supportValue;
     @SerializedName("DateCreated")
     @Expose
-    private BigInteger dateCreated;
-    @SerializedName("SecCode")
-    @Expose
-    private String secCode;
+    private Integer dateCreated;
 
-    public Integer getNewsId() {
-        return newsId;
+    public Integer getHelpsId() {
+        return helpsId;
     }
 
-    public void setNewsId(Integer newsId) {
-        this.newsId = newsId;
-    }
-
-    public Integer getFieldsId() {
-        return fieldsId;
-    }
-
-    public void setFieldsId(Integer fieldsId) {
-        this.fieldsId = fieldsId;
-    }
-
-    public String getPhoneCreated() {
-        return phoneCreated;
-    }
-
-    public void setPhoneCreated(String phoneCreated) {
-        this.phoneCreated = phoneCreated;
+    public void setHelpsId(Integer helpsId) {
+        this.helpsId = helpsId;
     }
 
     public String getAdminHelper() {
@@ -123,19 +97,12 @@ public class CreateHelpsNewsRequest {
         this.supportValue = supportValue;
     }
 
-    public BigInteger getDateCreated() {
+    public Integer getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(BigInteger dateCreated) {
+    public void setDateCreated(Integer dateCreated) {
         this.dateCreated = dateCreated;
     }
 
-    public String getSecCode() {
-        return secCode;
-    }
-
-    public void setSecCode(String secCode) {
-        this.secCode = secCode;
-    }
 }

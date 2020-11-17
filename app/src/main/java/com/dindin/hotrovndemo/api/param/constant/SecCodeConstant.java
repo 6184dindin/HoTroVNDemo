@@ -1,4 +1,4 @@
-package com.dindin.hotrovndemo.param.constant;
+package com.dindin.hotrovndemo.api.param.constant;
 
 public class SecCodeConstant {
 

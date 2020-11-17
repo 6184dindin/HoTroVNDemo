@@ -1,12 +1,12 @@
-package com.dindin.hotrovndemo.param.request;
+package com.dindin.hotrovndemo.api.param.request;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class GetInfoNewsRequest {
-    @SerializedName("NewsId")
+public class GetListSupportNewsByPhoneRequest {
+    @SerializedName("PhoneNumber")
     @Expose
-    private Integer newsId;
+    private String phoneNumber;
     @SerializedName("FieldsId")
     @Expose
     private Integer fieldsId;
@@ -14,12 +14,12 @@ public class GetInfoNewsRequest {
     @Expose
     private String secCode;
 
-    public Integer getNewsId() {
-        return newsId;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setNewsId(Integer newsId) {
-        this.newsId = newsId;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public Integer getFieldsId() {

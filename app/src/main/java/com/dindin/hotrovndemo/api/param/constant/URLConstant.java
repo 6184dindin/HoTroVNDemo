@@ -1,4 +1,4 @@
-package com.dindin.hotrovndemo.param.constant;
+package com.dindin.hotrovndemo.api.param.constant;
 
 public class URLConstant {
     public static final String URLBaseNews = "http://14.248.83.116:6060/";

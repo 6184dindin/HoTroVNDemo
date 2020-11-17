@@ -1,0 +1,9 @@
+[
+    {"Id":1, "Name" : "Thiên tai"},
+    {"Id":2, "Name" : "Y tế"},
+    {"Id":3, "Name" : "Giáo dục"},
+    {"Id":4, "Name" : "Tai nạn"},
+    {"Id":5, "Name" : "Mất tích"},
+    {"Id":6, "Name" : "Người già neo đơn"},
+    {"Id":7, "Name" : "Cộng đồng"}
+]

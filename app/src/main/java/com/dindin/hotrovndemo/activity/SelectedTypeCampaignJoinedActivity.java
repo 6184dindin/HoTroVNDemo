@@ -22,6 +22,9 @@ public class SelectedTypeCampaignJoinedActivity extends AppCompatActivity {
         intent = getIntent();
         key = intent.getIntExtra("key", 0);
         phoneNumber = intent.getStringExtra("phone");
+        binding.btnBack.setOnClickListener((view) -> {
+            finish();
+        });
         binding.btnNaturalDisasters.setOnClickListener((view) -> {
             nextAct(1);
         });

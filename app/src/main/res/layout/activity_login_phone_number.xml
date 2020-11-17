@@ -13,7 +13,14 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.5" />
-
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:background="@color/transition"
+            android:src="@drawable/ic_back"/>
         <EditText
             android:id="@+id/edtPhoneNumber"
             android:layout_width="match_parent"

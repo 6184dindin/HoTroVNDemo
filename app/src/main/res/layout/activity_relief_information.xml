@@ -29,7 +29,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/_40sdp"
                 android:fontFamily="@font/tahomabd"
-                android:text="@string/relief_information"
+                android:text="@string/heading_relief_information"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/title_relief_information" />
         </RelativeLayout>

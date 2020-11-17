@@ -34,7 +34,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     //dimen - spd
@@ -54,6 +54,18 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.7'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+
     //check permission
     implementation 'com.karumi:dexter:6.2.1'
+
+    //roundImageView
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
+    //upload image with Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 }

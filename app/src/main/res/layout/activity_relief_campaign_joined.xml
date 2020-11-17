@@ -28,7 +28,7 @@
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/tahomabd"
                 android:layout_marginLeft="@dimen/_40sdp"
-                android:text="@string/relief_campaign_joined"
+                android:text="@string/heading_relief_campaign_joined"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/title_relief" />
         </RelativeLayout>

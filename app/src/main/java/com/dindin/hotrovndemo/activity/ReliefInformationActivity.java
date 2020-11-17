@@ -32,6 +32,8 @@ public class ReliefInformationActivity extends AppCompatActivity {
     Dialog dialog;
     Intent intent;
     int key;
+    String phoneNumber;
+    int field;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,8 @@ public class ReliefInformationActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_relief_information);
         intent = getIntent();
         key = intent.getIntExtra("key", 0);
+        phoneNumber = intent.getStringExtra("phone");
+        field = intent.getIntExtra("field", 0);
         dialog = new Dialog(this);
         helperJoinedList = new ArrayList<>();
         helperJoinedList.add(new HelperJoined());
@@ -75,6 +79,9 @@ public class ReliefInformationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ReliefInformationActivity.this, CreateReliefCampaignActivity.class);
+                intent.putExtra("key", key);
+                intent.putExtra("phone", phoneNumber);
+                intent.putExtra("field", field);
                 startActivity(intent);
             }
         });

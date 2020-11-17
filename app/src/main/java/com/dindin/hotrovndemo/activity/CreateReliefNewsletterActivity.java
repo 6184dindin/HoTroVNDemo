@@ -59,6 +59,11 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
 
     List<Bitmap> bitmapList;
 
+    Intent intent;
+    int key;
+    String phoneNumber;
+    int field;
+
     private boolean flagPermission = false;
     private boolean flagGPS = false;
 
@@ -70,6 +75,11 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
         if (!flagPermission) {
             checkPermission();
         }
+
+        intent = getIntent();
+        key = intent.getIntExtra("key", 0);
+        phoneNumber = intent.getStringExtra("phone");
+        field = intent.getIntExtra("field", 0);
 
         dialog = new Dialog(this);
         bitmapList = new ArrayList<>();

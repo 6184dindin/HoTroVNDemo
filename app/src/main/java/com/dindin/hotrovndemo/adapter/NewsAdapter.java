@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dindin.hotrovndemo.Poco;
+import com.dindin.hotrovndemo.News;
 import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.activity.ReliefInformationActivity;
 
@@ -18,13 +18,17 @@ import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     Context context;
-    List<Poco> pocos;
+    List<News> news;
     int key;
+    String phoneNumber;
+    int field;
 
-    public NewsAdapter(Context context, List<Poco> pocos, int key) {
+    public NewsAdapter(Context context, List<News> news, int key, int field, String phoneNumber) {
         this.context = context;
-        this.pocos = pocos;
+        this.news = news;
         this.key = key;
+        this.field = field;
+        this.phoneNumber = phoneNumber;
     }
 
     @NonNull
@@ -42,6 +46,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             public void onClick(View v) {
                 Intent intent = new Intent(context, ReliefInformationActivity.class);
                 intent.putExtra("key", key);
+                intent.putExtra("phone", phoneNumber);
+                intent.putExtra("field", field);
                 context.startActivity(intent);
             }
         });
@@ -49,7 +55,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return pocos.size();
+        return news.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

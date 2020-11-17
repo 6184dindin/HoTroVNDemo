@@ -4,10 +4,8 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.math.BigInteger;
-import java.util.List;
 
-public class Poco implements Serializable {
+public class News implements Serializable {
     @SerializedName("Id")
     @Expose
     private Integer id;

@@ -12,8 +12,6 @@ import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.databinding.ActivityReliefBulletinBinding;
 import com.dindin.hotrovndemo.fragment.GoogleMapFragment;
 import com.dindin.hotrovndemo.fragment.ShowListReliefFragment;
-import com.dindin.hotrovndemo.utils.Helper;
-import com.dindin.hotrovndemo.utils.Province;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,21 +76,6 @@ public class ReliefBulletinActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
-    }
-
-    List<Province> provinces;
-    int position;
-
-    private String[] getList() {
-        provinces = new ArrayList<>();
-        provinces = (ArrayList<Province>) Helper.getProvinces(this);
-        String[] stringsNameProvince = new String[provinces.size()];
-        if (!provinces.isEmpty()) {
-            for (int i = 0; i < provinces.size(); i++) {
-                stringsNameProvince[i] = provinces.get(i).getName();
-            }
-        }
-        return stringsNameProvince;
     }
 
     private void createList() {

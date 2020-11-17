@@ -1,15 +1,17 @@
 package com.dindin.hotrovndemo;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.dindin.hotrovndemo.fragment.GoogleMapFragment;
-import com.dindin.hotrovndemo.fragment.ShowListReliefFragment;
+import com.dindin.hotrovndemo.utils.City;
+import com.dindin.hotrovndemo.utils.Helper;
+import com.dindin.hotrovndemo.utils.InfoAddress;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Test extends AppCompatActivity {
     @Override
@@ -17,22 +19,13 @@ public class Test extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
         Button button1 = findViewById(R.id.button1);
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment, new GoogleMapFragment(new ArrayList<Poco>()))
-                        .commit();
-            }
-        });
         Button button2 = findViewById(R.id.button2);
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment, new ShowListReliefFragment(new ArrayList<>(), 1))
-                        .commit();
-            }
-        });
+        List<InfoAddress> infoAddresses = (ArrayList<InfoAddress>) Helper.getProvinces(this);
+
+        City city = new City();
+        List<City> cities = Helper.getCities(this);
+        cities.get(0).getInfoAddresses().get(0).getName();
+        TextView textView = findViewById(R.id.tv);
+        textView.setText(cities.get(0).getInfoAddresses().get(0).getName());
     }
 }

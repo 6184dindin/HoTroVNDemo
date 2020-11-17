@@ -140,25 +140,39 @@
                         </RelativeLayout>
 
                     </LinearLayout>
-
                     <LinearLayout
+                        android:visibility="gone"
                         android:id="@+id/layoutSelectedPicker"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_120sdp"
                         android:background="@color/color_white"
-                        android:visibility="gone"
                         android:orientation="vertical">
-
-                        <Button
-                            android:id="@+id/btnSelected"
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_30sdp"
-                            android:background="@color/transition"
-                            android:fontFamily="@font/tahomabd"
-                            android:text="@string/selected_province"
-                            android:textAllCaps="false"
-                            android:textColor="@color/color_green"
-                            android:textSize="@dimen/button_city_picker" />
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <Button
+                                android:id="@+id/tvSelected"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_30sdp"
+                                android:background="@color/transition"
+                                android:fontFamily="@font/tahomabd"
+                                android:text="@string/selected_province"
+                                android:textAllCaps="false"
+                                android:textColor="@color/color_green"
+                                android:textSize="@dimen/button_city_picker" />
+                            <Button
+                                android:id="@+id/btnSelected"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_30sdp"
+                                android:background="@color/transition"
+                                android:fontFamily="@font/tahomabd"
+                                android:layout_alignParentRight="true"
+                                android:text="@string/choose"
+                                android:textAllCaps="false"
+                                android:textColor="@color/color_green"
+                                android:textSize="@dimen/button_city_picker" />
+                        </RelativeLayout>
 
                         <com.shawnlin.numberpicker.NumberPicker
                             android:id="@+id/numberPicker"
@@ -174,6 +188,7 @@
                             app:np_textSize="@dimen/text_city_picker"
                             app:np_wheelItemCount="5" />
                     </LinearLayout>
+
                 </RelativeLayout>
 
                 <RelativeLayout

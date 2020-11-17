@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dindin.hotrovndemo.Poco;
 import com.dindin.hotrovndemo.R;
-import com.dindin.hotrovndemo.adapter.AdapterPoco;
+import com.dindin.hotrovndemo.adapter.NewsAdapter;
 import com.dindin.hotrovndemo.databinding.FragmentShowListReliefBinding;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class ShowListReliefFragment extends Fragment {
 
     FragmentShowListReliefBinding binding;
     List<Poco> pocos;
-    AdapterPoco adapterPoco;
+    NewsAdapter newsAdapter;
 
     int key;
     public ShowListReliefFragment(List<Poco> pocoList, int key) {
@@ -42,10 +42,10 @@ public class ShowListReliefFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_show_list_relief, container, false);
 
-        adapterPoco = new AdapterPoco(getContext(), pocos, key);
+        newsAdapter = new NewsAdapter(getContext(), pocos, key);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         binding.rcShowListRelief.setLayoutManager(layoutManager);
-        binding.rcShowListRelief.setAdapter(adapterPoco);
+        binding.rcShowListRelief.setAdapter(newsAdapter);
 
         return binding.getRoot();
     }

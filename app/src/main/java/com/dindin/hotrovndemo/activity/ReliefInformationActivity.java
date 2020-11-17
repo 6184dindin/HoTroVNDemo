@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dindin.hotrovndemo.HelperJoined;
 import com.dindin.hotrovndemo.R;
-import com.dindin.hotrovndemo.adapter.AdapterHelperJoined;
-import com.dindin.hotrovndemo.adapter.IAdapterHelperJoined;
+import com.dindin.hotrovndemo.adapter.HelperJoinedAdapter;
+import com.dindin.hotrovndemo.adapter.OnClickHelperJoinedListener;
 import com.dindin.hotrovndemo.databinding.ActivityReliefInformationBinding;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ import static android.graphics.Color.TRANSPARENT;
 public class ReliefInformationActivity extends AppCompatActivity {
     ActivityReliefInformationBinding binding;
     List<HelperJoined> helperJoinedList;
-    AdapterHelperJoined adapterHelperJoined;
+    HelperJoinedAdapter helperJoinedAdapter;
     Dialog dialog;
     Intent intent;
     int key;
@@ -43,10 +43,10 @@ public class ReliefInformationActivity extends AppCompatActivity {
         helperJoinedList = new ArrayList<>();
         helperJoinedList.add(new HelperJoined());
         helperJoinedList.add(new HelperJoined());
-        adapterHelperJoined = new AdapterHelperJoined(helperJoinedList, this);
+        helperJoinedAdapter = new HelperJoinedAdapter(helperJoinedList, this);
         startAct();
 
-        adapterHelperJoined.setiAdapterHelperJoined(new IAdapterHelperJoined() {
+        helperJoinedAdapter.setOnClickHelperJoinedListener(new OnClickHelperJoinedListener() {
             @Override
             public void openDialogShowInformationReliefCampaign(HelperJoined helperJoined) {
                 dialog.setContentView(R.layout.dialog_show_information_relief_campaign);
@@ -64,7 +64,7 @@ public class ReliefInformationActivity extends AppCompatActivity {
         });
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         binding.rcViewListReliefCampaign.setLayoutManager(layoutManager);
-        binding.rcViewListReliefCampaign.setAdapter(adapterHelperJoined);
+        binding.rcViewListReliefCampaign.setAdapter(helperJoinedAdapter);
         binding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class District {
+public class City {
     @SerializedName("Id")
     @Expose
     private Integer id;
-    @SerializedName("Districts")
+    @SerializedName("Cities")
     @Expose
     private List<InfoAddress> infoAddresses = null;
 

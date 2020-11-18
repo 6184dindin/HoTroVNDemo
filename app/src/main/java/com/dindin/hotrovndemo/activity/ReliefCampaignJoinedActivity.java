@@ -36,7 +36,9 @@ public class ReliefCampaignJoinedActivity extends AppCompatActivity {
                 .commit();
         binding.btnBack.setOnClickListener(v -> finish());
     }
+    private void getListHelpJobsByPhone() {
 
+    }
     private void createList() {
         news.add(new News());
         news.add(new News());

@@ -2,7 +2,6 @@ package com.dindin.hotrovndemo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -35,12 +34,7 @@ public class ReliefCampaignJoinedActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentListReliefCampaignJoined, new ShowListReliefFragment(news, key, field, phoneNumber))
                 .commit();
-        binding.btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        binding.btnBack.setOnClickListener(v -> finish());
     }
 
     private void createList() {

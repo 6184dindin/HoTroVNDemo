@@ -18,7 +18,7 @@ import android.widget.Toast;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
-import com.dindin.hotrovndemo.News;
+import com.dindin.hotrovndemo.api.param.response.News;
 import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.activity.ReliefInformationActivity;
 import com.dindin.hotrovndemo.databinding.DialogSelectedProvinceCityDistrictBinding;

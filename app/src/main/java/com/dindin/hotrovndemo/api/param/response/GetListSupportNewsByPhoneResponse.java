@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class GetListSupportNewsByPhoneResponse {
 
-
     @SerializedName("Id")
     @Expose
     private Integer id;

@@ -9,17 +9,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dindin.hotrovndemo.HelperJoined;
+import com.dindin.hotrovndemo.api.param.response.getinfonewsresponse.Helper;
 import com.dindin.hotrovndemo.R;
 
 import java.util.List;
 
 public class HelperJoinedAdapter extends RecyclerView.Adapter<HelperJoinedAdapter.ViewHolder> {
-    List<HelperJoined> helperJoineds;
+    List<Helper> helpers;
     Context context;
     OnClickHelperJoinedListener onClickHelperJoinedListener;
-    public HelperJoinedAdapter(List<HelperJoined> helperJoineds, Context context) {
-        this.helperJoineds = helperJoineds;
+    public HelperJoinedAdapter(List<Helper> helpers, Context context) {
+        this.helpers = helpers;
     }
 
     public void setOnClickHelperJoinedListener(OnClickHelperJoinedListener onClickHelperJoinedListener) {
@@ -36,23 +36,58 @@ public class HelperJoinedAdapter extends RecyclerView.Adapter<HelperJoinedAdapte
 
     @Override
     public void onBindViewHolder(@NonNull HelperJoinedAdapter.ViewHolder holder, final int position) {
+        Helper helper = helpers.get(position);
+        holder.tvOrganization.setText(helper.getOrganization());
+        holder.tvSupportValue.setText(helper.getSupportValue());
+        holder.tvRolePersonHelper.setText(helper.getRolePersonHelper());
+
+        if(helper.getAdminHelper().isEmpty() && helper.getPhoneContact().isEmpty()) {
+            holder.tvAdminHelperAndPhoneContact.setText("");
+        }
+        if(!helper.getAdminHelper().isEmpty() && helper.getPhoneContact().isEmpty()) {
+            holder.tvAdminHelperAndPhoneContact.setText(helper.getAdminHelper());
+        }
+        if(helper.getAdminHelper().isEmpty() && !helper.getPhoneContact().isEmpty()) {
+            holder.tvAdminHelperAndPhoneContact.setText(helper.getPhoneContact());
+        }
+        if(!helper.getAdminHelper().isEmpty() && !helper.getPhoneContact().isEmpty()) {
+            holder.tvAdminHelperAndPhoneContact.setText(helper.getAdminHelper() + " | " + helper.getPhoneContact());
+        }
+
+        String dateTime = helper.getDateCreated().toString();
+        holder.tvDateTime.setText(dateTime.substring(6,8)
+                + "/" + dateTime.substring(4,6)
+                + "/" + dateTime.substring(0,4)
+                + " - " + dateTime.substring(8,10)
+                + ":" + dateTime.substring(10,12));
+
         holder.btnSeeDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickHelperJoinedListener.openDialogShowInformationReliefCampaign(helperJoineds.get(position));
+                onClickHelperJoinedListener.openDialogShowInformationReliefCampaign(helpers.get(position));
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return helperJoineds.size();
+        return helpers.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView tvOrganization;
+        TextView tvSupportValue;
+        TextView tvAdminHelperAndPhoneContact;
+        TextView tvRolePersonHelper;
+        TextView tvDateTime;
         TextView btnSeeDetails;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            tvOrganization = itemView.findViewById(R.id.tvOrganization);
+            tvSupportValue = itemView.findViewById(R.id.tvSupportValue);
+            tvAdminHelperAndPhoneContact = itemView.findViewById(R.id.tvAdminHelperAndPhoneContact);
+            tvRolePersonHelper = itemView.findViewById(R.id.tvRolePersonHelper);
+            tvDateTime = itemView.findViewById(R.id.tvDateTime);
             btnSeeDetails = itemView.findViewById(R.id.btnSeeDetails);
         }
     }

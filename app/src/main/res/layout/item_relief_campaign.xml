@@ -14,7 +14,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/_40sdp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingHorizontal="@dimen/_10sdp">
@@ -25,6 +26,7 @@
                 android:src="@drawable/ic_social_care" />
 
             <TextView
+                android:id="@+id/tvOrganization"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -60,8 +62,9 @@
                     android:textSize="@dimen/tv_item_relief_campaign" />
 
                 <TextView
+                    android:id="@+id/tvSupportValue"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_50sdp"
                     android:fontFamily="@font/tahoma"
                     android:text="- Áo mưa : 1000 chiếc\n- Đèn pin : 300 cái\nMong bà con vững tin vượt qua....."
                     android:textColor="@color/color_black"
@@ -81,7 +84,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/_40sdp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingHorizontal="@dimen/_10sdp">
@@ -92,6 +96,7 @@
                 android:src="@drawable/ic_calendar" />
 
             <TextView
+                android:id="@+id/tvDateTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -103,7 +108,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/_40sdp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingHorizontal="@dimen/_10sdp">
@@ -120,6 +126,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tvAdminHelperAndPhoneContact"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/tahoma"
@@ -128,6 +135,7 @@
                     android:textSize="@dimen/tv_item_relief_campaign" />
 
                 <TextView
+                    android:id="@+id/tvRolePersonHelper"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/tahoma"

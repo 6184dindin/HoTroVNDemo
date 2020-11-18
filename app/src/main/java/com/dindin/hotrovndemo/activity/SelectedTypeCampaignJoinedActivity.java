@@ -5,15 +5,24 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.dindin.hotrovndemo.R;
+import com.dindin.hotrovndemo.adapter.FieldJoinedAdapter;
 import com.dindin.hotrovndemo.databinding.ActivitySelectedTypeCampaignJoinedBinding;
+import com.dindin.hotrovndemo.utils.Field;
+import com.dindin.hotrovndemo.utils.Helper;
+
+import java.util.List;
 
 public class SelectedTypeCampaignJoinedActivity extends AppCompatActivity {
     ActivitySelectedTypeCampaignJoinedBinding binding;
     Intent intent;
     int key;
     String phoneNumber;
+    FieldJoinedAdapter adapter;
+    List<Field> fields;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,34 +34,21 @@ public class SelectedTypeCampaignJoinedActivity extends AppCompatActivity {
         binding.btnBack.setOnClickListener((view) -> {
             finish();
         });
-        binding.btnNaturalDisasters.setOnClickListener((view) -> {
-            nextAct(1);
+        fields = Helper.getFields(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        binding.rcFiled.setLayoutManager(layoutManager);
+        adapter = new FieldJoinedAdapter(fields);
+        adapter.setListener(filed -> {
+            nextAct((int) filed);
         });
-        binding.btnMedical.setOnClickListener((view) -> {
-            nextAct(2);
-        });
-        binding.btnEducation.setOnClickListener((view) -> {
-            nextAct(3);
-        });
-        binding.btnAccident.setOnClickListener((view) -> {
-            nextAct(4);
-        });
-        binding.btnMissing.setOnClickListener((view) -> {
-            nextAct(5);
-        });
-        binding.btnLonelyOldPeople.setOnClickListener((view) -> {
-            nextAct(6);
-        });
-        binding.btnCommunity.setOnClickListener((view) -> {
-            nextAct(7);
-        });
+        binding.rcFiled.setAdapter(adapter);
     }
 
-    private void nextAct(int type) {
+    private void nextAct(int field) {
         Intent intent = new Intent(SelectedTypeCampaignJoinedActivity.this, ReliefBulletinActivity.class);
         intent.putExtra("key", key);
         intent.putExtra("phone", phoneNumber);
-        intent.putExtra("type", type);
+        intent.putExtra("field", field);
         startActivity(intent);
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }

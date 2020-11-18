@@ -14,32 +14,32 @@ import com.dindin.hotrovndemo.R;
 
 import java.util.List;
 
-public class AdapterHelperJoined extends RecyclerView.Adapter<AdapterHelperJoined.ViewHolder> {
+public class HelperJoinedAdapter extends RecyclerView.Adapter<HelperJoinedAdapter.ViewHolder> {
     List<HelperJoined> helperJoineds;
     Context context;
-    IAdapterHelperJoined iAdapterHelperJoined;
-    public AdapterHelperJoined(List<HelperJoined> helperJoineds, Context context) {
+    OnClickHelperJoinedListener onClickHelperJoinedListener;
+    public HelperJoinedAdapter(List<HelperJoined> helperJoineds, Context context) {
         this.helperJoineds = helperJoineds;
     }
 
-    public void setiAdapterHelperJoined(IAdapterHelperJoined iAdapterHelperJoined) {
-        this.iAdapterHelperJoined = iAdapterHelperJoined;
+    public void setOnClickHelperJoinedListener(OnClickHelperJoinedListener onClickHelperJoinedListener) {
+        this.onClickHelperJoinedListener = onClickHelperJoinedListener;
     }
 
     @NonNull
     @Override
-    public AdapterHelperJoined.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public HelperJoinedAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.item_relief_campaign, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterHelperJoined.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull HelperJoinedAdapter.ViewHolder holder, final int position) {
         holder.btnSeeDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iAdapterHelperJoined.openDialogShowInformationReliefCampaign(helperJoineds.get(position));
+                onClickHelperJoinedListener.openDialogShowInformationReliefCampaign(helperJoineds.get(position));
             }
         });
     }

@@ -27,14 +27,15 @@ import androidx.databinding.DataBindingUtil;
 import com.bumptech.glide.Glide;
 import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.databinding.ActivityCreateReliefNewsletterBinding;
+import com.dindin.hotrovndemo.utils.City;
+import com.dindin.hotrovndemo.utils.District;
 import com.dindin.hotrovndemo.utils.Helper;
-import com.dindin.hotrovndemo.utils.Province;
+import com.dindin.hotrovndemo.utils.InfoAddress;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
-import com.shawnlin.numberpicker.NumberPicker;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -52,7 +53,16 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
     ActivityCreateReliefNewsletterBinding binding;
     Dialog dialog;
 
+    List<InfoAddress> provinces;
+    List<City> cities;
+    List<District> districts;
+
     List<Bitmap> bitmapList;
+
+    Intent intent;
+    int key;
+    String phoneNumber;
+    int field;
 
     private boolean flagPermission = false;
     private boolean flagGPS = false;
@@ -66,8 +76,18 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
             checkPermission();
         }
 
+        intent = getIntent();
+        key = intent.getIntExtra("key", 0);
+        phoneNumber = intent.getStringExtra("phone");
+        field = intent.getIntExtra("field", 0);
+
         dialog = new Dialog(this);
         bitmapList = new ArrayList<>();
+
+        provinces = Helper.getProvinces(this);
+        cities = Helper.getCities(this);
+        districts = Helper.getDistricts(this);
+
         binding.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,33 +109,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-        binding.btnSelectedProvince.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                binding.layoutSelectedPicker.setVisibility(View.VISIBLE);
-                getList();
-                position = 0;
-                binding.numberPicker.setMinValue(1);
-                binding.numberPicker.setMaxValue(getList().length);
-                binding.numberPicker.setDisplayedValues(getList());
-                binding.numberPicker.setWrapSelectorWheel(false);
-                binding.numberPicker.setValue(1);
-                binding.numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-                    @Override
-                    public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                        position = newVal - 1;
-                    }
-                });
-                binding.btnSelected.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        binding.tvProvince.setText(provinces.get(position).getName());
-                        binding.layoutSelectedPicker.setVisibility(View.GONE);
-                    }
-                });
-            }
-        });
+        selectedAddress();
         binding.btnGetLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,6 +137,99 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
             }
         });
         handleRemoveImage();
+    }
+
+    InfoAddress infoAddress;
+    Integer posProvince = 0;
+    Integer posCity = 0;
+    Integer posDistrict = 0;
+    District district = null;
+    City city = null;
+
+    private void selectedAddress() {
+        binding.btnSelectedProvince.setOnClickListener(v -> {
+            binding.layoutSelectedPicker.setVisibility(View.VISIBLE);
+            infoAddress = provinces.get(0);
+            binding.tvSelected.setText(getResources().getString(R.string.selected_province));
+            String[] strings = Helper.getNameInfoAddress(provinces);
+            binding.numberPicker.setMinValue(1);
+            binding.numberPicker.setMaxValue(strings.length);
+            binding.numberPicker.setDisplayedValues(strings);
+            binding.numberPicker.setWrapSelectorWheel(false);
+            binding.numberPicker.setValue(1);
+            binding.numberPicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
+                infoAddress = provinces.get(newVal - 1);
+            });
+            binding.btnSelected.setOnClickListener(v1 -> {
+                binding.tvProvince.setText(infoAddress.getName());
+                binding.tvCity.setText(getResources().getString(R.string.selected_city));
+                binding.tvDistrict.setText(getResources().getString(R.string.selected_district));
+                binding.layoutSelectedPicker.setVisibility(View.GONE);
+                posProvince = infoAddress.getId();
+                posCity = 0;
+                posDistrict = 0;
+                for (City c : cities) {
+                    if(c.getId().equals(infoAddress.getId())) {
+                        city = c;
+                        break;
+                    }
+                }
+            });
+        });
+        binding.btnSelectedCity.setOnClickListener(v -> {
+            if(city == null) {
+                return;
+            }
+            List<InfoAddress> infoAddresses = city.getInfoAddresses();
+            binding.layoutSelectedPicker.setVisibility(View.VISIBLE);
+            infoAddress = infoAddresses.get(0);
+            binding.tvSelected.setText(getResources().getString(R.string.selected_city));
+            String[] strings = Helper.getNameInfoAddress(infoAddresses);
+            binding.numberPicker.setMinValue(1);
+            binding.numberPicker.setMaxValue(strings.length);
+            binding.numberPicker.setDisplayedValues(strings);
+            binding.numberPicker.setWrapSelectorWheel(false);
+            binding.numberPicker.setValue(1);
+            binding.numberPicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
+                infoAddress = infoAddresses.get(newVal - 1);
+            });
+            binding.btnSelected.setOnClickListener(v1 -> {
+                binding.tvCity.setText(infoAddress.getName());
+                binding.tvDistrict.setText(getResources().getString(R.string.selected_district));
+                binding.layoutSelectedPicker.setVisibility(View.GONE);
+                posCity = infoAddress.getId();
+                posDistrict = 0;
+                for (District d : districts) {
+                    if(d.getId().equals(infoAddress.getId())) {
+                        district = d;
+                        break;
+                    }
+                }
+            });
+        });
+        binding.btnSelectedDistrict.setOnClickListener(v -> {
+            if(district == null) {
+                return;
+            }
+            List<InfoAddress> infoAddresses = district.getInfoAddresses();
+            binding.layoutSelectedPicker.setVisibility(View.VISIBLE);
+            infoAddress = infoAddresses.get(0);
+            binding.tvSelected.setText(getResources().getString(R.string.selected_district));
+            String[] strings = Helper.getNameInfoAddress(infoAddresses);
+            binding.numberPicker.setMinValue(1);
+            binding.numberPicker.setMaxValue(strings.length);
+            binding.numberPicker.setDisplayedValues(strings);
+            binding.numberPicker.setWrapSelectorWheel(false);
+            binding.numberPicker.setValue(1);
+            binding.numberPicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
+                infoAddress = infoAddresses.get(newVal - 1);
+            });
+            binding.btnSelected.setOnClickListener(v1 -> {
+                binding.tvDistrict.setText(infoAddress.getName());
+                binding.layoutSelectedPicker.setVisibility(View.GONE);
+                posDistrict = infoAddress.getId();
+            });
+        });
     }
 
     private void checkPermission() {
@@ -426,7 +513,6 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_IMAGE_REQUEST_CODE);
     }
 
-
     private void getUriImage(int resultCode, @Nullable Intent data) {
         if (resultCode == RESULT_OK) {
             assert data != null;
@@ -460,20 +546,5 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
                 }
             }
         }
-    }
-
-    List<Province> provinces;
-    int position;
-
-    private String[] getList() {
-        provinces = new ArrayList<>();
-        provinces = (ArrayList<Province>) Helper.getProvinces(this);
-        String[] stringsNameProvince = new String[provinces.size()];
-        if (!provinces.isEmpty()) {
-            for (int i = 0; i < provinces.size(); i++) {
-                stringsNameProvince[i] = provinces.get(i).getName();
-            }
-        }
-        return stringsNameProvince;
     }
 }

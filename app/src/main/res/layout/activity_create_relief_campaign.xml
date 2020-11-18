@@ -59,6 +59,7 @@
                     android:textSize="@dimen/title_default" />
 
                 <EditText
+                    android:id="@+id/edtAdminHelper"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
@@ -71,30 +72,33 @@
                     android:textSize="@dimen/text_view_default" />
 
                 <EditText
+                    android:id="@+id/edtPhoneContact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/bg_corner_stroke_edit_text"
                     android:fontFamily="@font/tahoma"
                     android:hint="@string/phone"
-                    android:inputType="textCapSentences"
-                    android:maxLines="1"
-                    android:padding="@dimen/_5sdp"
-                    android:textSize="@dimen/text_view_default" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:background="@drawable/bg_corner_stroke_edit_text"
-                    android:fontFamily="@font/tahoma"
-                    android:hint="@string/role_position"
                     android:inputType="number"
                     android:maxLines="1"
                     android:padding="@dimen/_5sdp"
                     android:textSize="@dimen/text_view_default" />
 
                 <EditText
+                    android:id="@+id/edtRolePersonHelper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/bg_corner_stroke_edit_text"
+                    android:fontFamily="@font/tahoma"
+                    android:hint="@string/role_position"
+                    android:inputType="textCapSentences"
+                    android:maxLines="1"
+                    android:padding="@dimen/_5sdp"
+                    android:textSize="@dimen/text_view_default" />
+
+                <EditText
+                    android:id="@+id/edtOrganization"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
@@ -152,6 +156,7 @@
                     android:textSize="@dimen/title_default" />
 
                 <EditText
+                    android:id="@+id/edtSupportValue"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_150sdp"
                     android:layout_marginTop="@dimen/_10sdp"

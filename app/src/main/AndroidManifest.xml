@@ -25,7 +25,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCbyfT3Jd4IlmD0TQMd0eTvcTNPLksvUk0" />
 
-        <activity android:name=".Test" />
+        <activity android:name=".Test" >
+        </activity>
         <activity
             android:name=".activity.GetYourLocationActivity"
             android:screenOrientation="portrait" >

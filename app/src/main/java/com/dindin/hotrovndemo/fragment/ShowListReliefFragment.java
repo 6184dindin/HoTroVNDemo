@@ -10,9 +10,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dindin.hotrovndemo.Poco;
+import com.dindin.hotrovndemo.News;
 import com.dindin.hotrovndemo.R;
-import com.dindin.hotrovndemo.adapter.AdapterPoco;
+import com.dindin.hotrovndemo.adapter.NewsAdapter;
 import com.dindin.hotrovndemo.databinding.FragmentShowListReliefBinding;
 
 import java.util.List;
@@ -20,14 +20,19 @@ import java.util.List;
 public class ShowListReliefFragment extends Fragment {
 
     FragmentShowListReliefBinding binding;
-    List<Poco> pocos;
-    AdapterPoco adapterPoco;
+    List<News> news;
+    NewsAdapter newsAdapter;
 
     int key;
-    public ShowListReliefFragment(List<Poco> pocoList, int key) {
+    String phoneNumber;
+    int field;
+
+    public ShowListReliefFragment(List<News> newsList, int key, int field, String phoneNumber) {
         // Required empty public constructor
-        this.pocos = pocoList;
+        this.news = newsList;
         this.key = key;
+        this.field = field;
+        this.phoneNumber = phoneNumber;
     }
 
 
@@ -42,10 +47,10 @@ public class ShowListReliefFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_show_list_relief, container, false);
 
-        adapterPoco = new AdapterPoco(getContext(), pocos, key);
+        newsAdapter = new NewsAdapter(getContext(), news, key,field,phoneNumber);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         binding.rcShowListRelief.setLayoutManager(layoutManager);
-        binding.rcShowListRelief.setAdapter(adapterPoco);
+        binding.rcShowListRelief.setAdapter(newsAdapter);
 
         return binding.getRoot();
     }

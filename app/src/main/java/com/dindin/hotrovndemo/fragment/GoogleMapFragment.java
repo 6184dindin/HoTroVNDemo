@@ -18,11 +18,15 @@ import android.widget.Toast;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
-import com.dindin.hotrovndemo.Poco;
+import com.dindin.hotrovndemo.News;
 import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.activity.ReliefInformationActivity;
 import com.dindin.hotrovndemo.databinding.DialogSelectedProvinceCityDistrictBinding;
 import com.dindin.hotrovndemo.databinding.FragmentGoogleMapBinding;
+import com.dindin.hotrovndemo.utils.City;
+import com.dindin.hotrovndemo.utils.District;
+import com.dindin.hotrovndemo.utils.Helper;
+import com.dindin.hotrovndemo.utils.InfoAddress;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -40,13 +44,17 @@ import static android.graphics.Color.TRANSPARENT;
 public class GoogleMapFragment extends Fragment {
     FragmentGoogleMapBinding binding;
 
-    List<Poco> pocos;
+    List<News> news;
     Dialog dialog;
+
+    List<InfoAddress> provinces;
+    List<City> cities;
+    List<District> districts;
 
     GoogleMap map;
 
-    public GoogleMapFragment(List<Poco> pocoList) {
-        this.pocos = pocoList;
+    public GoogleMapFragment(List<News> newsList) {
+        this.news = newsList;
     }
 
     @Override
@@ -61,6 +69,11 @@ public class GoogleMapFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_google_map, container, false);
 
         dialog = new Dialog(getContext());
+
+        provinces = Helper.getProvinces(getContext());
+        cities = Helper.getCities(getContext());
+        districts = Helper.getDistricts(getContext());
+
 //        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getContext());
         binding.googleMap.onCreate(savedInstanceState);
         createMap();
@@ -74,6 +87,89 @@ public class GoogleMapFragment extends Fragment {
                         dialog.dismiss();
                     }
                 });
+                binding1.btnSelectedProvince.setOnClickListener(v1 -> {
+                    binding1.layoutSelectedPicker.setVisibility(View.VISIBLE);
+                    infoAddress = provinces.get(0);
+                    binding1.tvSelected.setText(getResources().getString(R.string.selected_province));
+                    String[] strings = Helper.getNameInfoAddress(provinces);
+                    binding1.numberPicker.setMinValue(1);
+                    binding1.numberPicker.setMaxValue(strings.length);
+                    binding1.numberPicker.setDisplayedValues(strings);
+                    binding1.numberPicker.setWrapSelectorWheel(false);
+                    binding1.numberPicker.setValue(1);
+                    binding1.numberPicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
+                        infoAddress = provinces.get(newVal - 1);
+                    });
+                    binding1.btnSelected.setOnClickListener(v4 -> {
+                        binding1.tvProvince.setText(infoAddress.getName());
+                        binding1.tvCity.setText(getResources().getString(R.string.selected_city));
+                        binding1.tvDistrict.setText(getResources().getString(R.string.selected_district));
+                        binding1.layoutSelectedPicker.setVisibility(View.GONE);
+                        posProvince = infoAddress.getId();
+                        posCity = 0;
+                        posDistrict = 0;
+                        for (City c : cities) {
+                            if(c.getId().equals(infoAddress.getId())) {
+                                city = c;
+                                break;
+                            }
+                        }
+                    });
+                });
+                binding1.btnSelectedCity.setOnClickListener(v2 -> {
+                    if(city == null) {
+                        return;
+                    }
+                    List<InfoAddress> infoAddresses = city.getInfoAddresses();
+                    binding1.layoutSelectedPicker.setVisibility(View.VISIBLE);
+                    infoAddress = infoAddresses.get(0);
+                    binding1.tvSelected.setText(getResources().getString(R.string.selected_city));
+                    String[] strings = Helper.getNameInfoAddress(infoAddresses);
+                    binding1.numberPicker.setMinValue(1);
+                    binding1.numberPicker.setMaxValue(strings.length);
+                    binding1.numberPicker.setDisplayedValues(strings);
+                    binding1.numberPicker.setWrapSelectorWheel(false);
+                    binding1.numberPicker.setValue(1);
+                    binding1.numberPicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
+                        infoAddress = infoAddresses.get(newVal - 1);
+                    });
+                    binding1.btnSelected.setOnClickListener(v1 -> {
+                        binding1.tvCity.setText(infoAddress.getName());
+                        binding1.tvDistrict.setText(getResources().getString(R.string.selected_district));
+                        binding1.layoutSelectedPicker.setVisibility(View.GONE);
+                        posCity = infoAddress.getId();
+                        posDistrict = 0;
+                        for (District d : districts) {
+                            if(d.getId().equals(infoAddress.getId())) {
+                                district = d;
+                                break;
+                            }
+                        }
+                    });
+                });
+                binding1.btnSelectedDistrict.setOnClickListener(v3 -> {
+                    if(district == null) {
+                        return;
+                    }
+                    List<InfoAddress> infoAddresses = district.getInfoAddresses();
+                    binding1.layoutSelectedPicker.setVisibility(View.VISIBLE);
+                    infoAddress = infoAddresses.get(0);
+                    binding1.tvSelected.setText(getResources().getString(R.string.selected_district));
+                    String[] strings = Helper.getNameInfoAddress(infoAddresses);
+                    binding1.numberPicker.setMinValue(1);
+                    binding1.numberPicker.setMaxValue(strings.length);
+                    binding1.numberPicker.setDisplayedValues(strings);
+                    binding1.numberPicker.setWrapSelectorWheel(false);
+                    binding1.numberPicker.setValue(1);
+                    binding1.numberPicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
+                        infoAddress = infoAddresses.get(newVal - 1);
+                    });
+                    binding1.btnSelected.setOnClickListener(v1 -> {
+                        binding1.tvDistrict.setText(infoAddress.getName());
+                        binding1.layoutSelectedPicker.setVisibility(View.GONE);
+                        posDistrict = infoAddress.getId();
+                    });
+                });
                 dialog.setContentView(binding1.getRoot());
                 Objects.requireNonNull(dialog.getWindow()).setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(TRANSPARENT));
@@ -82,6 +178,13 @@ public class GoogleMapFragment extends Fragment {
         });
         return binding.getRoot();
     }
+
+    InfoAddress infoAddress;
+    Integer posProvince = 0;
+    Integer posCity = 0;
+    Integer posDistrict = 0;
+    District district = null;
+    City city = null;
 
     private void createMap() {
         binding.googleMap.getMapAsync(new OnMapReadyCallback() {

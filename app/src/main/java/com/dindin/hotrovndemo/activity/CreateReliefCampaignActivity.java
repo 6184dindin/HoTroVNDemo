@@ -46,6 +46,11 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
     Dialog dialog;
     List<Bitmap> bitmapList;
 
+    Intent intent;
+    int key;
+    String phoneNumber;
+    int field;
+
     private boolean flagPermission = false;
 
     @Override
@@ -56,6 +61,11 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
         if (!flagPermission) {
             checkPermission();
         }
+
+        intent = getIntent();
+        key = intent.getIntExtra("key", 0);
+        phoneNumber = intent.getStringExtra("phone");
+        field = intent.getIntExtra("field", 0);
 
         dialog = new Dialog(this);
         bitmapList = new ArrayList<>();

@@ -3,10 +3,8 @@ package com.dindin.hotrovndemo.utils;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-public class Province {
-    @SerializedName("id")
+public class InfoAddress {
+    @SerializedName("Id")
     @Expose
     private Integer id;
     @SerializedName("Name")
@@ -15,9 +13,6 @@ public class Province {
     @SerializedName("Code")
     @Expose
     private String code;
-    @SerializedName("District")
-    @Expose
-    private List<District> district = null;
 
     public Integer getId() {
         return id;
@@ -42,13 +37,4 @@ public class Province {
     public void setCode(String code) {
         this.code = code;
     }
-
-    public List<District> getDistrict() {
-        return district;
-    }
-
-    public void setDistrict(List<District> district) {
-        this.district = district;
-    }
-
 }

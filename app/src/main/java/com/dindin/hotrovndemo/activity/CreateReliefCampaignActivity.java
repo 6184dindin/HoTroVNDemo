@@ -66,6 +66,7 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
         key = intent.getIntExtra("key", 0);
         phoneNumber = intent.getStringExtra("phone");
         field = intent.getIntExtra("field", 0);
+        binding.edtPhoneContact.setText(phoneNumber);
 
         dialog = new Dialog(this);
         bitmapList = new ArrayList<>();

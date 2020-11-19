@@ -10,25 +10,43 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dindin.hotrovndemo.News;
 import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.activity.ReliefInformationActivity;
+import com.dindin.hotrovndemo.api.param.response.News;
+import com.dindin.hotrovndemo.utils.City;
+import com.dindin.hotrovndemo.utils.District;
+import com.dindin.hotrovndemo.utils.InfoAddress;
 
 import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     Context context;
-    List<News> news;
+    List<News> newses;
     int key;
     String phoneNumber;
     int field;
 
-    public NewsAdapter(Context context, List<News> news, int key, int field, String phoneNumber) {
+    List<InfoAddress> provinces;
+    List<City> cities;
+    List<District> districts;
+
+    public NewsAdapter(Context context, List<News> newses, int key, int field, String phoneNumber) {
         this.context = context;
-        this.news = news;
+        this.newses = newses;
         this.key = key;
-        this.field = field;
         this.phoneNumber = phoneNumber;
+        this.field = field;
+    }
+
+    public NewsAdapter(Context context, List<News> newses, int key, String phoneNumber, int field, List<InfoAddress> provinces, List<City> cities, List<District> districts) {
+        this.context = context;
+        this.newses = newses;
+        this.key = key;
+        this.phoneNumber = phoneNumber;
+        this.field = field;
+        this.provinces = provinces;
+        this.cities = cities;
+        this.districts = districts;
     }
 
     @NonNull
@@ -41,6 +59,39 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull NewsAdapter.ViewHolder holder, int position) {
+        News news = newses.get(position);
+        String province = "";
+        String city = "";
+        String district = "";
+        if(!news.getProvince().equals(0)){
+            province = provinces.get(news.getProvince()).getName();
+            if(!news.getCity().equals(0)){
+                for (City c : cities) {
+                    if(c.getId().equals(news.getProvince())) {
+                        city = c.getInfoAddresses().get(news.getCity()).getName() + ", ";
+                        break;
+                    }
+                }
+                if(!news.getDistrict().equals(0)) {
+                    for (District d : districts) {
+                        if(d.getId().equals(news.getCity())) {
+                            district = d.getInfoAddresses().get(news.getDistrict()).getName() +  ", " ;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        holder.tvAddress.setText(district + city + province);
+        holder.tvRequestSupport.setText(news.getRequestSupport());
+        holder.tvCountHelperJoined.setText("(" + news.getCountHelperJoined() + ")");
+        String dateTime = news.getDateCreated().toString();
+        holder.tvDateTime.setText(dateTime.substring(6,8)
+                + "/" + dateTime.substring(4,6)
+                + "/" + dateTime.substring(0,4)
+                + " - " + dateTime.substring(8,10)
+                + ":" + dateTime.substring(10,12));
+
         holder.btnSeeDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,13 +106,21 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return news.size();
+        return newses.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView tvAddress;
+        TextView tvRequestSupport;
+        TextView tvCountHelperJoined;
+        TextView tvDateTime;
         TextView btnSeeDetails;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            tvAddress = itemView.findViewById(R.id.tvAddress);
+            tvRequestSupport = itemView.findViewById(R.id.tvRequestSupport);
+            tvCountHelperJoined = itemView.findViewById(R.id.tvCountHelperJoined);
+            tvDateTime = itemView.findViewById(R.id.tvDateTime);
             btnSeeDetails = itemView.findViewById(R.id.btnSeeDetails);
         }
     }

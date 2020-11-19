@@ -15,7 +15,7 @@ public class ResponseBase<T> {
     private String message;
     @SerializedName("ResultData")
     @Expose
-    private List<T> resultData;
+    private T resultData;
 
     public String getResultCode() {
         return resultCode;
@@ -24,7 +24,7 @@ public class ResponseBase<T> {
         return message;
     }
 
-    public List<T> getResultData() {
+    public T getResultData() {
         return resultData;
     }
 }

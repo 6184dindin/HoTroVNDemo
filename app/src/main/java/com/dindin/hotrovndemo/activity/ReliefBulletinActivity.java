@@ -133,14 +133,14 @@ public class ReliefBulletinActivity extends AppCompatActivity {
                     @Override
                     public void onNext(@NonNull JsonElement jsonElement) {
                         GsonBuilder gson = new GsonBuilder();
-                        Type collectionType = new TypeToken<ResponseBase<GetListSupportNewsByPhoneResponse>>(){}.getType();
-                        ResponseBase<GetListSupportNewsByPhoneResponse> data = gson.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
-//                        for (int i = 0; i < data.getResultData().size(); i++){
-//                            news.add(new News(data.getResultData().get(i).getId(), data.getResultData().get(i).getCountry(), data.getResultData().get(i).getProvince(),
-//                                    data.getResultData().get(i).getCity(), data.getResultData().get(i).getDistrict(), data.getResultData().get(i).getVillage(),
-//                                    data.getResultData().get(i).getLat(), data.getResultData().get(i).getLng(), data.getResultData().get(i).getDateNotif(),
-//                                    data.getResultData().get(i).getRequestSupport(), data.getResultData().get(i).getDateCreated(), data.getResultData().get(i).getCountHelperJoined()));
-//                        }
+                        Type collectionType = new TypeToken<ResponseBase<List<GetListSupportNewsByPhoneResponse>>>(){}.getType();
+                        ResponseBase<List<GetListSupportNewsByPhoneResponse>> data = gson.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
+                        for (int i = 0; i < data.getResultData().size(); i++){
+                            news.add(new News(data.getResultData().get(i).getId(), data.getResultData().get(i).getCountry(), data.getResultData().get(i).getProvince(),
+                                    data.getResultData().get(i).getCity(), data.getResultData().get(i).getDistrict(), data.getResultData().get(i).getVillage(),
+                                    data.getResultData().get(i).getLat(), data.getResultData().get(i).getLng(), data.getResultData().get(i).getDateNotif(),
+                                    data.getResultData().get(i).getRequestSupport(), data.getResultData().get(i).getDateCreated(), data.getResultData().get(i).getCountHelperJoined()));
+                        }
                     }
 
                     @Override

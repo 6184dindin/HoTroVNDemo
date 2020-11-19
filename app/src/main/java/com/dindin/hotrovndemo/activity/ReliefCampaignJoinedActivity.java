@@ -80,13 +80,13 @@ public class ReliefCampaignJoinedActivity extends AppCompatActivity {
                     @Override
                     public void onNext(@NonNull JsonElement jsonElement) {
                         GsonBuilder gson = new GsonBuilder();
-                        Type collectionType = new TypeToken<ResponseBase<GetListHelpJobsByPhoneResponse>>(){}.getType();
-                        ResponseBase<GetListHelpJobsByPhoneResponse> data = gson.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
-//                        news.add(new News(data.getResultData().getId(), data.getResultData().getCountry(), data.getResultData().getProvince(),
+                        Type collectionType = new TypeToken<ResponseBase<List<GetListHelpJobsByPhoneResponse>>>(){}.getType();
+                        ResponseBase<List<GetListHelpJobsByPhoneResponse>> data = gson.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
+//                        news.add(new News(data.getResultData().get(0).getId(), data.getResultData().getCountry(), data.getResultData().getProvince(),
 //                                data.getResultData().getCity(), data.getResultData().getDistrict(), data.getResultData().getVillage(),
 //                                data.getResultData().getLat(), data.getResultData().getLng(), data.getResultData().getDateNotif(),
 //                                data.getResultData().getRequestSupport(), data.getResultData().getDateCreated(), data.getResultData().getCountHelperJoined()));
-                        Log.d("TEST Pan đẹp trai", data.getResultData().get(0).getCity().toString());
+                        Log.d("TEST", data.getResultData().get(0).getCity().toString());
                     }
 
                     @Override

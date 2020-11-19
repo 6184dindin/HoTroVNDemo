@@ -3,6 +3,8 @@ package com.dindin.hotrovndemo.api.param.base;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class ResponseBase<T> {
 
     @SerializedName("ResultCode")
@@ -13,7 +15,7 @@ public class ResponseBase<T> {
     private String message;
     @SerializedName("ResultData")
     @Expose
-    private T resultData;
+    private List<T> resultData;
 
     public String getResultCode() {
         return resultCode;
@@ -22,7 +24,7 @@ public class ResponseBase<T> {
         return message;
     }
 
-    public T getResultData() {
+    public List<T> getResultData() {
         return resultData;
     }
 }

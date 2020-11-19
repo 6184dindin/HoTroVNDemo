@@ -2,19 +2,43 @@ package com.dindin.hotrovndemo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.dindin.hotrovndemo.api.APIClient;
+import com.dindin.hotrovndemo.api.APIService;
+import com.dindin.hotrovndemo.api.param.base.ResponseBase;
+import com.dindin.hotrovndemo.api.param.constant.SecCodeConstant;
+import com.dindin.hotrovndemo.api.param.constant.URLConstant;
+import com.dindin.hotrovndemo.api.param.request.CreateNewsRequest;
+import com.dindin.hotrovndemo.api.param.request.GetListHelpJobsByPhoneRequest;
+import com.dindin.hotrovndemo.api.param.request.GetListSupportNewsByPhoneRequest;
+import com.dindin.hotrovndemo.api.param.response.GetListHelpJobsByPhoneResponse;
+import com.dindin.hotrovndemo.api.param.response.GetListSupportNewsByPhoneResponse;
 import com.dindin.hotrovndemo.api.param.response.News;
 import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.databinding.ActivityReliefBulletinBinding;
 import com.dindin.hotrovndemo.fragment.GoogleMapFragment;
 import com.dindin.hotrovndemo.fragment.ShowListReliefFragment;
+import com.dindin.hotrovndemo.utils.GenericBody;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class ReliefBulletinActivity extends AppCompatActivity {
     ActivityReliefBulletinBinding binding;
@@ -32,7 +56,7 @@ public class ReliefBulletinActivity extends AppCompatActivity {
         key = intent.getIntExtra("key", 0);
         phoneNumber = intent.getStringExtra("phone");
         field = intent.getIntExtra("field", 0);
-        createList();
+        getListSupportNewsByPhone();
         startAct();
     }
 
@@ -88,12 +112,46 @@ public class ReliefBulletinActivity extends AppCompatActivity {
         });
     }
 
-    private void createList() {
-        news.add(new News());
-        news.add(new News());
-        news.add(new News());
-        news.add(new News());
-        news.add(new News());
-        news.add(new News());
+    private void getListSupportNewsByPhone() {
+        GetListSupportNewsByPhoneRequest request = new GetListSupportNewsByPhoneRequest();
+        request.setFieldsId(field);
+        request.setPhoneNumber(phoneNumber);
+        request.setSecCode(SecCodeConstant.SCGetListSupportNewsByPhone);
+
+        TypeToken<GetListSupportNewsByPhoneRequest> token = new TypeToken<GetListSupportNewsByPhoneRequest>(){};
+        GenericBody<GetListSupportNewsByPhoneRequest> requestGenericBody = new GenericBody<>(request, token);
+        APIService service = APIClient.getClient(this, URLConstant.URLBaseNews).create(APIService.class);
+        service.postToServerAPI(URLConstant.URLGetListSupportNewsByPhone, requestGenericBody)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<JsonElement>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull JsonElement jsonElement) {
+                        GsonBuilder gson = new GsonBuilder();
+                        Type collectionType = new TypeToken<ResponseBase<GetListSupportNewsByPhoneResponse>>(){}.getType();
+                        ResponseBase<GetListSupportNewsByPhoneResponse> data = gson.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
+//                        for (int i = 0; i < data.getResultData().size(); i++){
+//                            news.add(new News(data.getResultData().get(i).getId(), data.getResultData().get(i).getCountry(), data.getResultData().get(i).getProvince(),
+//                                    data.getResultData().get(i).getCity(), data.getResultData().get(i).getDistrict(), data.getResultData().get(i).getVillage(),
+//                                    data.getResultData().get(i).getLat(), data.getResultData().get(i).getLng(), data.getResultData().get(i).getDateNotif(),
+//                                    data.getResultData().get(i).getRequestSupport(), data.getResultData().get(i).getDateCreated(), data.getResultData().get(i).getCountHelperJoined()));
+//                        }
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }

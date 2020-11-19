@@ -26,11 +26,22 @@ import androidx.databinding.DataBindingUtil;
 
 import com.bumptech.glide.Glide;
 import com.dindin.hotrovndemo.R;
+import com.dindin.hotrovndemo.api.APIClient;
+import com.dindin.hotrovndemo.api.APIService;
+import com.dindin.hotrovndemo.api.param.base.ResponseBase;
+import com.dindin.hotrovndemo.api.param.constant.SecCodeConstant;
+import com.dindin.hotrovndemo.api.param.constant.URLConstant;
+import com.dindin.hotrovndemo.api.param.request.CreateNewsRequest;
 import com.dindin.hotrovndemo.databinding.ActivityCreateReliefNewsletterBinding;
 import com.dindin.hotrovndemo.utils.City;
 import com.dindin.hotrovndemo.utils.District;
+import com.dindin.hotrovndemo.utils.GenericBody;
 import com.dindin.hotrovndemo.utils.Helper;
 import com.dindin.hotrovndemo.utils.InfoAddress;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.reflect.TypeToken;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -38,9 +49,16 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.io.FileNotFoundException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 import static android.graphics.Color.TRANSPARENT;
 
@@ -92,6 +110,8 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
         binding.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                createDataReliefNewsletter();
+
                 dialog.setContentView(R.layout.dialog_notify_create_relief_newsletter_successfull);
                 dialog.findViewById(R.id.btnDone).setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -231,6 +251,62 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
                 posDistrict = infoAddress.getId();
             });
         });
+    }
+
+
+    private void createDataReliefNewsletter(){
+        CreateNewsRequest request = new CreateNewsRequest();
+        request.setPhoneCreated(phoneNumber);
+        request.setFieldsId(field);
+        request.setCountry(posProvince);
+        request.setProvince(posProvince);
+        request.setCity(posCity);
+        request.setDistrict(posDistrict);
+        request.setVillage(0);
+        request.setLat(0.0);
+        request.setLng(0.0);
+        request.setAddress(binding.tvLocation.getText().toString());
+        request.setNotificationId("0");
+        request.setAdminPost("0");
+        request.setPhoneContact(binding.edtPhoneContact.getText().toString());
+        request.setRolePersonPost("0");
+        request.setRequestSupport("0");
+        request.setDescriptions("0");
+        request.setNotificationId("0");
+        request.setDateCreated(19112020);
+        request.setSecCode(SecCodeConstant.SCCreateNews);
+
+        TypeToken<CreateNewsRequest> token = new TypeToken<CreateNewsRequest>(){};
+        GenericBody<CreateNewsRequest> requestGenericBody = new GenericBody<>(request, token);
+        APIService service = APIClient.getClient(this, URLConstant.URLBaseNews).create(APIService.class);
+        service.postToServerAPI(URLConstant.URLCreateNews, requestGenericBody)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<JsonElement>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull JsonElement jsonElement) {
+                        GsonBuilder gson = new GsonBuilder();
+                        Type collectionType = new TypeToken<ResponseBase<Integer>>(){}.getType();
+                        ResponseBase<Integer> data = new Gson().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
+
+
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     private void checkPermission() {

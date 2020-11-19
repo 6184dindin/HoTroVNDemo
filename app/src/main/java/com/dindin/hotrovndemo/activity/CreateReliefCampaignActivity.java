@@ -23,7 +23,19 @@ import androidx.databinding.DataBindingUtil;
 
 import com.bumptech.glide.Glide;
 import com.dindin.hotrovndemo.R;
+import com.dindin.hotrovndemo.api.APIClient;
+import com.dindin.hotrovndemo.api.APIService;
+import com.dindin.hotrovndemo.api.param.base.ResponseBase;
+import com.dindin.hotrovndemo.api.param.constant.SecCodeConstant;
+import com.dindin.hotrovndemo.api.param.constant.URLConstant;
+import com.dindin.hotrovndemo.api.param.request.CreateHelpsNewsRequest;
+import com.dindin.hotrovndemo.api.param.request.CreateNewsRequest;
 import com.dindin.hotrovndemo.databinding.ActivityCreateReliefCampaignBinding;
+import com.dindin.hotrovndemo.utils.GenericBody;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.reflect.TypeToken;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -31,9 +43,17 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.io.FileNotFoundException;
+import java.lang.reflect.Type;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 import static android.graphics.Color.TRANSPARENT;
 
@@ -102,6 +122,54 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
             }
         });
         handleRemoveImage();
+    }
+
+    private void createDataReliefCampaign(){
+        CreateHelpsNewsRequest request = new CreateHelpsNewsRequest();
+        request.setNewsId(0);
+        request.setPhoneCreated(phoneNumber);
+        request.setFieldsId(field);
+        request.setAdminHelper("0");
+        request.setPhoneContact(binding.edtPhoneContact.getText().toString());
+        request.setRolePersonHelper("0");
+        request.setOrganization("0");
+        request.setTimeBegin(0);
+        request.setTimeEnd(20);
+        request.setSupportValue("0");
+        request.setDateCreated(BigInteger.valueOf(19112020));
+        request.setSecCode(SecCodeConstant.SCCreateHelpsNews);
+
+        TypeToken<CreateHelpsNewsRequest> token = new TypeToken<CreateHelpsNewsRequest>(){};
+        GenericBody<CreateHelpsNewsRequest> requestGenericBody = new GenericBody<>(request, token);
+        APIService service = APIClient.getClient(this, URLConstant.URLBaseNews).create(APIService.class);
+        service.postToServerAPI(URLConstant.URLCreateHelpsNews, requestGenericBody)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<JsonElement>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull JsonElement jsonElement) {
+                        GsonBuilder gson = new GsonBuilder();
+                        Type collectionType = new TypeToken<ResponseBase<Integer>>(){}.getType();
+                        ResponseBase<Integer> data = new Gson().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
+
+
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     private void checkPermission() {

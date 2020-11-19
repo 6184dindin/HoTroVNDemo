@@ -10,9 +10,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dindin.hotrovndemo.api.param.response.News;
 import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.adapter.NewsAdapter;
+import com.dindin.hotrovndemo.api.param.response.News;
 import com.dindin.hotrovndemo.databinding.FragmentShowListReliefBinding;
 
 import java.util.List;
@@ -47,11 +47,10 @@ public class ShowListReliefFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_show_list_relief, container, false);
 
-        newsAdapter = new NewsAdapter(getContext(), news, key,field,phoneNumber);
+        newsAdapter = new NewsAdapter(getContext(), news, key, phoneNumber, field);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         binding.rcShowListRelief.setLayoutManager(layoutManager);
         binding.rcShowListRelief.setAdapter(newsAdapter);
-        newsAdapter.notifyDataSetChanged();
 
         return binding.getRoot();
     }

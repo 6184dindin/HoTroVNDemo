@@ -1,13 +1,13 @@
 package com.dindin.hotrovndemo.activity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,20 +34,21 @@ public class GetYourLocationActivity extends AppCompatActivity {
     ActivityGetYourLocationBinding binding;
     GoogleMap map;
     FusedLocationProviderClient fusedLocationProviderClient;
-
+    double latitude = 0.0, longitude = 0.0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_get_your_location);
-        binding.btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        binding.btnBack.setOnClickListener(v -> finish());
         binding.myMap.onCreate(savedInstanceState);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(GetYourLocationActivity.this);
         createMap();
+        binding.btnDone.setOnClickListener(v -> {
+            Intent intent = new Intent(GetYourLocationActivity.this, CreateReliefNewsletterActivity.class);
+            intent.putExtra("lat", latitude);
+            intent.putExtra("long", longitude);
+            setResult(RESULT_OK, intent);
+        });
     }
     private void createMap() {
         binding.myMap.getMapAsync(new OnMapReadyCallback() {
@@ -72,20 +73,14 @@ public class GetYourLocationActivity extends AppCompatActivity {
                         if (location != null) {
                             Toast.makeText(getBaseContext(), "Successful", Toast.LENGTH_LONG).show();
                             LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                            latitude = location.getLatitude();
+                            longitude = location.getLongitude();
                             Drawable drawable = getResources().getDrawable(R.drawable.ic_pin);
                             Marker marker = map.addMarker(new MarkerOptions().position(latLng)
                                     .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromDrawable(drawable))));
                             marker.setTag(1);
                             CameraPosition cameraPosition = new CameraPosition.Builder().target(latLng).zoom(13).build();
                             map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-                            map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                                @Override
-                                public boolean onMarkerClick(Marker m) {
-                                    int position = (int) m.getTag();
-                                    Toast.makeText(getBaseContext(), String.valueOf(position), Toast.LENGTH_LONG).show();
-                                    return false;
-                                }
-                            });
                         }
                     }
                 });

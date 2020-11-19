@@ -2,31 +2,24 @@ package com.dindin.hotrovndemo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.api.APIClient;
 import com.dindin.hotrovndemo.api.APIService;
 import com.dindin.hotrovndemo.api.param.base.ResponseBase;
 import com.dindin.hotrovndemo.api.param.constant.SecCodeConstant;
 import com.dindin.hotrovndemo.api.param.constant.URLConstant;
-import com.dindin.hotrovndemo.api.param.request.CreateNewsRequest;
-import com.dindin.hotrovndemo.api.param.request.GetListHelpJobsByPhoneRequest;
 import com.dindin.hotrovndemo.api.param.request.GetListSupportNewsByPhoneRequest;
-import com.dindin.hotrovndemo.api.param.response.GetListHelpJobsByPhoneResponse;
-import com.dindin.hotrovndemo.api.param.response.GetListSupportNewsByPhoneResponse;
 import com.dindin.hotrovndemo.api.param.response.News;
-import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.databinding.ActivityReliefBulletinBinding;
 import com.dindin.hotrovndemo.fragment.GoogleMapFragment;
 import com.dindin.hotrovndemo.fragment.ShowListReliefFragment;
 import com.dindin.hotrovndemo.utils.GenericBody;
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 
@@ -89,9 +82,7 @@ public class ReliefBulletinActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentMapAndListRelief, new ShowListReliefFragment(news, key,field,phoneNumber))
-                .commit();
+        getListSupportNewsByPhone();
     }
 
     private void startActHelperJoined() {
@@ -118,7 +109,8 @@ public class ReliefBulletinActivity extends AppCompatActivity {
         request.setPhoneNumber(phoneNumber);
         request.setSecCode(SecCodeConstant.SCGetListSupportNewsByPhone);
 
-        TypeToken<GetListSupportNewsByPhoneRequest> token = new TypeToken<GetListSupportNewsByPhoneRequest>(){};
+        TypeToken<GetListSupportNewsByPhoneRequest> token = new TypeToken<GetListSupportNewsByPhoneRequest>() {
+        };
         GenericBody<GetListSupportNewsByPhoneRequest> requestGenericBody = new GenericBody<>(request, token);
         APIService service = APIClient.getClient(this, URLConstant.URLBaseNews).create(APIService.class);
         service.postToServerAPI(URLConstant.URLGetListSupportNewsByPhone, requestGenericBody)
@@ -133,14 +125,13 @@ public class ReliefBulletinActivity extends AppCompatActivity {
                     @Override
                     public void onNext(@NonNull JsonElement jsonElement) {
                         GsonBuilder gson = new GsonBuilder();
-                        Type collectionType = new TypeToken<ResponseBase<List<GetListSupportNewsByPhoneResponse>>>(){}.getType();
-                        ResponseBase<List<GetListSupportNewsByPhoneResponse>> data = gson.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
-                        for (int i = 0; i < data.getResultData().size(); i++){
-                            news.add(new News(data.getResultData().get(i).getId(), data.getResultData().get(i).getCountry(), data.getResultData().get(i).getProvince(),
-                                    data.getResultData().get(i).getCity(), data.getResultData().get(i).getDistrict(), data.getResultData().get(i).getVillage(),
-                                    data.getResultData().get(i).getLat(), data.getResultData().get(i).getLng(), data.getResultData().get(i).getDateNotif(),
-                                    data.getResultData().get(i).getRequestSupport(), data.getResultData().get(i).getDateCreated(), data.getResultData().get(i).getCountHelperJoined()));
-                        }
+                        Type collectionType = new TypeToken<ResponseBase<List<News>>>() {
+                        }.getType();
+                        ResponseBase<List<News>> data = gson.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
+
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fragmentMapAndListRelief, new ShowListReliefFragment(data.getResultData(), key, field, phoneNumber))
+                                .commit();
                     }
 
                     @Override

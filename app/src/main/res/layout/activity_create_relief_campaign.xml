@@ -120,12 +120,14 @@
                     android:textSize="@dimen/title_default" />
 
                 <RelativeLayout
+                    android:id="@+id/btnSelectedDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_5sdp">
 
-                    <EditText
+                    <TextView
+                        android:id="@+id/tvDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_30sdp"
@@ -133,11 +135,10 @@
                         android:enabled="false"
                         android:fontFamily="@font/tahoma"
                         android:hint="@string/implementation_date"
-                        android:inputType="text"
                         android:padding="@dimen/_5sdp"
                         android:textSize="@dimen/text_view_default" />
 
-                    <ImageButton
+                    <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"

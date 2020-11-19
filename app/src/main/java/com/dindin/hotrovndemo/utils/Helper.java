@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
+import java.util.Calendar;
 import java.util.List;
 
 public class Helper {
@@ -67,4 +68,27 @@ public class Helper {
         return gson.fromJson(jsObj, listType);
     }
 
+    public static boolean isValidDate(int day, int month, int year) {
+        return day <= getDaysOfMonth(month, year);
+    }
+
+    public static int getDaysOfMonth(int month, int year) {
+        int daysOfMonth;
+        boolean leapYear = isLeapYear(year);
+
+        if (month == 4 || month == 6 || month == 9 || month == 11)
+            daysOfMonth = 30;
+        else if (month == 2) {
+            daysOfMonth = (leapYear) ? 29 : 28;
+        } else {
+            daysOfMonth = 31;
+        }
+        return daysOfMonth;
+    }
+
+    public static boolean isLeapYear(int year) {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, year);
+        return cal.getActualMaximum(Calendar.DAY_OF_YEAR) > 365;
+    }
 }

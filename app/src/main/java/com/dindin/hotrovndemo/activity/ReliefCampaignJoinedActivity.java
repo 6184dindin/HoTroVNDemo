@@ -7,21 +7,17 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.api.APIClient;
 import com.dindin.hotrovndemo.api.APIService;
 import com.dindin.hotrovndemo.api.param.base.ResponseBase;
 import com.dindin.hotrovndemo.api.param.constant.SecCodeConstant;
 import com.dindin.hotrovndemo.api.param.constant.URLConstant;
 import com.dindin.hotrovndemo.api.param.request.GetListHelpJobsByPhoneRequest;
-import com.dindin.hotrovndemo.api.param.request.GetListSupportNewsByPhoneRequest;
-import com.dindin.hotrovndemo.api.param.response.GetListHelpJobsByPhoneResponse;
-import com.dindin.hotrovndemo.api.param.response.GetListSupportNewsByPhoneResponse;
 import com.dindin.hotrovndemo.api.param.response.News;
-import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.databinding.ActivityReliefCampaignJoinedBinding;
 import com.dindin.hotrovndemo.fragment.ShowListReliefFragment;
 import com.dindin.hotrovndemo.utils.GenericBody;
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
@@ -53,9 +49,6 @@ public class ReliefCampaignJoinedActivity extends AppCompatActivity {
         phoneNumber = intent.getStringExtra("phone");
         field = intent.getIntExtra("field", 0);
         getListHelpJobsByPhone();
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentListReliefCampaignJoined, new ShowListReliefFragment(news, key, field, phoneNumber))
-                .commit();
         binding.btnBack.setOnClickListener(v -> finish());
     }
 
@@ -80,12 +73,11 @@ public class ReliefCampaignJoinedActivity extends AppCompatActivity {
                     @Override
                     public void onNext(@NonNull JsonElement jsonElement) {
                         GsonBuilder gson = new GsonBuilder();
-                        Type collectionType = new TypeToken<ResponseBase<List<GetListHelpJobsByPhoneResponse>>>(){}.getType();
-                        ResponseBase<List<GetListHelpJobsByPhoneResponse>> data = gson.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
-//                        news.add(new News(data.getResultData().get(0).getId(), data.getResultData().getCountry(), data.getResultData().getProvince(),
-//                                data.getResultData().getCity(), data.getResultData().getDistrict(), data.getResultData().getVillage(),
-//                                data.getResultData().getLat(), data.getResultData().getLng(), data.getResultData().getDateNotif(),
-//                                data.getResultData().getRequestSupport(), data.getResultData().getDateCreated(), data.getResultData().getCountHelperJoined()));
+                        Type collectionType = new TypeToken<ResponseBase<List<News>>>(){}.getType();
+                        ResponseBase<List<News>> data = gson.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fragmentListReliefCampaignJoined, new ShowListReliefFragment(data.getResultData(), key, field, phoneNumber))
+                                .commit();
                         Log.d("TEST", data.getResultData().get(0).getCity().toString());
                     }
 

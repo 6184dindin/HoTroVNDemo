@@ -34,6 +34,7 @@ public class ReliefInformationActivity extends AppCompatActivity {
     int key;
     String phoneNumber;
     int field;
+    int newsId;
 
 
 
@@ -45,6 +46,7 @@ public class ReliefInformationActivity extends AppCompatActivity {
         key = intent.getIntExtra("key", 0);
         phoneNumber = intent.getStringExtra("phone");
         field = intent.getIntExtra("field", 0);
+        newsId = intent.getIntExtra("newsId", 0);
         dialog = new Dialog(this);
         helperList = new ArrayList<>();
         helperList.add(new Helper());
@@ -84,6 +86,7 @@ public class ReliefInformationActivity extends AppCompatActivity {
                 intent.putExtra("key", key);
                 intent.putExtra("phone", phoneNumber);
                 intent.putExtra("field", field);
+                intent.putExtra("newsId", newsId);
                 startActivity(intent);
             }
         });

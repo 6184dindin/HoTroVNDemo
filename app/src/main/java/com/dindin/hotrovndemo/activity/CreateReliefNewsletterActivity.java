@@ -51,6 +51,7 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 
@@ -67,6 +68,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
     private static final int GPS_REQUEST_CODE = 102;
     private static final int CAMERA_REQUEST_CODE = 103;
     private static final int SELECT_IMAGE_REQUEST_CODE = 104;
+    private static final int GET_LOCATION_REQUEST_CODE = 105;
 
     ActivityCreateReliefNewsletterBinding binding;
     Dialog dialog;
@@ -81,6 +83,8 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
     int key;
     String phoneNumber;
     int field;
+
+    double latitude = 0.0, longitude = 0.0;
 
     private boolean flagPermission = false;
     private boolean flagGPS = false;
@@ -138,7 +142,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
                     checkGPSStatus();
                 } else {
                     Intent intent = new Intent(CreateReliefNewsletterActivity.this, GetYourLocationActivity.class);
-                    startActivityForResult(intent, 103);
+                    startActivityForResult(intent, GET_LOCATION_REQUEST_CODE);
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 }
             }
@@ -190,7 +194,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
                 posCity = 0;
                 posDistrict = 0;
                 for (City c : cities) {
-                    if(c.getId().equals(infoAddress.getId())) {
+                    if (c.getId().equals(infoAddress.getId())) {
                         city = c;
                         break;
                     }
@@ -198,7 +202,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
             });
         });
         binding.btnSelectedCity.setOnClickListener(v -> {
-            if(city == null) {
+            if (city == null) {
                 return;
             }
             List<InfoAddress> infoAddresses = city.getInfoAddresses();
@@ -221,7 +225,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
                 posCity = infoAddress.getId();
                 posDistrict = 0;
                 for (District d : districts) {
-                    if(d.getId().equals(infoAddress.getId())) {
+                    if (d.getId().equals(infoAddress.getId())) {
                         district = d;
                         break;
                     }
@@ -229,7 +233,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
             });
         });
         binding.btnSelectedDistrict.setOnClickListener(v -> {
-            if(district == null) {
+            if (district == null) {
                 return;
             }
             List<InfoAddress> infoAddresses = district.getInfoAddresses();
@@ -254,7 +258,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
     }
 
 
-    private void createDataReliefNewsletter(){
+    private void createDataReliefNewsletter() {
         CreateNewsRequest request = new CreateNewsRequest();
         request.setPhoneCreated(phoneNumber);
         request.setFieldsId(field);
@@ -263,20 +267,24 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
         request.setCity(posCity);
         request.setDistrict(posDistrict);
         request.setVillage(0);
-        request.setLat(0.0);
-        request.setLng(0.0);
-        request.setAddress(binding.tvLocation.getText().toString());
+        request.setLat(latitude);
+        request.setLng(longitude);
+        request.setAddress(binding.tvLocation.getText().toString().trim());
         request.setNotificationId("0");
-        request.setAdminPost("0");
-        request.setPhoneContact(binding.edtPhoneContact.getText().toString());
-        request.setRolePersonPost("0");
-        request.setRequestSupport("0");
-        request.setDescriptions("0");
-        request.setNotificationId("0");
-        request.setDateCreated(19112020);
+        request.setAdminPost(binding.edtAdminPost.getText().toString().trim());
+        request.setPhoneContact(binding.edtPhoneContact.getText().toString().trim());
+        request.setRolePersonPost(binding.edtRolePersonPost.getText().toString().trim());
+        request.setRequestSupport(binding.edtRequestSupport.getText().toString().trim());
+        request.setDescriptions(binding.edtDescriptions.getText().toString().trim());
+        Calendar calendar = Calendar.getInstance();
+        Integer dateCreated = calendar.get(Calendar.YEAR) * 10000
+                + calendar.get(Calendar.MONTH) * 100
+                + calendar.get(Calendar.DAY_OF_MONTH);
+        request.setDateCreated(dateCreated);
         request.setSecCode(SecCodeConstant.SCCreateNews);
 
-        TypeToken<CreateNewsRequest> token = new TypeToken<CreateNewsRequest>(){};
+        TypeToken<CreateNewsRequest> token = new TypeToken<CreateNewsRequest>() {
+        };
         GenericBody<CreateNewsRequest> requestGenericBody = new GenericBody<>(request, token);
         APIService service = APIClient.getClient(this, URLConstant.URLBaseNews).create(APIService.class);
         service.postToServerAPI(URLConstant.URLCreateNews, requestGenericBody)
@@ -291,10 +299,10 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
                     @Override
                     public void onNext(@NonNull JsonElement jsonElement) {
                         GsonBuilder gson = new GsonBuilder();
-                        Type collectionType = new TypeToken<ResponseBase<Integer>>(){}.getType();
+                        Type collectionType = new TypeToken<ResponseBase<Integer>>() {
+                        }.getType();
                         ResponseBase<Integer> data = new Gson().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
-
-
+                        Toast.makeText(CreateReliefNewsletterActivity.this, String.valueOf(data.getResultData()), Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -433,6 +441,14 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
                         setListImage();
                     }
                 }
+                break;
+            case GET_LOCATION_REQUEST_CODE:
+                if (resultCode == RESULT_OK) {
+                    latitude = data.getDoubleExtra("lat", 0.0);
+                    longitude = data.getDoubleExtra("long", 0.0);
+                }
+                break;
+            default:
                 break;
         }
     }

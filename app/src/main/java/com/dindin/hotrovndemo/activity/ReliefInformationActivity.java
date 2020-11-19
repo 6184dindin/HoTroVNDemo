@@ -13,7 +13,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dindin.hotrovndemo.HelperJoined;
+import com.dindin.hotrovndemo.api.param.response.getinfonewsresponse.Helper;
 import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.adapter.HelperJoinedAdapter;
 import com.dindin.hotrovndemo.adapter.OnClickHelperJoinedListener;
@@ -27,11 +27,15 @@ import static android.graphics.Color.TRANSPARENT;
 
 public class ReliefInformationActivity extends AppCompatActivity {
     ActivityReliefInformationBinding binding;
-    List<HelperJoined> helperJoinedList;
+    List<Helper> helperList;
     HelperJoinedAdapter helperJoinedAdapter;
     Dialog dialog;
     Intent intent;
     int key;
+    String phoneNumber;
+    int field;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +43,18 @@ public class ReliefInformationActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_relief_information);
         intent = getIntent();
         key = intent.getIntExtra("key", 0);
+        phoneNumber = intent.getStringExtra("phone");
+        field = intent.getIntExtra("field", 0);
         dialog = new Dialog(this);
-        helperJoinedList = new ArrayList<>();
-        helperJoinedList.add(new HelperJoined());
-        helperJoinedList.add(new HelperJoined());
-        helperJoinedAdapter = new HelperJoinedAdapter(helperJoinedList, this);
+        helperList = new ArrayList<>();
+        helperList.add(new Helper());
+        helperList.add(new Helper());
+        helperJoinedAdapter = new HelperJoinedAdapter(helperList, this);
         startAct();
 
         helperJoinedAdapter.setOnClickHelperJoinedListener(new OnClickHelperJoinedListener() {
             @Override
-            public void openDialogShowInformationReliefCampaign(HelperJoined helperJoined) {
+            public void openDialogShowInformationReliefCampaign(Helper helper) {
                 dialog.setContentView(R.layout.dialog_show_information_relief_campaign);
                 Objects.requireNonNull(dialog.getWindow()).setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 dialog.getWindow().setGravity(Gravity.CENTER);
@@ -75,6 +81,9 @@ public class ReliefInformationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ReliefInformationActivity.this, CreateReliefCampaignActivity.class);
+                intent.putExtra("key", key);
+                intent.putExtra("phone", phoneNumber);
+                intent.putExtra("field", field);
                 startActivity(intent);
             }
         });

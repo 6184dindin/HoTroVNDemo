@@ -12,7 +12,7 @@ public class GetInfoNewsResponse {
     private NewsInfo newsInfo;
     @SerializedName("LIST_HELPER")
     @Expose
-    private List<LISTHELPER> lISTHELPER = null;
+    private List<Helper> helpers = null;
 
     public NewsInfo getNewsInfo() {
         return newsInfo;
@@ -22,12 +22,12 @@ public class GetInfoNewsResponse {
         this.newsInfo = newsInfo;
     }
 
-    public List<LISTHELPER> getLISTHELPER() {
-        return lISTHELPER;
+    public List<Helper> getHelpers() {
+        return helpers;
     }
 
-    public void setLISTHELPER(List<LISTHELPER> lISTHELPER) {
-        this.lISTHELPER = lISTHELPER;
+    public void setHelpers(List<Helper> helpers) {
+        this.helpers = helpers;
     }
 
 }

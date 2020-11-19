@@ -229,6 +229,7 @@
                     android:textSize="@dimen/title_default" />
 
                 <EditText
+                    android:id="@+id/edtAdminPost"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_marginVertical="@dimen/_5sdp"
@@ -242,18 +243,20 @@
 
 
                 <EditText
+                    android:id="@+id/edtPhoneContact"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_marginVertical="@dimen/_5sdp"
                     android:background="@drawable/bg_corner_stroke_edit_text"
                     android:fontFamily="@font/tahoma"
                     android:hint="@string/phone"
-                    android:inputType="textCapSentences"
+                    android:inputType="number"
                     android:maxLines="1"
                     android:paddingHorizontal="@dimen/_10sdp"
                     android:textSize="@dimen/edit_text_default" />
 
                 <EditText
+                    android:id="@+id/edtRolePersonPost"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_marginVertical="@dimen/_5sdp"
@@ -275,6 +278,7 @@
                     android:textSize="@dimen/title_default" />
 
                 <EditText
+                    android:id="@+id/edtRequestSupport"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_120sdp"
                     android:layout_marginTop="@dimen/_10sdp"
@@ -294,6 +298,7 @@
                     android:textSize="@dimen/title_default" />
 
                 <EditText
+                    android:id="@+id/edtDescriptions"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_120sdp"
                     android:layout_marginTop="@dimen/_10sdp"

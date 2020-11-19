@@ -44,11 +44,11 @@ public class SelectedTypeCampaignJoinedActivity extends AppCompatActivity {
         binding.rcFiled.setAdapter(adapter);
     }
 
-    private void nextAct(int type) {
+    private void nextAct(int field) {
         Intent intent = new Intent(SelectedTypeCampaignJoinedActivity.this, ReliefBulletinActivity.class);
         intent.putExtra("key", key);
         intent.putExtra("phone", phoneNumber);
-        intent.putExtra("type", type);
+        intent.putExtra("field", field);
         startActivity(intent);
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }

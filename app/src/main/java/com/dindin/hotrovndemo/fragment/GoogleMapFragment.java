@@ -18,7 +18,7 @@ import android.widget.Toast;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
-import com.dindin.hotrovndemo.Poco;
+import com.dindin.hotrovndemo.api.param.response.News;
 import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.activity.ReliefInformationActivity;
 import com.dindin.hotrovndemo.databinding.DialogSelectedProvinceCityDistrictBinding;
@@ -44,7 +44,7 @@ import static android.graphics.Color.TRANSPARENT;
 public class GoogleMapFragment extends Fragment {
     FragmentGoogleMapBinding binding;
 
-    List<Poco> pocos;
+    List<News> news;
     Dialog dialog;
 
     List<InfoAddress> provinces;
@@ -53,8 +53,8 @@ public class GoogleMapFragment extends Fragment {
 
     GoogleMap map;
 
-    public GoogleMapFragment(List<Poco> pocoList) {
-        this.pocos = pocoList;
+    public GoogleMapFragment(List<News> newsList) {
+        this.news = newsList;
     }
 
     @Override

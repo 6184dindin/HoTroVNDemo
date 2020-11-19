@@ -14,8 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.activity.ReliefInformationActivity;
 import com.dindin.hotrovndemo.api.param.response.News;
-import com.dindin.hotrovndemo.utils.City;
-import com.dindin.hotrovndemo.utils.District;
 import com.dindin.hotrovndemo.utils.Helper;
 import com.dindin.hotrovndemo.utils.InfoAddress;
 
@@ -29,8 +27,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     int field;
 
     List<InfoAddress> provinces;
-    List<City> cities;
-    List<District> districts;
+    List<InfoAddress> cities;
+    List<InfoAddress> districts;
 
     public NewsAdapter(Context context, List<News> newses, int key, String phoneNumber, int field) {
         this.context = context;
@@ -39,8 +37,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         this.phoneNumber = phoneNumber;
         this.field = field;
         this.provinces = Helper.getProvinces(context);
-        this.cities = Helper.getCities(context);
-        this.districts = Helper.getDistricts(context);
+        this.cities = Helper.getListCity(context);
+        this.districts = Helper.getListDistrict(context);
     }
 
     @NonNull
@@ -55,29 +53,34 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull NewsAdapter.ViewHolder holder, int position) {
         News news = newses.get(position);
-        String province = "";
-        String city = "";
-        String district = "";
-        if (!news.getProvince().equals(0)) {
-            province = provinces.get(news.getProvince()).getName();
-            if (!news.getCity().equals(0)) {
-                for (City c : cities) {
-                    if (c.getId().equals(news.getProvince())) {
-                        city = c.getInfoAddresses().get(news.getCity()).getName() + ", ";
-                        break;
-                    }
-                }
-                if (!news.getDistrict().equals(0)) {
-                    for (District d : districts) {
-                        if (d.getId().equals(news.getCity())) {
-                            district = d.getInfoAddresses().get(news.getDistrict()).getName() + ", ";
-                            break;
-                        }
-                    }
+        String provinceString = "";
+        String cityString = "";
+        String districtString = "";
+
+        for (InfoAddress p : provinces) {
+            if (p.getId().equals(news.getProvince())) {
+                provinceString = p.getName();
+                break;
+            }
+        }
+        if (!provinceString.isEmpty()) {
+            for (InfoAddress c : cities) {
+                if (c.getId().equals(news.getCity())) {
+                    cityString = c.getName() + ", ";
+                    break;
                 }
             }
         }
-        holder.tvAddress.setText(district + city + province);
+        if (!cityString.isEmpty()) {
+            for (InfoAddress d : districts) {
+                if (d.getId().equals(news.getProvince())) {
+                    districtString = d.getName() + ", ";
+                    break;
+                }
+            }
+        }
+
+        holder.tvAddress.setText(districtString + cityString + provinceString);
         holder.tvRequestSupport.setText(news.getRequestSupport());
         holder.tvCountHelperJoined.setText("(" + news.getCountHelperJoined() + ")");
         String dateTime = news.getDateCreated().toString();

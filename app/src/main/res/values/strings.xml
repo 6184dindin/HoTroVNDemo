@@ -68,6 +68,7 @@
     <string name="necessities_you_have">Nhu yếu phẩm bạn đang có</string>
     <string name="information_on_necessities_you_have">Thông tin nhu yếu phẩm bạn đang có để hỗ trợ</string>
     <string name="add_picture_of_items">Hình ảnh</string>
+    <string name="selected">Chọn</string>
 
     <!--String in dialog notify successful-->
     <string name="relief_newsletter_successful">Bạn đã cứu trợ thành công!</string>

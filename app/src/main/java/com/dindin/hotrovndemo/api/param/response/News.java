@@ -44,6 +44,21 @@ public class News implements Serializable {
     @Expose
     private Integer countHelperJoined;
 
+    public News(Integer id, Integer country, Integer province, Integer city, Integer district, Integer village, Double lat, Double lng, Integer dateNotify, String requestSupport, Integer dateCreated, Integer countHelperJoined) {
+        this.id = id;
+        this.country = country;
+        this.province = province;
+        this.city = city;
+        this.district = district;
+        this.village = village;
+        this.lat = lat;
+        this.lng = lng;
+        this.dateNotify = dateNotify;
+        this.requestSupport = requestSupport;
+        this.dateCreated = dateCreated;
+        this.countHelperJoined = countHelperJoined;
+    }
+
     public Integer getId() {
         return id;
     }

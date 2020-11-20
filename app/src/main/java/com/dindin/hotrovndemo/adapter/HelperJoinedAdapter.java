@@ -1,5 +1,6 @@
 package com.dindin.hotrovndemo.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ public class HelperJoinedAdapter extends RecyclerView.Adapter<HelperJoinedAdapte
     OnClickHelperJoinedListener onClickHelperJoinedListener;
     public HelperJoinedAdapter(List<Helper> helpers, Context context) {
         this.helpers = helpers;
+        this.context = context;
     }
 
     public void setOnClickHelperJoinedListener(OnClickHelperJoinedListener onClickHelperJoinedListener) {
@@ -34,6 +36,7 @@ public class HelperJoinedAdapter extends RecyclerView.Adapter<HelperJoinedAdapte
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull HelperJoinedAdapter.ViewHolder holder, final int position) {
         Helper helper = helpers.get(position);
@@ -57,9 +60,9 @@ public class HelperJoinedAdapter extends RecyclerView.Adapter<HelperJoinedAdapte
         String dateTime = helper.getDateCreated().toString();
         holder.tvDateTime.setText(dateTime.substring(6,8)
                 + "/" + dateTime.substring(4,6)
-                + "/" + dateTime.substring(0,4)
-                + " - " + dateTime.substring(8,10)
-                + ":" + dateTime.substring(10,12));
+                + "/" + dateTime.substring(0,4));
+//                + " - " + dateTime.substring(8,10)
+//                + ":" + dateTime.substring(10,12));
 
         holder.btnSeeDetails.setOnClickListener(new View.OnClickListener() {
             @Override

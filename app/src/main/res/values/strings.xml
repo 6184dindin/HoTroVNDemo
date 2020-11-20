@@ -32,6 +32,7 @@
     <string name="heading_relief_bulletin">Bảng tin hỗ trợ</string>
     <string name="add_relief_newsletter">Đăng tin cần hỗ trợ</string>
     <string name="cancel">Hủy bỏ</string>
+    <string name="choose">Chọn</string>
     <string name="selected_province">Chọn tỉnh</string>
     <string name="selected_city">Chọn thành phố</string>
     <string name="selected_district">Quận/Huyện/Xã</string>

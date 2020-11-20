@@ -140,25 +140,39 @@
                         </RelativeLayout>
 
                     </LinearLayout>
-
                     <LinearLayout
+                        android:visibility="gone"
                         android:id="@+id/layoutSelectedPicker"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_120sdp"
                         android:background="@color/color_white"
-                        android:visibility="gone"
                         android:orientation="vertical">
-
-                        <Button
-                            android:id="@+id/btnSelected"
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_30sdp"
-                            android:background="@color/transition"
-                            android:fontFamily="@font/tahomabd"
-                            android:text="@string/selected_province"
-                            android:textAllCaps="false"
-                            android:textColor="@color/color_green"
-                            android:textSize="@dimen/button_city_picker" />
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <Button
+                                android:id="@+id/tvSelected"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_30sdp"
+                                android:background="@color/transition"
+                                android:fontFamily="@font/tahomabd"
+                                android:text="@string/selected_province"
+                                android:textAllCaps="false"
+                                android:textColor="@color/color_green"
+                                android:textSize="@dimen/button_city_picker" />
+                            <Button
+                                android:id="@+id/btnSelected"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/_30sdp"
+                                android:background="@color/transition"
+                                android:fontFamily="@font/tahomabd"
+                                android:layout_alignParentRight="true"
+                                android:text="@string/choose"
+                                android:textAllCaps="false"
+                                android:textColor="@color/color_green"
+                                android:textSize="@dimen/button_city_picker" />
+                        </RelativeLayout>
 
                         <com.shawnlin.numberpicker.NumberPicker
                             android:id="@+id/numberPicker"
@@ -174,6 +188,7 @@
                             app:np_textSize="@dimen/text_city_picker"
                             app:np_wheelItemCount="5" />
                     </LinearLayout>
+
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -214,6 +229,7 @@
                     android:textSize="@dimen/title_default" />
 
                 <EditText
+                    android:id="@+id/edtAdminPost"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_marginVertical="@dimen/_5sdp"
@@ -227,18 +243,20 @@
 
 
                 <EditText
+                    android:id="@+id/edtPhoneContact"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_marginVertical="@dimen/_5sdp"
                     android:background="@drawable/bg_corner_stroke_edit_text"
                     android:fontFamily="@font/tahoma"
                     android:hint="@string/phone"
-                    android:inputType="textCapSentences"
+                    android:inputType="number"
                     android:maxLines="1"
                     android:paddingHorizontal="@dimen/_10sdp"
                     android:textSize="@dimen/edit_text_default" />
 
                 <EditText
+                    android:id="@+id/edtRolePersonPost"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_marginVertical="@dimen/_5sdp"
@@ -260,6 +278,7 @@
                     android:textSize="@dimen/title_default" />
 
                 <EditText
+                    android:id="@+id/edtRequestSupport"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_120sdp"
                     android:layout_marginTop="@dimen/_10sdp"
@@ -279,6 +298,7 @@
                     android:textSize="@dimen/title_default" />
 
                 <EditText
+                    android:id="@+id/edtDescriptions"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_120sdp"
                     android:layout_marginTop="@dimen/_10sdp"

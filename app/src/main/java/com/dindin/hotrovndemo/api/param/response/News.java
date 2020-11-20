@@ -1,13 +1,12 @@
-package com.dindin.hotrovndemo;
+package com.dindin.hotrovndemo.api.param.response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.math.BigInteger;
-import java.util.List;
 
-public class Poco implements Serializable {
+public class News implements Serializable {
+
     @SerializedName("Id")
     @Expose
     private Integer id;
@@ -34,7 +33,7 @@ public class Poco implements Serializable {
     private Double lng;
     @SerializedName("DateNotif")
     @Expose
-    private Integer dateNotif;
+    private Integer dateNotify;
     @SerializedName("RequestSupport")
     @Expose
     private String requestSupport;
@@ -109,12 +108,12 @@ public class Poco implements Serializable {
         this.lng = lng;
     }
 
-    public Integer getDateNotif() {
-        return dateNotif;
+    public Integer getDateNotify() {
+        return dateNotify;
     }
 
-    public void setDateNotif(Integer dateNotif) {
-        this.dateNotif = dateNotif;
+    public void setDateNotify(Integer dateNotify) {
+        this.dateNotify = dateNotify;
     }
 
     public String getRequestSupport() {
@@ -140,6 +139,4 @@ public class Poco implements Serializable {
     public void setCountHelperJoined(Integer countHelperJoined) {
         this.countHelperJoined = countHelperJoined;
     }
-
-
 }

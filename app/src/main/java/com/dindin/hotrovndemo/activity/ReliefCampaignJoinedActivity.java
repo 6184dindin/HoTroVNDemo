@@ -2,12 +2,11 @@ package com.dindin.hotrovndemo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import com.dindin.hotrovndemo.Poco;
+import com.dindin.hotrovndemo.api.param.response.News;
 import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.databinding.ActivityReliefCampaignJoinedBinding;
 import com.dindin.hotrovndemo.fragment.ShowListReliefFragment;
@@ -19,7 +18,9 @@ public class ReliefCampaignJoinedActivity extends AppCompatActivity {
     ActivityReliefCampaignJoinedBinding binding;
     Intent intent;
     int key;
-    List<Poco> pocos = new ArrayList<>();
+    String phoneNumber;
+    int field;
+    List<News> news = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,24 +28,23 @@ public class ReliefCampaignJoinedActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_relief_campaign_joined);
         intent = getIntent();
         key = intent.getIntExtra("key", 0);
+        phoneNumber = intent.getStringExtra("phone");
+        field = intent.getIntExtra("field", 0);
         createList();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentListReliefCampaignJoined, new ShowListReliefFragment(pocos, key))
+                .replace(R.id.fragmentListReliefCampaignJoined, new ShowListReliefFragment(news, key, field, phoneNumber))
                 .commit();
-        binding.btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        binding.btnBack.setOnClickListener(v -> finish());
     }
+    private void getListHelpJobsByPhone() {
 
+    }
     private void createList() {
-        pocos.add(new Poco());
-        pocos.add(new Poco());
-        pocos.add(new Poco());
-        pocos.add(new Poco());
-        pocos.add(new Poco());
-        pocos.add(new Poco());
+        news.add(new News());
+        news.add(new News());
+        news.add(new News());
+        news.add(new News());
+        news.add(new News());
+        news.add(new News());
     }
 }

@@ -6,18 +6,12 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class District {
-    @SerializedName("id")
+    @SerializedName("Id")
     @Expose
     private Integer id;
-    @SerializedName("Name")
+    @SerializedName("Districts")
     @Expose
-    private String name;
-    @SerializedName("Code")
-    @Expose
-    private String code;
-    @SerializedName("Village")
-    @Expose
-    private List<Village> village = null;
+    private List<InfoAddress> infoAddresses = null;
 
     public Integer getId() {
         return id;
@@ -27,27 +21,11 @@ public class District {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public List<InfoAddress> getInfoAddresses() {
+        return infoAddresses;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public List<Village> getVillage() {
-        return village;
-    }
-
-    public void setVillage(List<Village> village) {
-        this.village = village;
+    public void setInfoAddresses(List<InfoAddress> infoAddresses) {
+        this.infoAddresses = infoAddresses;
     }
 }

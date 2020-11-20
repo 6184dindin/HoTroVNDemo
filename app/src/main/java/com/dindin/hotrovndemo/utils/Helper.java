@@ -29,11 +29,42 @@ public class Helper {
     /**
      * phương thức chuyển ArrayObject trong json thành List object
      */
-    public static List<Province> getProvinces(Context context) {
+    public static List<InfoAddress> getProvinces(Context context) {
         Gson gson = new Gson();
-        String jsObj = readStringFromAsset("data.json", context);
-        Type listType = new TypeToken<List<Province>>() {
-        }.getType();
+        String jsObj = readStringFromAsset("0.json", context);
+        Type listType = new TypeToken<List<InfoAddress>>() {}.getType();
         return gson.fromJson(jsObj, listType);
     }
+
+    public static List<City> getCities(Context context) {
+        Gson gson = new Gson();
+        String jsObj = readStringFromAsset("100.json", context);
+        Type listType = new TypeToken<List<City>>() {}.getType();
+        return gson.fromJson(jsObj, listType);
+    }
+
+    public static List<District> getDistricts(Context context) {
+        Gson gson = new Gson();
+        String jsObj = readStringFromAsset("1000.json", context);
+        Type listType = new TypeToken<List<District>>() {}.getType();
+        return gson.fromJson(jsObj, listType);
+    }
+
+    public static String[] getNameInfoAddress(List<InfoAddress> infoAddresses) {
+        String[] stringsName = new String[infoAddresses.size()];
+        if (!infoAddresses.isEmpty()) {
+            for (int i = 0; i < infoAddresses.size(); i++) {
+                stringsName[i] = infoAddresses.get(i).getName();
+            }
+        }
+        return stringsName;
+    }
+
+    public static List<Field> getFields(Context context) {
+        Gson gson = new Gson();
+        String jsObj = readStringFromAsset("Fields.json", context);
+        Type listType = new TypeToken<List<Field>>() {}.getType();
+        return gson.fromJson(jsObj, listType);
+    }
+
 }

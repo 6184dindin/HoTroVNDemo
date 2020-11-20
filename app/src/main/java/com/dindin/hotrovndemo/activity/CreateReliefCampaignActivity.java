@@ -13,6 +13,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +32,7 @@ import com.dindin.hotrovndemo.api.param.base.ResponseBase;
 import com.dindin.hotrovndemo.api.param.constant.SecCodeConstant;
 import com.dindin.hotrovndemo.api.param.constant.URLConstant;
 import com.dindin.hotrovndemo.api.param.request.CreateHelpsNewsRequest;
+import com.dindin.hotrovndemo.api.param.request.UploadImageHelperRequest;
 import com.dindin.hotrovndemo.databinding.ActivityCreateReliefCampaignBinding;
 import com.dindin.hotrovndemo.databinding.DialogSelectedDayMonthYearBinding;
 import com.dindin.hotrovndemo.utils.GenericBody;
@@ -44,6 +47,7 @@ import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Type;
 import java.math.BigInteger;
@@ -53,6 +57,7 @@ import java.util.List;
 import java.util.Objects;
 
 import io.reactivex.Observer;
+import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
@@ -157,10 +162,9 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
                 year = newVal;
             });
             binding1.btnDone.setOnClickListener(v1 -> {
-                if(Helper.isValidDate(date, month, year)) {
+                if (Helper.isValidDate(date, month, year)) {
                     dialog.dismiss();
-                }
-                else {
+                } else {
                     Toast.makeText(this, "Ngày bạn lựa chọn chưa hợp lệ", Toast.LENGTH_LONG).show();
                 }
             });
@@ -190,7 +194,7 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
         handleRemoveImage();
     }
 
-    private void createDataReliefCampaign(){
+    private void createDataReliefCampaign() {
         CreateHelpsNewsRequest request = new CreateHelpsNewsRequest();
         request.setNewsId(newsId);
         request.setPhoneCreated(phoneNumber);
@@ -210,7 +214,8 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
         request.setDateCreated(BigInteger.valueOf(dateCreated));
         request.setSecCode(SecCodeConstant.SCCreateHelpsNews);
 
-        TypeToken<CreateHelpsNewsRequest> token = new TypeToken<CreateHelpsNewsRequest>(){};
+        TypeToken<CreateHelpsNewsRequest> token = new TypeToken<CreateHelpsNewsRequest>() {
+        };
         GenericBody<CreateHelpsNewsRequest> requestGenericBody = new GenericBody<>(request, token);
         APIService service = APIClient.getClient(this, URLConstant.URLBaseNews).create(APIService.class);
         service.postToServerAPI(URLConstant.URLCreateHelpsNews, requestGenericBody)
@@ -225,7 +230,8 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
                     @Override
                     public void onNext(@NonNull JsonElement jsonElement) {
                         GsonBuilder gson = new GsonBuilder();
-                        Type collectionType = new TypeToken<ResponseBase<Integer>>(){}.getType();
+                        Type collectionType = new TypeToken<ResponseBase<Integer>>() {
+                        }.getType();
                         ResponseBase<Integer> data = new Gson().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
 
 
@@ -510,6 +516,55 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
                     bitmapList.add(bitmap);
                 }
             }
+        }
+    }
+
+    private void uploadImgHelper(Integer helpId) {
+        UploadImageHelperRequest uploadImageHelperRequest = new UploadImageHelperRequest();
+
+        for (int i = 0; i < bitmapList.size(); i++) {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmapList.get(i).compress(Bitmap.CompressFormat.JPEG, 100, baos); // bm is the bitmap object
+            byte[] b = baos.toByteArray();
+            String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
+
+            uploadImageHelperRequest.setHelpId(helpId);
+            uploadImageHelperRequest.setOrderNum(i);
+            uploadImageHelperRequest.setType(field);
+            uploadImageHelperRequest.setImage(encodedImage);
+            uploadImageHelperRequest.setSecCode(SecCodeConstant.SCUploadImageHelper);
+
+            TypeToken<UploadImageHelperRequest> stringListTypeToken = new TypeToken<UploadImageHelperRequest>(){};
+            GenericBody<UploadImageHelperRequest> request  =  new GenericBody<UploadImageHelperRequest>(uploadImageHelperRequest,stringListTypeToken);
+
+            APIService service = APIClient.getClient(getApplicationContext(),
+                    URLConstant.URLBaseNews).create(APIService.class);
+
+            service.postToServerAPI(URLConstant.URLBaseImage, request).subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<JsonElement>() {
+                        @Override
+                        public void onSubscribe(@NonNull Disposable d) {
+
+                        }
+
+                        @Override
+                        public void onNext(@NonNull JsonElement jsonElement) {
+                            GsonBuilder gson = new GsonBuilder();
+                            Type collectionType = new TypeToken<ResponseBase<List<UploadImageHelperRequest>>>(){}.getType();
+                            ResponseBase<List<UploadImageHelperRequest>> data = new Gson().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
+                        }
+
+                        @Override
+                        public void onError(@NonNull Throwable e) {
+
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
         }
     }
 }

@@ -14,5 +14,4 @@ public class SecCodeConstant {
     public static final String SCUploadImageHelper = "1D2AE5B1-97D9-4FA0-A9C4-96B4B5EDBAA1";
     public static final String SCDownloadImage = "77FC5879-AE35-4FDF-88E8-A2842248A649";
     public static final String SCDownloadImageHelper = "502F25DF-EC01-43A8-8D0C-6AABF664E82D";
-
 }

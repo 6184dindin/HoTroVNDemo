@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class UploadImageHelperRequest {
-    @SerializedName("HelpId")
+    @SerializedName("ResultData")
     @Expose
     private Integer helpId;
     @SerializedName("orderNum")

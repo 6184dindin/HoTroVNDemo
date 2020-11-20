@@ -13,6 +13,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dindin.hotrovndemo.api.param.request.UploadImageHelperRequest;
 import com.dindin.hotrovndemo.api.param.response.getinfonewsresponse.Helper;
 import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.adapter.HelperJoinedAdapter;
@@ -67,6 +68,10 @@ public class ReliefInformationActivity extends AppCompatActivity {
                     }
                 });
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(TRANSPARENT));
+
+                UploadImageHelperRequest uploadImageHelperRequest = new UploadImageHelperRequest();
+
+
                 dialog.show();
             }
         });

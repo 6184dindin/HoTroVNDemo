@@ -2,7 +2,6 @@
   {
     "Id": 1,
     "Districts": [
-      
       {
         "Id": 1,
         "Name": "Quận Ba Đình",
@@ -593,10 +592,10 @@
   {
     "Id": 11,
     "Districts": [
-     {
-             "Id": 110,
-             "Name": "Huyện Lạc Thủy",
-             "Code": "159"
+      {
+        "Id": 110,
+        "Name": "Huyện Lạc Thủy",
+        "Code": "159"
       },
       {
         "Id": 111,
@@ -643,7 +642,6 @@
         "Name": "Huyện Yên Thủy",
         "Code": "158"
       }
-   
     ]
   },
   {
@@ -968,16 +966,17 @@
         "Id": 218,
         "Name": "Huyện Sông Lô",
         "Code": "253"
-      }, {
-             "Id": 219,
-             "Name": "Thị xã Phúc Yên",
-             "Code": "244"
-           },
-           {
-             "Id": 220,
-             "Name": "Huyện Lập Thạch",
-             "Code": "246"
-           }
+      },
+      {
+        "Id": 219,
+        "Name": "Thị xã Phúc Yên",
+        "Code": "244"
+      },
+      {
+        "Id": 220,
+        "Name": "Huyện Lập Thạch",
+        "Code": "246"
+      }
     ]
   },
   {

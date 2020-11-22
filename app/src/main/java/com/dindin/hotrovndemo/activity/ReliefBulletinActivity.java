@@ -7,14 +7,31 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import com.dindin.hotrovndemo.api.param.response.News;
 import com.dindin.hotrovndemo.R;
+import com.dindin.hotrovndemo.api.APIClient;
+import com.dindin.hotrovndemo.api.APIService;
+import com.dindin.hotrovndemo.api.param.base.ResponseBase;
+import com.dindin.hotrovndemo.api.param.constant.SecCodeConstant;
+import com.dindin.hotrovndemo.api.param.constant.URLConstant;
+import com.dindin.hotrovndemo.api.param.request.GetListSupportNewsByPhoneRequest;
+import com.dindin.hotrovndemo.api.param.response.News;
 import com.dindin.hotrovndemo.databinding.ActivityReliefBulletinBinding;
 import com.dindin.hotrovndemo.fragment.GoogleMapFragment;
 import com.dindin.hotrovndemo.fragment.ShowListReliefFragment;
+import com.dindin.hotrovndemo.utils.GenericBody;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class ReliefBulletinActivity extends AppCompatActivity {
     ActivityReliefBulletinBinding binding;
@@ -32,7 +49,6 @@ public class ReliefBulletinActivity extends AppCompatActivity {
         key = intent.getIntExtra("key", 0);
         phoneNumber = intent.getStringExtra("phone");
         field = intent.getIntExtra("field", 0);
-        createList();
         startAct();
     }
 
@@ -65,9 +81,7 @@ public class ReliefBulletinActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentMapAndListRelief, new ShowListReliefFragment(news, key,field,phoneNumber))
-                .commit();
+        getListSupportNewsByPhone();
     }
 
     private void startActHelperJoined() {
@@ -88,12 +102,49 @@ public class ReliefBulletinActivity extends AppCompatActivity {
         });
     }
 
-    private void createList() {
-        news.add(new News());
-        news.add(new News());
-        news.add(new News());
-        news.add(new News());
-        news.add(new News());
-        news.add(new News());
+    private void getListSupportNewsByPhone() {
+        GetListSupportNewsByPhoneRequest request = new GetListSupportNewsByPhoneRequest();
+        request.setFieldsId(field);
+        request.setPhoneNumber(phoneNumber);
+        request.setSecCode(SecCodeConstant.SCGetListSupportNewsByPhone);
+
+        TypeToken<GetListSupportNewsByPhoneRequest> token = new TypeToken<GetListSupportNewsByPhoneRequest>() {
+        };
+        GenericBody<GetListSupportNewsByPhoneRequest> requestGenericBody = new GenericBody<>(request, token);
+        APIService service = APIClient.getClient(this, URLConstant.URLBaseNews).create(APIService.class);
+        service.postToServerAPI(URLConstant.URLGetListSupportNewsByPhone, requestGenericBody)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<JsonElement>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull JsonElement jsonElement) {
+                        GsonBuilder gson = new GsonBuilder();
+                        Type collectionType = new TypeToken<ResponseBase<List<News>>>() {
+                        }.getType();
+                        ResponseBase<List<News>> data = gson.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
+                        if(data.getResultCode().equals("001")){
+                            if (data.getResultData() != null){
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.fragmentMapAndListRelief, new ShowListReliefFragment(data.getResultData(), key, field, phoneNumber))
+                                        .commit();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }

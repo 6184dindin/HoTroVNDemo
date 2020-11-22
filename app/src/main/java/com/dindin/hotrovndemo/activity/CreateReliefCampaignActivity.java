@@ -1,6 +1,7 @@
 package com.dindin.hotrovndemo.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.ClipData;
@@ -13,6 +14,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Base64;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -23,17 +26,42 @@ import androidx.databinding.DataBindingUtil;
 
 import com.bumptech.glide.Glide;
 import com.dindin.hotrovndemo.R;
+import com.dindin.hotrovndemo.api.APIClient;
+import com.dindin.hotrovndemo.api.APIService;
+import com.dindin.hotrovndemo.api.param.base.ResponseBase;
+import com.dindin.hotrovndemo.api.param.constant.SecCodeConstant;
+import com.dindin.hotrovndemo.api.param.constant.URLConstant;
+import com.dindin.hotrovndemo.api.param.request.CreateHelpsNewsRequest;
+import com.dindin.hotrovndemo.api.param.request.UploadImageHelperRequest;
+import com.dindin.hotrovndemo.api.param.response.UploadImageHelperResponse;
 import com.dindin.hotrovndemo.databinding.ActivityCreateReliefCampaignBinding;
+import com.dindin.hotrovndemo.databinding.DialogSelectedDayMonthYearBinding;
+import com.dindin.hotrovndemo.utils.GenericBody;
+import com.dindin.hotrovndemo.utils.Helper;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.reflect.TypeToken;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Type;
+import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
+
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 import static android.graphics.Color.TRANSPARENT;
 
@@ -50,9 +78,13 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
     int key;
     String phoneNumber;
     int field;
+    int newsId;
+
+    int date = 0, month = 0, year = 0;
 
     private boolean flagPermission = false;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +98,8 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
         key = intent.getIntExtra("key", 0);
         phoneNumber = intent.getStringExtra("phone");
         field = intent.getIntExtra("field", 0);
+        newsId = intent.getIntExtra("newsId", 0);
+
         binding.edtPhoneContact.setText(phoneNumber);
 
         dialog = new Dialog(this);
@@ -73,17 +107,65 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
         binding.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.setContentView(R.layout.dialog_notify_create_relief_campaign_successfull);
-                dialog.findViewById(R.id.btnDone).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
+                createDataReliefCampaign();
             }
         });
+
+        binding.btnSelectedDate.setOnClickListener(v -> {
+            DialogSelectedDayMonthYearBinding binding1 = DialogSelectedDayMonthYearBinding.inflate(LayoutInflater.from(this));
+            int thisDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+            binding1.numberPickerDay.setMaxValue(31);
+            binding1.numberPickerDay.setMinValue(1);
+            binding1.numberPickerDay.setValue(thisDay);
+            date = thisDay;
+            binding1.numberPickerDay.setWrapSelectorWheel(true);
+            binding1.numberPickerDay.setOnValueChangedListener((picker, oldVal, newVal) -> {
+                date = newVal;
+            });
+            int thisMonth = Calendar.getInstance().get(Calendar.MONTH) + 1;
+            String[] stringsMonth = {"tháng 1", "tháng 2", "tháng 3", "tháng 4",
+                    "tháng 5", "tháng 6", "tháng 7", "tháng 8"
+                    , "tháng 9", "tháng 10", "tháng 11", "tháng 12"};
+            binding1.numberPickerMonth.setMaxValue(12);
+            binding1.numberPickerMonth.setMinValue(1);
+            binding1.numberPickerMonth.setValue(thisMonth);
+            month = thisMonth;
+            binding1.numberPickerMonth.setDisplayedValues(stringsMonth);
+            binding1.numberPickerMonth.setWrapSelectorWheel(true);
+            binding1.numberPickerMonth.setOnValueChangedListener((picker, oldVal, newVal) -> {
+                month = newVal;
+            });
+
+            ArrayList<String> yearList = new ArrayList<>();
+            String[] stringsYear;
+            int thisYear = Calendar.getInstance().get(Calendar.YEAR);
+            for (int i = 2020; i <= 2050; i++) {
+                yearList.add(Integer.toString(i));
+            }
+            stringsYear = yearList.toArray(new String[0]);
+            binding1.numberPickerYear.setMaxValue(2050);
+            binding1.numberPickerYear.setMinValue(2020);
+            binding1.numberPickerYear.setValue(thisYear);
+            year = thisYear;
+            binding1.numberPickerYear.setDisplayedValues(stringsYear);
+            binding1.numberPickerYear.setWrapSelectorWheel(true);
+            binding1.numberPickerYear.setOnValueChangedListener((picker, oldVal, newVal) -> {
+                year = newVal;
+            });
+            binding1.btnDone.setOnClickListener(v1 -> {
+                if (Helper.isValidDate(date, month, year)) {
+                    binding.tvDate.setText(date + "/" + month + "/" + year);
+                    dialog.dismiss();
+                } else {
+                    Toast.makeText(this, "Ngày bạn lựa chọn chưa hợp lệ", Toast.LENGTH_LONG).show();
+                }
+            });
+            dialog.setContentView(binding1.getRoot());
+            Objects.requireNonNull(dialog.getWindow()).setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(TRANSPARENT));
+            dialog.show();
+        });
+
         binding.btnAddImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,6 +184,128 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
             }
         });
         handleRemoveImage();
+    }
+
+    private void createDataReliefCampaign() {
+        CreateHelpsNewsRequest request = new CreateHelpsNewsRequest();
+        request.setNewsId(newsId);
+        request.setPhoneCreated(phoneNumber);
+        request.setFieldsId(field);
+        request.setAdminHelper(binding.edtAdminHelper.getText().toString().trim());
+        request.setPhoneContact(binding.edtPhoneContact.getText().toString().trim());
+        request.setRolePersonHelper(binding.edtRolePersonHelper.getText().toString().trim());
+        request.setOrganization(binding.edtOrganization.getText().toString().trim());
+        Calendar calendar = Calendar.getInstance();
+        int dateCreated = calendar.get(Calendar.YEAR) * 10000
+                + calendar.get(Calendar.MONTH) * 100
+                + calendar.get(Calendar.DAY_OF_MONTH);
+        int dateTime = year * 10000 + month * 100 + date;
+        request.setTimeBegin(Math.min(dateCreated, dateTime));
+        request.setTimeEnd(Math.max(dateCreated, dateTime));
+        request.setSupportValue(binding.edtSupportValue.getText().toString().trim());
+        request.setDateCreated(BigInteger.valueOf(dateCreated));
+        request.setSecCode(SecCodeConstant.SCCreateHelpsNews);
+
+        TypeToken<CreateHelpsNewsRequest> token = new TypeToken<CreateHelpsNewsRequest>() {
+        };
+        GenericBody<CreateHelpsNewsRequest> requestGenericBody = new GenericBody<CreateHelpsNewsRequest>(request, token);
+        APIService service = APIClient.getClient(this, URLConstant.URLBaseNews).create(APIService.class);
+        service.postToServerAPI(URLConstant.URLCreateHelpsNews, requestGenericBody)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<JsonElement>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull JsonElement jsonElement) {
+                        GsonBuilder gson = new GsonBuilder();
+                        Type collectionType = new TypeToken<ResponseBase<Integer>>() {
+                        }.getType();
+                        ResponseBase<Integer> data = new Gson().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
+                        if (data.getResultCode().equals("001")) {
+                            if (data.getResultData() != null) {
+                                Integer helpsId = data.getResultData();
+                                uploadImgHelper(helpsId);
+                                showDialogCreateSuccessful();
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    private void uploadImgHelper(Integer helpId) {
+        UploadImageHelperRequest uploadImageHelperRequest = new UploadImageHelperRequest();
+
+        for (int i = 0; i < bitmapList.size(); i++) {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmapList.get(i).compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] b = baos.toByteArray();
+            String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
+
+            uploadImageHelperRequest.setHelpId(helpId);
+            uploadImageHelperRequest.setOrderNum(i);
+            uploadImageHelperRequest.setType(field);
+            uploadImageHelperRequest.setImage(encodedImage);
+            uploadImageHelperRequest.setSecCode(SecCodeConstant.SCUploadImageHelper);
+
+            TypeToken<UploadImageHelperRequest> stringListTypeToken = new TypeToken<UploadImageHelperRequest>() {
+            };
+            GenericBody<UploadImageHelperRequest> request = new GenericBody<UploadImageHelperRequest>(uploadImageHelperRequest, stringListTypeToken);
+
+            APIService service = APIClient.getClient(getApplicationContext(),
+                    URLConstant.URLBaseNews).create(APIService.class);
+
+            service.postToServerAPI(URLConstant.URLBaseImage, request).subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<JsonElement>() {
+                        @Override
+                        public void onSubscribe(@NonNull Disposable d) {
+
+                        }
+
+                        @Override
+                        public void onNext(@NonNull JsonElement jsonElement) {
+                            GsonBuilder gSon = new GsonBuilder();
+                            Type collectionType = new TypeToken<ResponseBase<UploadImageHelperResponse>>() {
+                            }.getType();
+                            ResponseBase<UploadImageHelperResponse> data = new Gson().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
+                        }
+
+                        @Override
+                        public void onError(@NonNull Throwable e) {
+
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
+        }
+    }
+
+    private void showDialogCreateSuccessful() {
+        dialog.setContentView(R.layout.dialog_notify_create_relief_campaign_successfull);
+        dialog.findViewById(R.id.btnDone).setOnClickListener(v -> {
+            dialog.dismiss();
+            finish();
+        });
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
     }
 
     private void checkPermission() {

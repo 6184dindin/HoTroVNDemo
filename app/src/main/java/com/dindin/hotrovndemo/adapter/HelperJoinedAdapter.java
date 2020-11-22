@@ -1,5 +1,6 @@
 package com.dindin.hotrovndemo.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +19,10 @@ public class HelperJoinedAdapter extends RecyclerView.Adapter<HelperJoinedAdapte
     List<Helper> helpers;
     Context context;
     OnClickHelperJoinedListener onClickHelperJoinedListener;
+
     public HelperJoinedAdapter(List<Helper> helpers, Context context) {
         this.helpers = helpers;
+        this.context = context;
     }
 
     public void setOnClickHelperJoinedListener(OnClickHelperJoinedListener onClickHelperJoinedListener) {
@@ -34,32 +37,26 @@ public class HelperJoinedAdapter extends RecyclerView.Adapter<HelperJoinedAdapte
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull HelperJoinedAdapter.ViewHolder holder, final int position) {
         Helper helper = helpers.get(position);
-        holder.tvOrganization.setText(helper.getOrganization());
-        holder.tvSupportValue.setText(helper.getSupportValue());
-        holder.tvRolePersonHelper.setText(helper.getRolePersonHelper());
+        holder.tvOrganization.setText(helper.getOrganization() != null ? helper.getOrganization() : "");
+        holder.tvSupportValue.setText(helper.getSupportValue() != null ? helper.getSupportValue() : "");
+        holder.tvRolePersonHelper.setText(helper.getRolePersonHelper() != null ? helper.getRolePersonHelper() : "");
 
-        if(helper.getAdminHelper().isEmpty() && helper.getPhoneContact().isEmpty()) {
-            holder.tvAdminHelperAndPhoneContact.setText("");
-        }
-        if(!helper.getAdminHelper().isEmpty() && helper.getPhoneContact().isEmpty()) {
-            holder.tvAdminHelperAndPhoneContact.setText(helper.getAdminHelper());
-        }
-        if(helper.getAdminHelper().isEmpty() && !helper.getPhoneContact().isEmpty()) {
-            holder.tvAdminHelperAndPhoneContact.setText(helper.getPhoneContact());
-        }
-        if(!helper.getAdminHelper().isEmpty() && !helper.getPhoneContact().isEmpty()) {
-            holder.tvAdminHelperAndPhoneContact.setText(helper.getAdminHelper() + " | " + helper.getPhoneContact());
-        }
+        holder.tvAdminHelperAndPhoneContact.setText((helper.getAdminHelper() != null ? helper.getAdminHelper() : "")
+                + " | "
+                + (helper.getPhoneContact() != null ? helper.getPhoneContact() : ""));
 
-        String dateTime = helper.getDateCreated().toString();
-        holder.tvDateTime.setText(dateTime.substring(6,8)
-                + "/" + dateTime.substring(4,6)
-                + "/" + dateTime.substring(0,4)
-                + " - " + dateTime.substring(8,10)
-                + ":" + dateTime.substring(10,12));
+        if (helper.getDateCreated() != null) {
+            String dateTime = helper.getDateCreated().toString();
+            holder.tvDateTime.setText(dateTime.substring(6, 8)
+                    + "/" + dateTime.substring(4, 6)
+                    + "/" + dateTime.substring(0, 4));
+//                + " - " + dateTime.substring(8,10)
+//                + ":" + dateTime.substring(10,12));
+        }
 
         holder.btnSeeDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +78,7 @@ public class HelperJoinedAdapter extends RecyclerView.Adapter<HelperJoinedAdapte
         TextView tvRolePersonHelper;
         TextView tvDateTime;
         TextView btnSeeDetails;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvOrganization = itemView.findViewById(R.id.tvOrganization);

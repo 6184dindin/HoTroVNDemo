@@ -205,7 +205,7 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
 
         TypeToken<CreateHelpsNewsRequest> token = new TypeToken<CreateHelpsNewsRequest>() {
         };
-        GenericBody<CreateHelpsNewsRequest> requestGenericBody = new GenericBody<>(request, token);
+        GenericBody<CreateHelpsNewsRequest> requestGenericBody = new GenericBody<CreateHelpsNewsRequest>(request, token);
         APIService service = APIClient.getClient(this, URLConstant.URLBaseNews).create(APIService.class);
         service.postToServerAPI(URLConstant.URLCreateHelpsNews, requestGenericBody)
                 .subscribeOn(Schedulers.io())
@@ -222,10 +222,12 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
                         Type collectionType = new TypeToken<ResponseBase<Integer>>() {
                         }.getType();
                         ResponseBase<Integer> data = new Gson().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
-                        if(data.getResultCode().equals("001")) {
-                            Integer helpsId = data.getResultData();
-                            uploadImgHelper(helpsId);
-                            showDialogCreateSuccessful();
+                        if (data.getResultCode().equals("001")) {
+                            if (data.getResultData() != null) {
+                                Integer helpsId = data.getResultData();
+                                uploadImgHelper(helpsId);
+                                showDialogCreateSuccessful();
+                            }
                         }
 
                     }
@@ -292,6 +294,7 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
                     });
         }
     }
+
     private void showDialogCreateSuccessful() {
         dialog.setContentView(R.layout.dialog_notify_create_relief_campaign_successfull);
         dialog.findViewById(R.id.btnDone).setOnClickListener(v -> {
@@ -301,6 +304,7 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
     }
+
     private void checkPermission() {
         Dexter.withContext(this)
                 .withPermissions(Manifest.permission.CAMERA,

@@ -3,7 +3,7 @@ package com.dindin.hotrovndemo.api.param.request;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class DownloadImageNewsRequset {
+public class DownloadImageNewsRequest {
     @SerializedName("NewsId")
     @Expose
     private Integer newsId;

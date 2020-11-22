@@ -35,6 +35,7 @@ public class GetYourLocationActivity extends AppCompatActivity {
     GoogleMap map;
     FusedLocationProviderClient fusedLocationProviderClient;
     double latitude = 0.0, longitude = 0.0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,7 @@ public class GetYourLocationActivity extends AppCompatActivity {
             setResult(RESULT_OK, intent);
         });
     }
+
     private void createMap() {
         binding.myMap.getMapAsync(new OnMapReadyCallback() {
             @Override
@@ -88,6 +90,7 @@ public class GetYourLocationActivity extends AppCompatActivity {
         });
         binding.myMap.onStart();
     }
+
     private Bitmap getMarkerBitmapFromDrawable(Drawable drawable) {
         Canvas canvas = new Canvas();
         Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);

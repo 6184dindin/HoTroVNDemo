@@ -85,6 +85,7 @@
     <!--String in dialog show information relief campaign-->
     <string name="information_image">Thông tin hình ảnh</string>
     <string name="information_need_relief">Thông tin cần hỗ trợ</string>
+    <string name="information_relief">Thông tin hỗ trợ</string>
 
 
 </resources>

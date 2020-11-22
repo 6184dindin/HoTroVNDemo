@@ -10,7 +10,7 @@ public class UploadImageNewsResponse {
     private Integer id;
     @SerializedName("LinkedOutsite")
     @Expose
-    private String linkedOutsite;
+    private String linkedOutside;
 
     public Integer getId() {
         return id;
@@ -20,11 +20,11 @@ public class UploadImageNewsResponse {
         this.id = id;
     }
 
-    public String getLinkedOutsite() {
-        return linkedOutsite;
+    public String getLinkedOutside() {
+        return linkedOutside;
     }
 
-    public void setLinkedOutsite(String linkedOutsite) {
-        this.linkedOutsite = linkedOutsite;
+    public void setLinkedOutside(String linkedOutside) {
+        this.linkedOutside = linkedOutside;
     }
 }

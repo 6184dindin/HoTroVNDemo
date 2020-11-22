@@ -128,10 +128,13 @@ public class ReliefBulletinActivity extends AppCompatActivity {
                         Type collectionType = new TypeToken<ResponseBase<List<News>>>() {
                         }.getType();
                         ResponseBase<List<News>> data = gson.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
-
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragmentMapAndListRelief, new ShowListReliefFragment(data.getResultData(), key, field, phoneNumber))
-                                .commit();
+                        if (data.getResultCode().equals("001")) {
+                            if (data.getResultData() != null) {
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.fragmentMapAndListRelief, new ShowListReliefFragment(data.getResultData(), key, field, phoneNumber))
+                                        .commit();
+                            }
+                        }
                     }
 
                     @Override

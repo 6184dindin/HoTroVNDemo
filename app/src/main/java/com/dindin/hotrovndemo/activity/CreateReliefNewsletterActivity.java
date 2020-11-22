@@ -296,9 +296,11 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
                         }.getType();
                         ResponseBase<Integer> data = new Gson().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
                         if (data.getResultCode().equals("001")) {
-                            Integer newsId = data.getResultData();
-                            uploadImageNews(newsId);
-                            showDialogCreateSuccessful();
+                            if (data.getResultData() != null) {
+                                Integer newsId = data.getResultData();
+                                uploadImageNews(newsId);
+                                showDialogCreateSuccessful();
+                            }
                         }
                     }
 
@@ -345,7 +347,6 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
                             Type collectionType = new TypeToken<ResponseBase<UploadImageNewsResponse>>() {
                             }.getType();
                             ResponseBase<UploadImageNewsResponse> data = gson.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
-
                         }
 
                         @Override

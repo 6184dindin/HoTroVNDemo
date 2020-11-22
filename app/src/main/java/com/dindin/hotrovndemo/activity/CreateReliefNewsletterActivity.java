@@ -119,6 +119,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 createDataReliefNewsletter();
+
             }
         });
 
@@ -276,8 +277,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
         request.setDateCreated(dateCreated);
         request.setSecCode(SecCodeConstant.SCCreateNews);
 
-        TypeToken<CreateNewsRequest> token = new TypeToken<CreateNewsRequest>() {
-        };
+        TypeToken<CreateNewsRequest> token = new TypeToken<CreateNewsRequest>() {};
         GenericBody<CreateNewsRequest> requestGenericBody = new GenericBody<>(request, token);
         APIService service = APIClient.getClient(this, URLConstant.URLBaseNews).create(APIService.class);
         service.postToServerAPI(URLConstant.URLCreateNews, requestGenericBody)
@@ -296,11 +296,9 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
                         }.getType();
                         ResponseBase<Integer> data = new Gson().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
                         if (data.getResultCode().equals("001")) {
-                            if (data.getResultData() != null) {
-                                Integer newsId = data.getResultData();
-                                uploadImageNews(newsId);
-                                showDialogCreateSuccessful();
-                            }
+                            Integer newsId = data.getResultData();
+                            uploadImageNews(newsId);
+                            showDialogCreateSuccessful();
                         }
                     }
 
@@ -314,12 +312,12 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
 
                     }
                 });
+
     }
 
     private void uploadImageNews(Integer newsId) {
         UploadImageNewsRequest request = new UploadImageNewsRequest();
-        TypeToken<UploadImageNewsRequest> token = new TypeToken<UploadImageNewsRequest>() {
-        };
+        TypeToken<UploadImageNewsRequest> token = new TypeToken<UploadImageNewsRequest>() {};
         APIService service = APIClient.getClient(this, URLConstant.URLBaseImage).create(APIService.class);
         for (int i = 0; i < bitmapList.size(); i++) {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -347,6 +345,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
                             Type collectionType = new TypeToken<ResponseBase<UploadImageNewsResponse>>() {
                             }.getType();
                             ResponseBase<UploadImageNewsResponse> data = gson.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
+
                         }
 
                         @Override
@@ -360,8 +359,6 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
                         }
                     });
         }
-
-
     }
 
     private void showDialogCreateSuccessful() {

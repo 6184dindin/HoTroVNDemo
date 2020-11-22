@@ -202,7 +202,6 @@ public class GoogleMapFragment extends Fragment {
                     @Override
                     public boolean onMarkerClick(Marker m) {
                         int position = (int) m.getTag();
-                        Toast.makeText(getContext(), String.valueOf(position), Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(getContext(), ReliefInformationActivity.class);
                         startActivity(intent);
                         return false;

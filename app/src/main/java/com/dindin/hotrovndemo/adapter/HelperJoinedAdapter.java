@@ -44,25 +44,24 @@ public class HelperJoinedAdapter extends RecyclerView.Adapter<HelperJoinedAdapte
         holder.tvSupportValue.setText(helper.getSupportValue());
         holder.tvRolePersonHelper.setText(helper.getRolePersonHelper());
 
-        if(helper.getAdminHelper().isEmpty() && helper.getPhoneContact().isEmpty()) {
+        if(helper.getAdminHelper() == null && helper.getPhoneContact() == null) {
             holder.tvAdminHelperAndPhoneContact.setText("");
         }
-        if(!helper.getAdminHelper().isEmpty() && helper.getPhoneContact().isEmpty()) {
+        if(helper.getAdminHelper() != null && helper.getPhoneContact() == null) {
             holder.tvAdminHelperAndPhoneContact.setText(helper.getAdminHelper());
         }
-        if(helper.getAdminHelper().isEmpty() && !helper.getPhoneContact().isEmpty()) {
+        if(helper.getAdminHelper() == null && helper.getPhoneContact() != null) {
             holder.tvAdminHelperAndPhoneContact.setText(helper.getPhoneContact());
         }
-        if(!helper.getAdminHelper().isEmpty() && !helper.getPhoneContact().isEmpty()) {
+        if(helper.getAdminHelper() != null && helper.getPhoneContact() != null) {
             holder.tvAdminHelperAndPhoneContact.setText(helper.getAdminHelper() + " | " + helper.getPhoneContact());
         }
-
-        String dateTime = helper.getDateCreated().toString();
-        holder.tvDateTime.setText(dateTime.substring(6,8)
-                + "/" + dateTime.substring(4,6)
-                + "/" + dateTime.substring(0,4));
-//                + " - " + dateTime.substring(8,10)
-//                + ":" + dateTime.substring(10,12));
+        if (helper.getDateCreated() != null){
+            String dateTime = helper.getDateCreated().toString();
+            holder.tvDateTime.setText(dateTime.substring(6,8)
+                    + "/" + dateTime.substring(4,6)
+                    + "/" + dateTime.substring(0,4));
+        }
 
         holder.btnSeeDetails.setOnClickListener(new View.OnClickListener() {
             @Override

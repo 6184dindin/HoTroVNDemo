@@ -81,14 +81,16 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         }
 
         holder.tvAddress.setText(districtString + cityString + provinceString);
-        holder.tvRequestSupport.setText(news.getRequestSupport());
+        holder.tvRequestSupport.setText(news.getRequestSupport() != null ? news.getRequestSupport() : "");
         holder.tvCountHelperJoined.setText("(" + news.getCountHelperJoined() + ")");
-        String dateTime = news.getDateCreated().toString();
-        holder.tvDateTime.setText(dateTime.substring(6, 8)
-                + "/" + dateTime.substring(4, 6)
-                + "/" + dateTime.substring(0, 4));
+        if (news.getDateCreated() != null) {
+            String dateTime = news.getDateCreated().toString();
+            holder.tvDateTime.setText(dateTime.substring(6, 8)
+                    + "/" + dateTime.substring(4, 6)
+                    + "/" + dateTime.substring(0, 4));
 //                + " - " + dateTime.substring(8,10)
 //                + ":" + dateTime.substring(10,12));
+        }
 
         holder.btnSeeDetails.setOnClickListener(new View.OnClickListener() {
             @Override

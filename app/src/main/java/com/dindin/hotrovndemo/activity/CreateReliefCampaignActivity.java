@@ -1,6 +1,7 @@
 package com.dindin.hotrovndemo.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.ClipData;
@@ -83,6 +84,7 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
 
     private boolean flagPermission = false;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,12 +139,12 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
             ArrayList<String> yearList = new ArrayList<>();
             String[] stringsYear;
             int thisYear = Calendar.getInstance().get(Calendar.YEAR);
-            for (int i = 1900; i <= 3000; i++) {
+            for (int i = 2020; i <= 2050; i++) {
                 yearList.add(Integer.toString(i));
             }
             stringsYear = yearList.toArray(new String[0]);
-            binding1.numberPickerYear.setMaxValue(2500);
-            binding1.numberPickerYear.setMinValue(1900);
+            binding1.numberPickerYear.setMaxValue(2050);
+            binding1.numberPickerYear.setMinValue(2020);
             binding1.numberPickerYear.setValue(thisYear);
             year = thisYear;
             binding1.numberPickerYear.setDisplayedValues(stringsYear);
@@ -152,6 +154,7 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
             });
             binding1.btnDone.setOnClickListener(v1 -> {
                 if (Helper.isValidDate(date, month, year)) {
+                    binding.tvDate.setText(date + "/" + month + "/" + year);
                     dialog.dismiss();
                 } else {
                     Toast.makeText(this, "Ngày bạn lựa chọn chưa hợp lệ", Toast.LENGTH_LONG).show();

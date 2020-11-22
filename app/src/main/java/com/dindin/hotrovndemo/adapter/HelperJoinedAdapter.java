@@ -19,6 +19,7 @@ public class HelperJoinedAdapter extends RecyclerView.Adapter<HelperJoinedAdapte
     List<Helper> helpers;
     Context context;
     OnClickHelperJoinedListener onClickHelperJoinedListener;
+
     public HelperJoinedAdapter(List<Helper> helpers, Context context) {
         this.helpers = helpers;
         this.context = context;
@@ -40,27 +41,19 @@ public class HelperJoinedAdapter extends RecyclerView.Adapter<HelperJoinedAdapte
     @Override
     public void onBindViewHolder(@NonNull HelperJoinedAdapter.ViewHolder holder, final int position) {
         Helper helper = helpers.get(position);
-        holder.tvOrganization.setText(helper.getOrganization());
-        holder.tvSupportValue.setText(helper.getSupportValue());
-        holder.tvRolePersonHelper.setText(helper.getRolePersonHelper());
+        holder.tvOrganization.setText(helper.getOrganization() != null ? helper.getOrganization() : "");
+        holder.tvSupportValue.setText(helper.getSupportValue() != null ? helper.getSupportValue() : "");
+        holder.tvRolePersonHelper.setText(helper.getRolePersonHelper() != null ? helper.getRolePersonHelper() : "");
 
-        if(helper.getAdminHelper() == null && helper.getPhoneContact() == null) {
-            holder.tvAdminHelperAndPhoneContact.setText("");
-        }
-        if(helper.getAdminHelper() != null && helper.getPhoneContact() == null) {
-            holder.tvAdminHelperAndPhoneContact.setText(helper.getAdminHelper());
-        }
-        if(helper.getAdminHelper() == null && helper.getPhoneContact() != null) {
-            holder.tvAdminHelperAndPhoneContact.setText(helper.getPhoneContact());
-        }
-        if(helper.getAdminHelper() != null && helper.getPhoneContact() != null) {
-            holder.tvAdminHelperAndPhoneContact.setText(helper.getAdminHelper() + " | " + helper.getPhoneContact());
-        }
-        if (helper.getDateCreated() != null){
+        holder.tvAdminHelperAndPhoneContact.setText((helper.getAdminHelper() != null ? helper.getAdminHelper() : "")
+                + " | "
+                + (helper.getPhoneContact() != null ? helper.getPhoneContact() : ""));
+
+        if (helper.getDateCreated() != null) {
             String dateTime = helper.getDateCreated().toString();
-            holder.tvDateTime.setText(dateTime.substring(6,8)
-                    + "/" + dateTime.substring(4,6)
-                    + "/" + dateTime.substring(0,4));
+            holder.tvDateTime.setText(dateTime.substring(6, 8)
+                    + "/" + dateTime.substring(4, 6)
+                    + "/" + dateTime.substring(0, 4));
 //                + " - " + dateTime.substring(8,10)
 //                + ":" + dateTime.substring(10,12));
         }
@@ -85,6 +78,7 @@ public class HelperJoinedAdapter extends RecyclerView.Adapter<HelperJoinedAdapte
         TextView tvRolePersonHelper;
         TextView tvDateTime;
         TextView btnSeeDetails;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvOrganization = itemView.findViewById(R.id.tvOrganization);

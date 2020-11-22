@@ -171,17 +171,21 @@ public class ReliefInformationActivity extends AppCompatActivity {
         }
 
         binding.tvAddress.setText(districtString + cityString + provinceString);
-        binding.tvRequestSupport.setText(newsInfo.getRequestSupport());
+        binding.tvRequestSupport.setText(newsInfo.getRequestSupport() != null ? newsInfo.getRequestSupport() : "");
 
-        String dateTime = newsInfo.getDateCreated().toString();
-        binding.tvDateTime.setText(dateTime.substring(6, 8)
-                + "/" + dateTime.substring(4, 6)
-                + "/" + dateTime.substring(0, 4));
+        if (newsInfo.getDateCreated() != null) {
+            String dateTime = newsInfo.getDateCreated().toString();
+            binding.tvDateTime.setText(dateTime.substring(6, 8)
+                    + "/" + dateTime.substring(4, 6)
+                    + "/" + dateTime.substring(0, 4));
 //                + " - " + dateTime.substring(8,10)
 //                + ":" + dateTime.substring(10,12));
+        }
 
-        binding.tvAdminPostAndPhoneContact.setText(newsInfo.getAdminPost() + " | " + newsInfo.getPhoneContact());
-        binding.tvRolePersonPost.setText(newsInfo.getRolePersonPost());
+        binding.tvAdminPostAndPhoneContact.setText((newsInfo.getAdminPost() != null ? newsInfo.getAdminPost() : "")
+                + " | "
+                + (newsInfo.getPhoneContact() != null ? newsInfo.getPhoneContact() : ""));
+        binding.tvRolePersonPost.setText(newsInfo.getRolePersonPost() != null ? newsInfo.getRolePersonPost() : "");
 
         binding.btnSeeDetails.setOnClickListener(v -> {
             downloadImageNews(newsInfo.getId());

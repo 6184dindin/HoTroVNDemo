@@ -52,13 +52,14 @@ public class ReliefCampaignJoinedActivity extends AppCompatActivity {
         binding.btnBack.setOnClickListener(v -> finish());
     }
 
-    private void getListHelpJobsByPhone(){
+    private void getListHelpJobsByPhone() {
         GetListHelpJobsByPhoneRequest request = new GetListHelpJobsByPhoneRequest();
         request.setFieldsId(field);
         request.setPhoneNumber(phoneNumber);
         request.setSecCode(SecCodeConstant.SCGetListHelpJobsByPhone);
 
-        TypeToken<GetListHelpJobsByPhoneRequest> token = new TypeToken<GetListHelpJobsByPhoneRequest>(){};
+        TypeToken<GetListHelpJobsByPhoneRequest> token = new TypeToken<GetListHelpJobsByPhoneRequest>() {
+        };
         GenericBody<GetListHelpJobsByPhoneRequest> requestGenericBody = new GenericBody<>(request, token);
         APIService service = APIClient.getClient(this, URLConstant.URLBaseNews).create(APIService.class);
         service.postToServerAPI(URLConstant.URLGetListHelpJobsByPhone, requestGenericBody)
@@ -73,7 +74,8 @@ public class ReliefCampaignJoinedActivity extends AppCompatActivity {
                     @Override
                     public void onNext(@NonNull JsonElement jsonElement) {
                         GsonBuilder gson = new GsonBuilder();
-                        Type collectionType = new TypeToken<ResponseBase<List<News>>>(){}.getType();
+                        Type collectionType = new TypeToken<ResponseBase<List<News>>>() {
+                        }.getType();
                         ResponseBase<List<News>> data = gson.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.fragmentListReliefCampaignJoined, new ShowListReliefFragment(data.getResultData(), key, field, phoneNumber))

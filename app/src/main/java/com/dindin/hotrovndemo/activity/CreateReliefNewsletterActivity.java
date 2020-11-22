@@ -119,7 +119,6 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 createDataReliefNewsletter();
-
             }
         });
 

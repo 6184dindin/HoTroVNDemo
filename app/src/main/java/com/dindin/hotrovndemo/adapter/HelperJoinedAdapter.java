@@ -61,6 +61,8 @@ public class HelperJoinedAdapter extends RecyclerView.Adapter<HelperJoinedAdapte
             holder.tvDateTime.setText(dateTime.substring(6,8)
                     + "/" + dateTime.substring(4,6)
                     + "/" + dateTime.substring(0,4));
+//                + " - " + dateTime.substring(8,10)
+//                + ":" + dateTime.substring(10,12));
         }
 
         holder.btnSeeDetails.setOnClickListener(new View.OnClickListener() {

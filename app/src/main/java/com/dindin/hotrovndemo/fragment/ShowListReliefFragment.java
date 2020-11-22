@@ -51,7 +51,6 @@ public class ShowListReliefFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         binding.rcShowListRelief.setLayoutManager(layoutManager);
         binding.rcShowListRelief.setAdapter(newsAdapter);
-        newsAdapter.notifyDataSetChanged();
 
         return binding.getRoot();
     }

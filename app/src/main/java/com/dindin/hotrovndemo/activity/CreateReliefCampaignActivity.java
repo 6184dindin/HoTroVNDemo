@@ -14,7 +14,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +32,7 @@ import com.dindin.hotrovndemo.api.param.constant.SecCodeConstant;
 import com.dindin.hotrovndemo.api.param.constant.URLConstant;
 import com.dindin.hotrovndemo.api.param.request.CreateHelpsNewsRequest;
 import com.dindin.hotrovndemo.api.param.request.UploadImageHelperRequest;
+import com.dindin.hotrovndemo.api.param.response.UploadImageHelperResponse;
 import com.dindin.hotrovndemo.databinding.ActivityCreateReliefCampaignBinding;
 import com.dindin.hotrovndemo.databinding.DialogSelectedDayMonthYearBinding;
 import com.dindin.hotrovndemo.utils.GenericBody;
@@ -163,6 +163,7 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
             });
             binding1.btnDone.setOnClickListener(v1 -> {
                 if (Helper.isValidDate(date, month, year)) {
+                    binding.tvDate.setText(date + "/" + month + "/" + year);
                     dialog.dismiss();
                 } else {
                     Toast.makeText(this, "Ngày bạn lựa chọn chưa hợp lệ", Toast.LENGTH_LONG).show();
@@ -216,7 +217,7 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
 
         TypeToken<CreateHelpsNewsRequest> token = new TypeToken<CreateHelpsNewsRequest>() {
         };
-        GenericBody<CreateHelpsNewsRequest> requestGenericBody = new GenericBody<>(request, token);
+        GenericBody<CreateHelpsNewsRequest> requestGenericBody = new GenericBody<CreateHelpsNewsRequest>(request, token);
         APIService service = APIClient.getClient(this, URLConstant.URLBaseNews).create(APIService.class);
         service.postToServerAPI(URLConstant.URLCreateHelpsNews, requestGenericBody)
                 .subscribeOn(Schedulers.io())
@@ -534,8 +535,9 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
             uploadImageHelperRequest.setImage(encodedImage);
             uploadImageHelperRequest.setSecCode(SecCodeConstant.SCUploadImageHelper);
 
-            TypeToken<UploadImageHelperRequest> stringListTypeToken = new TypeToken<UploadImageHelperRequest>(){};
-            GenericBody<UploadImageHelperRequest> request  =  new GenericBody<UploadImageHelperRequest>(uploadImageHelperRequest,stringListTypeToken);
+            TypeToken<UploadImageHelperRequest> stringListTypeToken = new TypeToken<UploadImageHelperRequest>() {
+            };
+            GenericBody<UploadImageHelperRequest> request = new GenericBody<UploadImageHelperRequest>(uploadImageHelperRequest, stringListTypeToken);
 
             APIService service = APIClient.getClient(getApplicationContext(),
                     URLConstant.URLBaseNews).create(APIService.class);
@@ -551,7 +553,8 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
                         @Override
                         public void onNext(@NonNull JsonElement jsonElement) {
                             GsonBuilder gson = new GsonBuilder();
-                            Type collectionType = new TypeToken<ResponseBase<List<UploadImageHelperRequest>>>(){}.getType();
+                            Type collectionType = new TypeToken<ResponseBase<List<UploadImageHelperRequest>>>() {
+                            }.getType();
                             ResponseBase<List<UploadImageHelperRequest>> data = new Gson().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
                         }
 

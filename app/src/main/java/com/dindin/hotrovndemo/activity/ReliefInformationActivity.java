@@ -27,12 +27,12 @@ import com.dindin.hotrovndemo.api.param.request.DownloadImageHelperRequest;
 import com.dindin.hotrovndemo.api.param.request.DownloadImageNewsRequest;
 import com.dindin.hotrovndemo.api.param.request.GetInfoNewsRequest;
 import com.dindin.hotrovndemo.api.param.response.DownloadImageResponse;
-import com.dindin.hotrovndemo.api.param.response.News;
 import com.dindin.hotrovndemo.api.param.response.getinfonewsresponse.GetInfoNewsResponse;
 import com.dindin.hotrovndemo.api.param.response.getinfonewsresponse.Helper;
 import com.dindin.hotrovndemo.api.param.response.getinfonewsresponse.NewsInfo;
 import com.dindin.hotrovndemo.databinding.ActivityReliefInformationBinding;
 import com.dindin.hotrovndemo.databinding.DialogShowInformationReliefCampaignBinding;
+import com.dindin.hotrovndemo.utils.Define;
 import com.dindin.hotrovndemo.utils.GenericBody;
 import com.dindin.hotrovndemo.utils.InfoAddress;
 import com.google.gson.GsonBuilder;
@@ -40,6 +40,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -77,9 +78,9 @@ public class ReliefInformationActivity extends AppCompatActivity {
         field = intent.getIntExtra("field", 0);
         newsId = intent.getIntExtra("newsId", 0);
 
-        provinces = com.dindin.hotrovndemo.utils.Helper.getProvinces(this);
-        cities = com.dindin.hotrovndemo.utils.Helper.getListCity(this);
-        districts = com.dindin.hotrovndemo.utils.Helper.getListDistrict(this);
+        provinces = Define.getProvinces(this);
+        cities = Define.getListCity(this);
+        districts = Define.getListDistrict(this);
 
         dialog = new Dialog(this);
         startAct();
@@ -118,13 +119,17 @@ public class ReliefInformationActivity extends AppCompatActivity {
                     @Override
                     public void onNext(@NonNull JsonElement jsonElement) {
                         GsonBuilder gson = new GsonBuilder();
-                        Type collectionType = new TypeToken<ResponseBase<List<News>>>() {
+                        Type collectionType = new TypeToken<ResponseBase<GetInfoNewsResponse>>() {
                         }.getType();
                         ResponseBase<GetInfoNewsResponse> data = gson.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
                         if (data.getResultCode().equals("001")) {
                             if (data.getResultData() != null) {
-                                setNewsInfo(data.getResultData().getNewsInfo());
-                                setHelperList(data.getResultData().getHelpers());
+                                if (data.getResultData().getNewsInfo() != null) {
+                                    setNewsInfo(data.getResultData().getNewsInfo());
+                                }
+                                if (data.getResultData().getHelpers() != null) {
+                                    setHelperList(data.getResultData().getHelpers());
+                                }
                             }
                         }
                     }
@@ -173,18 +178,14 @@ public class ReliefInformationActivity extends AppCompatActivity {
         binding.tvAddress.setText(districtString + cityString + provinceString);
         binding.tvRequestSupport.setText(newsInfo.getRequestSupport() != null ? newsInfo.getRequestSupport() : "");
 
-        if (newsInfo.getDateCreated() != null) {
-            String dateTime = newsInfo.getDateCreated().toString();
-            binding.tvDateTime.setText(dateTime.substring(6, 8)
-                    + "/" + dateTime.substring(4, 6)
-                    + "/" + dateTime.substring(0, 4));
-//                + " - " + dateTime.substring(8,10)
-//                + ":" + dateTime.substring(10,12));
-        }
+
+        Date date = new Date(newsInfo.getDateCreated());
+        binding.tvDateTime.setText(Define.dfDateTime.format(date));
 
         binding.tvAdminPostAndPhoneContact.setText((newsInfo.getAdminPost() != null ? newsInfo.getAdminPost() : "")
                 + " | "
                 + (newsInfo.getPhoneContact() != null ? newsInfo.getPhoneContact() : ""));
+
         binding.tvRolePersonPost.setText(newsInfo.getRolePersonPost() != null ? newsInfo.getRolePersonPost() : "");
 
         binding.btnSeeDetails.setOnClickListener(v -> {
@@ -228,9 +229,7 @@ public class ReliefInformationActivity extends AppCompatActivity {
                         }.getType();
                         ResponseBase<List<DownloadImageResponse>> data = gSon.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
                         if (data.getResultCode().equals("001")) {
-                            if (data.getResultData() != null) {
-                                showDialogInformation(1, data.getResultData());
-                            }
+                            showDialogInformation(1, data.getResultData());
                         }
                     }
 
@@ -251,13 +250,14 @@ public class ReliefInformationActivity extends AppCompatActivity {
         DownloadImageHelperRequest request = new DownloadImageHelperRequest();
         request.setHelpsId(helpsId);
         request.setType(field);
-        request.setSecCode(SecCodeConstant.SCDownloadImage);
+        request.setSecCode(SecCodeConstant.SCDownloadImageHelper);
 
         TypeToken<DownloadImageHelperRequest> token = new TypeToken<DownloadImageHelperRequest>() {
         };
         GenericBody<DownloadImageHelperRequest> requestGenericBody = new GenericBody<DownloadImageHelperRequest>(request, token);
         APIService service = APIClient.getClient(this, URLConstant.URLBaseImage).create(APIService.class);
-        service.postToServerAPI(URLConstant.URLDownloadImage, requestGenericBody)
+
+        service.postToServerAPI(URLConstant.URLDownloadImageHelper, requestGenericBody)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<JsonElement>() {
@@ -273,9 +273,7 @@ public class ReliefInformationActivity extends AppCompatActivity {
                         }.getType();
                         ResponseBase<List<DownloadImageResponse>> data = gSon.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
                         if (data.getResultCode().equals("001")) {
-                            if (data.getResultData() != null) {
-                                showDialogInformation(2, data.getResultData());
-                            }
+                            showDialogInformation(2, data.getResultData());
                         }
                     }
 
@@ -292,6 +290,7 @@ public class ReliefInformationActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void showDialogInformation(int type, List<DownloadImageResponse> downloadImageResponses) {
         DialogShowInformationReliefCampaignBinding binding1 = DialogShowInformationReliefCampaignBinding.inflate(LayoutInflater.from(this));
         binding1.btnClose.setOnClickListener(v -> {
@@ -303,43 +302,45 @@ public class ReliefInformationActivity extends AppCompatActivity {
         if (type == 2) {
             binding1.tvTitle1.setText(getResources().getString(R.string.information_need_relief));
         }
-        if (downloadImageResponses.size() > 0) {
-            Glide.with(this).load(downloadImageResponses.get(0).getLinkedOutside())
-                    .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
-                    .error(getResources().getDrawable(R.drawable.ic_imagegallery))
-                    .into(binding1.img1);
-            binding1.layoutImage.setOnClickListener(v -> {
-                Intent intent1 = new Intent(ReliefInformationActivity.this, InformationImageActivity.class);
-                for (int i = 0; i < downloadImageResponses.size(); i++) {
-                    intent1.putExtra("img" + i, downloadImageResponses.get(i).getLinkedOutside());
-                }
-                intent1.putExtra("size", downloadImageResponses.size());
-                startActivity(intent1);
-            });
-        }
-        if (downloadImageResponses.size() > 1) {
-            Glide.with(this).load(downloadImageResponses.get(1).getLinkedOutside())
-                    .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
-                    .error(getResources().getDrawable(R.drawable.ic_imagegallery))
-                    .into(binding1.img2);
-        }
-        if (downloadImageResponses.size() > 2) {
-            Glide.with(this).load(downloadImageResponses.get(2).getLinkedOutside())
-                    .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
-                    .error(getResources().getDrawable(R.drawable.ic_imagegallery))
-                    .into(binding1.img3);
-        }
-        if (downloadImageResponses.size() > 3) {
-            Glide.with(this).load(downloadImageResponses.get(3).getLinkedOutside())
-                    .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
-                    .error(getResources().getDrawable(R.drawable.ic_imagegallery))
-                    .into(binding1.img4);
-        }
-        if (downloadImageResponses.size() > 4) {
-            Glide.with(this).load(downloadImageResponses.get(4).getLinkedOutside())
-                    .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
-                    .error(getResources().getDrawable(R.drawable.ic_imagegallery))
-                    .into(binding1.img5);
+        if (downloadImageResponses != null) {
+            if (downloadImageResponses.size() > 0) {
+                Glide.with(this).load(downloadImageResponses.get(0).getLinkedOutside())
+                        .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
+                        .error(getResources().getDrawable(R.drawable.ic_imagegallery))
+                        .into(binding1.img1);
+                binding1.layoutImage.setOnClickListener(v -> {
+                    Intent intent1 = new Intent(ReliefInformationActivity.this, InformationImageActivity.class);
+                    for (int i = 0; i < downloadImageResponses.size(); i++) {
+                        intent1.putExtra("img" + i, downloadImageResponses.get(i).getLinkedOutside());
+                    }
+                    intent1.putExtra("size", downloadImageResponses.size());
+                    startActivity(intent1);
+                });
+            }
+            if (downloadImageResponses.size() > 1) {
+                Glide.with(this).load(downloadImageResponses.get(1).getLinkedOutside())
+                        .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
+                        .error(getResources().getDrawable(R.drawable.ic_imagegallery))
+                        .into(binding1.img2);
+            }
+            if (downloadImageResponses.size() > 2) {
+                Glide.with(this).load(downloadImageResponses.get(2).getLinkedOutside())
+                        .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
+                        .error(getResources().getDrawable(R.drawable.ic_imagegallery))
+                        .into(binding1.img3);
+            }
+            if (downloadImageResponses.size() > 3) {
+                Glide.with(this).load(downloadImageResponses.get(3).getLinkedOutside())
+                        .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
+                        .error(getResources().getDrawable(R.drawable.ic_imagegallery))
+                        .into(binding1.img4);
+            }
+            if (downloadImageResponses.size() > 4) {
+                Glide.with(this).load(downloadImageResponses.get(4).getLinkedOutside())
+                        .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
+                        .error(getResources().getDrawable(R.drawable.ic_imagegallery))
+                        .into(binding1.img5);
+            }
         }
         dialog.setContentView(binding1.getRoot());
         Objects.requireNonNull(dialog.getWindow()).setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);

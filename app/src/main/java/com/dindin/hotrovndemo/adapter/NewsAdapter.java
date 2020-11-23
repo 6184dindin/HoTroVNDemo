@@ -14,9 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.activity.ReliefInformationActivity;
 import com.dindin.hotrovndemo.api.param.response.News;
-import com.dindin.hotrovndemo.utils.Helper;
+import com.dindin.hotrovndemo.utils.Define;
 import com.dindin.hotrovndemo.utils.InfoAddress;
 
+import java.util.Date;
 import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
@@ -36,9 +37,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         this.key = key;
         this.phoneNumber = phoneNumber;
         this.field = field;
-        this.provinces = Helper.getProvinces(context);
-        this.cities = Helper.getListCity(context);
-        this.districts = Helper.getListDistrict(context);
+        this.provinces = Define.getProvinces(context);
+        this.cities = Define.getListCity(context);
+        this.districts = Define.getListDistrict(context);
     }
 
     @NonNull
@@ -83,14 +84,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         holder.tvAddress.setText(districtString + cityString + provinceString);
         holder.tvRequestSupport.setText(news.getRequestSupport() != null ? news.getRequestSupport() : "");
         holder.tvCountHelperJoined.setText("(" + news.getCountHelperJoined() + ")");
-        if (news.getDateCreated() != null) {
-            String dateTime = news.getDateCreated().toString();
-            holder.tvDateTime.setText(dateTime.substring(6, 8)
-                    + "/" + dateTime.substring(4, 6)
-                    + "/" + dateTime.substring(0, 4));
-//                + " - " + dateTime.substring(8,10)
-//                + ":" + dateTime.substring(10,12));
-        }
+
+        Date date = new Date(news.getDateCreated());
+        holder.tvDateTime.setText(Define.dfDateTime.format(date));
 
         holder.btnSeeDetails.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
@@ -24,7 +25,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observer;
@@ -35,11 +35,11 @@ import io.reactivex.schedulers.Schedulers;
 
 public class ReliefBulletinActivity extends AppCompatActivity {
     ActivityReliefBulletinBinding binding;
+    private static final int CREATE_NEWS_REQUEST_CODE = 101;
     Intent intent;
     int key;
     String phoneNumber;
     int field;
-    List<News> news = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +77,7 @@ public class ReliefBulletinActivity extends AppCompatActivity {
                 intent.putExtra("key", key);
                 intent.putExtra("phone", phoneNumber);
                 intent.putExtra("field", field);
-                startActivity(intent);
+                startActivityForResult(intent, CREATE_NEWS_REQUEST_CODE);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
@@ -87,7 +87,7 @@ public class ReliefBulletinActivity extends AppCompatActivity {
     private void startActHelperJoined() {
         binding.layoutAddNewsletter.setVisibility(View.GONE);
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragmentMapAndListRelief, new GoogleMapFragment(news))
+                .replace(R.id.fragmentMapAndListRelief, new GoogleMapFragment(key, phoneNumber, field))
                 .commit();
         binding.btnShowListReliefJoined.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,5 +146,19 @@ public class ReliefBulletinActivity extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case CREATE_NEWS_REQUEST_CODE:
+                if(resultCode == RESULT_OK) {
+                    getListSupportNewsByPhone();
+                }
+                break;
+            default:
+                break;
+        }
     }
 }

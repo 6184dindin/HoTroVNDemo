@@ -1,5 +1,6 @@
 package com.dindin.hotrovndemo.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +20,7 @@ public class InformationImageActivity extends AppCompatActivity {
     List<String> stringsURL;
     Intent intent;
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -37,7 +37,7 @@ import com.dindin.hotrovndemo.api.param.response.UploadImageHelperResponse;
 import com.dindin.hotrovndemo.databinding.ActivityCreateReliefCampaignBinding;
 import com.dindin.hotrovndemo.databinding.DialogSelectedDayMonthYearBinding;
 import com.dindin.hotrovndemo.utils.GenericBody;
-import com.dindin.hotrovndemo.utils.Helper;
+import com.dindin.hotrovndemo.utils.Define;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -54,6 +54,7 @@ import java.lang.reflect.Type;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -154,7 +155,7 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
                 year = newVal;
             });
             binding1.btnDone.setOnClickListener(v1 -> {
-                if (Helper.isValidDate(date, month, year)) {
+                if (Define.isValidDate(date, month, year)) {
                     binding.tvDate.setText(date + "/" + month + "/" + year);
                     dialog.dismiss();
                 } else {
@@ -197,14 +198,13 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
         request.setRolePersonHelper(binding.edtRolePersonHelper.getText().toString().trim());
         request.setOrganization(binding.edtOrganization.getText().toString().trim());
         Calendar calendar = Calendar.getInstance();
-        int dateCreated = calendar.get(Calendar.YEAR) * 10000
-                + calendar.get(Calendar.MONTH) * 100
-                + calendar.get(Calendar.DAY_OF_MONTH);
         int dateTime = year * 10000 + month * 100 + date;
-        request.setTimeBegin(Math.min(dateCreated, dateTime));
-        request.setTimeEnd(Math.max(dateCreated, dateTime));
+        Date date  = calendar.getTime();
+        String stringDate = Define.dfDate.format(date);
+        request.setTimeBegin(Integer.parseInt(stringDate));
+        request.setTimeEnd(Integer.parseInt(stringDate));
         request.setSupportValue(binding.edtSupportValue.getText().toString().trim());
-        request.setDateCreated(BigInteger.valueOf(dateCreated));
+        request.setDateCreated(BigInteger.valueOf(calendar.getTimeInMillis()));
         request.setSecCode(SecCodeConstant.SCCreateHelpsNews);
 
         TypeToken<CreateHelpsNewsRequest> token = new TypeToken<CreateHelpsNewsRequest>() {
@@ -268,9 +268,9 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
             GenericBody<UploadImageHelperRequest> request = new GenericBody<UploadImageHelperRequest>(uploadImageHelperRequest, stringListTypeToken);
 
             APIService service = APIClient.getClient(getApplicationContext(),
-                    URLConstant.URLBaseNews).create(APIService.class);
+                    URLConstant.URLBaseImage).create(APIService.class);
 
-            service.postToServerAPI(URLConstant.URLBaseImage, request).subscribeOn(Schedulers.io())
+            service.postToServerAPI(URLConstant.URLUploadImageHelper, request).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Observer<JsonElement>() {
                         @Override

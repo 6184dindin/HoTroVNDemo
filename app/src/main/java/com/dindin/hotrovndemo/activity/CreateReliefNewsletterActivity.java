@@ -39,7 +39,7 @@ import com.dindin.hotrovndemo.databinding.ActivityCreateReliefNewsletterBinding;
 import com.dindin.hotrovndemo.utils.City;
 import com.dindin.hotrovndemo.utils.District;
 import com.dindin.hotrovndemo.utils.GenericBody;
-import com.dindin.hotrovndemo.utils.Helper;
+import com.dindin.hotrovndemo.utils.Define;
 import com.dindin.hotrovndemo.utils.InfoAddress;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -111,9 +111,9 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
         dialog = new Dialog(this);
         bitmapList = new ArrayList<>();
 
-        provinces = Helper.getProvinces(this);
-        cities = Helper.getCities(this);
-        districts = Helper.getDistricts(this);
+        provinces = Define.getProvinces(this);
+        cities = Define.getCities(this);
+        districts = Define.getDistricts(this);
 
         binding.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,7 +170,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
             binding.layoutSelectedPicker.setVisibility(View.VISIBLE);
             infoAddress = provinces.get(0);
             binding.tvSelected.setText(getResources().getString(R.string.selected_province));
-            String[] strings = Helper.getNameInfoAddress(provinces);
+            String[] strings = Define.getNameInfoAddress(provinces);
             binding.numberPicker.setMinValue(1);
             binding.numberPicker.setMaxValue(strings.length);
             binding.numberPicker.setDisplayedValues(strings);
@@ -203,7 +203,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
             binding.layoutSelectedPicker.setVisibility(View.VISIBLE);
             infoAddress = infoAddresses.get(0);
             binding.tvSelected.setText(getResources().getString(R.string.selected_city));
-            String[] strings = Helper.getNameInfoAddress(infoAddresses);
+            String[] strings = Define.getNameInfoAddress(infoAddresses);
             binding.numberPicker.setMinValue(1);
             binding.numberPicker.setMaxValue(strings.length);
             binding.numberPicker.setDisplayedValues(strings);
@@ -234,7 +234,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
             binding.layoutSelectedPicker.setVisibility(View.VISIBLE);
             infoAddress = infoAddresses.get(0);
             binding.tvSelected.setText(getResources().getString(R.string.selected_district));
-            String[] strings = Helper.getNameInfoAddress(infoAddresses);
+            String[] strings = Define.getNameInfoAddress(infoAddresses);
             binding.numberPicker.setMinValue(1);
             binding.numberPicker.setMaxValue(strings.length);
             binding.numberPicker.setDisplayedValues(strings);
@@ -270,10 +270,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
         request.setRequestSupport(binding.edtRequestSupport.getText().toString().trim());
         request.setDescriptions(binding.edtDescriptions.getText().toString().trim());
         Calendar calendar = Calendar.getInstance();
-        Integer dateCreated = calendar.get(Calendar.YEAR) * 10000
-                + calendar.get(Calendar.MONTH) * 100
-                + calendar.get(Calendar.DAY_OF_MONTH);
-        request.setDateCreated(dateCreated);
+        request.setDateCreated((int) calendar.getTimeInMillis());
         request.setSecCode(SecCodeConstant.SCCreateNews);
 
         TypeToken<CreateNewsRequest> token = new TypeToken<CreateNewsRequest>() {};
@@ -315,10 +312,8 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
     }
 
     private void uploadImageNews(Integer newsId) {
-        UploadImageNewsRequest request = new UploadImageNewsRequest();
-        TypeToken<UploadImageNewsRequest> token = new TypeToken<UploadImageNewsRequest>() {};
-        APIService service = APIClient.getClient(this, URLConstant.URLBaseImage).create(APIService.class);
         for (int i = 0; i < bitmapList.size(); i++) {
+            UploadImageNewsRequest request = new UploadImageNewsRequest();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmapList.get(i).compress(Bitmap.CompressFormat.JPEG, 100, baos);
             byte[] b = baos.toByteArray();
@@ -328,7 +323,10 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
             request.setType(field);
             request.setOrderNum(i);
             request.setSecCode(SecCodeConstant.SCUploadImage);
-            GenericBody<UploadImageNewsRequest> requestGenericBody = new GenericBody<>(request, token);
+
+            TypeToken<UploadImageNewsRequest> token = new TypeToken<UploadImageNewsRequest>() {};
+            APIService service = APIClient.getClient(this, URLConstant.URLBaseImage).create(APIService.class);
+            GenericBody<UploadImageNewsRequest> requestGenericBody = new GenericBody<UploadImageNewsRequest>(request, token);
             service.postToServerAPI(URLConstant.URLUploadImage, requestGenericBody)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -364,6 +362,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.dialog_notify_create_relief_newsletter_successfull);
         dialog.findViewById(R.id.btnDone).setOnClickListener(v -> {
             dialog.dismiss();
+            setResult(RESULT_OK);
             finish();
         });
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

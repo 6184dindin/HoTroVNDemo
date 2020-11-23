@@ -12,7 +12,7 @@ import com.dindin.hotrovndemo.R;
 import com.dindin.hotrovndemo.adapter.FieldJoinedAdapter;
 import com.dindin.hotrovndemo.databinding.ActivitySelectedTypeCampaignJoinedBinding;
 import com.dindin.hotrovndemo.utils.Field;
-import com.dindin.hotrovndemo.utils.Helper;
+import com.dindin.hotrovndemo.utils.Define;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class SelectedTypeCampaignJoinedActivity extends AppCompatActivity {
         binding.btnBack.setOnClickListener((view) -> {
             finish();
         });
-        fields = Helper.getFields(this);
+        fields = Define.getFields(this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         binding.rcFiled.setLayoutManager(layoutManager);
         adapter = new FieldJoinedAdapter(fields);

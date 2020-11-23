@@ -77,7 +77,7 @@ public class GetYourLocationActivity extends AppCompatActivity {
                             LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
                             latitude = location.getLatitude();
                             longitude = location.getLongitude();
-                            Drawable drawable = getResources().getDrawable(R.drawable.ic_pin);
+                            Drawable drawable = getResources().getDrawable(R.drawable.ic_pin_green);
                             Marker marker = map.addMarker(new MarkerOptions().position(latLng)
                                     .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromDrawable(drawable))));
                             marker.setTag(1);

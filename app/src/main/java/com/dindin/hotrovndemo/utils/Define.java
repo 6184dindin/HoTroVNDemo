@@ -8,11 +8,17 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class Helper {
+public class Define {
+
+    public static DateFormat dfDateTime = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
+    public static DateFormat dfDate = new SimpleDateFormat("yyyyMMdd");
+
     public static String readStringFromAsset(String fileName, Context context) {
         String json = null;
         try {

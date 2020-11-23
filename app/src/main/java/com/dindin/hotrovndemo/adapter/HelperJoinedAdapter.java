@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dindin.hotrovndemo.api.param.response.getinfonewsresponse.Helper;
 import com.dindin.hotrovndemo.R;
+import com.dindin.hotrovndemo.utils.Define;
 
+import java.util.Date;
 import java.util.List;
 
 public class HelperJoinedAdapter extends RecyclerView.Adapter<HelperJoinedAdapter.ViewHolder> {
@@ -49,14 +51,8 @@ public class HelperJoinedAdapter extends RecyclerView.Adapter<HelperJoinedAdapte
                 + " | "
                 + (helper.getPhoneContact() != null ? helper.getPhoneContact() : ""));
 
-        if (helper.getDateCreated() != null) {
-            String dateTime = helper.getDateCreated().toString();
-            holder.tvDateTime.setText(dateTime.substring(6, 8)
-                    + "/" + dateTime.substring(4, 6)
-                    + "/" + dateTime.substring(0, 4));
-//                + " - " + dateTime.substring(8,10)
-//                + ":" + dateTime.substring(10,12));
-        }
+        Date date = new Date((long) helper.getDateCreated());
+        holder.tvDateTime.setText(Define.dfDateTime.format(date));
 
         holder.btnSeeDetails.setOnClickListener(new View.OnClickListener() {
             @Override

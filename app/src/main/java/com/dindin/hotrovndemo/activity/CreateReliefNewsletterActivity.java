@@ -16,6 +16,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Base64;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -32,6 +33,8 @@ import com.dindin.hotrovndemo.api.param.base.ResponseBase;
 import com.dindin.hotrovndemo.api.param.constant.SecCodeConstant;
 import com.dindin.hotrovndemo.api.param.constant.URLConstant;
 import com.dindin.hotrovndemo.api.param.request.CreateNewsRequest;
+import com.dindin.hotrovndemo.api.param.request.UploadImageNewsRequest;
+import com.dindin.hotrovndemo.api.param.response.UploadImageNewsResponse;
 import com.dindin.hotrovndemo.databinding.ActivityCreateReliefNewsletterBinding;
 import com.dindin.hotrovndemo.utils.City;
 import com.dindin.hotrovndemo.utils.District;
@@ -48,6 +51,7 @@ import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -115,16 +119,6 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 createDataReliefNewsletter();
-
-                dialog.setContentView(R.layout.dialog_notify_create_relief_newsletter_successfull);
-                dialog.findViewById(R.id.btnDone).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
             }
         });
 
@@ -257,7 +251,6 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
         });
     }
 
-
     private void createDataReliefNewsletter() {
         CreateNewsRequest request = new CreateNewsRequest();
         request.setPhoneCreated(phoneNumber);
@@ -283,8 +276,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
         request.setDateCreated(dateCreated);
         request.setSecCode(SecCodeConstant.SCCreateNews);
 
-        TypeToken<CreateNewsRequest> token = new TypeToken<CreateNewsRequest>() {
-        };
+        TypeToken<CreateNewsRequest> token = new TypeToken<CreateNewsRequest>() {};
         GenericBody<CreateNewsRequest> requestGenericBody = new GenericBody<>(request, token);
         APIService service = APIClient.getClient(this, URLConstant.URLBaseNews).create(APIService.class);
         service.postToServerAPI(URLConstant.URLCreateNews, requestGenericBody)
@@ -302,7 +294,11 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
                         Type collectionType = new TypeToken<ResponseBase<Integer>>() {
                         }.getType();
                         ResponseBase<Integer> data = new Gson().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
-                        Toast.makeText(CreateReliefNewsletterActivity.this, String.valueOf(data.getResultData()), Toast.LENGTH_SHORT).show();
+                        if (data.getResultCode().equals("001")) {
+                            Integer newsId = data.getResultData();
+                            uploadImageNews(newsId);
+                            showDialogCreateSuccessful();
+                        }
                     }
 
                     @Override
@@ -315,6 +311,63 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
 
                     }
                 });
+
+    }
+
+    private void uploadImageNews(Integer newsId) {
+        UploadImageNewsRequest request = new UploadImageNewsRequest();
+        TypeToken<UploadImageNewsRequest> token = new TypeToken<UploadImageNewsRequest>() {};
+        APIService service = APIClient.getClient(this, URLConstant.URLBaseImage).create(APIService.class);
+        for (int i = 0; i < bitmapList.size(); i++) {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmapList.get(i).compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] b = baos.toByteArray();
+            String bitmapBase64String = Base64.encodeToString(b, Base64.DEFAULT);
+            request.setNewsId(newsId);
+            request.setImage(bitmapBase64String);
+            request.setType(field);
+            request.setOrderNum(i);
+            request.setSecCode(SecCodeConstant.SCUploadImage);
+            GenericBody<UploadImageNewsRequest> requestGenericBody = new GenericBody<>(request, token);
+            service.postToServerAPI(URLConstant.URLUploadImage, requestGenericBody)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<JsonElement>() {
+                        @Override
+                        public void onSubscribe(@NonNull Disposable d) {
+
+                        }
+
+                        @Override
+                        public void onNext(@NonNull JsonElement jsonElement) {
+                            GsonBuilder gson = new GsonBuilder();
+                            Type collectionType = new TypeToken<ResponseBase<UploadImageNewsResponse>>() {
+                            }.getType();
+                            ResponseBase<UploadImageNewsResponse> data = gson.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
+
+                        }
+
+                        @Override
+                        public void onError(@NonNull Throwable e) {
+
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
+        }
+    }
+
+    private void showDialogCreateSuccessful() {
+        dialog.setContentView(R.layout.dialog_notify_create_relief_newsletter_successfull);
+        dialog.findViewById(R.id.btnDone).setOnClickListener(v -> {
+            dialog.dismiss();
+            finish();
+        });
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
     }
 
     private void checkPermission() {

@@ -31,7 +31,7 @@ public class NewsInfo {
     private Double lng;
     @SerializedName("DateNotif")
     @Expose
-    private Integer dateNotif;
+    private Integer dateNotify;
     @SerializedName("AdminPost")
     @Expose
     private String adminPost;
@@ -115,12 +115,12 @@ public class NewsInfo {
         this.lng = lng;
     }
 
-    public Integer getDateNotif() {
-        return dateNotif;
+    public Integer getDateNotify() {
+        return dateNotify;
     }
 
-    public void setDateNotif(Integer dateNotif) {
-        this.dateNotif = dateNotif;
+    public void setDateNotify(Integer dateNotify) {
+        this.dateNotify = dateNotify;
     }
 
     public String getAdminPost() {

@@ -3,14 +3,14 @@ package com.dindin.hotrovndemo.api.param.response;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class DownloadImageNewsResponse {
+public class DownloadImageResponse {
 
     @SerializedName("Id")
     @Expose
     private Integer id;
     @SerializedName("LinkedOutsite")
     @Expose
-    private String linkedOutsite;
+    private String linkedOutside;
 
     public Integer getId() {
         return id;
@@ -20,11 +20,11 @@ public class DownloadImageNewsResponse {
         this.id = id;
     }
 
-    public String getLinkedOutsite() {
-        return linkedOutsite;
+    public String getLinkedOutside() {
+        return linkedOutside;
     }
 
-    public void setLinkedOutsite(String linkedOutsite) {
-        this.linkedOutsite = linkedOutsite;
+    public void setLinkedOutside(String linkedOutside) {
+        this.linkedOutside = linkedOutside;
     }
 }

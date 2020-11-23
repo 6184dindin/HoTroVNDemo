@@ -1,6 +1,7 @@
 package com.dindin.hotrovndemo.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.ClipData;
@@ -84,6 +85,7 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
 
     private boolean flagPermission = false;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,16 +109,6 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 createDataReliefCampaign();
-
-                dialog.setContentView(R.layout.dialog_notify_create_relief_campaign_successfull);
-                dialog.findViewById(R.id.btnDone).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
             }
         });
 
@@ -148,12 +140,12 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
             ArrayList<String> yearList = new ArrayList<>();
             String[] stringsYear;
             int thisYear = Calendar.getInstance().get(Calendar.YEAR);
-            for (int i = 1900; i <= 3000; i++) {
+            for (int i = 2020; i <= 2050; i++) {
                 yearList.add(Integer.toString(i));
             }
             stringsYear = yearList.toArray(new String[0]);
-            binding1.numberPickerYear.setMaxValue(2500);
-            binding1.numberPickerYear.setMinValue(1900);
+            binding1.numberPickerYear.setMaxValue(2050);
+            binding1.numberPickerYear.setMinValue(2020);
             binding1.numberPickerYear.setValue(thisYear);
             year = thisYear;
             binding1.numberPickerYear.setDisplayedValues(stringsYear);
@@ -234,7 +226,13 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
                         Type collectionType = new TypeToken<ResponseBase<Integer>>() {
                         }.getType();
                         ResponseBase<Integer> data = new Gson().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
-
+                        if (data.getResultCode().equals("001")) {
+                            if (data.getResultData() != null) {
+                                Integer helpsId = data.getResultData();
+                                uploadImgHelper(helpsId);
+                                showDialogCreateSuccessful();
+                            }
+                        }
 
                     }
 
@@ -248,6 +246,67 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    private void uploadImgHelper(Integer helpId) {
+        UploadImageHelperRequest uploadImageHelperRequest = new UploadImageHelperRequest();
+
+        for (int i = 0; i < bitmapList.size(); i++) {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmapList.get(i).compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] b = baos.toByteArray();
+            String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
+
+            uploadImageHelperRequest.setHelpId(helpId);
+            uploadImageHelperRequest.setOrderNum(i);
+            uploadImageHelperRequest.setType(field);
+            uploadImageHelperRequest.setImage(encodedImage);
+            uploadImageHelperRequest.setSecCode(SecCodeConstant.SCUploadImageHelper);
+
+            TypeToken<UploadImageHelperRequest> stringListTypeToken = new TypeToken<UploadImageHelperRequest>() {
+            };
+            GenericBody<UploadImageHelperRequest> request = new GenericBody<UploadImageHelperRequest>(uploadImageHelperRequest, stringListTypeToken);
+
+            APIService service = APIClient.getClient(getApplicationContext(),
+                    URLConstant.URLBaseNews).create(APIService.class);
+
+            service.postToServerAPI(URLConstant.URLBaseImage, request).subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<JsonElement>() {
+                        @Override
+                        public void onSubscribe(@NonNull Disposable d) {
+
+                        }
+
+                        @Override
+                        public void onNext(@NonNull JsonElement jsonElement) {
+                            GsonBuilder gSon = new GsonBuilder();
+                            Type collectionType = new TypeToken<ResponseBase<UploadImageHelperResponse>>() {
+                            }.getType();
+                            ResponseBase<UploadImageHelperResponse> data = new Gson().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
+                        }
+
+                        @Override
+                        public void onError(@NonNull Throwable e) {
+
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
+        }
+    }
+
+    private void showDialogCreateSuccessful() {
+        dialog.setContentView(R.layout.dialog_notify_create_relief_campaign_successfull);
+        dialog.findViewById(R.id.btnDone).setOnClickListener(v -> {
+            dialog.dismiss();
+            finish();
+        });
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
     }
 
     private void checkPermission() {

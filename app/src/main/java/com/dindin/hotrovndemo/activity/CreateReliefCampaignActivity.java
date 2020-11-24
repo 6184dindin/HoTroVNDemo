@@ -200,8 +200,8 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
         int dateTime = year * 10000 + month * 100 + date;
         Date date  = calendar.getTime();
         String stringDate = Define.dfDate.format(date);
-        request.setTimeBegin(Integer.parseInt(stringDate));
-        request.setTimeEnd(Integer.parseInt(stringDate));
+        request.setTimeBegin(Math.min(Integer.parseInt(stringDate), dateTime));
+        request.setTimeEnd(Math.max(Integer.parseInt(stringDate), dateTime));
         request.setSupportValue(binding.edtSupportValue.getText().toString().trim());
         request.setDateCreated(BigInteger.valueOf(calendar.getTimeInMillis()));
         request.setSecCode(SecCodeConstant.SCCreateHelpsNews);
@@ -224,12 +224,11 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
                         GsonBuilder gson = new GsonBuilder();
                         Type collectionType = new TypeToken<ResponseBase<Integer>>() {
                         }.getType();
-                        ResponseBase<Integer> data = new Gson().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
+                        ResponseBase<Integer> data = gson.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
                         if (data.getResultCode().equals("001")) {
                             if (data.getResultData() != null) {
                                 Integer helpsId = data.getResultData();
                                 uploadImgHelper(helpsId);
-                                showDialogCreateSuccessful();
                             }
                         }
 
@@ -296,12 +295,14 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
                         }
                     });
         }
+        showDialogCreateSuccessful();
     }
 
     private void showDialogCreateSuccessful() {
         dialog.setContentView(R.layout.dialog_notify_create_relief_campaign_successfull);
         dialog.findViewById(R.id.btnDone).setOnClickListener(v -> {
             dialog.dismiss();
+            setResult(RESULT_OK);
             finish();
         });
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

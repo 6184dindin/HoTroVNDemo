@@ -60,7 +60,7 @@ public class ReliefCampaignJoinedActivity extends AppCompatActivity {
 
         TypeToken<GetListHelpJobsByPhoneRequest> token = new TypeToken<GetListHelpJobsByPhoneRequest>() {
         };
-        GenericBody<GetListHelpJobsByPhoneRequest> requestGenericBody = new GenericBody<>(request, token);
+        GenericBody<GetListHelpJobsByPhoneRequest> requestGenericBody = new GenericBody<GetListHelpJobsByPhoneRequest>(request, token);
         APIService service = APIClient.getClient(this, URLConstant.URLBaseNews).create(APIService.class);
         service.postToServerAPI(URLConstant.URLGetListHelpJobsByPhone, requestGenericBody)
                 .subscribeOn(Schedulers.io())

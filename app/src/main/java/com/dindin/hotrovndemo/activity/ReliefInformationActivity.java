@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -54,6 +55,7 @@ import static android.graphics.Color.TRANSPARENT;
 
 public class ReliefInformationActivity extends AppCompatActivity {
     ActivityReliefInformationBinding binding;
+    private static final int CREATE_HELP_NEWS_REQUEST_CODE = 101;
 
     HelperJoinedAdapter helperJoinedAdapter;
     Dialog dialog;
@@ -87,14 +89,6 @@ public class ReliefInformationActivity extends AppCompatActivity {
         getInfoNews();
 
         binding.btnBack.setOnClickListener(v -> finish());
-        binding.btnCreateReliefCampaign.setOnClickListener(v -> {
-            Intent intent = new Intent(ReliefInformationActivity.this, CreateReliefCampaignActivity.class);
-            intent.putExtra("key", key);
-            intent.putExtra("phone", phoneNumber);
-            intent.putExtra("field", field);
-            intent.putExtra("newsId", newsId);
-            startActivity(intent);
-        });
     }
 
     private void getInfoNews() {
@@ -190,6 +184,14 @@ public class ReliefInformationActivity extends AppCompatActivity {
 
         binding.btnSeeDetails.setOnClickListener(v -> {
             downloadImageNews(newsInfo.getId());
+        });
+        binding.btnCreateReliefCampaign.setOnClickListener(v -> {
+            Intent intent = new Intent(ReliefInformationActivity.this, CreateReliefCampaignActivity.class);
+            intent.putExtra("key", key);
+            intent.putExtra("phone", phoneNumber);
+            intent.putExtra("field", field);
+            intent.putExtra("newsId", newsInfo.getId());
+            startActivityForResult(intent, CREATE_HELP_NEWS_REQUEST_CODE);
         });
     }
 
@@ -357,4 +359,17 @@ public class ReliefInformationActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case CREATE_HELP_NEWS_REQUEST_CODE:
+                if(resultCode == RESULT_OK) {
+                    getInfoNews();
+                }
+                break;
+            default:
+                break;
+        }
+    }
 }

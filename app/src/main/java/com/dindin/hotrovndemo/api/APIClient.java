@@ -16,17 +16,18 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class APIClient {
-    private static Retrofit retrofit = null;
     private static final Gson gson = new GsonBuilder()
             .setLenient()
             .registerTypeAdapterFactory(GenericBodyTypeAdapterFactory.getGenericBodyTypeAdapterFactory())
             .create();
     public static Retrofit getClient(Context context, String url) {
+        Retrofit retrofit = null;
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
         try {
             URL urlMain = new URL(url);
+
             if (retrofit == null) {
                 retrofit = new Retrofit.Builder()
                         .addConverterFactory(GsonConverterFactory.create(gson))

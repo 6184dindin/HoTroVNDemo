@@ -37,9 +37,9 @@ import com.dindin.hotrovndemo.api.param.request.UploadImageNewsRequest;
 import com.dindin.hotrovndemo.api.param.response.UploadImageNewsResponse;
 import com.dindin.hotrovndemo.databinding.ActivityCreateReliefNewsletterBinding;
 import com.dindin.hotrovndemo.utils.City;
+import com.dindin.hotrovndemo.utils.Define;
 import com.dindin.hotrovndemo.utils.District;
 import com.dindin.hotrovndemo.utils.GenericBody;
-import com.dindin.hotrovndemo.utils.Define;
 import com.dindin.hotrovndemo.utils.InfoAddress;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -292,9 +292,10 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
                         }.getType();
                         ResponseBase<Integer> data = new Gson().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
                         if (data.getResultCode().equals("001")) {
-                            Integer newsId = data.getResultData();
-                            uploadImageNews(newsId);
-                            showDialogCreateSuccessful();
+                            if(data.getResultData() != null) {
+                                Integer newsId = data.getResultData();
+                                uploadImageNews(newsId);
+                            }
                         }
                     }
 
@@ -341,7 +342,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
                             GsonBuilder gson = new GsonBuilder();
                             Type collectionType = new TypeToken<ResponseBase<UploadImageNewsResponse>>() {
                             }.getType();
-                            ResponseBase<UploadImageNewsResponse> data = gson.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
+                            ResponseBase<UploadImageNewsResponse> data = new Gson().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
 
                         }
 
@@ -356,6 +357,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
                         }
                     });
         }
+        showDialogCreateSuccessful();
     }
 
     private void showDialogCreateSuccessful() {

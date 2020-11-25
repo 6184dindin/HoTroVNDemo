@@ -85,7 +85,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         holder.tvRequestSupport.setText(news.getRequestSupport() != null ? news.getRequestSupport() : "");
         holder.tvCountHelperJoined.setText("(" + news.getCountHelperJoined() + ")");
 
-        Date date = new Date(news.getDateCreated());
+        Date date = new Date(news.getDateCreated().longValue());
         holder.tvDateTime.setText(Define.dfDateTime.format(date));
 
         holder.btnSeeDetails.setOnClickListener(new View.OnClickListener() {

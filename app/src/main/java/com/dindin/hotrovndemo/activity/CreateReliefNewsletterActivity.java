@@ -41,7 +41,6 @@ import com.dindin.hotrovndemo.utils.Define;
 import com.dindin.hotrovndemo.utils.District;
 import com.dindin.hotrovndemo.utils.GenericBody;
 import com.dindin.hotrovndemo.utils.InfoAddress;
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
@@ -54,6 +53,7 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Type;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -270,7 +270,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
         request.setRequestSupport(binding.edtRequestSupport.getText().toString().trim());
         request.setDescriptions(binding.edtDescriptions.getText().toString().trim());
         Calendar calendar = Calendar.getInstance();
-        request.setDateCreated((int) calendar.getTimeInMillis());
+        request.setDateCreated(BigInteger.valueOf(calendar.getTimeInMillis()));
         request.setSecCode(SecCodeConstant.SCCreateNews);
 
         TypeToken<CreateNewsRequest> token = new TypeToken<CreateNewsRequest>() {};
@@ -290,11 +290,11 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
                         GsonBuilder gson = new GsonBuilder();
                         Type collectionType = new TypeToken<ResponseBase<Integer>>() {
                         }.getType();
-                        ResponseBase<Integer> data = new Gson().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
+                        ResponseBase<Integer> data = gson.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
                         if (data.getResultCode().equals("001")) {
                             if(data.getResultData() != null) {
                                 Integer newsId = data.getResultData();
-                                uploadImageNews(newsId);
+                                uploadListImageNews(newsId);
                             }
                         }
                     }
@@ -312,7 +312,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
 
     }
 
-    private void uploadImageNews(Integer newsId) {
+    private void uploadListImageNews(Integer newsId) {
         for (int i = 0; i < bitmapList.size(); i++) {
             UploadImageNewsRequest request = new UploadImageNewsRequest();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -324,40 +324,43 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
             request.setType(field);
             request.setOrderNum(i);
             request.setSecCode(SecCodeConstant.SCUploadImage);
-
-            TypeToken<UploadImageNewsRequest> token = new TypeToken<UploadImageNewsRequest>() {};
-            APIService service = APIClient.getClient(this, URLConstant.URLBaseImage).create(APIService.class);
-            GenericBody<UploadImageNewsRequest> requestGenericBody = new GenericBody<UploadImageNewsRequest>(request, token);
-            service.postToServerAPI(URLConstant.URLUploadImage, requestGenericBody)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<JsonElement>() {
-                        @Override
-                        public void onSubscribe(@NonNull Disposable d) {
-
-                        }
-
-                        @Override
-                        public void onNext(@NonNull JsonElement jsonElement) {
-                            GsonBuilder gson = new GsonBuilder();
-                            Type collectionType = new TypeToken<ResponseBase<UploadImageNewsResponse>>() {
-                            }.getType();
-                            ResponseBase<UploadImageNewsResponse> data = new Gson().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
-
-                        }
-
-                        @Override
-                        public void onError(@NonNull Throwable e) {
-
-                        }
-
-                        @Override
-                        public void onComplete() {
-
-                        }
-                    });
+            uploadImageNews(request);
         }
         showDialogCreateSuccessful();
+    }
+
+    private void uploadImageNews(UploadImageNewsRequest request) {
+        TypeToken<UploadImageNewsRequest> token = new TypeToken<UploadImageNewsRequest>() {};
+        APIService service = APIClient.getClient(this, URLConstant.URLBaseImage).create(APIService.class);
+        GenericBody<UploadImageNewsRequest> requestGenericBody = new GenericBody<>(request, token);
+        service.postToServerAPI(URLConstant.URLUploadImage, requestGenericBody)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<JsonElement>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull JsonElement jsonElement) {
+                        GsonBuilder gson = new GsonBuilder();
+                        Type collectionType = new TypeToken<ResponseBase<UploadImageNewsResponse>>() {
+                        }.getType();
+                        ResponseBase<UploadImageNewsResponse> data = gson.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
+
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     private void showDialogCreateSuccessful() {

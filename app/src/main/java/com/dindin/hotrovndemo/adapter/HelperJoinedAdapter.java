@@ -51,7 +51,7 @@ public class HelperJoinedAdapter extends RecyclerView.Adapter<HelperJoinedAdapte
                 + " | "
                 + (helper.getPhoneContact() != null ? helper.getPhoneContact() : ""));
 
-        Date date = new Date((long) helper.getDateCreated());
+        Date date = new Date(helper.getDateCreated().longValue());
         holder.tvDateTime.setText(Define.dfDateTime.format(date));
 
         holder.btnSeeDetails.setOnClickListener(new View.OnClickListener() {

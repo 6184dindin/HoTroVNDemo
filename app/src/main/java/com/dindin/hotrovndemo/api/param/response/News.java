@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 
 public class News implements Serializable {
 
@@ -39,25 +40,10 @@ public class News implements Serializable {
     private String requestSupport;
     @SerializedName("DateCreated")
     @Expose
-    private Integer dateCreated;
+    private BigInteger dateCreated;
     @SerializedName("CountHelperJoined")
     @Expose
     private Integer countHelperJoined;
-
-    public News(Integer id, Integer country, Integer province, Integer city, Integer district, Integer village, Double lat, Double lng, Integer dateNotify, String requestSupport, Integer dateCreated, Integer countHelperJoined) {
-        this.id = id;
-        this.country = country;
-        this.province = province;
-        this.city = city;
-        this.district = district;
-        this.village = village;
-        this.lat = lat;
-        this.lng = lng;
-        this.dateNotify = dateNotify;
-        this.requestSupport = requestSupport;
-        this.dateCreated = dateCreated;
-        this.countHelperJoined = countHelperJoined;
-    }
 
     public Integer getId() {
         return id;
@@ -139,11 +125,11 @@ public class News implements Serializable {
         this.requestSupport = requestSupport;
     }
 
-    public Integer getDateCreated() {
+    public BigInteger getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Integer dateCreated) {
+    public void setDateCreated(BigInteger dateCreated) {
         this.dateCreated = dateCreated;
     }
 

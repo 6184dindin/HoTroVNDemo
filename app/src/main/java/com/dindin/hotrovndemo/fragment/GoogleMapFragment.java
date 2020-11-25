@@ -272,7 +272,7 @@ public class GoogleMapFragment extends Fragment {
                                     map = googleMap;
                                     for (int i = 0; i < news.size(); i++) {
                                         LatLng latLng = new LatLng(news.get(i).getLat(), news.get(i).getLng());
-                                        Date date = new Date(news.get(i).getDateCreated());
+                                        Date date = new Date(news.get(i).getDateCreated().longValue());
                                         Marker marker = map.addMarker(new MarkerOptions().position(latLng)
                                                 .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(Define.dfDateTime.format(date),
                                                         news.get(i).getCountHelperJoined()))));

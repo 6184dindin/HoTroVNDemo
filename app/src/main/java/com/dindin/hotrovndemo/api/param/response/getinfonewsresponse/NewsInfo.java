@@ -3,6 +3,8 @@ package com.dindin.hotrovndemo.api.param.response.getinfonewsresponse;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.math.BigInteger;
+
 public class NewsInfo {
 
     @SerializedName("Id")
@@ -31,7 +33,7 @@ public class NewsInfo {
     private Double lng;
     @SerializedName("DateNotif")
     @Expose
-    private Integer dateNotify;
+    private BigInteger dateNotify;
     @SerializedName("AdminPost")
     @Expose
     private String adminPost;
@@ -49,7 +51,7 @@ public class NewsInfo {
     private String descriptions;
     @SerializedName("DateCreated")
     @Expose
-    private Integer dateCreated;
+    private BigInteger dateCreated;
 
     public Integer getId() {
         return id;
@@ -115,11 +117,11 @@ public class NewsInfo {
         this.lng = lng;
     }
 
-    public Integer getDateNotify() {
+    public BigInteger getDateNotify() {
         return dateNotify;
     }
 
-    public void setDateNotify(Integer dateNotify) {
+    public void setDateNotify(BigInteger dateNotify) {
         this.dateNotify = dateNotify;
     }
 
@@ -163,11 +165,11 @@ public class NewsInfo {
         this.descriptions = descriptions;
     }
 
-    public Integer getDateCreated() {
+    public BigInteger getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Integer dateCreated) {
+    public void setDateCreated(BigInteger dateCreated) {
         this.dateCreated = dateCreated;
     }
 

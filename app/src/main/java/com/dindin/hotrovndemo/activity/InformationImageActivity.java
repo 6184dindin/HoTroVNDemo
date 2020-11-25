@@ -35,28 +35,28 @@ public class InformationImageActivity extends AppCompatActivity {
 
         binding.img1.setPadding(0, 0, 0, 0);
         Glide.with(this).load(intent.getStringExtra("img" + 0))
-                .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
-                .error(getResources().getDrawable(R.drawable.ic_imagegallery))
+                .placeholder(getResources().getDrawable(R.drawable.ic_image_gallery))
+                .error(getResources().getDrawable(R.drawable.ic_image_gallery))
                 .into(binding.imgChoose);
         Glide.with(this).load(intent.getStringExtra("img" + 0))
-                .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
-                .error(getResources().getDrawable(R.drawable.ic_imagegallery))
+                .placeholder(getResources().getDrawable(R.drawable.ic_image_gallery))
+                .error(getResources().getDrawable(R.drawable.ic_image_gallery))
                 .into(binding.img1);
         Glide.with(this).load(intent.getStringExtra("img" + 1))
-                .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
-                .error(getResources().getDrawable(R.drawable.ic_imagegallery))
+                .placeholder(getResources().getDrawable(R.drawable.ic_image_gallery))
+                .error(getResources().getDrawable(R.drawable.ic_image_gallery))
                 .into(binding.img2);
         Glide.with(this).load(intent.getStringExtra("img" + 2))
-                .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
-                .error(getResources().getDrawable(R.drawable.ic_imagegallery))
+                .placeholder(getResources().getDrawable(R.drawable.ic_image_gallery))
+                .error(getResources().getDrawable(R.drawable.ic_image_gallery))
                 .into(binding.img3);
         Glide.with(this).load(intent.getStringExtra("img" + 3))
-                .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
-                .error(getResources().getDrawable(R.drawable.ic_imagegallery))
+                .placeholder(getResources().getDrawable(R.drawable.ic_image_gallery))
+                .error(getResources().getDrawable(R.drawable.ic_image_gallery))
                 .into(binding.img4);
         Glide.with(this).load(intent.getStringExtra("img" + 4))
-                .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
-                .error(getResources().getDrawable(R.drawable.ic_imagegallery))
+                .placeholder(getResources().getDrawable(R.drawable.ic_image_gallery))
+                .error(getResources().getDrawable(R.drawable.ic_image_gallery))
                 .into(binding.img5);
 
         binding.btnBack.setOnClickListener(new View.OnClickListener() {
@@ -70,8 +70,8 @@ public class InformationImageActivity extends AppCompatActivity {
             public void onClick(View v) {
                 binding.img1.setPadding(0, 0, 0, 0);
                 Glide.with(InformationImageActivity.this).load(intent.getStringExtra("img" + 0))
-                        .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
-                        .error(getResources().getDrawable(R.drawable.ic_imagegallery))
+                        .placeholder(getResources().getDrawable(R.drawable.ic_image_gallery))
+                        .error(getResources().getDrawable(R.drawable.ic_image_gallery))
                         .into(binding.imgChoose);
                 binding.img2.setPadding(getResources().getDimensionPixelOffset(R.dimen.padding_image),
                         getResources().getDimensionPixelOffset(R.dimen.padding_image),
@@ -96,8 +96,8 @@ public class InformationImageActivity extends AppCompatActivity {
             public void onClick(View v) {
                 binding.img2.setPadding(0, 0, 0, 0);
                 Glide.with(InformationImageActivity.this).load(intent.getStringExtra("img" + 1))
-                        .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
-                        .error(getResources().getDrawable(R.drawable.ic_imagegallery))
+                        .placeholder(getResources().getDrawable(R.drawable.ic_image_gallery))
+                        .error(getResources().getDrawable(R.drawable.ic_image_gallery))
                         .into(binding.imgChoose);
                 binding.img1.setPadding(getResources().getDimensionPixelOffset(R.dimen.padding_image),
                         getResources().getDimensionPixelOffset(R.dimen.padding_image),
@@ -121,8 +121,8 @@ public class InformationImageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Glide.with(InformationImageActivity.this).load(intent.getStringExtra("img" + 2))
-                        .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
-                        .error(getResources().getDrawable(R.drawable.ic_imagegallery))
+                        .placeholder(getResources().getDrawable(R.drawable.ic_image_gallery))
+                        .error(getResources().getDrawable(R.drawable.ic_image_gallery))
                         .into(binding.imgChoose);
                 binding.img3.setPadding(0, 0, 0, 0);
                 binding.img1.setPadding(getResources().getDimensionPixelOffset(R.dimen.padding_image),
@@ -147,8 +147,8 @@ public class InformationImageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Glide.with(InformationImageActivity.this).load(intent.getStringExtra("img" + 3))
-                        .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
-                        .error(getResources().getDrawable(R.drawable.ic_imagegallery))
+                        .placeholder(getResources().getDrawable(R.drawable.ic_image_gallery))
+                        .error(getResources().getDrawable(R.drawable.ic_image_gallery))
                         .into(binding.imgChoose);
                 binding.img4.setPadding(0, 0, 0, 0);
                 binding.img1.setPadding(getResources().getDimensionPixelOffset(R.dimen.padding_image),
@@ -174,8 +174,8 @@ public class InformationImageActivity extends AppCompatActivity {
             public void onClick(View v) {
                 binding.img5.setPadding(0, 0, 0, 0);
                 Glide.with(InformationImageActivity.this).load(intent.getStringExtra("img" + 4))
-                        .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
-                        .error(getResources().getDrawable(R.drawable.ic_imagegallery))
+                        .placeholder(getResources().getDrawable(R.drawable.ic_image_gallery))
+                        .error(getResources().getDrawable(R.drawable.ic_image_gallery))
                         .into(binding.imgChoose);
                 binding.img1.setPadding(getResources().getDimensionPixelOffset(R.dimen.padding_image),
                         getResources().getDimensionPixelOffset(R.dimen.padding_image),

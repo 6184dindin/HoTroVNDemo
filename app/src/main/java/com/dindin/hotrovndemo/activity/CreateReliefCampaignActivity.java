@@ -36,9 +36,8 @@ import com.dindin.hotrovndemo.api.param.request.UploadImageHelperRequest;
 import com.dindin.hotrovndemo.api.param.response.UploadImageHelperResponse;
 import com.dindin.hotrovndemo.databinding.ActivityCreateReliefCampaignBinding;
 import com.dindin.hotrovndemo.databinding.DialogSelectedDayMonthYearBinding;
-import com.dindin.hotrovndemo.utils.GenericBody;
 import com.dindin.hotrovndemo.utils.Define;
-import com.google.gson.Gson;
+import com.dindin.hotrovndemo.utils.GenericBody;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
@@ -198,7 +197,7 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
         request.setOrganization(binding.edtOrganization.getText().toString().trim());
         Calendar calendar = Calendar.getInstance();
         int dateTime = year * 10000 + month * 100 + date;
-        Date date  = calendar.getTime();
+        Date date = calendar.getTime();
         String stringDate = Define.dfDate.format(date);
         request.setTimeBegin(Math.min(Integer.parseInt(stringDate), dateTime));
         request.setTimeEnd(Math.max(Integer.parseInt(stringDate), dateTime));
@@ -228,7 +227,7 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
                         if (data.getResultCode().equals("001")) {
                             if (data.getResultData() != null) {
                                 Integer helpsId = data.getResultData();
-                                uploadImgHelper(helpsId);
+                                uploadListImageHelper(helpsId);
                             }
                         }
 
@@ -246,56 +245,58 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
                 });
     }
 
-    private void uploadImgHelper(Integer helpId) {
-        UploadImageHelperRequest uploadImageHelperRequest = new UploadImageHelperRequest();
-
+    private void uploadListImageHelper(Integer helpId) {
         for (int i = 0; i < bitmapList.size(); i++) {
+            UploadImageHelperRequest request = new UploadImageHelperRequest();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bitmapList.get(i).compress(Bitmap.CompressFormat.JPEG, 100, baos);
             byte[] b = baos.toByteArray();
             String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
 
-            uploadImageHelperRequest.setHelpId(helpId);
-            uploadImageHelperRequest.setOrderNum(i);
-            uploadImageHelperRequest.setType(field);
-            uploadImageHelperRequest.setImage(encodedImage);
-            uploadImageHelperRequest.setSecCode(SecCodeConstant.SCUploadImageHelper);
-
-            TypeToken<UploadImageHelperRequest> stringListTypeToken = new TypeToken<UploadImageHelperRequest>() {
-            };
-            GenericBody<UploadImageHelperRequest> request = new GenericBody<UploadImageHelperRequest>(uploadImageHelperRequest, stringListTypeToken);
-
-            APIService service = APIClient.getClient(getApplicationContext(),
-                    URLConstant.URLBaseImage).create(APIService.class);
-
-            service.postToServerAPI(URLConstant.URLUploadImageHelper, request).subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<JsonElement>() {
-                        @Override
-                        public void onSubscribe(@NonNull Disposable d) {
-
-                        }
-
-                        @Override
-                        public void onNext(@NonNull JsonElement jsonElement) {
-                            GsonBuilder gSon = new GsonBuilder();
-                            Type collectionType = new TypeToken<ResponseBase<UploadImageHelperResponse>>() {
-                            }.getType();
-                            ResponseBase<UploadImageHelperResponse> data = new Gson().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
-                        }
-
-                        @Override
-                        public void onError(@NonNull Throwable e) {
-
-                        }
-
-                        @Override
-                        public void onComplete() {
-
-                        }
-                    });
+            request.setHelpId(helpId);
+            request.setOrderNum(i);
+            request.setType(field);
+            request.setImage(encodedImage);
+            request.setSecCode(SecCodeConstant.SCUploadImageHelper);
+            uploadImageHelper(request);
         }
         showDialogCreateSuccessful();
+    }
+
+    private void uploadImageHelper(UploadImageHelperRequest request) {
+        TypeToken<UploadImageHelperRequest> stringListTypeToken = new TypeToken<UploadImageHelperRequest>() {
+        };
+        GenericBody<UploadImageHelperRequest> requestGenericBody = new GenericBody<UploadImageHelperRequest>(request, stringListTypeToken);
+
+        APIService service = APIClient.getClient(getApplicationContext(),
+                URLConstant.URLBaseImage).create(APIService.class);
+
+        service.postToServerAPI(URLConstant.URLUploadImageHelper, requestGenericBody).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<JsonElement>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull JsonElement jsonElement) {
+                        GsonBuilder gSon = new GsonBuilder();
+                        Type collectionType = new TypeToken<ResponseBase<UploadImageHelperResponse>>() {
+                        }.getType();
+                        ResponseBase<UploadImageHelperResponse> data = gSon.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     private void showDialogCreateSuccessful() {

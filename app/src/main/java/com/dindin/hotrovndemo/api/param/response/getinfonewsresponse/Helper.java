@@ -3,6 +3,8 @@ package com.dindin.hotrovndemo.api.param.response.getinfonewsresponse;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.math.BigInteger;
+
 public class Helper {
 
     @SerializedName("HelpsId")
@@ -31,7 +33,7 @@ public class Helper {
     private String supportValue;
     @SerializedName("DateCreated")
     @Expose
-    private Integer dateCreated;
+    private BigInteger dateCreated;
 
     public Integer getHelpsId() {
         return helpsId;
@@ -97,11 +99,11 @@ public class Helper {
         this.supportValue = supportValue;
     }
 
-    public Integer getDateCreated() {
+    public BigInteger getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Integer dateCreated) {
+    public void setDateCreated(BigInteger dateCreated) {
         this.dateCreated = dateCreated;
     }
 

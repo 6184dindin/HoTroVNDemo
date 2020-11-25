@@ -172,8 +172,7 @@ public class ReliefInformationActivity extends AppCompatActivity {
         binding.tvAddress.setText(districtString + cityString + provinceString);
         binding.tvRequestSupport.setText(newsInfo.getRequestSupport() != null ? newsInfo.getRequestSupport() : "");
 
-
-        Date date = new Date(newsInfo.getDateCreated());
+        Date date = new Date(newsInfo.getDateCreated().longValue());
         binding.tvDateTime.setText(Define.dfDateTime.format(date));
 
         binding.tvAdminPostAndPhoneContact.setText((newsInfo.getAdminPost() != null ? newsInfo.getAdminPost() : "")
@@ -183,7 +182,7 @@ public class ReliefInformationActivity extends AppCompatActivity {
         binding.tvRolePersonPost.setText(newsInfo.getRolePersonPost() != null ? newsInfo.getRolePersonPost() : "");
 
         binding.btnSeeDetails.setOnClickListener(v -> {
-            downloadImageNews(newsInfo.getId());
+            downloadImageNews(newsInfo.getId(), newsInfo.getRequestSupport());
         });
         binding.btnCreateReliefCampaign.setOnClickListener(v -> {
             Intent intent = new Intent(ReliefInformationActivity.this, CreateReliefCampaignActivity.class);
@@ -198,14 +197,14 @@ public class ReliefInformationActivity extends AppCompatActivity {
     private void setHelperList(List<Helper> helpers) {
         helperJoinedAdapter = new HelperJoinedAdapter(helpers, this);
         helperJoinedAdapter.setOnClickHelperJoinedListener(helper -> {
-            downloadImageHelper(helper.getHelpsId());
+            downloadImageHelper(helper.getHelpsId(), helper.getSupportValue());
         });
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         binding.rcViewListReliefCampaign.setLayoutManager(layoutManager);
         binding.rcViewListReliefCampaign.setAdapter(helperJoinedAdapter);
     }
 
-    private void downloadImageNews(int newsId) {
+    private void downloadImageNews(int newsId, String supportValue) {
         DownloadImageNewsRequest request = new DownloadImageNewsRequest();
         request.setNewsId(newsId);
         request.setType(field);
@@ -231,7 +230,7 @@ public class ReliefInformationActivity extends AppCompatActivity {
                         }.getType();
                         ResponseBase<List<DownloadImageResponse>> data = gSon.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
                         if (data.getResultCode().equals("001")) {
-                            showDialogInformation(1, data.getResultData());
+                            showDialogInformation(1, data.getResultData(), supportValue);
                         }
                     }
 
@@ -245,10 +244,9 @@ public class ReliefInformationActivity extends AppCompatActivity {
 
                     }
                 });
-
     }
 
-    private void downloadImageHelper(int helpsId) {
+    private void downloadImageHelper(int helpsId, String supportValue) {
         DownloadImageHelperRequest request = new DownloadImageHelperRequest();
         request.setHelpsId(helpsId);
         request.setType(field);
@@ -275,7 +273,7 @@ public class ReliefInformationActivity extends AppCompatActivity {
                         }.getType();
                         ResponseBase<List<DownloadImageResponse>> data = gSon.create().fromJson(jsonElement.getAsJsonObject().toString(), collectionType);
                         if (data.getResultCode().equals("001")) {
-                            showDialogInformation(2, data.getResultData());
+                            showDialogInformation(2, data.getResultData(), supportValue);
                         }
                     }
 
@@ -289,26 +287,29 @@ public class ReliefInformationActivity extends AppCompatActivity {
 
                     }
                 });
-
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
-    private void showDialogInformation(int type, List<DownloadImageResponse> downloadImageResponses) {
+    private void showDialogInformation(int type, List<DownloadImageResponse> downloadImageResponses, String supportValue) {
         DialogShowInformationReliefCampaignBinding binding1 = DialogShowInformationReliefCampaignBinding.inflate(LayoutInflater.from(this));
         binding1.btnClose.setOnClickListener(v -> {
             dialog.dismiss();
         });
+
         if (type == 1) {
             binding1.tvTitle1.setText(getResources().getString(R.string.information_relief));
         }
         if (type == 2) {
             binding1.tvTitle1.setText(getResources().getString(R.string.information_need_relief));
         }
+
+        binding1.tvRequestSupport.setText(supportValue);
+
         if (downloadImageResponses != null) {
             if (downloadImageResponses.size() > 0) {
                 Glide.with(this).load(downloadImageResponses.get(0).getLinkedOutside())
-                        .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
-                        .error(getResources().getDrawable(R.drawable.ic_imagegallery))
+                        .placeholder(getResources().getDrawable(R.drawable.ic_image_gallery))
+                        .error(getResources().getDrawable(R.drawable.ic_image_gallery))
                         .into(binding1.img1);
                 binding1.layoutImage.setOnClickListener(v -> {
                     Intent intent1 = new Intent(ReliefInformationActivity.this, InformationImageActivity.class);
@@ -321,29 +322,30 @@ public class ReliefInformationActivity extends AppCompatActivity {
             }
             if (downloadImageResponses.size() > 1) {
                 Glide.with(this).load(downloadImageResponses.get(1).getLinkedOutside())
-                        .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
-                        .error(getResources().getDrawable(R.drawable.ic_imagegallery))
+                        .placeholder(getResources().getDrawable(R.drawable.ic_image_gallery))
+                        .error(getResources().getDrawable(R.drawable.ic_image_gallery))
                         .into(binding1.img2);
             }
             if (downloadImageResponses.size() > 2) {
                 Glide.with(this).load(downloadImageResponses.get(2).getLinkedOutside())
-                        .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
-                        .error(getResources().getDrawable(R.drawable.ic_imagegallery))
+                        .placeholder(getResources().getDrawable(R.drawable.ic_image_gallery))
+                        .error(getResources().getDrawable(R.drawable.ic_image_gallery))
                         .into(binding1.img3);
             }
             if (downloadImageResponses.size() > 3) {
                 Glide.with(this).load(downloadImageResponses.get(3).getLinkedOutside())
-                        .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
-                        .error(getResources().getDrawable(R.drawable.ic_imagegallery))
+                        .placeholder(getResources().getDrawable(R.drawable.ic_image_gallery))
+                        .error(getResources().getDrawable(R.drawable.ic_image_gallery))
                         .into(binding1.img4);
             }
             if (downloadImageResponses.size() > 4) {
                 Glide.with(this).load(downloadImageResponses.get(4).getLinkedOutside())
-                        .placeholder(getResources().getDrawable(R.drawable.ic_imagegallery))
-                        .error(getResources().getDrawable(R.drawable.ic_imagegallery))
+                        .placeholder(getResources().getDrawable(R.drawable.ic_image_gallery))
+                        .error(getResources().getDrawable(R.drawable.ic_image_gallery))
                         .into(binding1.img5);
             }
         }
+
         dialog.setContentView(binding1.getRoot());
         Objects.requireNonNull(dialog.getWindow()).setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setGravity(Gravity.CENTER);

@@ -3,6 +3,8 @@ package com.dindin.hotrovndemo.api.param.response;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.math.BigInteger;
+
 public class GetListShortNewsResponse {
 
     @SerializedName("Id")
@@ -37,7 +39,7 @@ public class GetListShortNewsResponse {
     private String requestSupport;
     @SerializedName("DateCreated")
     @Expose
-    private Integer dateCreated;
+    private BigInteger dateCreated;
     @SerializedName("CountHelperJoined")
     @Expose
     private Integer countHelperJoined;
@@ -122,11 +124,11 @@ public class GetListShortNewsResponse {
         this.requestSupport = requestSupport;
     }
 
-    public Integer getDateCreated() {
+    public BigInteger getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Integer dateCreated) {
+    public void setDateCreated(BigInteger dateCreated) {
         this.dateCreated = dateCreated;
     }
 

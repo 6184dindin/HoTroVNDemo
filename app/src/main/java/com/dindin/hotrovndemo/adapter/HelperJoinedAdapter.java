@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -51,7 +52,7 @@ public class HelperJoinedAdapter extends RecyclerView.Adapter<HelperJoinedAdapte
                 + " | "
                 + (helper.getPhoneContact() != null ? helper.getPhoneContact() : ""));
 
-        Date date = new Date(helper.getDateCreated().longValue());
+        Date date = new Date(helper.getDateCreated().longValue() * 1000);
         holder.tvDateTime.setText(Define.dfDateTime.format(date));
 
         holder.btnSeeDetails.setOnClickListener(new View.OnClickListener() {
@@ -73,7 +74,7 @@ public class HelperJoinedAdapter extends RecyclerView.Adapter<HelperJoinedAdapte
         TextView tvAdminHelperAndPhoneContact;
         TextView tvRolePersonHelper;
         TextView tvDateTime;
-        TextView btnSeeDetails;
+        Button btnSeeDetails;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -270,7 +270,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
         request.setRequestSupport(binding.edtRequestSupport.getText().toString().trim());
         request.setDescriptions(binding.edtDescriptions.getText().toString().trim());
         Calendar calendar = Calendar.getInstance();
-        request.setDateCreated(BigInteger.valueOf(calendar.getTimeInMillis()));
+        request.setDateCreated(BigInteger.valueOf(calendar.getTimeInMillis() / 1000));
         request.setSecCode(SecCodeConstant.SCCreateNews);
 
         TypeToken<CreateNewsRequest> token = new TypeToken<CreateNewsRequest>() {};
@@ -316,7 +316,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
         for (int i = 0; i < bitmapList.size(); i++) {
             UploadImageNewsRequest request = new UploadImageNewsRequest();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bitmapList.get(i).compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            bitmapList.get(i).compress(Bitmap.CompressFormat.JPEG, 50, baos);
             byte[] b = baos.toByteArray();
             String bitmapBase64String = Base64.encodeToString(b, Base64.DEFAULT);
             request.setNewsId(newsId);
@@ -324,6 +324,7 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
             request.setType(field);
             request.setOrderNum(i);
             request.setSecCode(SecCodeConstant.SCUploadImage);
+
             uploadImageNews(request);
         }
         showDialogCreateSuccessful();

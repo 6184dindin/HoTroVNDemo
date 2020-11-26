@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -85,7 +86,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         holder.tvRequestSupport.setText(news.getRequestSupport() != null ? news.getRequestSupport() : "");
         holder.tvCountHelperJoined.setText("(" + news.getCountHelperJoined() + ")");
 
-        Date date = new Date(news.getDateCreated().longValue());
+        Date date = new Date(news.getDateCreated().longValue() * 1000);
         holder.tvDateTime.setText(Define.dfDateTime.format(date));
 
         holder.btnSeeDetails.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +112,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         TextView tvRequestSupport;
         TextView tvCountHelperJoined;
         TextView tvDateTime;
-        TextView btnSeeDetails;
+        Button btnSeeDetails;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

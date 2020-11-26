@@ -34,7 +34,6 @@ public class GetYourLocationActivity extends AppCompatActivity {
     ActivityGetYourLocationBinding binding;
     GoogleMap map;
     FusedLocationProviderClient fusedLocationProviderClient;
-    double latitude = 0.0, longitude = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +43,6 @@ public class GetYourLocationActivity extends AppCompatActivity {
         binding.myMap.onCreate(savedInstanceState);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(GetYourLocationActivity.this);
         createMap();
-        binding.btnDone.setOnClickListener(v -> {
-            Intent intent = new Intent(GetYourLocationActivity.this, CreateReliefNewsletterActivity.class);
-            intent.putExtra("lat", latitude);
-            intent.putExtra("long", longitude);
-            setResult(RESULT_OK, intent);
-        });
     }
 
     private void createMap() {
@@ -75,8 +68,14 @@ public class GetYourLocationActivity extends AppCompatActivity {
                         if (location != null) {
                             Toast.makeText(getBaseContext(), "Successful", Toast.LENGTH_LONG).show();
                             LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                            latitude = location.getLatitude();
-                            longitude = location.getLongitude();
+
+                            binding.btnDone.setOnClickListener(v -> {
+                                Intent intent = new Intent(GetYourLocationActivity.this, CreateReliefNewsletterActivity.class);
+                                intent.putExtra("lat", location.getLatitude());
+                                intent.putExtra("long", location.getLongitude());
+                                setResult(RESULT_OK, intent);
+                            });
+
                             Drawable drawable = getResources().getDrawable(R.drawable.ic_pin_green);
                             Marker marker = map.addMarker(new MarkerOptions().position(latLng)
                                     .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromDrawable(drawable))));

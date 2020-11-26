@@ -202,7 +202,7 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
         request.setTimeBegin(Math.min(Integer.parseInt(stringDate), dateTime));
         request.setTimeEnd(Math.max(Integer.parseInt(stringDate), dateTime));
         request.setSupportValue(binding.edtSupportValue.getText().toString().trim());
-        request.setDateCreated(BigInteger.valueOf(calendar.getTimeInMillis()));
+        request.setDateCreated(BigInteger.valueOf(calendar.getTimeInMillis() / 1000));
         request.setSecCode(SecCodeConstant.SCCreateHelpsNews);
 
         TypeToken<CreateHelpsNewsRequest> token = new TypeToken<CreateHelpsNewsRequest>() {
@@ -249,7 +249,7 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
         for (int i = 0; i < bitmapList.size(); i++) {
             UploadImageHelperRequest request = new UploadImageHelperRequest();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bitmapList.get(i).compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            bitmapList.get(i).compress(Bitmap.CompressFormat.JPEG, 50, baos);
             byte[] b = baos.toByteArray();
             String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
 
@@ -258,6 +258,7 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
             request.setType(field);
             request.setImage(encodedImage);
             request.setSecCode(SecCodeConstant.SCUploadImageHelper);
+
             uploadImageHelper(request);
         }
         showDialogCreateSuccessful();

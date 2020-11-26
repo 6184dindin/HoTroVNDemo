@@ -172,7 +172,7 @@ public class ReliefInformationActivity extends AppCompatActivity {
         binding.tvAddress.setText(districtString + cityString + provinceString);
         binding.tvRequestSupport.setText(newsInfo.getRequestSupport() != null ? newsInfo.getRequestSupport() : "");
 
-        Date date = new Date(newsInfo.getDateCreated().longValue());
+        Date date = new Date(newsInfo.getDateCreated().longValue() * 1000);
         binding.tvDateTime.setText(Define.dfDateTime.format(date));
 
         binding.tvAdminPostAndPhoneContact.setText((newsInfo.getAdminPost() != null ? newsInfo.getAdminPost() : "")

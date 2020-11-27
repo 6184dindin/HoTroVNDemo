@@ -39,6 +39,8 @@ import com.dindin.hotrovndemo.utils.GenericBody;
 import com.dindin.hotrovndemo.utils.InfoAddress;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
@@ -62,7 +64,7 @@ import io.reactivex.schedulers.Schedulers;
 
 import static android.graphics.Color.TRANSPARENT;
 
-public class GoogleMapFragment extends Fragment {
+public class GoogleMapFragment extends Fragment implements OnMapReadyCallback {
     FragmentGoogleMapBinding binding;
 
     int key;
@@ -74,7 +76,7 @@ public class GoogleMapFragment extends Fragment {
     List<City> cities;
     List<District> districts;
 
-    GoogleMap map;
+
 
     InfoAddress infoAddress;
     Integer posProvince = 0;
@@ -82,35 +84,30 @@ public class GoogleMapFragment extends Fragment {
     Integer posDistrict = 0;
     District district = null;
     City city = null;
-
     Date dateBegin, dateEnd;
+
+    SupportMapFragment mapFragment;
 
     public GoogleMapFragment(int key, String phoneNumber, int field) {
         this.key = key;
         this.phoneNumber = phoneNumber;
         this.field = field;
     }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_google_map, container, false);
 
-        binding.googleMap.onCreate(savedInstanceState);
-
         dialog = new Dialog(getContext());
+
+        mapFragment = (SupportMapFragment) getChildFragmentManager()
+                .findFragmentById(R.id.googleMap);
+        mapFragment.getMapAsync(this);
 
         Calendar calendar = Calendar.getInstance();
         dateEnd = calendar.getTime();
         calendar.roll(Calendar.DATE, -10);
         dateBegin = calendar.getTime();
-
-        createMap();
 
         provinces = Define.getProvinces(getContext());
         cities = Define.getCities(getContext());
@@ -131,7 +128,8 @@ public class GoogleMapFragment extends Fragment {
                     dateEnd = calendar.getTime();
                     calendar.roll(Calendar.DATE, -10);
                     dateBegin = calendar.getTime();
-                    createMap();
+                    mapFragment.getMapAsync(GoogleMapFragment.this);
+                    dialog.dismiss();
                 });
                 binding1.btnSelectedProvince.setOnClickListener(v1 -> {
                     binding1.layoutSelectedPicker.setVisibility(View.VISIBLE);
@@ -229,13 +227,17 @@ public class GoogleMapFragment extends Fragment {
             dateEnd = dateBegin;
             calendar1.roll(Calendar.DATE, -10);
             dateBegin = calendar1.getTime();
-            createMap();
+            mapFragment.getMapAsync(this);
         });
 
         return binding.getRoot();
     }
 
-    private void createMap() {
+    private void createMap(GoogleMap mMap) {
+        if(mMap == null) {
+            return;
+        }
+
         GetListShortNewsRequest request = new GetListShortNewsRequest();
         request.setFieldsId(field);
         request.setCity(posCity);
@@ -268,39 +270,26 @@ public class GoogleMapFragment extends Fragment {
                         if (data.getResultCode().equals("001")){
                             List<News> news = data.getResultData();
                             if (news != null){
-                                binding.googleMap.getMapAsync(googleMap -> {
-                                    map = googleMap;
-                                    for (int i = 0; i < news.size(); i++) {
-                                        LatLng latLng = new LatLng(news.get(i).getLat(), news.get(i).getLng());
-                                        Date date = new Date(news.get(i).getDateCreated().longValue() * 1000);
-                                        Marker marker = map.addMarker(new MarkerOptions().position(latLng)
-                                                .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(Define.dfDateTime.format(date),
-                                                        news.get(i).getCountHelperJoined()))));
-                                        marker.setTag(news.get(i).getId());
-                                        CameraPosition cameraPosition = new CameraPosition.Builder().target(latLng).zoom(13).build();
-                                        map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-                                        map.setOnMarkerClickListener(m -> {
-                                            int newsId = (int) m.getTag();
-                                            Intent intent = new Intent(getContext(), ReliefInformationActivity.class);
-                                            intent.putExtra("newsId", newsId);
-                                            intent.putExtra("key", key);
-                                            intent.putExtra("phone", phoneNumber);
-                                            intent.putExtra("field", field);
-                                            startActivity(intent);
-                                            return false;
-                                        });
-                                    }
-
-                                });
-                                binding.googleMap.onStart();
-                            }
-                            else {
-                                Calendar calendar1 = Calendar.getInstance();
-                                calendar1.setTime(dateBegin);
-                                dateEnd = dateBegin;
-                                calendar1.roll(Calendar.DATE, -10);
-                                dateBegin = calendar1.getTime();
-                                createMap();
+                                for (int i = 0; i < news.size(); i++) {
+                                    LatLng latLng = new LatLng(news.get(i).getLat(), news.get(i).getLng());
+                                    Date date = new Date(news.get(i).getDateCreated().longValue() * 1000);
+                                    Marker marker = mMap.addMarker(new MarkerOptions().position(latLng)
+                                            .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(Define.dfDateTime.format(date),
+                                                    news.get(i).getCountHelperJoined()))));
+                                    marker.setTag(news.get(i).getId());
+                                    CameraPosition cameraPosition = new CameraPosition.Builder().target(latLng).zoom(13).build();
+                                    mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                                    mMap.setOnMarkerClickListener(m -> {
+                                        int newsId = (int) m.getTag();
+                                        Intent intent = new Intent(getContext(), ReliefInformationActivity.class);
+                                        intent.putExtra("newsId", newsId);
+                                        intent.putExtra("key", key);
+                                        intent.putExtra("phone", phoneNumber);
+                                        intent.putExtra("field", field);
+                                        startActivity(intent);
+                                        return false;
+                                    });
+                                }
                             }
                         }
                     }
@@ -345,4 +334,8 @@ public class GoogleMapFragment extends Fragment {
         return returnedBitmap;
     }
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        createMap(googleMap);
+    }
 }

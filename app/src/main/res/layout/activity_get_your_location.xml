@@ -32,12 +32,25 @@
                 android:textSize="@dimen/title_relief" />
         </RelativeLayout>
 
-        <com.google.android.gms.maps.MapView
+        <fragment
+            android:name="com.google.android.gms.maps.SupportMapFragment"
             android:id="@+id/myMap"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layoutHeading" />
+
+
+        <ImageButton
+            android:id="@+id/btnRefresh"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_75sdp"
+            android:background="@drawable/bg_circle_green"
+            android:src="@drawable/ic_refresh"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
         <Button
             android:id="@+id/btnDone"

@@ -45,9 +45,7 @@ public class GetYourLocationActivity extends AppCompatActivity implements OnMapR
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.myMap);
         mapFragment.getMapAsync(this);
-        binding.btnRefresh.setOnClickListener(v -> {
-            mapFragment.getMapAsync(this);
-        });
+
     }
 
     private void getMyLocation(GoogleMap googleMap) {
@@ -72,7 +70,7 @@ public class GetYourLocationActivity extends AppCompatActivity implements OnMapR
             public void onComplete(@NonNull Task<Location> task) {
                 Location location = task.getResult();
                 if (location != null) {
-                    Toast.makeText(getBaseContext(), "Successful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "Successful", Toast.LENGTH_LONG).show();
                     LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
                     binding.btnDone.setOnClickListener(v -> {
@@ -80,6 +78,7 @@ public class GetYourLocationActivity extends AppCompatActivity implements OnMapR
                         intent.putExtra("lat", location.getLatitude());
                         intent.putExtra("long", location.getLongitude());
                         setResult(RESULT_OK, intent);
+                        finish();
                     });
 
                     Drawable drawable = getResources().getDrawable(R.drawable.ic_pin_green);

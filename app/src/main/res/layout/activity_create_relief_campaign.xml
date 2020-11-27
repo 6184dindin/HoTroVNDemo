@@ -118,7 +118,7 @@
                     android:text="@string/implementation_date"
                     android:textColor="@color/color_black"
                     android:textSize="@dimen/title_default" />
-
+84545454804
                 <RelativeLayout
                     android:id="@+id/btnSelectedDate"
                     android:layout_width="match_parent"
@@ -132,8 +132,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/_30sdp"
                         android:background="@drawable/bg_corner_stroke_edit_text"
-                        android:enabled="false"
                         android:fontFamily="@font/tahoma"
+                        android:textColor="@color/color_black"
                         android:hint="@string/implementation_date"
                         android:padding="@dimen/_5sdp"
                         android:textSize="@dimen/text_view_default" />

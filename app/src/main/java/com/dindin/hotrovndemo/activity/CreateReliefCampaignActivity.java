@@ -247,19 +247,23 @@ public class CreateReliefCampaignActivity extends AppCompatActivity {
 
     private void uploadListImageHelper(Integer helpId) {
         for (int i = 0; i < bitmapList.size(); i++) {
-            UploadImageHelperRequest request = new UploadImageHelperRequest();
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bitmapList.get(i).compress(Bitmap.CompressFormat.JPEG, 50, baos);
-            byte[] b = baos.toByteArray();
-            String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
+            try {
+                UploadImageHelperRequest request = new UploadImageHelperRequest();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmapList.get(i).compress(Bitmap.CompressFormat.JPEG, 50, baos);
+                byte[] b = baos.toByteArray();
+                String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
 
-            request.setHelpId(helpId);
-            request.setOrderNum(i);
-            request.setType(field);
-            request.setImage(encodedImage);
-            request.setSecCode(SecCodeConstant.SCUploadImageHelper);
+                request.setHelpId(helpId);
+                request.setOrderNum(i);
+                request.setType(field);
+                request.setImage(encodedImage);
+                request.setSecCode(SecCodeConstant.SCUploadImageHelper);
 
-            uploadImageHelper(request);
+                uploadImageHelper(request);
+            } catch (Exception e) {
+
+            }
         }
         showDialogCreateSuccessful();
     }

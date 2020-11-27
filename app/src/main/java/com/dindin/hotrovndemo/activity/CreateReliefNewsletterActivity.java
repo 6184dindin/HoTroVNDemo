@@ -314,18 +314,22 @@ public class CreateReliefNewsletterActivity extends AppCompatActivity {
 
     private void uploadListImageNews(Integer newsId) {
         for (int i = 0; i < bitmapList.size(); i++) {
-            UploadImageNewsRequest request = new UploadImageNewsRequest();
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bitmapList.get(i).compress(Bitmap.CompressFormat.JPEG, 50, baos);
-            byte[] b = baos.toByteArray();
-            String bitmapBase64String = Base64.encodeToString(b, Base64.DEFAULT);
-            request.setNewsId(newsId);
-            request.setImage(bitmapBase64String);
-            request.setType(field);
-            request.setOrderNum(i);
-            request.setSecCode(SecCodeConstant.SCUploadImage);
+            try {
+                UploadImageNewsRequest request = new UploadImageNewsRequest();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmapList.get(i).compress(Bitmap.CompressFormat.JPEG, 50, baos);
+                byte[] b = baos.toByteArray();
+                String bitmapBase64String = Base64.encodeToString(b, Base64.DEFAULT);
+                request.setNewsId(newsId);
+                request.setImage(bitmapBase64String);
+                request.setType(field);
+                request.setOrderNum(i);
+                request.setSecCode(SecCodeConstant.SCUploadImage);
 
-            uploadImageNews(request);
+                uploadImageNews(request);
+            } catch (Exception e) {
+
+            }
         }
         showDialogCreateSuccessful();
     }
